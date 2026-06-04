@@ -145,7 +145,6 @@ The simulator produces two CSV files:
 
 ## Future Improvements
 
-- [ ] Add qualifying performance as an input feature (grid position strongly correlates with race result)
 - [ ] Model team-level performance (car upgrades mid-season affect driver ceilings)
 - [ ] Incorporate constructor standings simulation alongside driver standings
 - [ ] Build a visualization layer (matplotlib/seaborn) to plot probability distributions
