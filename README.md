@@ -56,17 +56,21 @@ Iterates through every remaining race on the calendar and simulates the full sea
 ```
 f1-monte-carlo/
 │
-├── driver.py        # Fetches and structures FastF1 data into JSON
-├── single_sim.py      # Functions for simulating a single race outcome
-├── season_sim.py         # Main simulator — runs 10,000+ full season iterations
+├── python/
+│   ├── driver.py        # Fetches and structures FastF1 data into JSON
+│   ├──single_sim.py      # Functions for simulating a single race outcome
+│   ├── season_sim.py         # Main simulator — runs 10,000+ full season iterations
 │
-├── data/
-│   ├── drivers/           # Per-driver historical result JSONs
-│   └── tracks/            # Per-circuit historical result JSONs
+├── json/
+│   ├── f1_model_data.json           # Per-driver historical result JSONs
+│   └── 2026_track_data.json            # Per-circuit historical result JSONs
 │
-├── output/
-│   ├── standings_prob.csv      # Probability of each driver finishing P1–P20
-│   └── simulated_standings.csv # Aggregated simulated final standings
+├── notebooks/
+│   ├── f1_results_viz.ipynb        # Fetches and structures predictions into graphs
+|
+├── csv_files/           # Model Prediction CSVs
+│
+├── graph_files/           # Graphs created by notebooks
 │
 └── README.md
 ```
@@ -87,6 +91,7 @@ f1-monte-carlo/
 | `copy` | Deep copying simulation state per iteration |
 | `random` | Stochastic elements within race simulation |
 | `os` | File and directory management |
+| `path` | File and directory management |
 
 ---
 
@@ -98,7 +103,7 @@ git clone https://github.com/patsfirstdown/f1-season-forecaster.git
 cd f1-season-forecaster
 
 # Install dependencies
-pip install fastf1 pandas numpy
+pip install fastf1 pandas numpy path
 
 # Enable FastF1 cache (recommended — avoids redundant API calls)
 # The cache path is set inside driver.py
@@ -123,7 +128,7 @@ python driver.py
 python season_sim.py
 ```
 
-Results are written to the `output/` directory as CSV files.
+Results are written to the `csv_files/[NEXT GRAND PRIX NAME]` directory as CSV files.
 
 ---
 
@@ -131,7 +136,7 @@ Results are written to the `output/` directory as CSV files.
 
 The simulator produces two CSV files:
 
-**`standings_prob.csv`** — Probability matrix. Rows are drivers, columns are championship finishing positions (P1–P20). Each cell is the percentage of simulations where that driver finished in that position.
+**`[pre-post]_q_race.csv`** — Probability matrix. Rows are drivers, columns are race finishing positions (P1–P20) for the next race. Each cell is the percentage of simulations where that driver finished in that position.
 
 | Driver | P1 | P2 | P3 | ... |
 |---|---|---|---|---|
@@ -139,7 +144,8 @@ The simulator produces two CSV files:
 | NOR | 0.21 | 0.31 | 0.19 | ... |
 | ... | | | | |
 
-**`simulated_standings.csv`** — Mean finishing position and points across all simulations, giving a single "expected" standings forecast.
+**`[pre-post]_q_season.csv`** — Probability matrix. Rows are drivers, columns are championship finishing positions (P1–P20). Each cell is the percentage of simulations where that driver finished in that position.
+
 
 ---
 
