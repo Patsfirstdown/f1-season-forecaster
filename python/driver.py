@@ -4,162 +4,166 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
+import logging
+
+#Stop INFO log during session.load()
+logging.disable(logging.INFO)
 
 #create track registry with their attributes
 TRACK_REGISTRY = {
-    'Australian Grand Prix': {
-        'Type': 'Semi-Street',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'Medium',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':.7
+    "Melbourne":{
+    'Type': 'Semi-Street',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'Medium',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':.7
     },
-    'Chinese Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'Medium',
-        'Tire_Wear': 'High',
-        'Overtaking_Multi':1.2
+    "Shanghai":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'Medium',
+    'Tire_Wear': 'High',
+    'Overtaking_Multi':1.2
     },
-    'Japanese Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'High',
-        'Downforce': 'High',
-        'Tire_Wear': 'High',
-        'Overtaking_Multi':.65
+    "Suzuka":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'High',
+    'Downforce': 'High',
+    'Tire_Wear': 'High',
+    'Overtaking_Multi':.65
     },
-    'Miami Grand Prix': {
-        'Type': 'Semi-Street',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'Medium',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':1.15
+    "Miami Gardens":{
+    'Type': 'Semi-Street',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'Medium',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':1.15
     },
-    'Canadian Grand Prix': {
-        'Type': 'Semi-Street',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'Low',
-        'Tire_Wear': 'High',
-        'Overtaking_Multi':.9
+    "Montréal":{
+    'Type': 'Semi-Street',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'Low',
+    'Tire_Wear': 'High',
+    'Overtaking_Multi':.9
     },
-    'Monaco Grand Prix': {
-        'Type': 'Street',
-        'Speed_Profile': 'Low',
-        'Downforce': 'Maximum',
-        'Tire_Wear': 'Low',
-        'Overtaking_Multi':.15
+    "Monte Carlo":{
+    'Type': 'Street',
+    'Speed_Profile': 'Low',
+    'Downforce': 'Maximum',
+    'Tire_Wear': 'Low',
+    'Overtaking_Multi':.15
     },
-    'Barcelona Grand Prix': {  # FastF1 matches 'Spain' or 'Catalunya' for the Barcelona track
-        'Type': 'Permanent',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'High',
-        'Tire_Wear': 'High',
-        'Overtaking_Multi':1.1
+    "Barcelona":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'High',
+    'Tire_Wear': 'High',
+    'Overtaking_Multi':1.1
     },
-    'Austrian Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'High',
-        'Downforce': 'Medium',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':1.25
+    "Spielberg":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'High',
+    'Downforce': 'Medium',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':1.25
     },
-    'British Grand Prix': {  # FastF1 official match name for Silverstone
-        'Type': 'Permanent',
-        'Speed_Profile': 'High',
-        'Downforce': 'High',
-        'Tire_Wear': 'High',
-        'Overtaking_Multi':.95
+    "Silverstone":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'High',
+    'Downforce': 'High',
+    'Tire_Wear': 'High',
+    'Overtaking_Multi':.95
     },
-    'Belgian Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'High',
-        'Downforce': 'Medium',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':1.3
+    "Spa-Francorchamps":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'High',
+    'Downforce': 'Medium',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':1.3
     },
-    'Hungarian Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'Low',
-        'Downforce': 'Maximum',
-        'Tire_Wear': 'High',
-        'Overtaking_Multi':.75
+    "Budapest":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'Low',
+    'Downforce': 'Maximum',
+    'Tire_Wear': 'High',
+    'Overtaking_Multi':.75
     },
-    'Dutch Grand Prix': {  # Zandvoort
-        'Type': 'Permanent',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'High',
-        'Tire_Wear': 'High',
-        'Overtaking_Multi':1.05
+    "Zandvoort":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'High',
+    'Tire_Wear': 'High',
+    'Overtaking_Multi':1.05
     },
-    'Italian Grand Prix': {  # FastF1 official match name for Monza
-        'Type': 'Permanent',
-        'Speed_Profile': 'High',
-        'Downforce': 'Minimum',
-        'Tire_Wear': 'Low',
-        'Overtaking_Multi':1.1
+    "Monza":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'High',
+    'Downforce': 'Minimum',
+    'Tire_Wear': 'Low',
+    'Overtaking_Multi':1.1
     },
-    'Spanish Grand Prix': {  # The new addition
-        'Type': 'Semi-Street',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'Medium',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':.8
+    "Madrid":{
+    'Type': 'Semi-Street',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'Medium',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':.8
     },
-    'Azerbaijan Grand Prix': {  # Baku
-        'Type': 'Street',
-        'Speed_Profile': 'High',
-        'Downforce': 'Low',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':1.05
+    "Baku":{
+    'Type': 'Street',
+    'Speed_Profile': 'High',
+    'Downforce': 'Low',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':1.05
     },
-    'Singapore Grand Prix': {
-        'Type': 'Street',
-        'Speed_Profile': 'Low',
-        'Downforce': 'Maximum',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':.6
+    "Marina Bay":{
+    'Type': 'Street',
+    'Speed_Profile': 'Low',
+    'Downforce': 'Maximum',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':.6
     },
-    'United States Grand Prix': {  # Circuit of the Americas
-        'Type': 'Permanent',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'High',
-        'Tire_Wear': 'High',
-        'Overtaking_Multi':1
+    "Austin":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'High',
+    'Tire_Wear': 'High',
+    'Overtaking_Multi':1
     },
-    'Mexico City Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'High',
-        'Downforce': 'Maximum',  # Runs max downforce aero package due to thin altitude air
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':1.2
+    "Mexico City":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'High',
+    'Downforce': 'Maximum',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':1.2
     },
-    'São Paulo Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'High',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':1.15
+    "São Paulo":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'High',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':1.15
     },
-    'Las Vegas Grand Prix': {
-        'Type': 'Street',
-        'Speed_Profile': 'High',
-        'Downforce': 'Minimum',
-        'Tire_Wear': 'Low',
-        'Overtaking_Multi':1.05
+    "Las Vegas":{
+    'Type': 'Street',
+    'Speed_Profile': 'High',
+    'Downforce': 'Minimum',
+    'Tire_Wear': 'Low',
+    'Overtaking_Multi':1.05
     },
-    'Qatar Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'High',
-        'Downforce': 'High',
-        'Tire_Wear': 'Maximum',
-        'Overtaking_Multi':.7
+    "Lusail":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'High',
+    'Downforce': 'High',
+    'Tire_Wear': 'Maximum',
+    'Overtaking_Multi':.7
     },
-    'Abu Dhabi Grand Prix': {
-        'Type': 'Permanent',
-        'Speed_Profile': 'Medium',
-        'Downforce': 'Medium',
-        'Tire_Wear': 'Medium',
-        'Overtaking_Multi':1.25
+    "Yas Marina":{
+    'Type': 'Permanent',
+    'Speed_Profile': 'Medium',
+    'Downforce': 'Medium',
+    'Tire_Wear': 'Medium',
+    'Overtaking_Multi':1.25
     }
 }
 
@@ -209,6 +213,7 @@ def driver_track_hist(driver_codes,TRACK_REGISTRY,start_year=2021,end_year=2025,
                     #check if they raced there
                     if not driver_row.empty:
                         #add the result to variables
+                        team=str(driver_row['TeamName'].values[0])
                         finish_pos=int(driver_row['Position'].values[0])
                         grid_pos=int(driver_row['GridPosition'].values[0])
                         status=(driver_row['Status'].values[0])
@@ -217,6 +222,7 @@ def driver_track_hist(driver_codes,TRACK_REGISTRY,start_year=2021,end_year=2025,
                         #if they did then add the result with finish as None
                         if(is_dnf==1):
                             master_database["historical_results"][driver_code].append({'Year':year,
+                                'TeamName':team,
                                 'Grid':grid_pos,
                                 'Finish':None,
                                 'DNF':is_dnf,
@@ -230,6 +236,7 @@ def driver_track_hist(driver_codes,TRACK_REGISTRY,start_year=2021,end_year=2025,
                         #else add all result
                         else:
                             master_database["historical_results"][driver_code].append({'Year':year,
+                                'TeamName':team,
                                 'Grid':grid_pos,
                                 'Finish':finish_pos,
                                 'DNF':is_dnf,
@@ -253,15 +260,16 @@ def driver_track_hist(driver_codes,TRACK_REGISTRY,start_year=2021,end_year=2025,
     return master_database
 
 #pull drivers result for this season
-def current_form(driver_codes,TRACK_REGISTRY,current_year):
+def current_form(driver_codes,team_names,TRACK_REGISTRY,current_year,next_track_name=None):
     #make variables
-    current_form_data={driver_code: [] for driver_code in driver_codes}
+    current_form_data_driver={driver_code: [] for driver_code in driver_codes}
+    current_form_data_team={team_name: [] for team_name in team_names}
     schedule = fastf1.get_event_schedule(current_year)
     today=datetime.now()
     #loop through this season
     for track_name,attributes in TRACK_REGISTRY.items():
         #pull track info
-        track_row = schedule[(schedule['EventName'].str.contains(track_name, case=False, na=False))]
+        track_row = schedule[(schedule['Location'].str.contains(track_name, case=False, na=False))]
 
         if track_row.empty:
             print(f"Track {track_name} is not found")
@@ -285,6 +293,7 @@ def current_form(driver_codes,TRACK_REGISTRY,current_year):
                 #if the driver exists
                 if not driver_row.empty:
                     #pull results into variables
+                    team=str(driver_row['TeamName'].values[0])
                     finish_pos=int(driver_row['Position'].values[0])
                     grid_pos=int(driver_row['GridPosition'].values[0])
                     status=(driver_row['Status'].values[0])
@@ -292,7 +301,19 @@ def current_form(driver_codes,TRACK_REGISTRY,current_year):
                     is_dnf=1 if "Finished" not in status and "+1 Lap" not in status and "+2 Lap" not in status and "Lapped" not in status else 0
                     #if they did then add the result with finish as None
                     if(is_dnf==1):
-                        current_form_data[driver_code].append({'Year':current_year,
+                        current_form_data_driver[driver_code].append({'Year':current_year,
+                            'TeamName':team,
+                            'Grid':grid_pos,
+                            'Finish':None,
+                            'DNF':is_dnf,
+                            'Track_Type':attributes['Type'],
+                            'Speed_Profile':attributes['Speed_Profile'],
+                            'Downforce_Req':attributes['Downforce'],
+                            'Tire_Wear_Profile':attributes['Tire_Wear'],
+                            'Overtaking_Multi':attributes['Overtaking_Multi'],
+                            'Track':track_name
+                            })
+                        current_form_data_team[team].append({'Year':current_year,
                             'Grid':grid_pos,
                             'Finish':None,
                             'DNF':is_dnf,
@@ -305,7 +326,19 @@ def current_form(driver_codes,TRACK_REGISTRY,current_year):
                             })
                     else:
                     #else add all result
-                        current_form_data[driver_code].append({'Year':current_year,
+                        current_form_data_driver[driver_code].append({'Year':current_year,
+                            'TeamName':team,
+                            'Grid':grid_pos,
+                            'Finish':finish_pos,
+                            'DNF':is_dnf,
+                            'Track_Type':attributes['Type'],
+                            'Speed_Profile':attributes['Speed_Profile'],
+                            'Downforce_Req':attributes['Downforce'],
+                            'Tire_Wear_Profile':attributes['Tire_Wear'],
+                            'Overtaking_Multi':attributes['Overtaking_Multi'],
+                            'Track':track_name
+                            })
+                        current_form_data_team[team].append({'Year':current_year,
                             'Grid':grid_pos,
                             'Finish':finish_pos,
                             'DNF':is_dnf,
@@ -324,22 +357,24 @@ def current_form(driver_codes,TRACK_REGISTRY,current_year):
         except Exception as e:
             print(f"Could not load {current_year} {track_name}: {e}")
             break
+        if(track_name==next_track_name):
+            break
 
-    return current_form_data
+    return current_form_data_driver,current_form_data_team
 
 #update json function
-def update_json(datafile,driver_codes,TRACK_REGISTRY,current_year):
+def update_json(datafile,driver_codes,team_codes,TRACK_REGISTRY,current_year):
     #check if the json exists to prevent long updates
     if os.path.exists(datafile):
         print(f"found existing database")
         #update only this season stats
         with open(datafile, 'r',encoding='utf-8') as f:
             master_database=json.load(f)
-            master_database['current_form']=current_form(driver_codes, TRACK_REGISTRY, current_year)
+            master_database['current_form_driver'],master_database['current_form_team']=current_form(driver_codes=driver_registry_df['Abbreviation'],team_names=driver_registry_df['TeamName'],TRACK_REGISTRY=TRACK_REGISTRY,current_year=current_year)
     #create full json
     else:
         master_database=driver_track_hist(driver_codes=driver_registry_df['Abbreviation'],TRACK_REGISTRY=TRACK_REGISTRY,start_year=current_year-5,end_year=current_year-1)
-        master_database['current_form']=current_form(driver_codes=driver_registry_df['Abbreviation'],TRACK_REGISTRY=TRACK_REGISTRY,current_year=current_year)
+        master_database['current_form_driver'],master_database['current_form_team']=current_form(driver_codes=driver_registry_df['Abbreviation'],team_names=driver_registry_df['TeamName'],TRACK_REGISTRY=TRACK_REGISTRY,current_year=current_year)
 
     return master_database
 
@@ -352,7 +387,7 @@ driver_registry_df=session.results[['Abbreviation','FullName','DriverNumber','Te
 #show DataFrame sorted by teamname
 print(driver_registry_df.sort_values(by='TeamName'))
 #create master database
-master_database=update_json(datafile=datafile,driver_codes=driver_registry_df['Abbreviation'],TRACK_REGISTRY=TRACK_REGISTRY,current_year=current_year)
+master_database=update_json(datafile=datafile,driver_codes=driver_registry_df['Abbreviation'],team_codes=driver_registry_df['TeamName'],TRACK_REGISTRY=TRACK_REGISTRY,current_year=current_year)
 
 #Save to JSON
 print("\nExporting file...")
@@ -360,4 +395,4 @@ with open(JSON_DIR / 'f1_model_data.json', 'w') as f:
     json.dump(master_database, f, indent=4)
 #show example results
 print("'f1_model_data.json' generated")
-print(master_database['historical_results']['HAM'])
+#print(master_database['current_form_driver'])

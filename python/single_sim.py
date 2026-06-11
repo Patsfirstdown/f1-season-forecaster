@@ -5,6 +5,10 @@ import pandas as pd # pyright: ignore[reportMissingModuleSource]
 import random
 from datetime import datetime
 from pathlib import Path
+import logging
+
+#Stop INFO log during session.load()
+logging.disable(logging.INFO)
 
 #create seed for consistent results over a whole run
 random.seed(33)
@@ -58,21 +62,28 @@ def archetype_fallback(history, track_type, speed_profile):
     return 12.0
 
 #calculate a %dnf based on this season and track history
-def calculate_blended_dnf(history, current_form_driver, target_track):
+def calculate_blended_dnf(history, current_form_driver, target_track, current_form_team):
     #find %dnf for track n
     track_dnfs=[race['DNF'] for race in history if race['Track']==target_track]
     track_dnf_rate=sum(track_dnfs)/len(track_dnfs) if track_dnfs else 0.15
     #find current season race count
-    total_races = len(current_form_driver)
+    total_races_driver = len(current_form_driver)
+    total_races_team = len(current_form_team)
 
-    if total_races == 0:
+    if total_races_driver == 0:
         return 0
-    
-    #find %dnf for this season
+    if total_races_team == 0:
+        print("\n\n\n\n\n\n\n\nNO TEAM RACES??????????????\n\n\n\n\n\n")
+        return 0
+
+    #find dnf count for this season
+    team_dnf=sum(race["DNF"] for race in current_form_team)
     dnfs = sum(race["DNF"] for race in current_form_driver)
-    dnfs=dnfs/total_races
+
+    team_dnfs=team_dnf/total_races_team
+    dnfs=dnfs/total_races_driver
     #combine with track weight priority
-    return (track_dnf_rate *.6)+(dnfs * 0.4)
+    return (track_dnf_rate *.5)+(dnfs * 0.35)+(team_dnfs * .15)
 
 #actual forecast function
 def run_race_forecast(target_track,simulated_quali_results,sprint=False):
@@ -88,7 +99,9 @@ def run_race_forecast(target_track,simulated_quali_results,sprint=False):
     for driver,quali_pos in simulated_quali_results.items():
         #pull driver history and current form
         driver_history=db['historical_results'].get(driver,[])
-        current_driver_stats=db['current_form'].get(driver,[])
+        current_driver_stats=db['current_form_driver'].get(driver,[])
+        driver_team=current_driver_stats[0]['TeamName']
+        current_team_stats=db['current_form_team'].get(driver_team,[])
         #find average finish this season
         current_driver_form=average_finish(current_driver_stats)
         #find weighted track history
@@ -111,7 +124,7 @@ def run_race_forecast(target_track,simulated_quali_results,sprint=False):
         #calculate sim score
         simulated_score=best_race_pace+random_modifier
         #find dnf probablity
-        dnf_prob=calculate_blended_dnf(driver_history,current_driver_stats,target_track)
+        dnf_prob=calculate_blended_dnf(driver_history,current_driver_stats,target_track,current_team_stats)
         #predict if driver dnf's
         is_dnf=1 if rng.random()*1.5 <dnf_prob else 0
         #add prediction to forecast
@@ -135,28 +148,31 @@ def run_race_forecast(target_track,simulated_quali_results,sprint=False):
 
 #generate predictive qualifying
 def generate_quali(season_standings):
-    mock_quali=[]
-    #loop through drivers in driver standings
-    for position, driver in enumerate(season_standings,start=1):
-        #add random element
-        random_factor=random.uniform(-2.5,2.5)
-        percieved_pace=position+random_factor
-        #add to array
+    mock_quali = []
+    
+    # Loop through drivers in driver standings
+    for position, driver in enumerate(season_standings, start=1):
+        # Add random element
+        random_factor = random.uniform(-2.5, 2.5)
+        perceived_pace = position + random_factor
+        # Add to array
         mock_quali.append({
-            "driver":driver,
-            "pace_score":position
+            "driver": driver["driver"],
+            "pace_score": perceived_pace  # was using position instead of perceived_pace
         })
-    #sort by pace score
+    
+    # Sort by pace score
     mock_quali.sort(key=lambda x: x["pace_score"])
-    #return predict position and driver
+    
+    # Return predicted position and driver
     return [
-        {"position": idx +1, "driver": item["driver"]}
+        {"position": idx + 1, "driver": item["driver"]}
         for idx, item in enumerate(mock_quali)
     ]
 
 #find next grand prix location and qualifying
-def find_next_gp(TRACK_REGISTRY,current_year,current_standings,use_live_time=True,next_track=None,quali=True,sprint_yes=False):
-    calc=(current_standings==None)
+def find_next_gp(TRACK_REGISTRY,current_year,current_standings,use_live_time=True,next_track=None,quali=True,sprint_yes=False,check_quali=True):
+    calc=(current_standings is None)
     #generate current standings if they don't exist
     if(calc):
         current_standings={}
@@ -171,7 +187,7 @@ def find_next_gp(TRACK_REGISTRY,current_year,current_standings,use_live_time=Tru
         #loop through tracks from JSON
         for track_name,attributes in TRACK_REGISTRY.items():
             #pull track info
-            track_row = schedule[(schedule['EventName']==track_name)]
+            track_row = schedule[(schedule['Location']==track_name)]
             is_sprint=track_row["EventFormat"]
 
             if track_row.empty:
@@ -181,12 +197,14 @@ def find_next_gp(TRACK_REGISTRY,current_year,current_standings,use_live_time=Tru
             elif(calc):
                 #check if need to find sprint and add all points oppurtunities
                 if(is_sprint.values[0]=="sprint_qualifying"):
-                    results=fastf1.get_session(current_year,track_row['EventName'].values[0],'R')
+                    print(f"\ntrack: {track_name}\n")
+                    results=fastf1.get_session(current_year,track_row['Location'].values[0],'R')
                     current_standings=calc_places(current_standings,results)
-                    sprint_results=fastf1.get_session(current_year,track_row['EventName'].values[0],'S')
+                    sprint_results=fastf1.get_session(current_year,track_row['Location'].values[0],'S')
                     current_standings=calc_sprint_places(current_standings,sprint_results)
                 else:
-                    results=fastf1.get_session(current_year,track_row['EventName'].values[0],'R')
+                    print(f"\ntrack: {track_name}\n")
+                    results=fastf1.get_session(current_year,track_row['Location'].values[0],'R')
                     current_standings=calc_places(current_standings,results)
                     
             #if using live timing(single race prediction)
@@ -198,6 +216,13 @@ def find_next_gp(TRACK_REGISTRY,current_year,current_standings,use_live_time=Tru
                     next_track_name=track_name
                     next_track_attri=attributes
                     break
+                elif pd.to_datetime(event_date).to_pydatetime().date()==today.date():
+                    results.load(telemetry=False,weather=False,messages=False)
+                    if(results.results.empty):
+                        print(f"{track_name} might've happened, but not loaded")    
+                        next_track_name=track_name
+                        next_track_attri=attributes
+                        break
             elif track_row.empty:
                 next_track_name=track_name
                 next_track_attri=attributes
@@ -207,89 +232,92 @@ def find_next_gp(TRACK_REGISTRY,current_year,current_standings,use_live_time=Tru
     else:
         #find it in schedule
         current_round = schedule.loc[
-            schedule["EventName"] == next_track,
+            schedule["Location"] == next_track,
             "RoundNumber"
         ].iloc[0]
         #find the following grand prix name
         next_race = schedule.loc[
             schedule["RoundNumber"] == current_round + 1
         ]
-        #if there is a next race pull EventName
+        #if there is a next race pull Location
         if not next_race.empty:
-            next_track_name=next_race.iloc[0]["EventName"]
+            next_track_name=next_race.iloc[0]["Location"]
     #if no next track then return None,etc.
     if not next_track_name:
         print("NO RACES LEFT")
         return None, None, current_standings,False
     
     #find offical name
-    target_row=schedule[schedule['EventName']==next_track_name]
-    official_event_name=target_row['EventName'].values[0]
+    target_row=schedule[schedule['Location']==next_track_name]
+    official_event_name=target_row['Location'].values[0]
     #set up qualifying prediction
     grid_4_sim=[]
     #check if sprint weekend
-    if(sprint_yes):
-        #try to find qualifying results
-        try:
-            quali_session=fastf1.get_session(current_year,official_event_name,'SQ')
-            quali_session.load(telemetry=False,weather=False,messages=False)
-            #if they exist add them to grid_4_sim
-            if (not quali_session.results.empty and 'Position' in quali_session.results.columns and pd.notna(quali_session.results['Position'].max())):
-                print("Quali Has Occured")
-                sorted_quali = quali_session.results.sort_values(by='Position')
-                for _, row in sorted_quali.iterrows():
-                    grid_4_sim.append({
-                        "position": int(row['Position']),
-                        "driver": row['Abbreviation']
-                    })
+    if(check_quali):
+        if(sprint_yes):
+            #try to find qualifying results
+            try:
+                quali_session=fastf1.get_session(current_year,official_event_name,'SQ')
+                quali_session.load(telemetry=False,weather=False,messages=False)
+                #if they exist add them to grid_4_sim
+                if (not quali_session.results.empty and 'Position' in quali_session.results.columns and pd.notna(quali_session.results['Position'].max())):
+                    print("Quali Has Occured")
+                    sorted_quali = quali_session.results.sort_values(by='Position')
+                    for _, row in sorted_quali.iterrows():
+                        grid_4_sim.append({
+                            "position": int(row['Position']),
+                            "driver": str(row['Abbreviation'])
+                        })
 
-                return grid_4_sim,next_track_name,current_standings,True
-            #else raise error
-            else:
-                raise ValueError("Quali not done")
-        #generate quali results if none exist
-        except Exception:
+                    return grid_4_sim,next_track_name,current_standings,True
+                #else raise error
+                else:
+                    raise ValueError("Quali not done")
+            #generate quali results if none exist
+            except Exception:
+                current_ranks=calc_rank(current_standings)
+
+                grid_4_sim=generate_quali(current_ranks)
+                #return the results
+                return grid_4_sim,next_track_name,current_standings,False
+        #if qualifying is to be checked
+        if(quali):
+            #try to find results
+            try:
+                quali_session=fastf1.get_session(current_year,official_event_name,'Q')
+                quali_session.load(telemetry=False,weather=False,messages=False)
+                #if they exist add them to grid_4_sim
+                if (not quali_session.results.empty and 'Position' in quali_session.results.columns and pd.notna(quali_session.results['Position'].max())):
+                    print("Quali Has Occured")
+                    sorted_quali = quali_session.results.sort_values(by='Position')
+                    for _, row in sorted_quali.iterrows():
+                        grid_4_sim.append({
+                            "position": int(row['Position']),
+                            "driver": row['Abbreviation']
+                        })
+
+                    return grid_4_sim,next_track_name,current_standings,True
+                #else raise error
+                else:
+                    print("QUALI NOT DONE")
+                    raise ValueError("Quali not done")
+            #generate quali results if none exist
+            except Exception:
+                current_ranks=calc_rank(current_standings)
+
+                grid_4_sim=generate_quali(current_ranks)
+                #return the results
+                return grid_4_sim,next_track_name,current_standings,False
+        #if it is known there is no qualifying the generate prediction
+        else:
             current_ranks=calc_rank(current_standings)
 
             grid_4_sim=generate_quali(current_ranks)
             #return the results
             return grid_4_sim,next_track_name,current_standings,False
-    #if qualifying is to be checked
-    if(quali):
-        #try to find results
-        try:
-            quali_session=fastf1.get_session(current_year,official_event_name,'Q')
-            quali_session.load(telemetry=False,weather=False,messages=False)
-            print(quali_session.results)
-            #if they exist add them to grid_4_sim
-            if (not quali_session.results.empty and 'Position' in quali_session.results.columns and pd.notna(quali_session.results['Position'].max())):
-                print("Quali Has Occured")
-                sorted_quali = quali_session.results.sort_values(by='Position')
-                for _, row in sorted_quali.iterrows():
-                    grid_4_sim.append({
-                        "position": int(row['Position']),
-                        "driver": row['Abbreviation']
-                    })
-
-                return grid_4_sim,next_track_name,current_standings,True
-            #else raise error
-            else:
-                print("QUALI NOT DONE")
-                raise ValueError("Quali not done")
-        #generate quali results if none exist
-        except Exception:
-            current_ranks=calc_rank(current_standings)
-
-            grid_4_sim=generate_quali(current_ranks)
-            #return the results
-            return grid_4_sim,next_track_name,current_standings,False
-    #if it is known there is no qualifying the generate prediction
     else:
-        current_ranks=calc_rank(current_standings)
-
-        grid_4_sim=generate_quali(current_ranks)
-        #return the results
-        return grid_4_sim,next_track_name,current_standings,False
+        _=None
+        return _,next_track_name,current_standings,True
 
 #update current standings with latest results
 def calc_places(current_standings,results,real=True):
@@ -384,14 +412,15 @@ def build_current_standings(TRACK_REGISTRY,current_year):
     #loop through tracks
     for track_name,attributes in TRACK_REGISTRY.items():
         #pull track info
-        track_row = schedule[(schedule['EventName']==track_name)]
+        track_row = schedule[(schedule['Location']==track_name)]
+
         #if track empty skip
         if track_row.empty:
             print(f"Track {track_name} is not found")
             continue
         else:
             #pull results
-            results=fastf1.get_session(current_year,track_row['EventName'].values[0],'R')
+            results=fastf1.get_session(current_year,track_row['Location'].values[0],'R')
             results.load(telemetry=False,weather=False,messages=False)
             #if no results then end
             if(results.results.empty):
@@ -420,6 +449,8 @@ def update_standings(race_forecast,current_standings):
         
     return current_standings
 
+
+
 #single race sim
 if __name__ == "__main__":
     #create Cache
@@ -435,13 +466,15 @@ if __name__ == "__main__":
             track_list=json.load(f)
 
     #find next grand prix and qualifying
-    forecast_quali,next_track,current_standings,_=find_next_gp(track_list,current_year,current_standings)
+    forecast_quali,next_track,current_standings,quali_happened=find_next_gp(track_list,current_year,current_standings)
     #print finish places and standings
     print(current_standings)
     print(calc_rank(current_standings))
 
+    print(forecast_quali)
+
     #run actual prediction and print results
-    forecast_quali_dict = {entry["driver"]["driver"]: entry["position"] for entry in forecast_quali}
+    forecast_quali_dict = {entry["driver"]: entry["position"] for entry in forecast_quali}
     final_forecast = run_race_forecast(next_track, forecast_quali_dict)
-    print("---SIMULATED RESULTS---")
+    print(f"---{next_track} SIMULATED RESULTS---")
     print(final_forecast.to_string(index=False))

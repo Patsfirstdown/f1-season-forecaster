@@ -61,7 +61,7 @@ def build_next_gp(result,total_dict):
 n=10000
 #prevent long runs during testing
 if(n>1000):
-    run=input(f"This will take {n/(3.6469174175244152*60)+.209} minutes--run: ")
+    run=input(f"This will take {n/(5.7411369461699575*60)+.209} minutes--run: ")
 else:
     run="y"
 
@@ -96,6 +96,7 @@ actual_next_gp=None
 
 #begin monte carlo simulations
 print("\n\n\nSTARTING LOOP\n\n\n")
+print(next_track_base)
 #save existing standings
 original_base = copy.deepcopy(current_standings_base)
 #add another timer
@@ -112,11 +113,14 @@ for i in range(n):
             if(first_loop):
                 forecast_quali,next_track,current_standings,quali_exists=single_sim.find_next_gp(track_list,current_year,current_standings,use_live_time=False,next_track=next_track_base,quali=quali)
                 first_loop=False
-                actual_next_gp=next_track
+                actual_next_gp=schedule[(schedule['Location']==next_track)]["EventName"].values[0]
+                print(actual_next_gp)
+                actual_quali=forecast_quali.copy()
             #if quali proven to exist for first race use it
             elif(quali_exists):
-                print("\n\n\n\nQUALI HAPPENED!!!\n\n\n")
-                forecast_quali,next_track,current_standings,quali_exists=single_sim.find_next_gp(track_list,current_year,current_standings,use_live_time=False,next_track=next_track_base,quali=True)
+                print("\nQUALI HAPPENED!!!\n")
+                _,next_track,current_standings,quali_exists=single_sim.find_next_gp(track_list,current_year,current_standings,use_live_time=False,next_track=next_track_base,quali=True,check_quali=False)
+                forecast_quali=actual_quali.copy()
             #else create prediction
             else:
                 forecast_quali,next_track,current_standings,quali_exists=single_sim.find_next_gp(track_list,current_year,current_standings,use_live_time=False,next_track=next_track_base,quali=quali)
@@ -127,11 +131,12 @@ for i in range(n):
         #if no next race end
         if(forecast_quali is None):
             break
+
         #make a dictionary out of forecast_quali
-        forecast_quali_dict = {entry["driver"]["driver"]: entry["position"] for entry in forecast_quali}
+        forecast_quali_dict = {entry["driver"]: entry["position"] for entry in forecast_quali}
 
         #find event information for next_track
-        track_row = schedule[(schedule['EventName']==next_track)]
+        track_row = schedule[(schedule['Location']==next_track)]
         is_sprint=track_row["EventFormat"]
 
         #check if next_race is a sprint
@@ -174,8 +179,13 @@ sr_expected_pos = sum(
     pos * single_race_pct[pos]
     for pos in range(1, 23)
 )
+sr_expected_sum = sum(
+    single_race_pct[pos]
+    for pos in range(1, 23)
+)
+
 sr_expected_pos_df = pd.DataFrame({
-    "Expected_Pos": sr_expected_pos
+    "Expected_Pos": sr_expected_pos/sr_expected_sum
 })
 
 #sort DataFrames
@@ -218,11 +228,6 @@ print(expected_pos_df)
 print(results_df_pct_sorted)
 
 CSV_DIR = PROJECT_DIR / "csv_files" / actual_next_gp
-
-print("Script:", Path(__file__).resolve())
-print("Project:", PROJECT_DIR)
-print("CSV_DIR:", CSV_DIR)
-
 CSV_DIR.mkdir(parents=True, exist_ok=True)
 
 #save single race results to csv
@@ -258,5 +263,5 @@ start_mid_time=start_duration.total_seconds()
 end_mid_time=end_duration.total_seconds()
 #print final duration timings
 print(f"\n--total_time--\nseconds: {total_time}\nminutes: {total_time/60}"
-      f"\n--start_time--\nseconds: {start_mid_time}\nminutes: {start_mid_time/60}\n"
-      f"--end_time--\nseconds: {end_mid_time}\nminutes: {end_mid_time/60}\nrps:{n/end_mid_time}")
+f"\n--start_time--\nseconds: {start_mid_time}\nminutes: {start_mid_time/60}\n"
+f"--end_time--\nseconds: {end_mid_time}\nminutes: {end_mid_time/60}\nrps:{n/end_mid_time}")
