@@ -61,7 +61,7 @@ def build_next_gp(result,total_dict):
 n=10000
 #prevent long runs during testing
 if(n>1000):
-    run=input(f"This will take {n/(5.7411369461699575*60)+.209} minutes--run: ")
+    run=input(f"This will take {n/(5.7411369461699575*60)+.209} minutes--run(y/n): ")
 else:
     run="y"
 
