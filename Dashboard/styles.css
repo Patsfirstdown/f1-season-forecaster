@@ -1,3 +1,8 @@
+:root {
+    --f1_red: #E8002D;
+    --f1_silver: #C0C0C0;
+}
+
 body {
     padding: 0px;
     margin: 0px;
@@ -117,13 +122,13 @@ header.welcome{
 
 ul li a:hover {
     transform: scale(1.05);
-    background-color: darkcyan;
+    background-color: var(--f1_red);
 }
 
 ul.nav{
     position: fixed;
     top: 0;
-    background-color: darkgrey;
+    background-color: var(--f1_silver);
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -197,48 +202,3 @@ li.right_link{
     color: #444;
 }
 
-
-
-
-
-.slideshow-container {
-  position: relative;
-  max-width: 800px;
-  margin: 50px auto;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.slide {
-  display: none;
-}
-
-.slide img {
-  width: 100%;
-  border-radius: 12px;
-}
-
-/* Buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  padding: 12px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  user-select: none;
-  transition: 0.3s;
-}
-
-.prev {
-  left: 0;
-}
-
-.next {
-  right: 0;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.6);
-}
