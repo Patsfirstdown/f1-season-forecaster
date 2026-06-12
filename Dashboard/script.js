@@ -1,4 +1,9 @@
 let predictionData;
+let positionChart;
+const driverData =
+    predictionData.data[race][driver];
+const labels = [];
+const values = [];
 
 async function loadData() {
     const response = await fetch("data/predictions.json");
@@ -57,6 +62,70 @@ function populateDriverDropdown(raceName) {
     });
 }
 
+function updateChart(race, driver) {
+
+    const driverData =
+        predictionData.data[race][driver];
+
+    const labels = [];
+    const values = [];
+
+    for (let i = 1; i <= 22; i++) {
+
+        const key = i.toString();
+
+        if (key in driverData) {
+
+            labels.push(key);
+            values.push(driverData[key]);
+        }
+    }
+
+    if ("DNF" in driverData) {
+
+        labels.push("DNF");
+        values.push(driverData["DNF"]);
+    }
+
+    if (positionChart) {
+        positionChart.destroy();
+    }
+
+    const ctx =
+        document
+        .getElementById("positionChart")
+        .getContext("2d");
+
+    positionChart =
+        new Chart(ctx, {
+
+            type: "bar",
+
+            data: {
+
+                labels: labels,
+
+                datasets: [{
+                    label: "Probability (%)",
+                    data: values
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                plugins: {
+
+                    title: {
+                        display: true,
+                        text: driver + " - " + race
+                    }
+                }
+            }
+        });
+}
+
 async function initialize() {
 
     await loadData();
@@ -76,5 +145,36 @@ document
 .addEventListener("change", function() {
 
     populateDriverDropdown(this.value);
+
+});
+
+for (let i = 1; i <= 22; i++) {
+
+    const key = i.toString();
+
+    if (key in driverData) {
+
+        labels.push(key);
+        values.push(driverData[key]);
+    }
+}
+
+if ("DNF" in driverData) {
+
+    labels.push("DNF");
+    values.push(driverData["DNF"]);
+}
+
+document
+.getElementById("generateButton")
+.addEventListener("click", function() {
+
+    const race =
+        document.getElementById("raceSelect").value;
+
+    const driver =
+        document.getElementById("driverSelect").value;
+
+    updateChart(race, driver);
 
 });
