@@ -94,28 +94,23 @@ function updateChart(race, driver) {
 
     positionChart =
         new Chart(ctx, {
-
             type: "bar",
-
             data: {
-
                 labels: labels,
-
                 datasets: [{
                     label: "Probability (%)",
-                    data: values
+                    data: values,
+                    borderColor: '#E8002D',
+                    backgroundColor: '#E8002D',
                 }]
             },
 
             options: {
-
                 responsive: true,
-
                 plugins: {
-
                     title: {
                         display: true,
-                        text: driver + " - " + race
+                        text: driver + " - " + race,
                     }
                 }
             }
@@ -154,7 +149,7 @@ document
 .getElementById("generateButton")
 .addEventListener("click", function() {
     const card = document.querySelector('.graph');
-    card.style.setProperty('--width', '60%',"important");
+    card.style.setProperty('width', '60%',"important");
     
     const graph_text = document.getElementById("graph-text");
     graph_text.textContent = "";
