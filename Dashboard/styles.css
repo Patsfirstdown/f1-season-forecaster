@@ -177,6 +177,10 @@ a.header:link,a.header:visited,a.header:hover{
     color:black
 }
 
+a.footerForm:link,a.footerForm:visited,a.footerForm:hover{
+    color:black
+}
+
 a.right_link:link,a.right_link:visited,a.right_link:hover{
     color:black;
     float: right;
