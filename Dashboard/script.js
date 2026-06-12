@@ -31,6 +31,10 @@ function populateRaceDropdown() {
 
 function populateDriverDropdown(raceName) {
 
+    if (!raceName) {
+        return;
+    }
+
     const driverSelect =
         document.getElementById("driverSelect");
 
