@@ -196,6 +196,5 @@ li.right_link{
 }
 
 canvas.graph{
-    height:80%;
-    width:90%;
+    width:60% !important;
 }
