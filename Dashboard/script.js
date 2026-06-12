@@ -149,7 +149,6 @@ document
 .getElementById("generateButton")
 .addEventListener("click", function() {
     const card = document.querySelector('.graph');
-    //card.style.setProperty('width', '60%',"important");
     
     const graph_text = document.getElementById("graph-text");
     graph_text.textContent = "";
@@ -160,5 +159,6 @@ document
         document.getElementById("driverSelect").value;
 
     updateChart(race, driver);
+    card.style.setProperty('width', '60%',"important");
 
 });
