@@ -1,9 +1,5 @@
 let predictionData;
 let positionChart;
-const driverData =
-    predictionData.data[race][driver];
-const labels = [];
-const values = [];
 
 async function loadData() {
     const response = await fetch("data/predictions.json");
@@ -147,6 +143,11 @@ document
     populateDriverDropdown(this.value);
 
 });
+
+const driverData =
+    predictionData.data[race][driver];
+const labels = [];
+const values = [];
 
 for (let i = 1; i <= 22; i++) {
 
