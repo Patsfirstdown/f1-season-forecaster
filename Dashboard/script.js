@@ -128,10 +128,15 @@ async function initialize() {
 
     populateRaceDropdown();
 
-    const firstRace =
-        document.getElementById("raceSelect").value;
+    const raceSelect =
+        document.getElementById("raceSelect");
 
-    populateDriverDropdown(firstRace);
+    if (raceSelect.options.length > 0) {
+
+        populateDriverDropdown(
+            raceSelect.options[0].value
+        );
+    }
 }
 
 initialize();
@@ -144,27 +149,6 @@ document
 
 });
 
-const driverData =
-    predictionData.data[race][driver];
-const labels = [];
-const values = [];
-
-for (let i = 1; i <= 22; i++) {
-
-    const key = i.toString();
-
-    if (key in driverData) {
-
-        labels.push(key);
-        values.push(driverData[key]);
-    }
-}
-
-if ("DNF" in driverData) {
-
-    labels.push("DNF");
-    values.push(driverData["DNF"]);
-}
 
 document
 .getElementById("generateButton")
