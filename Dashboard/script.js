@@ -53,10 +53,19 @@ function populateDriverDropdown(raceName) {
     });
 }
 
+async function initialize() {
 
-loadData();
-await loadData();
-populateRaceDropdown();
+    await loadData();
+
+    populateRaceDropdown();
+
+    const firstRace =
+        document.getElementById("raceSelect").value;
+
+    populateDriverDropdown(firstRace);
+}
+
+initialize();
 
 document
 .getElementById("raceSelect")
