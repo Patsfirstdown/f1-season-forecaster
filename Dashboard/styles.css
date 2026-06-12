@@ -194,3 +194,8 @@ a.right_link:link,a.right_link:visited,a.right_link:hover{
 li.right_link{
     float: right;
 }
+
+canvas.graph{
+    height:80%;
+    width:90%;
+}
