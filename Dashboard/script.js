@@ -155,7 +155,7 @@ document
 .addEventListener("click", function() {
 
     const graph_text = document.getElementById("graph-text");
-    graph_text.textContent("");
+    graph_text.textContent = "";
     const race =
         document.getElementById("raceSelect").value;
 
