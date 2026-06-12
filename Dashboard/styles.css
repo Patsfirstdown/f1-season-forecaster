@@ -9,6 +9,7 @@ body {
     padding-top: 69px;
     background-color: black;
     font-family: 'Times New Roman', Times, serif;
+    text-color: white;
 }
 
 h1 {
@@ -28,6 +29,7 @@ h2 {
 table{
     width: 100%;
     align-items: center;
+    background-color: var(--f1_silver);
 }
 
 table.headerForm, tr.headerForm, th.headerForm, td.headerForm{
@@ -55,6 +57,12 @@ table.footerForm, tr.footerForm, th.footerForm,td.footerForm{
     font-size: 8vh;
     border-spacing: 13px;
     border: white;
+}
+
+table.dropdown_table{
+    background-color: var(--f1_silver);
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 header.mainHeader{
@@ -108,6 +116,18 @@ div.headeritemsRight{
     padding-left: 1.5rem;
 }
 
+div.graph-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 4vh;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-family: 'Formula1', 'Arial Black', sans-serif;
+    letter-spacing: 2px;
+}
+
 header.welcome{
     padding: 0px;
     display: flex;
@@ -157,51 +177,11 @@ a.header:link,a.header:visited,a.header:hover{
     color:black
 }
 
-li.right_link{
+a.right_link:link,a.right_link:visited,a.right_link:hover{
+    color:black;
     float: right;
 }
 
-
-
-.content_section{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 20px;
+li.right_link{
+    float: right;
 }
-
-.content_entry {
-    display: flex;
-    align-items: center;
-    background-color: 1209a4;
-    border-radius: 12px;
-    padding: 20px;
-}
-
-.content_logo {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-}
-
-.content_details{
-    width:100%
-}
-
-.content_details h2 {
-    margin: 0;
-    color: #333;
-}
-
-.content_details p {
-    margin: 4px 0;
-    color: #555;
-}
-
-.content_details ul {
-    float: none;
-    margin-top: 8px;
-    padding-left: 20px;
-    color: #444;
-}
-
