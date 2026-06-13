@@ -158,7 +158,7 @@ document
     const driver =
         document.getElementById("driverSelect").value;
 
-    card.style.visibility = "visible";
+    card.style.setProperty('width', '60%', "important");
     updateChart(race, driver);
 
 });
