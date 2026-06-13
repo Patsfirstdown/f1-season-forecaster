@@ -1,4 +1,4 @@
-:root {
+visibility: hidden;:root {
     --f1_red: #E8002D;
     --f1_silver: #C0C0C0;
 }
@@ -196,5 +196,6 @@ li.right_link{
 }
 
 canvas.graph{
-    width:0px;
+    width:60%;
+    visibility: hidden;
 }
