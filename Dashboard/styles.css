@@ -196,7 +196,7 @@ li.right_link{
 }
 
 canvas.graph{
-    width:60%;
+    width:0px;
     max-width: 800px;
     margin: 0 auto;
 }
