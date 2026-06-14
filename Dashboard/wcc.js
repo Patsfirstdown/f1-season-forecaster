@@ -72,7 +72,7 @@ function updateChart(race, team) {
 
         const key = i.toString();
 
-        if (key in driverData) {
+        if (key in teamData) {
 
             labels.push(key);
             values.push(teamData[key]);
