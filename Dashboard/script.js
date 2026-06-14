@@ -86,7 +86,7 @@ function updateChart(race, driver) {
     if (positionChart) {
         positionChart.destroy();
     }
-    const color = predictionData.driverColor[driver]
+    const color = predictionData.driverColor[driver];
 
     const ctx =
         document
