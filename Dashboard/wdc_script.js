@@ -66,6 +66,8 @@ function updateChart(race, driver) {
     const labels = [];
     const values = [];
 
+    const color = predictionData.driverColor[driver];
+
     for (let i = 1; i <= 22; i++) {
 
         const key = i.toString();
@@ -94,8 +96,8 @@ function updateChart(race, driver) {
                 datasets: [{
                     label: "Probability (%)",
                     data: values,
-                    borderColor: '#E8002D',
-                    backgroundColor: '#E8002D',
+                    borderColor: color,
+                    backgroundColor: color,
                 }]
             },
 
