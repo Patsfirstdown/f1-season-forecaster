@@ -8,6 +8,28 @@ async function loadData() {
     console.log(predictionData);
 }
 
+function populateRaceDropdown() {
+
+    const raceSelect =
+        document.getElementById("raceSelect");
+
+    const races =
+        Object.entries(predictionData.races);
+
+    races.sort((a, b) => a[1] - b[1]);
+
+    races.forEach(([raceName, round]) => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = raceName;
+        option.textContent = raceName;
+
+        raceSelect.appendChild(option);
+    });
+}
+
 function populateDriverDropdown(raceName) {
 
     if (!raceName) {
@@ -93,20 +115,29 @@ async function initialize() {
 
     await loadData();
 
-    populateDriverDropdown(
-        "Melbourne"
-    );
+    populateRaceDropdown();
+
+    const raceSelect =
+        document.getElementById("raceSelect");
+
+    if (raceSelect.options.length > 0) {
+
+        populateDriverDropdown(
+            raceSelect.options[0].value
+        );
+    }
 }
 
 initialize();
 
 document
-.getElementById("yearSelect")
+.getElementById("raceSelect")
 .addEventListener("change", function() {
 
     populateDriverDropdown(this.value);
 
 });
+
 
 document
 .getElementById("generateButton")
@@ -115,13 +146,13 @@ document
     
     const graph_text = document.getElementById("graph-text");
     graph_text.textContent = "";
-    const year =
-        document.getElementById("yearSelect").value;
+    const race =
+        document.getElementById("raceSelect").value;
 
     const driver =
         document.getElementById("driverSelect").value;
 
     card.style.setProperty('width', '60%', "important");
-    updateChart(year, driver);
+    updateChart(race, driver);
 
 });
