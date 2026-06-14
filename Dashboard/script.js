@@ -43,7 +43,7 @@ function populateDriverDropdown(raceName) {
 
     const drivers =
         Object.keys(
-            predictionData.data[raceName]
+            predictionData.race_data[raceName]
         ).sort();
 
     drivers.forEach(driver => {
@@ -61,7 +61,7 @@ function populateDriverDropdown(raceName) {
 function updateChart(race, driver) {
 
     const driverData =
-        predictionData.data[race][driver];
+        predictionData.race_data[race][driver];
 
     const labels = [];
     const values = [];
