@@ -39,7 +39,7 @@ function populateTeamDropdown(raceName) {
     const teamSelect =
         document.getElementById("teamSelect");
 
-    driverSelect.innerHTML = "";
+    teamSelect.innerHTML = "";
 
     const teams =
         Object.keys(
