@@ -68,7 +68,23 @@ function updateChart(race, team) {
     const labels = [];
     const values = [];
 
-    for (let i = 1; i <= 22; i++) {
+    const teamColors = {
+        "Mercedes": "#200D7B6"
+        "Ferrari": "#2ED1131"
+        "McLaren": "#2F47600"
+        "Red Bull Racing": "#24781D7"
+        "Alpine": "#200A1E8"
+        "Racing Bulls": "#26C98FF"
+        "Williams": "#21868DB"
+        "Haas F1 Team": "#29C9FA2"
+        "Cadillac": "#2909090"
+        "Audi": "#2F50537"
+        "Aston Martin": "#229971"
+    }
+
+    color = teamColors[team]
+
+    for (let i = 1; i <= 11; i++) {
 
         const key = i.toString();
 
@@ -96,8 +112,8 @@ function updateChart(race, team) {
                 datasets: [{
                     label: "Probability (%)",
                     data: values,
-                    borderColor: '#E8002D',
-                    backgroundColor: '#E8002D',
+                    borderColor: color,
+                    backgroundColor: color,
                 }]
             },
 
