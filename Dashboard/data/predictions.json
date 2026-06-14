@@ -8216,5 +8216,29 @@
                 "expected_finish": 11
             }
         }
+    },
+    "driverColor": {
+        "George_Russell": "#00D7B6",
+        "Kimi_Antonelli": "#00D7B6",
+        "Charles_Leclerc": "#ED1131",
+        "Lewis_Hamilton": "#ED1131",
+        "Lando_Norris": "#F47600",
+        "Max_Verstappen": "#4781D7",
+        "Oliver_Bearman": "#9C9FA2",
+        "Arvid_Lindblad": "#6C98FF",
+        "Gabriel_Bortoleto": "#F50537",
+        "Pierre_Gasly": "#00A1E8",
+        "Esteban_Ocon": "#9C9FA2",
+        "Alexander_Albon": "#1868DB",
+        "Liam_Lawson": "#6C98FF",
+        "Franco_Colapinto": "#00A1E8",
+        "Carlos_Sainz": "#1868DB",
+        "Sergio_Perez": "#909090",
+        "Lance_Stroll": "#229971",
+        "Fernando_Alonso": "#229971",
+        "Valtteri_Bottas": "#909090",
+        "Isack_Hadjar": "#4781D7",
+        "Oscar_Piastri": "#F47600",
+        "Nico_Hulkenberg": "#F50537"
     }
 }
