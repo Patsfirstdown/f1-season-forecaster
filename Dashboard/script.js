@@ -146,7 +146,7 @@ document
 
 
 document
-.getElementById("generateButton")
+.getElementById("generateRaceButton")
 .addEventListener("click", function() {
     const card = document.querySelector('.graph');
     
