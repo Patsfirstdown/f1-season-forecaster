@@ -21,7 +21,7 @@ function populateDriverDropdown(raceName) {
 
     const drivers =
         Object.keys(
-            predictionData.race_data[raceName]
+            predictionData.wdc_data[raceName]
         ).sort();
 
     drivers.forEach(driver => {
