@@ -14,9 +14,11 @@ function populateRaceDropdown() {
         document.getElementById("raceSelect");
 
     const races =
-        Object.entries(predictionData.races);
-
-    races.sort((a, b) => a[1] - b[1]);
+        Object.entries(predictionData.races)
+        .filter(([raceName]) =>
+            predictionData.wcc_data.hasOwnProperty(raceName)
+        )
+        .sort((a, b) => a[1] - b[1]);
 
     races.forEach(([raceName, round]) => {
 
