@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Professional Website-->
+        <title>Driver Race Forecast</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <head class="mainHeader">
+            <ul class="nav">
+                <li>
+                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/driver_race.html">Race</a>
+                </li>
+                <li>
+                    <a class="header" href="https://google.com" align="left">Google</a>
+                </li>
+                <li>
+                    <a class="header" href="https://google.com" align="center">Google</a>
+                </li>
+                <li class="right_link">
+                    <a class="right_link" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/dashboard.html" align="right">Home</a>
+                </li>
+            </ul>
+        </head>
+        <div>
+            <header class="welcome">
+                <h1>Driver Race Forecast</h1>
+            </header>
+        </div>
+        <div>
+            <table class="dropdown_table">
+                <theader>
+                    <tr>
+                        
+                    </tr>
+                </theader>
+                    <tr>
+                        <td>
+                            <td align="Right">Year</td>
+                        <td>
+                            <!--
+                            Year list
+                            -->
+                            <label for="year_picked"></label>
+                            <select id="yearSelect" name="year_picked" required>
+                                <option value="2026">2026</option>
+                        </td>
+                        <td>
+                            <span type="year_picked" id="year_pickedError"></span>
+                        </td>
+                        <td>
+                            <td align="Right">Race</td>
+                        <td>
+                            <!--
+                            Driver list
+                            -->
+                            <label for="race"></label>
+                            <select id="raceSelect" name="race" required>
+                        </td>
+                        <td>
+                            <span type="race" id="raceError"></span>
+                        </td>
+                        <td align="Right">Driver</td>
+                        <td>
+                            <!--
+                            Driver list
+                            -->
+                            <label for="driver"></label>
+                            <select id="driverSelect" name="driver" required>
+                        </td>
+                        <td>
+                            <span type="error" id="driverError"></span>
+                        </td>
+                        <td class="button">
+                            <button id="generateDriverButton" type="submit" align="right">Load Data</button>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+        <div id="graph-container" class="graph-container">
+            <p id="graph-text" class="graph-text">Select filters to generate graphs</p>
+            <canvas class="graph" id="positionChart"></canvas>
+        </div>
+        <div>
+            <table class="footerForm">
+                <theader>
+                    <tr>
+                        <td>
+                            <a class="footerForm" href="https://www.instagram.com/jayden.pickin.official">Instagram</a>
+                        </td>
+                        <td>
+                            <a class="footerForm" href="https://linkedin.com/in/jayden-pickin">LinkedIn</a>
+                        </td>
+                    </tr>
+                </theader>
+            </table>
+        </div>
+    </body>
+</html>
