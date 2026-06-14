@@ -80,9 +80,9 @@ function updateChart(race, team) {
         "Cadillac": "#2909090"
         "Audi": "#2F50537"
         "Aston Martin": "#229971"
-    }
+    };
 
-    color = teamColors[team]
+    color = teamColors[team];
 
     for (let i = 1; i <= 11; i++) {
 
