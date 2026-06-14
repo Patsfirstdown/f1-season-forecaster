@@ -86,6 +86,7 @@ function updateChart(race, driver) {
     if (positionChart) {
         positionChart.destroy();
     }
+    const color = predictionData.driverColor[driver]
 
     const ctx =
         document
@@ -100,8 +101,8 @@ function updateChart(race, driver) {
                 datasets: [{
                     label: "Probability (%)",
                     data: values,
-                    borderColor: '#E8002D',
-                    backgroundColor: '#E8002D',
+                    borderColor: color,
+                    backgroundColor: color,
                 }]
             },
 
