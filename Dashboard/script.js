@@ -57,6 +57,7 @@ function populateDriverDropdown(raceName) {
 
         driverSelect.appendChild(option);
     });
+    driverSelect.selectedIndex = driverSelect.options["Max_Verstappen"];
 }
 
 function updateChart(race, driver) {
