@@ -134,6 +134,13 @@ div.graph-container{
     letter-spacing: 2px;
 }
 
+div.FAQs{
+    padding: 5%;
+    border-style: solid;
+    border-width: 2px;
+    border-top-color: var(--F1_red);
+}
+
 header.welcome{
     padding: 0px;
     display: flex;
