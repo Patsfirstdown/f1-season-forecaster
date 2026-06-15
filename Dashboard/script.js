@@ -174,12 +174,14 @@ document
 
     const driver =
         document.getElementById("driverSelect").value;
-
     card.style.setProperty('width', '60%', "important");
 
     const stat = document.querySelector('.stats-card');
-    
     stats.style.display = "flex";
+
+    const graph = document.querySelector('.graph');
+    graph.style.display = "flex";
+    
     updateChart(race, driver);
 
 });
