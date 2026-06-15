@@ -122,7 +122,7 @@ div.headeritemsRight{
     padding-left: 1.5rem;
 }
 
-div.graph-container{
+.graph-container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,6 +140,7 @@ div.graph-container{
     gap: 2rem;
     width: 100%;
     margin-top: 2rem;
+    visibility: hidden;
 }
 
 .stats-card {
@@ -150,6 +151,7 @@ div.graph-container{
     border-radius: 10px;
 
     padding: 1rem;
+    visibility: hidden;
 
     box-sizing: border-box;
     
