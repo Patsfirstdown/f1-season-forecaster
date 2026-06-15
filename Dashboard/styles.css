@@ -249,3 +249,9 @@ canvas.graph{
     margin: 2.5%;
     background-color: black;
 }
+
+.dashChart{
+    width: 60% !important;
+    max-width: 800px;
+    margin: 0 auto;
+}
