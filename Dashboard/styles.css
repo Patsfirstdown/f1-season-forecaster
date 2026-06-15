@@ -177,6 +177,21 @@ header.welcome{
     text-transform: uppercase;
 }
 
+header.banner{
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    width: 100%;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-family: 'Formula1', 'Arial Black', sans-serif;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
 ul li a:hover {
     transform: scale(1.05);
     background-color: var(--f1_red);
