@@ -139,7 +139,7 @@ div.FAQs{
     border-style: solid;
     border-width: 2px;
     border-top-color: var(--F1_RED);
-    line-height:8px;
+    line-height:32px;
 }
 
 header.welcome{
