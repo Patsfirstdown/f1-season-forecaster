@@ -171,7 +171,7 @@ function updateWCCChart() {
 
     teamNames.forEach(team => {
 
-        const expectedPositions = races.map(race[0] => {
+        const expectedPositions = races.map(race => {
 
             const teamData =
                 predictionData.wcc_data[race][team];
