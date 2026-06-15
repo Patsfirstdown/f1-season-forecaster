@@ -299,8 +299,8 @@ canvas.graph{
 }
 
 .rowDisplay{
-    border-bottom: 1px solid var(--f1_silver); 
+    border-bottom: 50px solid var(--f1_silver);
+    border-top: 50px solid var(--f1_silver);
     padding: 12px;
-
 }
     
