@@ -134,15 +134,6 @@ div.headeritemsRight{
     letter-spacing: 2px;
 }
 
-.dashboard-row {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    width: 100%;
-    margin-top: 2rem;
-    visibility: hidden;
-}
-
 .stats-card {
     width: 250px;
     min-height: 300px;
@@ -151,7 +142,7 @@ div.headeritemsRight{
     border-radius: 10px;
 
     padding: 1rem;
-    visibility: hidden;
+    display: none;
 
     box-sizing: border-box;
     
@@ -161,6 +152,7 @@ div.headeritemsRight{
 
 .graph {
     width: 60%;
+    display: none;
 }
 
 div.FAQs{
