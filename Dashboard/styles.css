@@ -250,8 +250,12 @@ canvas.graph{
     background-color: black;
 }
 
+.dashCol{
+    width: 80% !important;
+}
+
 .dashChart{
-    width: 60% !important;
+    aspect-ratio: 4 !important;
     max-width: 800px;
     margin: 0 auto;
 }
