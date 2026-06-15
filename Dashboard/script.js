@@ -57,7 +57,9 @@ function populateDriverDropdown(raceName) {
 
         driverSelect.appendChild(option);
     });
-    driverSelect.selectedIndex = driverSelect.options["Max_Verstappen"];
+    if (drivers.includes("Max_Verstappen")) {
+        driverSelect.value = "Max_Verstappen";
+    }
 }
 
 function updateChart(race, driver) {
@@ -69,16 +71,16 @@ function updateChart(race, driver) {
         .textContent = driverData.expected_finish.toFixed(2);
     
     document.getElementById("winProb")
-        .textContent = driverData.win_probability.toFixed(1) + "%";
+        .textContent = driverData.win_probability.toFixed(1)*100 + "%";
     
     document.getElementById("podiumProb")
-        .textContent = driverData.podium_probability.toFixed(1) + "%";
+        .textContent = driverData.podium_probability.toFixed(1)*100 + "%";
 
     document.getElementById("pointsProb")
-        .textContent = driverData.points_probability.toFixed(1) + "%";
+        .textContent = driverData.points_probability.toFixed(1)*100 + "%";
     
     document.getElementById("dnfProb")
-        .textContent = driverData.dnf_probability.toFixed(1) + "%";
+        .textContent = driverData.dnf_probability.toFixed(1)*100 + "%";
 
     const labels = [];
     const values = [];
@@ -166,7 +168,6 @@ document
 document
 .getElementById("generateDriverButton")
 .addEventListener("click", function() {
-    const card = document.querySelector('.graph');
     
     const graph_text = document.getElementById("graph-text");
     graph_text.textContent = "";
@@ -175,8 +176,9 @@ document
 
     const driver =
         document.getElementById("driverSelect").value;
-    card.style.setProperty('width', '60%', "important");
 
+    const card = document.querySelector('canvas.graph');
+    card.style.setProperty('width', '60%', "important");
     const stat = document.querySelector('.stats-card');
     stat.style.display = "block";
 
