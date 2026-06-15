@@ -170,8 +170,14 @@ document
 
     const team =
         document.getElementById("teamSelect").value;
-
     card.style.setProperty('width', '60%', "important");
+
+    const stat = document.querySelector('.stats-card');
+    stat.style.display = "block";
+
+    const graph = document.querySelector('.graph');
+    graph.style.display = "flex";
+    
     updateChart(race, team);
 
 });
