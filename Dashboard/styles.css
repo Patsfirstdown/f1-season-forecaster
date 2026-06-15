@@ -244,3 +244,8 @@ canvas.graph{
     max-width: 800px;
     margin: 0 auto;
 }
+
+.homeDisplay{
+    margin: 2.5%;
+    background-color: black;
+}
