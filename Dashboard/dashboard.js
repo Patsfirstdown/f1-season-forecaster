@@ -139,7 +139,7 @@ function updateWCCChart() {
         )
         .sort((a, b) => a[1] - b[1]);
 
-    const firstRace = races[0];
+    const firstRace = races[0][0];
 
     console.log(firstRace);
     console.log(races);
