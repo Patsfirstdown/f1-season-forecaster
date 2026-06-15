@@ -167,8 +167,6 @@ document
 document
 .getElementById("generateButton")
 .addEventListener("click", function() {
-    const card = document.querySelector('.graph');
-    
     const graph_text = document.getElementById("graph-text");
     graph_text.textContent = "";
     const race =
@@ -176,6 +174,8 @@ document
 
     const team =
         document.getElementById("teamSelect").value;
+    
+    const card = document.querySelector('canvas.graph');
     card.style.setProperty('width', '60%', "important");
 
     const stat = document.querySelector('.stats-card');
