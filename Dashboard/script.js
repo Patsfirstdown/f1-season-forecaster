@@ -176,10 +176,6 @@ document
         document.getElementById("driverSelect").value;
 
     card.style.setProperty('width', '60%', "important");
-    
-    const dashboard_row = document.querySelector('.dashboard-row');
-    
-    dashboard_row.style.display = "flex";
 
     const stat = document.querySelector('.stats-card');
     
