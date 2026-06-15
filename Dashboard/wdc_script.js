@@ -73,7 +73,7 @@ function updateChart(race, driver) {
         .textContent = driverData.expected_finish.toFixed(2);
     
     document.getElementById("winProb")
-        .textContent = driverData.win_probability.toFixed(4)*100 + "%";
+        .textContent = (driverData.win_probability*100).toFixed(2) + "%";
 
     for (let i = 1; i <= 22; i++) {
 
