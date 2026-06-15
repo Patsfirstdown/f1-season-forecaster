@@ -292,3 +292,15 @@ canvas.graph{
 .submit-btn:active {
   transform: scale(0.97);
 }
+
+.tableDisplay{
+  border-collapse: collapse; 
+  width: 100%;
+}
+
+.rowDisplay{
+    border-bottom: 1px solid var(--f1_silver); 
+    padding: 12px;
+
+}
+    
