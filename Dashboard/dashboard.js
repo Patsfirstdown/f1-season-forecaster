@@ -10,7 +10,7 @@ async function loadData() {
 
 function updateWDCChart() {
     const races = Object.keys(
-        predictionData.wdc_data
+        predictionData.races
     );
 
     const firstRace = races[0];
@@ -43,7 +43,9 @@ function updateWDCChart() {
             backgroundColor: driverColors[driver],
             fill: false,
             tension: 0.2,
-            pointRadius: 0
+            pointRadius: 0,
+            pointHoverRadius: 6,
+            hitRadius: 10
         });
 
     });
@@ -62,6 +64,47 @@ function updateWDCChart() {
             },
             options: {
                 responsive: true,
+                interaction: {
+                    mode: 'nearest',
+                    intersect: false
+                },
+                onHover: (event, activeElements, chart) => {
+
+                    if (activeElements.length > 0) {
+            
+                        const hoveredDataset =
+                            activeElements[0].datasetIndex;
+            
+                        chart.data.datasets.forEach(
+                            (dataset, index) => {
+            
+                                if (index === hoveredDataset) {
+            
+                                    dataset.borderWidth = 5;
+            
+                                } else {
+            
+                                    dataset.borderWidth = 1;
+            
+                                }
+            
+                            }
+                        );
+            
+                    } else {
+            
+                        chart.data.datasets.forEach(
+                            dataset => {
+            
+                                dataset.borderWidth = 2;
+            
+                            }
+                        );
+            
+                    }
+            
+                    chart.update('none');
+                },
 
                 scales: {
                     x: {
@@ -86,10 +129,13 @@ function updateWDCChart() {
     );
 }
 
-function updateWCChart() {
-    const races = Object.keys(
-        predictionData.wcc_data
-    );
+function updateWCCChart() {
+    const races =
+        Object.entries(predictionData.races)
+        .filter(([raceName]) =>
+            predictionData.wcc_data.hasOwnProperty(raceName)
+        )
+        .sort((a, b) => a[1] - b[1]);
 
     const firstRace = races[0];
 
@@ -133,7 +179,9 @@ function updateWCChart() {
             backgroundColor: teamColors[team],
             fill: false,
             tension: 0.2,
-            pointRadius: 0
+            pointRadius: 0,
+            pointHoverRadius: 6,
+            hitRadius: 10
         });
 
     });
@@ -152,7 +200,47 @@ function updateWCChart() {
             },
             options: {
                 responsive: true,
+                interaction: {
+                    mode: 'nearest',
+                    intersect: false
+                },
+                onHover: (event, activeElements, chart) => {
 
+                    if (activeElements.length > 0) {
+            
+                        const hoveredDataset =
+                            activeElements[0].datasetIndex;
+            
+                        chart.data.datasets.forEach(
+                            (dataset, index) => {
+            
+                                if (index === hoveredDataset) {
+            
+                                    dataset.borderWidth = 5;
+            
+                                } else {
+            
+                                    dataset.borderWidth = 1;
+            
+                                }
+            
+                            }
+                        );
+            
+                    } else {
+            
+                        chart.data.datasets.forEach(
+                            dataset => {
+            
+                                dataset.borderWidth = 2;
+            
+                            }
+                        );
+            
+                    }
+            
+                    chart.update('none');
+                },
                 scales: {
                     x: {
                         ticks: {
@@ -178,7 +266,7 @@ function updateWCChart() {
 
 function updateDriverChart() {
     const races = Object.keys(
-        predictionData.race_data
+        predictionData.races
     );
 
     const firstRace = races[0];
@@ -211,7 +299,9 @@ function updateDriverChart() {
             backgroundColor: driverColors[driver],
             fill: false,
             tension: 0.2,
-            pointRadius: 0
+            pointRadius: 0,
+            pointHoverRadius: 6,
+            hitRadius: 10
         });
 
     });
@@ -230,7 +320,47 @@ function updateDriverChart() {
             },
             options: {
                 responsive: true,
+                interaction: {
+                    mode: 'nearest',
+                    intersect: false
+                },
+                onHover: (event, activeElements, chart) => {
 
+                    if (activeElements.length > 0) {
+            
+                        const hoveredDataset =
+                            activeElements[0].datasetIndex;
+            
+                        chart.data.datasets.forEach(
+                            (dataset, index) => {
+            
+                                if (index === hoveredDataset) {
+            
+                                    dataset.borderWidth = 5;
+            
+                                } else {
+            
+                                    dataset.borderWidth = 1;
+            
+                                }
+            
+                            }
+                        );
+            
+                    } else {
+            
+                        chart.data.datasets.forEach(
+                            dataset => {
+            
+                                dataset.borderWidth = 2;
+            
+                            }
+                        );
+            
+                    }
+            
+                    chart.update('none');
+                },
                 scales: {
                     x: {
                         ticks: {
@@ -259,6 +389,8 @@ async function initialize() {
     await loadData();
 
     updateDriverChart();
+    updateWDCChart();
+    updateWCCChart();
 }
 
 initialize();
