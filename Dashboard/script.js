@@ -63,6 +63,14 @@ function updateChart(race, driver) {
 
     const driverData =
         predictionData.race_data[race][driver];
+
+    const dashboard_row = document.querySelector('.dashboard-row');
+    
+    dashboard_row.style.setProperty("visibility", "visible");
+
+    const stat = document.querySelector('.stats-card');
+    
+    stats.style.setProperty("visibility", "visible");
     
     document.getElementById("expectedFinish")
         .textContent = driverData.expected_finish.toFixed(2);
