@@ -63,14 +63,6 @@ function updateChart(race, driver) {
 
     const driverData =
         predictionData.race_data[race][driver];
-
-    const dashboard_row = document.querySelector('.dashboard-row');
-    
-    dashboard_row.style.setProperty("visibility", "visible");
-
-    const stat = document.querySelector('.stats-card');
-    
-    stats.style.setProperty("visibility", "visible");
     
     document.getElementById("expectedFinish")
         .textContent = driverData.expected_finish.toFixed(2);
@@ -184,6 +176,14 @@ document
         document.getElementById("driverSelect").value;
 
     card.style.setProperty('width', '60%', "important");
+    
+    const dashboard_row = document.querySelector('.dashboard-row');
+    
+    dashboard_row.style.display = "flex";
+
+    const stat = document.querySelector('.stats-card');
+    
+    stats.style.display = "flex";
     updateChart(race, driver);
 
 });
