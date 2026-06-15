@@ -136,9 +136,8 @@ div.graph-container{
 
 div.FAQs{
     padding: 5%;
-    border-style: solid;
-    border-width: 2px;
-    border-top-color: var(--F1_RED);
+    font-size: 1.5rem;
+    border-top: 2px solid var(--f1_red);
     line-height:32px;
 }
 
