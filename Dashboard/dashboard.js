@@ -141,6 +141,10 @@ function updateWCCChart() {
 
     const firstRace = races[0];
 
+    console.log(firstRace);
+    console.log(races);
+    console.log(predictionData.wcc_data[firstRace]);
+
     const teamNames = Object.keys(
         predictionData.wcc_data[firstRace]
     );
