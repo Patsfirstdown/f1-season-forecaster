@@ -138,7 +138,8 @@ div.FAQs{
     padding: 5%;
     border-style: solid;
     border-width: 2px;
-    border-top-color: var(--F1_red);
+    border-top-color: var(--F1_RED);
+    line-height:8px;
 }
 
 header.welcome{
