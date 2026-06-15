@@ -71,16 +71,16 @@ function updateChart(race, driver) {
         .textContent = driverData.expected_finish.toFixed(2);
     
     document.getElementById("winProb")
-        .textContent = driverData.win_probability.toFixed(1)*100 + "%";
+        .textContent = driverData.win_probability.toFixed(4)*100 + "%";
     
     document.getElementById("podiumProb")
-        .textContent = driverData.podium_probability.toFixed(1)*100 + "%";
+        .textContent = driverData.podium_probability.toFixed(4)*100 + "%";
 
     document.getElementById("pointsProb")
-        .textContent = driverData.points_probability.toFixed(1)*100 + "%";
+        .textContent = driverData.points_probability.toFixed(4)*100 + "%";
     
     document.getElementById("dnfProb")
-        .textContent = driverData.dnf_probability.toFixed(1)*100 + "%";
+        .textContent = driverData.dnf_probability.toFixed(4)*100 + "%";
 
     const labels = [];
     const values = [];
