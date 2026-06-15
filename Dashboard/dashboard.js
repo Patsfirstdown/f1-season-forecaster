@@ -50,11 +50,11 @@ function updateWDCChart() {
 
     });
 
-    if (positionChart) {
-        positionChart.destroy();
+    if (wdcChart) {
+        wdcChart.destroy();
     }
 
-    positionChart = new Chart(
+    wdcChart = new Chart(
         document.getElementById("wdcChart"),
         {
             type: "line",
@@ -186,11 +186,11 @@ function updateWCCChart() {
 
     });
 
-    if (positionChart) {
-        positionChart.destroy();
+    if (wccChart) {
+        wccChart.destroy();
     }
 
-    positionChart = new Chart(
+    wccChart = new Chart(
         document.getElementById("wccChart"),
         {
             type: "line",
@@ -306,11 +306,11 @@ function updateDriverChart() {
 
     });
 
-    if (positionChart) {
-        positionChart.destroy();
+    if (raceChart) {
+        raceChart.destroy();
     }
 
-    positionChart = new Chart(
+    raceChart = new Chart(
         document.getElementById("raceChart"),
         {
             type: "line",
