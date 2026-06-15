@@ -69,6 +69,12 @@ function updateChart(race, driver) {
 
     const color = predictionData.driverColor[driver];
 
+    document.getElementById("expectedFinish")
+        .textContent = driverData.expected_finish.toFixed(2);
+    
+    document.getElementById("winProb")
+        .textContent = driverData.win_probability.toFixed(4)*100 + "%";
+
     for (let i = 1; i <= 22; i++) {
 
         const key = i.toString();
@@ -145,8 +151,6 @@ document
 document
 .getElementById("generateButton")
 .addEventListener("click", function() {
-    const card = document.querySelector('.graph');
-    
     const graph_text = document.getElementById("graph-text");
     graph_text.textContent = "";
     const race =
@@ -154,6 +158,7 @@ document
 
     const driver =
         document.getElementById("driverSelect").value;
+    const card = document.querySelector('canvas.graph');
     card.style.setProperty('width', '60%', "important");
     
     const stat = document.querySelector('.stats-card');
