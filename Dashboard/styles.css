@@ -134,6 +134,31 @@ div.graph-container{
     letter-spacing: 2px;
 }
 
+.dashboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.stats-card {
+    width: 250px;
+    min-height: 300px;
+
+    background-color: white;
+    border: 2px solid silver;
+    border-radius: 10px;
+
+    padding: 1rem;
+
+    box-sizing: border-box;
+}
+
+.graph {
+    width: 60%;
+}
+
 div.FAQs{
     padding: 5%;
     font-size: 1.5rem;
