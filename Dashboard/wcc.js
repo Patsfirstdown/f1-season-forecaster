@@ -85,6 +85,12 @@ function updateChart(race, team) {
 
     color = teamColors[team];
 
+    document.getElementById("expectedFinish")
+        .textContent = teamData.expected_finish.toFixed(2);
+    
+    document.getElementById("winProb")
+        .textContent = teamData.win_probability.toFixed(4)*100 + "%";
+
     for (let i = 1; i <= 11; i++) {
 
         const key = i.toString();
