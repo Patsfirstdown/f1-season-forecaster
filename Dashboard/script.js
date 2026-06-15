@@ -72,9 +72,12 @@ function updateChart(race, driver) {
     
     document.getElementById("podiumProb")
         .textContent = driverData.podium_probability.toFixed(1) + "%";
+
+    document.getElementById("pointsProb")
+        .textContent = driverData.points_probability.toFixed(1) + "%";
     
     document.getElementById("dnfProb")
-        .textContent = driverData.DNF.toFixed(1) + "%";
+        .textContent = driverData.dnf_probability.toFixed(1) + "%";
 
     const labels = [];
     const values = [];
