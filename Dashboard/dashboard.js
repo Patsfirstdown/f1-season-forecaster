@@ -259,7 +259,6 @@ async function initialize() {
     await loadData();
 
     updateDriverChart();
-    }
 }
 
 initialize();
