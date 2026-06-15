@@ -63,6 +63,18 @@ function updateChart(race, driver) {
 
     const driverData =
         predictionData.race_data[race][driver];
+    
+    document.getElementById("expectedFinish")
+        .textContent = driverData.expected_finish.toFixed(2);
+    
+    document.getElementById("winProb")
+        .textContent = driverData.win_probability.toFixed(1) + "%";
+    
+    document.getElementById("podiumProb")
+        .textContent = driverData.podium_probability.toFixed(1) + "%";
+    
+    document.getElementById("dnfProb")
+        .textContent = driverData.DNF.toFixed(1) + "%";
 
     const labels = [];
     const values = [];
