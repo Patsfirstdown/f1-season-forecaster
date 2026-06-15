@@ -259,3 +259,36 @@ canvas.graph{
   max-width: 900px;
   height: 450px;
 }
+.select-box {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.select-box:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74,144,226,0.2);
+}
+
+.submit-btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #4a90e2;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-btn:hover {
+  background: #357bd8;
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
