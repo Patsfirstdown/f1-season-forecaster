@@ -1,5 +1,7 @@
 let predictionData;
-let positionChart;
+let raceProbChart;
+let wccProbChart;
+let wdcProbChart;
 
 async function loadData() {
     const response = await fetch("data/predictions.json");
