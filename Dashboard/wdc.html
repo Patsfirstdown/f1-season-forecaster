@@ -28,7 +28,7 @@
             </ul>
         </head>
         <div>
-            <header class="welcome">
+            <header class="banner">
                 <h1>Drivers Championship Forecast</h1>
             </header>
         </div>
@@ -83,8 +83,14 @@
         </div>
         <div id="graph-container" class="graph-container">
             <p id="graph-text" class="graph-text">Select filters to generate graphs</p>
-            <p></p>
-            <canvas class="graph" id="positionChart"></canvas>
+            <div class="stats-card">
+                <h3>Prediction Summary</h3>
+                <p>Expected Finish: <span id="expectedFinish"></span></p>
+                <p>Win %: <span id="winProb"></span></p>
+            </div>
+            <div class="graph">
+                <canvas class="graph" id="positionChart"></canvas>
+            </div>
         </div>
         <div>
             <table class="footerForm">
