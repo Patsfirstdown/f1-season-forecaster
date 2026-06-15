@@ -66,6 +66,7 @@ function updateWDCChart() {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 interaction: {
                     mode: 'nearest',
                     intersect: false
@@ -208,6 +209,7 @@ function updateWCCChart() {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 interaction: {
                     mode: 'nearest',
                     intersect: false
@@ -328,6 +330,7 @@ function updateDriverChart() {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 interaction: {
                     mode: 'nearest',
                     intersect: false
