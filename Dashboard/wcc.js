@@ -30,6 +30,7 @@ function populateRaceDropdown() {
 
         raceSelect.appendChild(option);
     });
+    raceSelect.selectedIndex = raceSelect.options.length - 1;
 }
 
 function populateTeamDropdown(raceName) {
