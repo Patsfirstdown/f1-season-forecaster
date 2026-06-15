@@ -8,183 +8,259 @@ async function loadData() {
     console.log(predictionData);
 }
 
-function populateRaceDropdown() {
+function updateWDCChart() {
+    const races = Object.keys(
+        predictionData.wdc_data
+    );
 
-    const raceSelect =
-        document.getElementById("raceSelect");
+    const firstRace = races[0];
 
-    const races =
-        Object.entries(predictionData.races);
+    const driverNames = Object.keys(
+        predictionData.wdc_data[firstRace]
+    );
 
-    races.sort((a, b) => a[1] - b[1]);
+    const driverColors = predictionData.driverColor;
 
-    races.forEach(([raceName, round]) => {
+    const datasets = [];
 
-        const option =
-            document.createElement("option");
+    driverNames.forEach(driver => {
 
-        option.value = raceName;
-        option.textContent = raceName;
+        const expectedPositions = races.map(race => {
 
-        raceSelect.appendChild(option);
+            const driverData =
+                predictionData.wdc_data[race][driver];
+
+            return driverData
+                ? driverData.expected_finish
+                : null;
+
+        });
+
+        datasets.push({
+            label: driver.replaceAll("_", " "),
+            data: expectedPositions,
+            borderColor: driverColors[driver],
+            backgroundColor: driverColors[driver],
+            fill: false,
+            tension: 0.2,
+            pointRadius: 0
+        });
+
     });
-    raceSelect.selectedIndex = raceSelect.options.length - 1;
-}
-
-function populateDriverDropdown(raceName) {
-
-    if (!raceName) {
-        return;
-    }
-
-    const driverSelect =
-        document.getElementById("driverSelect");
-
-    driverSelect.innerHTML = "";
-
-    const drivers =
-        Object.keys(
-            predictionData.race_data[raceName]
-        ).sort();
-
-    drivers.forEach(driver => {
-
-        const option =
-            document.createElement("option");
-
-        option.value = driver;
-        option.textContent = driver;
-
-        driverSelect.appendChild(option);
-    });
-    if (drivers.includes("Max_Verstappen")) {
-        driverSelect.value = "Max_Verstappen";
-    }
-}
-
-function updateChart(race, driver) {
-
-    const driverData =
-        predictionData.race_data[race][driver];
-    
-    document.getElementById("expectedFinish")
-        .textContent = driverData.expected_finish.toFixed(2);
-    
-    document.getElementById("winProb")
-        .textContent = (driverData.win_probability*100).toFixed(2) + "%";
-    
-    document.getElementById("podiumProb")
-        .textContent = (driverData.podium_probability*100).toFixed(2) + "%";
-
-    document.getElementById("pointsProb")
-        .textContent = (driverData.points_probability*100).toFixed(2) + "%";
-    
-    document.getElementById("dnfProb")
-        .textContent = (driverData.dnf_probability*100).toFixed(2) + "%";
-
-    const labels = [];
-    const values = [];
-
-    for (let i = 1; i <= 22; i++) {
-
-        const key = i.toString();
-
-        if (key in driverData) {
-
-            labels.push(key);
-            values.push(driverData[key]);
-        }
-    }
-
-    if ("DNF" in driverData) {
-
-        labels.push("DNF");
-        values.push(driverData["DNF"]);
-    }
 
     if (positionChart) {
         positionChart.destroy();
     }
-    const color = predictionData.driverColor[driver];
 
-    const ctx =
-        document
-        .getElementById("positionChart")
-        .getContext("2d");
-
-    positionChart =
-        new Chart(ctx, {
-            type: "bar",
+    positionChart = new Chart(
+        document.getElementById("wdcChart"),
+        {
+            type: "line",
             data: {
-                labels: labels,
-                datasets: [{
-                    label: "Probability (%)",
-                    data: values,
-                    borderColor: color,
-                    backgroundColor: color,
-                }]
+                labels: races,
+                datasets: datasets
             },
-
             options: {
                 responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: driver + " - " + race,
+
+                scales: {
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    },
+
+                    y: {
+                        reverse: true,
+                        min: 1,
+                        max: 22,
+                        title: {
+                            display: true,
+                            text: "Expected Position"
+                        }
                     }
                 }
             }
+        }
+    );
+}
+
+function updateWCChart() {
+    const races = Object.keys(
+        predictionData.wcc_data
+    );
+
+    const firstRace = races[0];
+
+    const teamNames = Object.keys(
+        predictionData.wcc_data[firstRace]
+    );
+
+    const teamColors = {
+        "Mercedes": "#00D7B6",
+        "Ferrari": "#ED1131",
+        "McLaren": "#F47600",
+        "Red Bull Racing": "#4781D7",
+        "Alpine": "#00A1E8",
+        "Racing Bulls": "#6C98FF",
+        "Williams": "#1868DB",
+        "Haas F1 Team": "#9C9FA2",
+        "Cadillac": "#909090",
+        "Audi": "#F50537",
+        "Aston Martin": "#229971"
+    };
+
+    const datasets = [];
+
+    teamNames.forEach(team => {
+
+        const expectedPositions = races.map(race => {
+
+            const teamData =
+                predictionData.wcc_data[race][team];
+
+            return teamData
+                ? teamData.expected_finish
+                : null;
+
         });
+
+        datasets.push({
+            label: team.replaceAll("_", " "),
+            data: expectedPositions,
+            borderColor: teamColors[team],
+            backgroundColor: teamColors[team],
+            fill: false,
+            tension: 0.2,
+            pointRadius: 0
+        });
+
+    });
+
+    if (positionChart) {
+        positionChart.destroy();
+    }
+
+    positionChart = new Chart(
+        document.getElementById("wccChart"),
+        {
+            type: "line",
+            data: {
+                labels: races,
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+
+                scales: {
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    },
+
+                    y: {
+                        reverse: true,
+                        min: 1,
+                        max: 11,
+                        title: {
+                            display: true,
+                            text: "Expected Position"
+                        }
+                    }
+                }
+            }
+        }
+    );
+}
+
+function updateDriverChart() {
+    const races = Object.keys(
+        predictionData.race_data
+    );
+
+    const firstRace = races[0];
+
+    const driverNames = Object.keys(
+        predictionData.race_data[firstRace]
+    );
+
+    const driverColors = predictionData.driverColor;
+
+    const datasets = [];
+
+    driverNames.forEach(driver => {
+
+        const expectedPositions = races.map(race => {
+
+            const driverData =
+                predictionData.race_data[race][driver];
+
+            return driverData
+                ? driverData.expected_finish
+                : null;
+
+        });
+
+        datasets.push({
+            label: driver.replaceAll("_", " "),
+            data: expectedPositions,
+            borderColor: driverColors[driver],
+            backgroundColor: driverColors[driver],
+            fill: false,
+            tension: 0.2,
+            pointRadius: 0
+        });
+
+    });
+
+    if (positionChart) {
+        positionChart.destroy();
+    }
+
+    positionChart = new Chart(
+        document.getElementById("raceChart"),
+        {
+            type: "line",
+            data: {
+                labels: races,
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+
+                scales: {
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    },
+
+                    y: {
+                        reverse: true,
+                        min: 1,
+                        max: 22,
+                        title: {
+                            display: true,
+                            text: "Expected Position"
+                        }
+                    }
+                }
+            }
+        }
+    );
 }
 
 async function initialize() {
 
     await loadData();
 
-    populateRaceDropdown();
-
-    const raceSelect =
-        document.getElementById("raceSelect");
-
-    if (raceSelect.options.length > 0) {
-
-        populateDriverDropdown(
-            raceSelect.options[0].value
-        );
+    updateDriverChart();
     }
 }
 
 initialize();
 
-document
-.getElementById("raceSelect")
-.addEventListener("change", function() {
-
-    populateDriverDropdown(this.value);
-
-});
-
-
-document
-.getElementById("generateDriverButton")
-.addEventListener("click", function() {
-    
-    const graph_text = document.getElementById("graph-text");
-    graph_text.textContent = "";
-    const race =
-        document.getElementById("raceSelect").value;
-
-    const driver =
-        document.getElementById("driverSelect").value;
-
-    const card = document.querySelector('canvas.graph');
-    card.style.setProperty('width', '60%', "important");
-    const stat = document.querySelector('.stats-card');
-    stat.style.display = "block";
-
-    const graph = document.querySelector('.graph');
-    graph.style.display = "flex";
-    
-    updateChart(race, driver);
-
-});
