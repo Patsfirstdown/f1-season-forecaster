@@ -172,7 +172,7 @@ function updateWCCChart() {
             console.log(predictionData.wcc_data)
             console.log(race)
             const teamData =
-                predictionData.wcc_data[race][team];
+                predictionData.wcc_data[race[0]][team];
 
             return teamData
                 ? teamData.expected_finish
