@@ -71,6 +71,10 @@ function updateWDCChart() {
                     mode: 'nearest',
                     intersect: false
                 },
+                onMouseLeave: (event, chart) => {
+                  chart.setActiveElements([]);
+                  chart.update();
+                },
                 onHover: (event, activeElements, chart) => {
 
                     if (activeElements.length > 0) {
@@ -214,6 +218,10 @@ function updateWCCChart() {
                     mode: 'nearest',
                     intersect: false
                 },
+                onMouseLeave: (event, chart) => {
+                  chart.setActiveElements([]);
+                  chart.update();
+                },
                 onHover: (event, activeElements, chart) => {
 
                     if (activeElements.length > 0) {
@@ -334,6 +342,10 @@ function updateDriverChart() {
                 interaction: {
                     mode: 'nearest',
                     intersect: false
+                },
+                onMouseLeave: (event, chart) => {
+                  chart.setActiveElements([]);
+                  chart.update();
                 },
                 onHover: (event, activeElements, chart) => {
 
