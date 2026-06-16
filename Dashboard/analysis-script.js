@@ -94,7 +94,7 @@ function populateDriver2Dropdown(raceName) {
         driverSelect.appendChild(option);
     });
     if (drivers.includes("Charles Leclerc") &&
-        driver1 !== "Charles Leclerc") {
+        driver1Select !== "Charles Leclerc") {
         driverSelect.value = "Charles Leclerc";
     }
 }
@@ -332,7 +332,7 @@ document
 });
 
 document
-    .getElementById("driverSelect")
+    .getElementById("driverSelect1")
     .addEventListener("change", () => {
 
         const race =
