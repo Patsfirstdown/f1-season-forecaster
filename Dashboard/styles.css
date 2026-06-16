@@ -310,9 +310,21 @@ canvas.graph{
     gap: 20px;
     max-width: 350px;
     margin: 0 auto;
-    padding: 4px 0;
+    padding: 8px 0;
+    font-size: 150%;
 }
 
 .dnf-row span:last-child {
     text-align: right;
+}
+
+.dnf-title {
+    font-size: 350%;
+    text-align: center;
+    padding-top: 16px;
+    border-top: 4px solid var(--f1_red);
+}
+
+.dnfProbList{
+    padding-bottom: 32px;
 }
