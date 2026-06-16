@@ -87,10 +87,12 @@
             <div class="stats-card">
                 <h3>Prediction Summary</h3>
                 <p>Expected Finish: <span id="expectedFinish"></span></p>
+                <p>Volatility: <span id="std"></span></p>
                 <p>Win %: <span id="winProb"></span></p>
                 <p>Podium %: <span id="podiumProb"></span></p>
                 <p>Points %: <span id="pointsProb"></span></p>
                 <p>DNF %: <span id="dnfProb"></span></p>
+                <p>SCORE %: <span id="score"></span></p>
             </div>
             <div class="graph">
                 <canvas class="graph" id="positionChart"></canvas>
@@ -102,6 +104,7 @@
                 <div id="dnfProbabilityList" class="dnfProbList"></div>
             </div>
         </div>
+        <div id="raceHeatmap"></div>
         <div>
             <table class="footerForm">
                 <theader>
