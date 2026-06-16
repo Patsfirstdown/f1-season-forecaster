@@ -367,3 +367,8 @@ canvas.graph{
     border: 1px solid #444;
     font-size: 12px;
 }
+
+.heatmap{
+    margin: 16px;
+    border: 2px solid var(--f1_red);
+}
