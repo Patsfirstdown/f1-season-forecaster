@@ -356,5 +356,5 @@ document
         document.getElementById("driverSelect2").value;
 
     compareDrivers();
-    updateVolatilityChart(selectedRace);
+    updateVolatilityChart(race);
 });
