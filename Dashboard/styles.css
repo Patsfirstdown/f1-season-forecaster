@@ -407,6 +407,11 @@ canvas.graph{
     font-weight: bold;
 }
 
+.tie{
+    background-color: Khaki;
+    font-style: italic
+}
+
 .exp_std{
     margin: 32px;
 }
