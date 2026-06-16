@@ -136,6 +136,107 @@ function updateChart(race, team) {
         });
 }
 
+function updateScore(selectedRace) {
+
+    const wccData = predictionData.wcc_data[selectedRace];
+
+    const scoreList = [];
+
+    Object.keys(wccData).forEach(team => {
+
+        scoreList.push({
+            team: team,
+            probability: wdcData[team].WCC_score
+        });
+
+    });
+
+    scoreList.sort((a, b) => b.probability - a.probability);
+
+    const container =
+        document.getElementById("scoreList");
+
+    container.innerHTML = "";
+
+    scoreList.forEach(item => {
+
+        const row = document.createElement("div");
+
+        row.className = "score-row";
+        
+        row.innerHTML = `
+            <span>${item.team}</span>
+            <span>${(item.probability * 100).toFixed(2)}%</span>
+        `;
+
+        container.appendChild(row);
+
+    });
+
+}
+
+function updateWCCHeatmap(selectedRace) {
+
+    const wdccData = predictionData.wcc_data[selectedRace];
+
+    let maxProb = 0;
+
+    Object.values(wccData).forEach(teamData => {
+        for (let pos = 1; pos <= 11; pos++) {
+            const prob = Number(teamData[String(pos)]) || 0;
+    
+            if (prob > maxProb) {
+                maxProb = prob;
+            }
+        }
+    });
+
+    let html = `
+        <table class="heatmap-table">
+            <tr>
+                <th class="heatmap-header">Team</th>
+    `;
+
+    for (let pos = 1; pos <= 11; pos++) {
+        html += `<th class="heatmap-header">P${pos}</th>`;
+    }
+
+    html += `</tr>`;
+
+    Object.keys(wccData).forEach(team => {
+
+        html += `<tr>`;
+        html += `<td class="heatmap-driver">${team}</td>`;
+
+        for (let pos = 1; pos <= 11; pos++) {
+
+            const prob =
+                wccData[team][String(pos)];
+
+            const opacity = prob / maxProb;
+
+            html += `
+                <td
+                    style="
+                        background: rgba(232,0,45,${opacity});
+                    "
+                    title="${(prob*100).toFixed(2)}%"
+                >
+                    ${(prob*100).toFixed(1)}
+                </td>
+            `;
+        }
+
+        html += `</tr>`;
+    });
+
+    html += `</table>`;
+
+    document.getElementById(
+        "wccHeatmap"
+    ).innerHTML = html;
+}
+
 async function initialize() {
 
     await loadData();
