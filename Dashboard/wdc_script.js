@@ -163,7 +163,7 @@ function updateScore(selectedRace) {
 
 function updateWDCHeatmap(selectedRace) {
 
-    const raceData = predictionData.wdc_data[selectedRace];
+    const wdcData = predictionData.wdc_data[selectedRace];
 
     let maxProb = 0;
 
