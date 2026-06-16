@@ -286,5 +286,7 @@ document
     graph.style.display = "flex";
     
     updateChart(race, team);
+    updateWCCHeatmap(race);
+    updateScore(race);
 
 });
