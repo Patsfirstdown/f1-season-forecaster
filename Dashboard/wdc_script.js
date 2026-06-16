@@ -130,7 +130,7 @@ function updateScore(selectedRace) {
 
     Object.keys(wdcData).forEach(driver => {
 
-        wdcList.push({
+        scoreList.push({
             driver: driver,
             probability: wdcData[driver].driver_score
         });
@@ -180,7 +180,7 @@ function updateWDCHeatmap(selectedRace) {
     let html = `
         <table class="heatmap-table">
             <tr>
-                <th class="heatmap-header>Driver</th>
+                <th class="heatmap-header">Driver</th>
     `;
 
     for (let pos = 1; pos <= 22; pos++) {
