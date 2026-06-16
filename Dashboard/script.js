@@ -182,6 +182,45 @@ function updateDNFProbabilities(selectedRace) {
 
 }
 
+function updateScore(selectedRace) {
+
+    const raceData = predictionData.race_data[selectedRace];
+
+    const dnfList = [];
+
+    Object.keys(raceData).forEach(driver => {
+
+        dnfList.push({
+            driver: driver,
+            probability: raceData[driver].driver_score
+        });
+
+    });
+
+    dnfList.sort((a, b) => b.probability - a.probability);
+
+    const container =
+        document.getElementById("scoreList");
+
+    container.innerHTML = "";
+
+    dnfList.forEach(item => {
+
+        const row = document.createElement("div");
+
+        row.className = "score-row";
+        
+        row.innerHTML = `
+            <span>${item.driver}</span>
+            <span>${(item.probability * 100).toFixed(2)}%</span>
+        `;
+
+        container.appendChild(row);
+
+    });
+
+}
+
 function updateRaceHeatmap(selectedRace) {
 
     const raceData = predictionData.race_data[selectedRace];
@@ -192,7 +231,7 @@ function updateRaceHeatmap(selectedRace) {
                 <th>Driver</th>
     `;
 
-    for (let pos = 1; pos <= 20; pos++) {
+    for (let pos = 1; pos <= 22; pos++) {
         html += `<th>P${pos}</th>`;
     }
 
@@ -215,9 +254,9 @@ function updateRaceHeatmap(selectedRace) {
                     style="
                         background: rgba(232,0,45,${opacity});
                     "
-                    title="${(prob*100).toFixed(1)}%"
+                    title="${(prob*100).toFixed(2)}%"
                 >
-                    ${(prob*100).toFixed(0)}
+                    ${(prob*100).toFixed(1)}
                 </td>
             `;
         }
@@ -282,5 +321,6 @@ document
     
     updateChart(race, driver);
     updateDNFProbabilities(race);
+    updateScore(race);
     updateRaceHeatmap(race);
 });
