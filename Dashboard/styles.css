@@ -381,18 +381,27 @@ canvas.graph{
     color: black;
 }
 
+.dashboard_card{
+    margin: 16px;
+}
+
 .comparison-table {
     width: 100%;
     border-collapse: collapse;
+    color: black;
 }
 
 .comparison-table th,
 .comparison-table td {
-    border: 1px solid var(--f1_red);
-    padding: `6px;
     text-align: center;
+    color: black;
 }
 
 .comparison-table th {
     font-weight: bold;
+    color: black;
+}
+
+.winner{
+    background-color: DarkSeaGreen;
 }
