@@ -240,11 +240,11 @@ function updateRaceHeatmap(selectedRace) {
     let html = `
         <table class="heatmap-table">
             <tr>
-                <th>Driver</th>
+                <th class"heatmap-header">Driver</th>
     `;
 
     for (let pos = 1; pos <= 22; pos++) {
-        html += `<th>P${pos}</th>`;
+        html += `<th class"heatmap-header">P${pos}</th>`;
     }
 
     html += `</tr>`;
@@ -252,7 +252,7 @@ function updateRaceHeatmap(selectedRace) {
     Object.keys(raceData).forEach(driver => {
 
         html += `<tr>`;
-        html += `<td>${driver}</td>`;
+        html += `<td class"heatmap-driver">${driver}</td>`;
 
         for (let pos = 1; pos <= 22; pos++) {
 
