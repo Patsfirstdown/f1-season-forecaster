@@ -406,3 +406,7 @@ canvas.graph{
     background-color: DarkSeaGreen;
     font-weight: bold;
 }
+
+.exp_std{
+    margin: 32px;
+}
