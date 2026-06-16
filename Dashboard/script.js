@@ -137,6 +137,45 @@ function updateChart(race, driver) {
         });
 }
 
+function updateDNFProbabilities(selectedRace) {
+
+    const raceData = predictionData.race_data[selectedRace];
+
+    const dnfList = [];
+
+    Object.keys(raceData).forEach(driver => {
+
+        dnfList.push({
+            driver: driver,
+            probability: raceData[driver].dnf_probability
+        });
+
+    });
+
+    dnfList.sort((a, b) => b.probability - a.probability);
+
+    const container =
+        document.getElementById("dnfProbabilityList");
+
+    container.innerHTML = "";
+
+    dnfList.forEach(item => {
+
+        const row = document.createElement("div");
+
+        row.className = "dnf-row";
+        
+        row.innerHTML = `
+            <span>${item.driver}</span>
+            <span>${(item.probability * 100).toFixed(2)}%</span>
+        `;
+
+        container.appendChild(row);
+
+    });
+
+}
+
 async function initialize() {
 
     await loadData();
@@ -186,5 +225,6 @@ document
     graph.style.display = "flex";
     
     updateChart(race, driver);
+    updateDNFProbabilities(selectedRace);
 
 });
