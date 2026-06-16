@@ -180,7 +180,7 @@ function updateWDCHeatmap(selectedRace) {
     let html = `
         <table class="heatmap-table">
             <tr>
-                <th>Driver</th>
+                <th class="heatmap-header>Driver</th>
     `;
 
     for (let pos = 1; pos <= 22; pos++) {
