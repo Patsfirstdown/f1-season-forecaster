@@ -328,3 +328,17 @@ canvas.graph{
 .dnfProbList{
     padding-bottom: 32px;
 }
+
+.heatmap-table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.heatmap-table td,
+.heatmap-table th {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #444;
+    font-size: 12px;
+}
