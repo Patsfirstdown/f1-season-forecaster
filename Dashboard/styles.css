@@ -380,3 +380,19 @@ canvas.graph{
 .heatmap-driver{
     color: black;
 }
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+    border: 1px solid var(--f1_red);
+    padding: `6px;
+    text-align: center;
+}
+
+.comparison-table th {
+    font-weight: bold;
+}
