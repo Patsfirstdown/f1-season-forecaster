@@ -146,7 +146,7 @@ function updateScore(selectedRace) {
 
         scoreList.push({
             team: team,
-            probability: wdcData[team].WCC_score
+            probability: wccData[team].WCC_score
         });
 
     });
