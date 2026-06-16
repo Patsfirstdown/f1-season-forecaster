@@ -189,7 +189,7 @@ function compateMetric(driver1data,driver2data) {
     }
     if (driver2data < driver1data) {
         return ["higher","ignore"];
-
+    }
      return ["tie","tie"]
 }
 
