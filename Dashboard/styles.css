@@ -329,6 +329,31 @@ canvas.graph{
     padding-bottom: 32px;
 }
 
+.score-row {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: 20px;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 8px 0;
+    font-size: 150%;
+}
+
+.score-row span:last-child {
+    text-align: right;
+}
+
+.score-title {
+    font-size: 350%;
+    text-align: center;
+    padding-top: 16px;
+    border-top: 4px solid var(--f1_red);
+}
+
+.scoreList{
+    padding-bottom: 32px;
+}
+
 .heatmap-table {
     border-collapse: collapse;
     margin: auto;
