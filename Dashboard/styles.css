@@ -305,8 +305,14 @@ canvas.graph{
 }
 
 .dnf-row {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: 20px;
+    max-width: 350px;
+    margin: 0 auto;
     padding: 4px 0;
-    border-bottom: 1px solid var(--border-color);
+}
+
+.dnf-row span:last-child {
+    text-align: right;
 }
