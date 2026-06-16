@@ -69,6 +69,9 @@ function updateChart(race, driver) {
     
     document.getElementById("expectedFinish")
         .textContent = driverData.expected_finish.toFixed(2);
+
+     document.getElementById("std")
+        .textContent = driverData.position_std.toFixed(2);
     
     document.getElementById("winProb")
         .textContent = (driverData.win_probability*100).toFixed(2) + "%";
@@ -81,6 +84,9 @@ function updateChart(race, driver) {
     
     document.getElementById("dnfProb")
         .textContent = (driverData.dnf_probability*100).toFixed(2) + "%";
+    
+    document.getElementById("score")
+        .textContent = (driverData.driver_score*100).toFixed(2) + "%";
 
     const labels = [];
     const values = [];
@@ -176,6 +182,56 @@ function updateDNFProbabilities(selectedRace) {
 
 }
 
+function updateRaceHeatmap(selectedRace) {
+
+    const raceData = predictionData.race_data[selectedRace];
+
+    let html = `
+        <table class="heatmap-table">
+            <tr>
+                <th>Driver</th>
+    `;
+
+    for (let pos = 1; pos <= 20; pos++) {
+        html += `<th>P${pos}</th>`;
+    }
+
+    html += `</tr>`;
+
+    Object.keys(raceData).forEach(driver => {
+
+        html += `<tr>`;
+        html += `<td>${driver}</td>`;
+
+        for (let pos = 1; pos <= 20; pos++) {
+
+            const prob =
+                raceData[driver][String(pos)];
+
+            const opacity = prob;
+
+            html += `
+                <td
+                    style="
+                        background: rgba(232,0,45,${opacity});
+                    "
+                    title="${(prob*100).toFixed(1)}%"
+                >
+                    ${(prob*100).toFixed(0)}
+                </td>
+            `;
+        }
+
+        html += `</tr>`;
+    });
+
+    html += `</table>`;
+
+    document.getElementById(
+        "raceHeatmap"
+    ).innerHTML = html;
+}
+
 async function initialize() {
 
     await loadData();
@@ -226,5 +282,5 @@ document
     
     updateChart(race, driver);
     updateDNFProbabilities(race);
-
+    updateRaceHeatmap(race);
 });
