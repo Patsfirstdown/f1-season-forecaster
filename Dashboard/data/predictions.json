@@ -1,7 +1,7 @@
 {
     "race_data": {
         "Miami Grand Prix": {
-            "Max_Verstappen": {
+            "Max Verstappen": {
                 "1": 0.302,
                 "2": 0.2244,
                 "3": 0.1533,
@@ -32,7 +32,7 @@
                 "position_std": 1.3414579362950596,
                 "driver_score": 0.52789
             },
-            "Kimi_Antonelli": {
+            "Kimi Antonelli": {
                 "1": 0.3384,
                 "2": 0.2531,
                 "3": 0.1822,
@@ -63,7 +63,7 @@
                 "position_std": 1.427158281340931,
                 "driver_score": 0.6013099999999999
             },
-            "Lando_Norris": {
+            "Lando Norris": {
                 "1": 0.1114,
                 "2": 0.1509,
                 "3": 0.1664,
@@ -94,7 +94,7 @@
                 "position_std": 1.5784998199312534,
                 "driver_score": 0.34677
             },
-            "George_Russell": {
+            "George Russell": {
                 "1": 0.1074,
                 "2": 0.1573,
                 "3": 0.1888,
@@ -125,7 +125,7 @@
                 "position_std": 1.5663231574572984,
                 "driver_score": 0.37829
             },
-            "Charles_Leclerc": {
+            "Charles Leclerc": {
                 "1": 0.122,
                 "2": 0.1708,
                 "3": 0.2072,
@@ -156,7 +156,7 @@
                 "position_std": 1.605671196104607,
                 "driver_score": 0.41100000000000003
             },
-            "Lewis_Hamilton": {
+            "Lewis Hamilton": {
                 "1": 0.0167,
                 "2": 0.0363,
                 "3": 0.0794,
@@ -187,7 +187,7 @@
                 "position_std": 1.5028468078084343,
                 "driver_score": 0.23223
             },
-            "Liam_Lawson": {
+            "Liam Lawson": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -218,7 +218,7 @@
                 "position_std": 3.827513832332941,
                 "driver_score": 0.0696
             },
-            "Oscar_Piastri": {
+            "Oscar Piastri": {
                 "1": 0.002,
                 "2": 0.0071,
                 "3": 0.0216,
@@ -249,7 +249,7 @@
                 "position_std": 1.5075751685743568,
                 "driver_score": 0.18699000000000005
             },
-            "Oliver_Bearman": {
+            "Oliver Bearman": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -280,7 +280,7 @@
                 "position_std": 4.630797257965845,
                 "driver_score": 0.030320000000000003
             },
-            "Pierre_Gasly": {
+            "Pierre Gasly": {
                 "1": 0.0001,
                 "2": 0.0,
                 "3": 0.0002,
@@ -311,7 +311,7 @@
                 "position_std": 2.6415546707637914,
                 "driver_score": 0.12014
             },
-            "Carlos_Sainz": {
+            "Carlos Sainz": {
                 "1": 0.0,
                 "2": 0.0001,
                 "3": 0.0008,
@@ -342,7 +342,7 @@
                 "position_std": 2.057466692318493,
                 "driver_score": 0.16651
             },
-            "Gabriel_Bortoleto": {
+            "Gabriel Bortoleto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -373,7 +373,7 @@
                 "position_std": 5.951418850051978,
                 "driver_score": 0.0009399999999999999
             },
-            "Franco_Colapinto": {
+            "Franco Colapinto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0001,
@@ -404,7 +404,7 @@
                 "position_std": 2.6879721496652444,
                 "driver_score": 0.08405000000000001
             },
-            "Nico_Hulkenberg": {
+            "Nico Hulkenberg": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -435,7 +435,7 @@
                 "position_std": 2.87385659873279,
                 "driver_score": 0.058960000000000005
             },
-            "Sergio_Perez": {
+            "Sergio Perez": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -466,7 +466,7 @@
                 "position_std": 2.704494229065945,
                 "driver_score": 0.0732
             },
-            "Esteban_Ocon": {
+            "Esteban Ocon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -497,7 +497,7 @@
                 "position_std": 2.767454454909782,
                 "driver_score": 0.05671999999999999
             },
-            "Alexander_Albon": {
+            "Alexander Albon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -528,7 +528,7 @@
                 "position_std": 2.9879950109637057,
                 "driver_score": 0.02322
             },
-            "Arvid_Lindblad": {
+            "Arvid Lindblad": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -559,7 +559,7 @@
                 "position_std": 3.009883064256815,
                 "driver_score": 0.015880000000000002
             },
-            "Fernando_Alonso": {
+            "Fernando Alonso": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -590,7 +590,7 @@
                 "position_std": 3.301348740439883,
                 "driver_score": 0.0054
             },
-            "Isack_Hadjar": {
+            "Isack Hadjar": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -621,7 +621,7 @@
                 "position_std": 2.930714747179943,
                 "driver_score": 0.00988
             },
-            "Lance_Stroll": {
+            "Lance Stroll": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -652,7 +652,7 @@
                 "position_std": 2.5584884991736825,
                 "driver_score": 0.0002
             },
-            "Valtteri_Bottas": {
+            "Valtteri Bottas": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -685,7 +685,7 @@
             }
         },
         "Barcelona Grand Prix": {
-            "George_Russell": {
+            "George Russell": {
                 "1": 0.4251,
                 "2": 0.2724,
                 "3": 0.1417,
@@ -716,7 +716,7 @@
                 "position_std": 1.189831203894065,
                 "driver_score": 0.65549
             },
-            "Lewis_Hamilton": {
+            "Lewis Hamilton": {
                 "1": 0.3532,
                 "2": 0.3087,
                 "3": 0.1678,
@@ -747,7 +747,7 @@
                 "position_std": 1.3308044507082923,
                 "driver_score": 0.6240899999999999
             },
-            "Lando_Norris": {
+            "Lando Norris": {
                 "1": 0.0879,
                 "2": 0.145,
                 "3": 0.2049,
@@ -778,7 +778,7 @@
                 "position_std": 1.6293823269187007,
                 "driver_score": 0.34431
             },
-            "Kimi_Antonelli": {
+            "Kimi Antonelli": {
                 "1": 0.0631,
                 "2": 0.1059,
                 "3": 0.1425,
@@ -809,7 +809,7 @@
                 "position_std": 1.7432499004445694,
                 "driver_score": 0.25670000000000004
             },
-            "Max_Verstappen": {
+            "Max Verstappen": {
                 "1": 0.0514,
                 "2": 0.1029,
                 "3": 0.165,
@@ -840,7 +840,7 @@
                 "position_std": 1.6947297795430394,
                 "driver_score": 0.29885
             },
-            "Oscar_Piastri": {
+            "Oscar Piastri": {
                 "1": 0.012,
                 "2": 0.0383,
                 "3": 0.0891,
@@ -871,7 +871,7 @@
                 "position_std": 1.774209377505936,
                 "driver_score": 0.22414
             },
-            "Isack_Hadjar": {
+            "Isack Hadjar": {
                 "1": 0.0052,
                 "2": 0.0169,
                 "3": 0.0578,
@@ -902,7 +902,7 @@
                 "position_std": 1.746507890707626,
                 "driver_score": 0.20467000000000002
             },
-            "Charles_Leclerc": {
+            "Charles Leclerc": {
                 "1": 0.0021,
                 "2": 0.0095,
                 "3": 0.0276,
@@ -933,7 +933,7 @@
                 "position_std": 1.7756706134584759,
                 "driver_score": 0.18853
             },
-            "Liam_Lawson": {
+            "Liam Lawson": {
                 "1": 0.0,
                 "2": 0.0004,
                 "3": 0.0018,
@@ -964,7 +964,7 @@
                 "position_std": 1.8238692367700047,
                 "driver_score": 0.16613999999999998
             },
-            "Nico_Hulkenberg": {
+            "Nico Hulkenberg": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0018,
@@ -995,7 +995,7 @@
                 "position_std": 1.9857652811571158,
                 "driver_score": 0.14618
             },
-            "Pierre_Gasly": {
+            "Pierre Gasly": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1026,7 +1026,7 @@
                 "position_std": 2.097944610404193,
                 "driver_score": 0.10224
             },
-            "Arvid_Lindblad": {
+            "Arvid Lindblad": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1057,7 +1057,7 @@
                 "position_std": 2.349811598633388,
                 "driver_score": 0.0716
             },
-            "Gabriel_Bortoleto": {
+            "Gabriel Bortoleto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1088,7 +1088,7 @@
                 "position_std": 2.3185733793919483,
                 "driver_score": 0.05249999999999999
             },
-            "Carlos_Sainz": {
+            "Carlos Sainz": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1119,7 +1119,7 @@
                 "position_std": 2.4107083663462907,
                 "driver_score": 0.029259999999999998
             },
-            "Franco_Colapinto": {
+            "Franco Colapinto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1150,7 +1150,7 @@
                 "position_std": 2.382057073769224,
                 "driver_score": 0.015239999999999998
             },
-            "Sergio_Perez": {
+            "Sergio Perez": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1181,7 +1181,7 @@
                 "position_std": 2.450499924831666,
                 "driver_score": 0.00898
             },
-            "Esteban_Ocon": {
+            "Esteban Ocon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1212,7 +1212,7 @@
                 "position_std": 2.3462722540302097,
                 "driver_score": 0.006420000000000001
             },
-            "Oliver_Bearman": {
+            "Oliver Bearman": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1243,7 +1243,7 @@
                 "position_std": 2.6060074986461568,
                 "driver_score": 0.00434
             },
-            "Fernando_Alonso": {
+            "Fernando Alonso": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1274,7 +1274,7 @@
                 "position_std": 3.3733393400273273,
                 "driver_score": 0.00016
             },
-            "Alexander_Albon": {
+            "Alexander Albon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1305,7 +1305,7 @@
                 "position_std": 3.5832712103642095,
                 "driver_score": 5.9999999999999995e-05
             },
-            "Lance_Stroll": {
+            "Lance Stroll": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1336,7 +1336,7 @@
                 "position_std": 3.3217339630530316,
                 "driver_score": 2e-05
             },
-            "Valtteri_Bottas": {
+            "Valtteri Bottas": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1369,7 +1369,7 @@
             }
         },
         "Austrian Grand Prix": {
-            "Lewis_Hamilton": {
+            "Lewis Hamilton": {
                 "1": 0.3474,
                 "2": 0.228,
                 "3": 0.1645,
@@ -1400,7 +1400,7 @@
                 "position_std": 1.5997817977361788,
                 "driver_score": 0.59301
             },
-            "George_Russell": {
+            "George Russell": {
                 "1": 0.2474,
                 "2": 0.208,
                 "3": 0.1612,
@@ -1431,7 +1431,7 @@
                 "position_std": 1.5918277787499502,
                 "driver_score": 0.48516000000000004
             },
-            "Charles_Leclerc": {
+            "Charles Leclerc": {
                 "1": 0.1215,
                 "2": 0.1588,
                 "3": 0.1719,
@@ -1462,7 +1462,7 @@
                 "position_std": 1.7715602983675152,
                 "driver_score": 0.38081
             },
-            "Kimi_Antonelli": {
+            "Kimi Antonelli": {
                 "1": 0.0834,
                 "2": 0.1085,
                 "3": 0.114,
@@ -1493,7 +1493,7 @@
                 "position_std": 1.8456930547899886,
                 "driver_score": 0.25787
             },
-            "Max_Verstappen": {
+            "Max Verstappen": {
                 "1": 0.0916,
                 "2": 0.1277,
                 "3": 0.1437,
@@ -1524,7 +1524,7 @@
                 "position_std": 1.836741421957103,
                 "driver_score": 0.32176
             },
-            "Oscar_Piastri": {
+            "Oscar Piastri": {
                 "1": 0.0887,
                 "2": 0.1224,
                 "3": 0.1539,
@@ -1555,7 +1555,7 @@
                 "position_std": 1.832990324802616,
                 "driver_score": 0.33260999999999996
             },
-            "Lando_Norris": {
+            "Lando Norris": {
                 "1": 0.0178,
                 "2": 0.0401,
                 "3": 0.0682,
@@ -1586,7 +1586,7 @@
                 "position_std": 1.9224380023272534,
                 "driver_score": 0.21774999999999997
             },
-            "Liam_Lawson": {
+            "Liam Lawson": {
                 "1": 0.002,
                 "2": 0.0054,
                 "3": 0.0163,
@@ -1617,7 +1617,7 @@
                 "position_std": 1.9347701904399397,
                 "driver_score": 0.18845000000000003
             },
-            "Carlos_Sainz": {
+            "Carlos Sainz": {
                 "1": 0.0002,
                 "2": 0.0007,
                 "3": 0.0031,
@@ -1648,7 +1648,7 @@
                 "position_std": 2.4902735169816177,
                 "driver_score": 0.13238
             },
-            "Pierre_Gasly": {
+            "Pierre Gasly": {
                 "1": 0.0,
                 "2": 0.0003,
                 "3": 0.002,
@@ -1679,7 +1679,7 @@
                 "position_std": 2.37870295959794,
                 "driver_score": 0.13268999999999997
             },
-            "Isack_Hadjar": {
+            "Isack Hadjar": {
                 "1": 0.0,
                 "2": 0.0001,
                 "3": 0.001,
@@ -1710,7 +1710,7 @@
                 "position_std": 2.4845361443138647,
                 "driver_score": 0.11571000000000002
             },
-            "Oliver_Bearman": {
+            "Oliver Bearman": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0002,
@@ -1741,7 +1741,7 @@
                 "position_std": 2.7528647443643144,
                 "driver_score": 0.08
             },
-            "Gabriel_Bortoleto": {
+            "Gabriel Bortoleto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1772,7 +1772,7 @@
                 "position_std": 2.794952927807908,
                 "driver_score": 0.04732
             },
-            "Arvid_Lindblad": {
+            "Arvid Lindblad": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1803,7 +1803,7 @@
                 "position_std": 2.902565744382718,
                 "driver_score": 0.032240000000000005
             },
-            "Nico_Hulkenberg": {
+            "Nico Hulkenberg": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1834,7 +1834,7 @@
                 "position_std": 3.7436905043552944,
                 "driver_score": 0.02186
             },
-            "Sergio_Perez": {
+            "Sergio Perez": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1865,7 +1865,7 @@
                 "position_std": 3.1780494449426056,
                 "driver_score": 0.01736
             },
-            "Franco_Colapinto": {
+            "Franco Colapinto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1896,7 +1896,7 @@
                 "position_std": 2.72427105091674,
                 "driver_score": 0.01696
             },
-            "Esteban_Ocon": {
+            "Esteban Ocon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1927,7 +1927,7 @@
                 "position_std": 2.7126009126113626,
                 "driver_score": 0.016900000000000002
             },
-            "Fernando_Alonso": {
+            "Fernando Alonso": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1958,7 +1958,7 @@
                 "position_std": 3.5509217426763997,
                 "driver_score": 0.00544
             },
-            "Alexander_Albon": {
+            "Alexander Albon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -1989,7 +1989,7 @@
                 "position_std": 3.4073449864777423,
                 "driver_score": 0.0036400000000000004
             },
-            "Lance_Stroll": {
+            "Lance Stroll": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2020,7 +2020,7 @@
                 "position_std": 3.5056810386611037,
                 "driver_score": 2e-05
             },
-            "Valtteri_Bottas": {
+            "Valtteri Bottas": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2053,7 +2053,7 @@
             }
         },
         "Monaco Grand Prix": {
-            "Max_Verstappen": {
+            "Max Verstappen": {
                 "1": 0.3838,
                 "2": 0.2329,
                 "3": 0.1522,
@@ -2084,7 +2084,7 @@
                 "position_std": 1.3772097020515794,
                 "driver_score": 0.61107
             },
-            "Kimi_Antonelli": {
+            "Kimi Antonelli": {
                 "1": 0.2223,
                 "2": 0.231,
                 "3": 0.2161,
@@ -2115,7 +2115,7 @@
                 "position_std": 1.630239933261359,
                 "driver_score": 0.51197
             },
-            "Lewis_Hamilton": {
+            "Lewis Hamilton": {
                 "1": 0.2073,
                 "2": 0.2401,
                 "3": 0.2141,
@@ -2146,7 +2146,7 @@
                 "position_std": 1.6158338992606882,
                 "driver_score": 0.5021
             },
-            "Charles_Leclerc": {
+            "Charles Leclerc": {
                 "1": 0.1456,
                 "2": 0.1876,
                 "3": 0.2003,
@@ -2177,7 +2177,7 @@
                 "position_std": 1.6449567351647885,
                 "driver_score": 0.41647
             },
-            "Isack_Hadjar": {
+            "Isack Hadjar": {
                 "1": 0.0162,
                 "2": 0.0386,
                 "3": 0.0739,
@@ -2208,7 +2208,7 @@
                 "position_std": 1.7853119871126168,
                 "driver_score": 0.22519
             },
-            "George_Russell": {
+            "George Russell": {
                 "1": 0.015,
                 "2": 0.0415,
                 "3": 0.075,
@@ -2239,7 +2239,7 @@
                 "position_std": 1.7700541915274794,
                 "driver_score": 0.23527000000000003
             },
-            "Oscar_Piastri": {
+            "Oscar Piastri": {
                 "1": 0.0059,
                 "2": 0.0177,
                 "3": 0.0435,
@@ -2270,7 +2270,7 @@
                 "position_std": 1.7757107781392782,
                 "driver_score": 0.20092
             },
-            "Lando_Norris": {
+            "Lando Norris": {
                 "1": 0.0038,
                 "2": 0.0105,
                 "3": 0.0237,
@@ -2301,7 +2301,7 @@
                 "position_std": 1.7392704112500739,
                 "driver_score": 0.19074000000000002
             },
-            "Pierre_Gasly": {
+            "Pierre Gasly": {
                 "1": 0.0001,
                 "2": 0.0001,
                 "3": 0.0011,
@@ -2332,7 +2332,7 @@
                 "position_std": 1.75011981779477,
                 "driver_score": 0.15746000000000002
             },
-            "Alexander_Albon": {
+            "Alexander Albon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2363,7 +2363,7 @@
                 "position_std": 2.4969548994196926,
                 "driver_score": 0.0609
             },
-            "Liam_Lawson": {
+            "Liam Lawson": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0001,
@@ -2394,7 +2394,7 @@
                 "position_std": 1.5320096935620218,
                 "driver_score": 0.15379
             },
-            "Nico_Hulkenberg": {
+            "Nico Hulkenberg": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2425,7 +2425,7 @@
                 "position_std": 3.213729034188165,
                 "driver_score": 0.012819999999999998
             },
-            "Carlos_Sainz": {
+            "Carlos Sainz": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2456,7 +2456,7 @@
                 "position_std": 1.5956688252892577,
                 "driver_score": 0.09312000000000001
             },
-            "Arvid_Lindblad": {
+            "Arvid Lindblad": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2487,7 +2487,7 @@
                 "position_std": 2.4704506212656843,
                 "driver_score": 0.006880000000000001
             },
-            "Franco_Colapinto": {
+            "Franco Colapinto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2518,7 +2518,7 @@
                 "position_std": 1.9247314591911258,
                 "driver_score": 0.015700000000000002
             },
-            "Esteban_Ocon": {
+            "Esteban Ocon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2549,7 +2549,7 @@
                 "position_std": 2.309112148202204,
                 "driver_score": 0.0032600000000000007
             },
-            "Sergio_Perez": {
+            "Sergio Perez": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2580,7 +2580,7 @@
                 "position_std": 3.0132428872105543,
                 "driver_score": 0.00032
             },
-            "Fernando_Alonso": {
+            "Fernando Alonso": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2611,7 +2611,7 @@
                 "position_std": 4.132757352780588,
                 "driver_score": 0.0
             },
-            "Gabriel_Bortoleto": {
+            "Gabriel Bortoleto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2642,7 +2642,7 @@
                 "position_std": 2.117703498653199,
                 "driver_score": 0.00164
             },
-            "Valtteri_Bottas": {
+            "Valtteri Bottas": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2673,7 +2673,7 @@
                 "position_std": 3.004098765162025,
                 "driver_score": 0.0
             },
-            "Oliver_Bearman": {
+            "Oliver Bearman": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2704,7 +2704,7 @@
                 "position_std": 2.0936489911933656,
                 "driver_score": 0.00038
             },
-            "Lance_Stroll": {
+            "Lance Stroll": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -2737,7 +2737,7 @@
             }
         },
         "Japanese Grand Prix": {
-            "Kimi_Antonelli": {
+            "Kimi Antonelli": {
                 "1": 0.4388,
                 "2": 0.2364,
                 "3": 0.154,
@@ -2768,7 +2768,7 @@
                 "position_std": 1.3701986863225348,
                 "driver_score": 0.6681600000000001
             },
-            "George_Russell": {
+            "George Russell": {
                 "1": 0.1848,
                 "2": 0.2154,
                 "3": 0.1904,
@@ -2799,7 +2799,7 @@
                 "position_std": 1.6175872798127462,
                 "driver_score": 0.45903999999999995
             },
-            "Oscar_Piastri": {
+            "Oscar Piastri": {
                 "1": 0.1228,
                 "2": 0.1699,
                 "3": 0.1821,
@@ -2830,7 +2830,7 @@
                 "position_std": 1.6484259133816113,
                 "driver_score": 0.3829
             },
-            "Lando_Norris": {
+            "Lando Norris": {
                 "1": 0.0899,
                 "2": 0.1333,
                 "3": 0.1615,
@@ -2861,7 +2861,7 @@
                 "position_std": 1.6918723645609322,
                 "driver_score": 0.33806
             },
-            "Charles_Leclerc": {
+            "Charles Leclerc": {
                 "1": 0.1422,
                 "2": 0.1904,
                 "3": 0.1993,
@@ -2892,7 +2892,7 @@
                 "position_std": 1.7049773928119984,
                 "driver_score": 0.43067
             },
-            "Lewis_Hamilton": {
+            "Lewis Hamilton": {
                 "1": 0.0153,
                 "2": 0.0356,
                 "3": 0.0666,
@@ -2923,7 +2923,7 @@
                 "position_std": 1.626994763359735,
                 "driver_score": 0.2428
             },
-            "Max_Verstappen": {
+            "Max Verstappen": {
                 "1": 0.0058,
                 "2": 0.0174,
                 "3": 0.0417,
@@ -2954,7 +2954,7 @@
                 "position_std": 1.5479778638662762,
                 "driver_score": 0.21059000000000005
             },
-            "Isack_Hadjar": {
+            "Isack Hadjar": {
                 "1": 0.0004,
                 "2": 0.0016,
                 "3": 0.0037,
@@ -2985,7 +2985,7 @@
                 "position_std": 1.504450762975312,
                 "driver_score": 0.17669
             },
-            "Pierre_Gasly": {
+            "Pierre Gasly": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0007,
@@ -3016,7 +3016,7 @@
                 "position_std": 1.5690759437962212,
                 "driver_score": 0.17115
             },
-            "Alexander_Albon": {
+            "Alexander Albon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3047,7 +3047,7 @@
                 "position_std": 5.123119831704115,
                 "driver_score": 0.00922
             },
-            "Arvid_Lindblad": {
+            "Arvid Lindblad": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3078,7 +3078,7 @@
                 "position_std": 2.33105533203826,
                 "driver_score": 0.10418
             },
-            "Sergio_Perez": {
+            "Sergio Perez": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3109,7 +3109,7 @@
                 "position_std": 3.050537171993156,
                 "driver_score": 0.034480000000000004
             },
-            "Carlos_Sainz": {
+            "Carlos Sainz": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3140,7 +3140,7 @@
                 "position_std": 2.7859969460550396,
                 "driver_score": 0.04222000000000001
             },
-            "Nico_Hulkenberg": {
+            "Nico Hulkenberg": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3171,7 +3171,7 @@
                 "position_std": 2.963619050548501,
                 "driver_score": 0.02592
             },
-            "Gabriel_Bortoleto": {
+            "Gabriel Bortoleto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3202,7 +3202,7 @@
                 "position_std": 2.750966637093223,
                 "driver_score": 0.02476
             },
-            "Esteban_Ocon": {
+            "Esteban Ocon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3233,7 +3233,7 @@
                 "position_std": 2.7342605417187293,
                 "driver_score": 0.034260000000000006
             },
-            "Oliver_Bearman": {
+            "Oliver Bearman": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3264,7 +3264,7 @@
                 "position_std": 2.7962352392027037,
                 "driver_score": 0.02082
             },
-            "Liam_Lawson": {
+            "Liam Lawson": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3295,7 +3295,7 @@
                 "position_std": 2.7924022973165954,
                 "driver_score": 0.016200000000000003
             },
-            "Franco_Colapinto": {
+            "Franco Colapinto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3326,7 +3326,7 @@
                 "position_std": 2.722724322140418,
                 "driver_score": 0.007560000000000001
             },
-            "Fernando_Alonso": {
+            "Fernando Alonso": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3357,7 +3357,7 @@
                 "position_std": 3.1071143855392576,
                 "driver_score": 0.00032
             },
-            "Valtteri_Bottas": {
+            "Valtteri Bottas": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3388,7 +3388,7 @@
                 "position_std": 3.0471212627494824,
                 "driver_score": 0.0
             },
-            "Lance_Stroll": {
+            "Lance Stroll": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3421,7 +3421,7 @@
             }
         },
         "Canadian Grand Prix": {
-            "George_Russell": {
+            "George Russell": {
                 "1": 0.4418,
                 "2": 0.2744,
                 "3": 0.0961,
@@ -3452,7 +3452,7 @@
                 "position_std": 0.9718946205957723,
                 "driver_score": 0.63945
             },
-            "Kimi_Antonelli": {
+            "Kimi Antonelli": {
                 "1": 0.4307,
                 "2": 0.3327,
                 "3": 0.1393,
@@ -3483,7 +3483,7 @@
                 "position_std": 1.115572660116767,
                 "driver_score": 0.6861600000000001
             },
-            "Lando_Norris": {
+            "Lando Norris": {
                 "1": 0.0238,
                 "2": 0.0647,
                 "3": 0.1314,
@@ -3514,7 +3514,7 @@
                 "position_std": 1.6733140608684312,
                 "driver_score": 0.22361
             },
-            "Max_Verstappen": {
+            "Max Verstappen": {
                 "1": 0.0444,
                 "2": 0.1241,
                 "3": 0.2177,
@@ -3545,7 +3545,7 @@
                 "position_std": 1.5083390259580238,
                 "driver_score": 0.32738
             },
-            "Oscar_Piastri": {
+            "Oscar Piastri": {
                 "1": 0.0246,
                 "2": 0.0763,
                 "3": 0.1574,
@@ -3576,7 +3576,7 @@
                 "position_std": 1.5052772600368343,
                 "driver_score": 0.26661
             },
-            "Lewis_Hamilton": {
+            "Lewis Hamilton": {
                 "1": 0.0317,
                 "2": 0.1096,
                 "3": 0.2077,
@@ -3607,7 +3607,7 @@
                 "position_std": 1.5104671462828974,
                 "driver_score": 0.32053
             },
-            "Charles_Leclerc": {
+            "Charles Leclerc": {
                 "1": 0.003,
                 "2": 0.0181,
                 "3": 0.05,
@@ -3638,7 +3638,7 @@
                 "position_std": 1.4955191124422318,
                 "driver_score": 0.19230999999999998
             },
-            "Liam_Lawson": {
+            "Liam Lawson": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3669,7 +3669,7 @@
                 "position_std": 4.123559396992238,
                 "driver_score": 0.05828
             },
-            "Isack_Hadjar": {
+            "Isack Hadjar": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0002,
@@ -3700,7 +3700,7 @@
                 "position_std": 2.456378524038794,
                 "driver_score": 0.1274
             },
-            "Arvid_Lindblad": {
+            "Arvid Lindblad": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0001,
@@ -3731,7 +3731,7 @@
                 "position_std": 2.5834341779900254,
                 "driver_score": 0.11741
             },
-            "Nico_Hulkenberg": {
+            "Nico Hulkenberg": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3762,7 +3762,7 @@
                 "position_std": 2.681979447973082,
                 "driver_score": 0.10862
             },
-            "Sergio_Perez": {
+            "Sergio Perez": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3793,7 +3793,7 @@
                 "position_std": 4.9886068297491635,
                 "driver_score": 0.0037599999999999995
             },
-            "Carlos_Sainz": {
+            "Carlos Sainz": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0001,
@@ -3824,7 +3824,7 @@
                 "position_std": 2.8545461149112654,
                 "driver_score": 0.07363
             },
-            "Franco_Colapinto": {
+            "Franco Colapinto": {
                 "1": 0.0,
                 "2": 0.0001,
                 "3": 0.0,
@@ -3855,7 +3855,7 @@
                 "position_std": 2.700984975893054,
                 "driver_score": 0.10693
             },
-            "Alexander_Albon": {
+            "Alexander Albon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3886,7 +3886,7 @@
                 "position_std": 4.5794479658893374,
                 "driver_score": 0.00542
             },
-            "Pierre_Gasly": {
+            "Pierre Gasly": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3917,7 +3917,7 @@
                 "position_std": 2.8964572797181036,
                 "driver_score": 0.054920000000000004
             },
-            "Oliver_Bearman": {
+            "Oliver Bearman": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3948,7 +3948,7 @@
                 "position_std": 2.8532099737639367,
                 "driver_score": 0.032740000000000005
             },
-            "Fernando_Alonso": {
+            "Fernando Alonso": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -3979,7 +3979,7 @@
                 "position_std": 3.29744478313906,
                 "driver_score": 0.00732
             },
-            "Gabriel_Bortoleto": {
+            "Gabriel Bortoleto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4010,7 +4010,7 @@
                 "position_std": 2.8407828055352984,
                 "driver_score": 0.02364
             },
-            "Esteban_Ocon": {
+            "Esteban Ocon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4041,7 +4041,7 @@
                 "position_std": 2.7970164801087605,
                 "driver_score": 0.023819999999999997
             },
-            "Lance_Stroll": {
+            "Lance Stroll": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4072,7 +4072,7 @@
                 "position_std": 3.4787573420771962,
                 "driver_score": 2e-05
             },
-            "Valtteri_Bottas": {
+            "Valtteri Bottas": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4105,7 +4105,7 @@
             }
         },
         "Chinese Grand Prix": {
-            "George_Russell": {
+            "George Russell": {
                 "1": 0.2027,
                 "2": 0.1818,
                 "3": 0.1575,
@@ -4136,7 +4136,7 @@
                 "position_std": 1.6898063354571136,
                 "driver_score": 0.4366899999999999
             },
-            "Kimi_Antonelli": {
+            "Kimi Antonelli": {
                 "1": 0.3234,
                 "2": 0.2248,
                 "3": 0.1633,
@@ -4167,7 +4167,7 @@
                 "position_std": 1.6792960161924995,
                 "driver_score": 0.57515
             },
-            "Lando_Norris": {
+            "Lando Norris": {
                 "1": 0.132,
                 "2": 0.1355,
                 "3": 0.1466,
@@ -4198,7 +4198,7 @@
                 "position_std": 1.8252355175069872,
                 "driver_score": 0.36719
             },
-            "Charles_Leclerc": {
+            "Charles Leclerc": {
                 "1": 0.1396,
                 "2": 0.1586,
                 "3": 0.1581,
@@ -4229,7 +4229,7 @@
                 "position_std": 1.7985609910147613,
                 "driver_score": 0.39025
             },
-            "Oscar_Piastri": {
+            "Oscar Piastri": {
                 "1": 0.0835,
                 "2": 0.117,
                 "3": 0.1351,
@@ -4260,7 +4260,7 @@
                 "position_std": 1.8241989785451038,
                 "driver_score": 0.32091000000000003
             },
-            "Max_Verstappen": {
+            "Max Verstappen": {
                 "1": 0.0666,
                 "2": 0.1021,
                 "3": 0.1258,
@@ -4291,7 +4291,7 @@
                 "position_std": 1.81969169257075,
                 "driver_score": 0.31081000000000003
             },
-            "Lewis_Hamilton": {
+            "Lewis Hamilton": {
                 "1": 0.0521,
                 "2": 0.0794,
                 "3": 0.112,
@@ -4322,7 +4322,7 @@
                 "position_std": 1.8174897199978877,
                 "driver_score": 0.2823
             },
-            "Oliver_Bearman": {
+            "Oliver Bearman": {
                 "1": 0.0001,
                 "2": 0.0006,
                 "3": 0.001,
@@ -4353,7 +4353,7 @@
                 "position_std": 1.8169472838032474,
                 "driver_score": 0.169
             },
-            "Pierre_Gasly": {
+            "Pierre Gasly": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0003,
@@ -4384,7 +4384,7 @@
                 "position_std": 2.349969282026043,
                 "driver_score": 0.12597
             },
-            "Isack_Hadjar": {
+            "Isack Hadjar": {
                 "1": 0.0,
                 "2": 0.0002,
                 "3": 0.0003,
@@ -4415,7 +4415,7 @@
                 "position_std": 2.3464490731486163,
                 "driver_score": 0.12258999999999999
             },
-            "Esteban_Ocon": {
+            "Esteban Ocon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4446,7 +4446,7 @@
                 "position_std": 2.457168899363656,
                 "driver_score": 0.10928
             },
-            "Alexander_Albon": {
+            "Alexander Albon": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4477,7 +4477,7 @@
                 "position_std": 4.558502046341101,
                 "driver_score": 0.00796
             },
-            "Carlos_Sainz": {
+            "Carlos Sainz": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4508,7 +4508,7 @@
                 "position_std": 2.8517969240040566,
                 "driver_score": 0.052000000000000005
             },
-            "Sergio_Perez": {
+            "Sergio Perez": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4539,7 +4539,7 @@
                 "position_std": 3.2905088401262494,
                 "driver_score": 0.027300000000000005
             },
-            "Fernando_Alonso": {
+            "Fernando Alonso": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4570,7 +4570,7 @@
                 "position_std": 4.113160557508058,
                 "driver_score": 0.007980000000000001
             },
-            "Nico_Hulkenberg": {
+            "Nico Hulkenberg": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4601,7 +4601,7 @@
                 "position_std": 3.0276035593753017,
                 "driver_score": 0.027500000000000004
             },
-            "Liam_Lawson": {
+            "Liam Lawson": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4632,7 +4632,7 @@
                 "position_std": 2.872673734590825,
                 "driver_score": 0.04026000000000001
             },
-            "Arvid_Lindblad": {
+            "Arvid Lindblad": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4663,7 +4663,7 @@
                 "position_std": 3.0958937934315514,
                 "driver_score": 0.01132
             },
-            "Valtteri_Bottas": {
+            "Valtteri Bottas": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4694,7 +4694,7 @@
                 "position_std": 4.3622861530547254,
                 "driver_score": 0.00030000000000000003
             },
-            "Franco_Colapinto": {
+            "Franco Colapinto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4725,7 +4725,7 @@
                 "position_std": 2.8878938973757333,
                 "driver_score": 0.01248
             },
-            "Lance_Stroll": {
+            "Lance Stroll": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
@@ -4756,7 +4756,7 @@
                 "position_std": 3.5750443246692765,
                 "driver_score": 0.00018
             },
-            "Gabriel_Bortoleto": {
+            "Gabriel Bortoleto": {
                 "1": 0.0,
                 "2": 0.0,
                 "3": 0.0,
