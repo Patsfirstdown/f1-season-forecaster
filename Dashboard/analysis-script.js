@@ -345,12 +345,6 @@ document
 document
 .getElementById("generateDriverButton")
 .addEventListener("click", function() {
-    const card = document.querySelector('canvas.graph');
-    card.style.setProperty('width', '60%', "important");
-    const graph = document.querySelector('.graph');
-    graph.style.display = "flex";
-
-    
     const race =
         document.getElementById("raceSelect").value;
 
