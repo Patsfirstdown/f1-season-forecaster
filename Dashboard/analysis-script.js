@@ -183,6 +183,17 @@ function updateVolatilityChart(selectedRace) {
     });
 }
 
+function compateMetric(driver1data,driver2data) {
+    if (driver1data < driver2data) {
+        return ["ignore","higher"];
+    }
+    else if (driver2data < driver1data) {
+        return ["higher","ignore"];
+    else {
+         return ["tie","tie"]
+    }
+}
+
 function compareDrivers() {
 
     const race =
@@ -230,6 +241,13 @@ function compareDrivers() {
     const b =
         raceData[driverB];
 
+    const [expected_winnerB,expected_winnerA]=compateMetric(a.expected_finish,b.expected_finish)
+    const [std_winnerB,std_winnerA]=compateMetric(a.position_std,b.position_std)
+    const [win_winnerA,win_winnerB]=compateMetric(a.win_probability,b.win_probability)
+    const [podium_winnerA,podium_winnerB]=compateMetric(a.podium_probability,b.podium_probability)
+    const [points_winnerA,points_winnerB]=compateMetric(a.points_probability,b.points_probability)
+    const [dnf_winnerB,dnf_winnerA]=compateMetric(a.dnf_probability,b.dnf_probability)
+
     document.getElementById(
         "comparisonResults"
     ).innerHTML = `
@@ -244,38 +262,38 @@ function compareDrivers() {
 
             <tr>
                 <td>Expected Finish</td>
-                <td>${a.expected_finish.toFixed(2)}</td>
-                <td>${b.expected_finish.toFixed(2)}</td>
+                <td class=${expected_winnerA}>${a.expected_finish.toFixed(2)}</td>
+                <td class=${expected_winnerB}>${b.expected_finish.toFixed(2)}</td>
             </tr>
 
             <tr>
                 <td>Volatility</td>
-                <td>${a.position_std.toFixed(2)}</td>
-                <td>${b.position_std.toFixed(2)}</td>
+                <td class=${std_winnerA}>${a.position_std.toFixed(2)}</td>
+                <td class=${std_winnerB}>${b.position_std.toFixed(2)}</td>
             </tr>
 
             <tr>
                 <td>Win %</td>
-                <td>${(a.win_probability * 100).toFixed(2)}%</td>
-                <td>${(b.win_probability * 100).toFixed(2)}%</td>
+                <td class=${win_winnerA}>${(a.win_probability * 100).toFixed(2)}%</td>
+                <td class=${win_winnerB}>${(b.win_probability * 100).toFixed(2)}%</td>
             </tr>
 
             <tr>
                 <td>Podium %</td>
-                <td>${(a.podium_probability * 100).toFixed(2)}%</td>
-                <td>${(b.podium_probability * 100).toFixed(2)}%</td>
+                <td class=${podium_winnerA}>${(a.podium_probability * 100).toFixed(2)}%</td>
+                <td class=${podium_winnerB}>${(b.podium_probability * 100).toFixed(2)}%</td>
             </tr>
 
             <tr>
                 <td>Points %</td>
-                <td>${(a.points_probability * 100).toFixed(2)}%</td>
-                <td>${(b.points_probability * 100).toFixed(2)}%</td>
+                <td class=${points_winnerA}>${(a.points_probability * 100).toFixed(2)}%</td>
+                <td class=${points_winnerB}>${(b.points_probability * 100).toFixed(2)}%</td>
             </tr>
 
             <tr>
                 <td>DNF %</td>
-                <td>${(a.dnf_probability * 100).toFixed(2)}%</td>
-                <td>${(b.dnf_probability * 100).toFixed(2)}%</td>
+                <td class=${dnf_winnerA}>${(a.dnf_probability * 100).toFixed(2)}%</td>
+                <td class=${dnf_winnerB}>${(b.dnf_probability * 100).toFixed(2)}%</td>
             </tr>
 
         </table>
