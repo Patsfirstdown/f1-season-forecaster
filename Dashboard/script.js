@@ -225,6 +225,16 @@ function updateRaceHeatmap(selectedRace) {
 
     const raceData = predictionData.race_data[selectedRace];
 
+    let maxProb = 0;
+
+    Object.values(raceData).forEach(driverData => {
+        Object.values(driverData).forEach(prob => {
+            if (prob > maxProb) {
+                maxProb = prob;
+            }
+        });
+    });
+
     let html = `
         <table class="heatmap-table">
             <tr>
@@ -247,7 +257,7 @@ function updateRaceHeatmap(selectedRace) {
             const prob =
                 raceData[driver][String(pos)];
 
-            const opacity = prob;
+            const opacity = prob / maxProb;
 
             html += `
                 <td
