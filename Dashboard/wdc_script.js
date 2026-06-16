@@ -122,6 +122,106 @@ function updateChart(race, driver) {
             }
         });
 }
+function updateScore(selectedRace) {
+
+    const wdcData = predictionData.wdc_data[selectedRace];
+
+    const scoreList = [];
+
+    Object.keys(wdcData).forEach(driver => {
+
+        wdcList.push({
+            driver: driver,
+            probability: wdcData[driver].driver_score
+        });
+
+    });
+
+    scoreList.sort((a, b) => b.probability - a.probability);
+
+    const container =
+        document.getElementById("scoreList");
+
+    container.innerHTML = "";
+
+    dnfList.forEach(item => {
+
+        const row = document.createElement("div");
+
+        row.className = "score-row";
+        
+        row.innerHTML = `
+            <span>${item.driver}</span>
+            <span>${(item.probability * 100).toFixed(2)}%</span>
+        `;
+
+        container.appendChild(row);
+
+    });
+
+}
+
+function updateWDCHeatmap(selectedRace) {
+
+    const raceData = predictionData.wdc_data[selectedRace];
+
+    let maxProb = 0;
+
+    Object.values(wdcData).forEach(driverData => {
+        for (let pos = 1; pos <= 22; pos++) {
+            const prob = Number(driverData[String(pos)]) || 0;
+    
+            if (prob > maxProb) {
+                maxProb = prob;
+            }
+        }
+    });
+
+    let html = `
+        <table class="heatmap-table">
+            <tr>
+                <th>Driver</th>
+    `;
+
+    for (let pos = 1; pos <= 22; pos++) {
+        html += `<th>P${pos}</th>`;
+    }
+
+    html += `</tr>`;
+
+    Object.keys(wdcData).forEach(driver => {
+
+        html += `<tr>`;
+        html += `<td>${driver}</td>`;
+
+        for (let pos = 1; pos <= 22; pos++) {
+
+            const prob =
+                wdcData[driver][String(pos)];
+
+            const opacity = prob / maxProb;
+
+            html += `
+                <td
+                    style="
+                        background: rgba(232,0,45,${opacity});
+                    "
+                    title="${(prob*100).toFixed(2)}%"
+                >
+                    ${(prob*100).toFixed(1)}
+                </td>
+            `;
+        }
+
+        html += `</tr>`;
+    });
+
+    html += `</table>`;
+
+    document.getElementById(
+        "wdcHeatmap"
+    ).innerHTML = html;
+}
 
 async function initialize() {
 
@@ -171,5 +271,6 @@ document
     graph.style.display = "flex";
 
     updateChart(race, driver);
-
+    updateWDCHeatmap(race);
+    updateScore(race);
 });
