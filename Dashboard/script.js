@@ -228,12 +228,16 @@ function updateRaceHeatmap(selectedRace) {
     let maxProb = 0;
 
     Object.values(raceData).forEach(driverData => {
+        console.log("driverData:", driverData);
         Object.values(driverData).forEach(prob => {
+            console.log("prob:", prob);
             if (prob > maxProb) {
                 maxProb = prob;
             }
         });
     });
+
+    console.log("maxProb:", maxProb);
 
     let html = `
         <table class="heatmap-table">
