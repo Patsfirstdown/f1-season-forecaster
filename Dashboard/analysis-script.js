@@ -360,6 +360,17 @@ document
     });
 
 document
+    .getElementById("raceSelect")
+    .addEventListener("change", () => {
+
+        const race =
+            document.getElementById("raceSelect").value;
+
+        populateDriver1Dropdown(race);
+
+});    
+
+document
 .getElementById("generateDriverButton")
 .addEventListener("click", function() {
     const race =
