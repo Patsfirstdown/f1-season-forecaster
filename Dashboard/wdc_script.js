@@ -133,7 +133,7 @@ function updateScore(selectedRace) {
 
         scoreList.push({
             driver: driver,
-            probability: wdcData[driver].driver_score
+            probability: wdcData[driver].WDC_score
         });
 
     });
