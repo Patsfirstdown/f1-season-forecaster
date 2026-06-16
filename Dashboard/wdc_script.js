@@ -122,6 +122,7 @@ function updateChart(race, driver) {
             }
         });
 }
+
 function updateScore(selectedRace) {
 
     const wdcData = predictionData.wdc_data[selectedRace];
@@ -144,7 +145,7 @@ function updateScore(selectedRace) {
 
     container.innerHTML = "";
 
-    dnfList.forEach(item => {
+    scoreList.forEach(item => {
 
         const row = document.createElement("div");
 
