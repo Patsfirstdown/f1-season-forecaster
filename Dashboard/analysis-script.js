@@ -297,11 +297,6 @@ function compareDrivers() {
     `;
 }
 
-    if (driverB.options.length > 1) {
-        driverB.selectedIndex = 1;
-    }
-}
-
 async function initialize() {
 
     await loadData();
