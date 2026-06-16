@@ -177,7 +177,7 @@ function updateScore(selectedRace) {
 
 function updateWCCHeatmap(selectedRace) {
 
-    const wdccData = predictionData.wcc_data[selectedRace];
+    const wccData = predictionData.wcc_data[selectedRace];
 
     let maxProb = 0;
 
