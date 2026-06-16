@@ -402,6 +402,7 @@ canvas.graph{
     color: black;
 }
 
-.winner{
+.higher{
     background-color: DarkSeaGreen;
+    font-weight: bold;
 }
