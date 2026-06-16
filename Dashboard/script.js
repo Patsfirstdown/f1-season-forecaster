@@ -242,7 +242,7 @@ function updateRaceHeatmap(selectedRace) {
         html += `<tr>`;
         html += `<td>${driver}</td>`;
 
-        for (let pos = 1; pos <= 20; pos++) {
+        for (let pos = 1; pos <= 22; pos++) {
 
             const prob =
                 raceData[driver][String(pos)];
