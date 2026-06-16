@@ -372,3 +372,11 @@ canvas.graph{
     margin: 16px;
     border: 2px solid var(--f1_red);
 }
+
+.heatmap-header{
+    color: black;
+}
+
+.heatmap-driver{
+    color: black;
+}
