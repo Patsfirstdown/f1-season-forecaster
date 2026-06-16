@@ -355,6 +355,6 @@ document
     const driver2 =
         document.getElementById("driverSelect2").value;
 
-    populateComparisonDrivers(selectedRace);
+    compareDrivers();
     updateVolatilityChart(selectedRace);
 });
