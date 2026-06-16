@@ -303,4 +303,10 @@ canvas.graph{
     border-top: 50px solid var(--f1_silver);
     padding: 12px;
 }
-    
+
+.dnf-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border-color);
+}
