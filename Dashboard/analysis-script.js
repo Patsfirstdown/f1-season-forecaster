@@ -69,7 +69,7 @@ function populateDriver2Dropdown(raceName) {
     }
 
     const driver1Select =
-        document.getElementById("driverSelect1");
+        document.getElementById("driverSelect1").value;
   
     const driverSelect =
         document.getElementById("driverSelect2");
