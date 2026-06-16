@@ -225,6 +225,6 @@ document
     graph.style.display = "flex";
     
     updateChart(race, driver);
-    updateDNFProbabilities(selectedRace);
+    updateDNFProbabilities(race);
 
 });
