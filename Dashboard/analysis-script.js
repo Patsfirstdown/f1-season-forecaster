@@ -346,8 +346,6 @@ document
 .getElementById("generateDriverButton")
 .addEventListener("click", function() {
     
-    const graph_text = document.getElementById("graph-text");
-    graph_text.textContent = "";
     const race =
         document.getElementById("raceSelect").value;
 
@@ -356,14 +354,6 @@ document
 
     const driver2 =
         document.getElementById("driverSelect2").value;
-
-    const card = document.querySelector('canvas.graph');
-    card.style.setProperty('width', '60%', "important");
-    const stat = document.querySelector('.stats-card');
-    stat.style.display = "block";
-
-    const graph = document.querySelector('.graph');
-    graph.style.display = "flex";
 
     populateComparisonDrivers(selectedRace);
     updateVolatilityChart(selectedRace);
