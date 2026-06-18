@@ -2,6 +2,11 @@ let predictionData;
 let raceProbChart;
 let wccProbChart;
 let wdcProbChart;
+let lastLegendClick = 0;
+let lastDatasetIndex = null;
+
+const defaultLegendClick =
+    Chart.defaults.plugins.legend.onClick;
 
 async function loadData() {
     const response = await fetch("data/predictions.json");
@@ -73,39 +78,55 @@ function updateWDCChart() {
                 },
                 plugins: {
                     legend: {
-                        onClick: function(e, legendItem, legend) {
-        
+                        onClick(e, legendItem, legend) {
+                    
                             const chart = legend.chart;
-                            const clickedIndex = legendItem.datasetIndex;
-        
-                            const visibleDatasets =
+                            const datasetIndex = legendItem.datasetIndex;
+                    
+                            const ctrlPressed =
+                                e.native.ctrlKey ||
+                                e.native.metaKey;
+                    
+                            if (!ctrlPressed) {
+                    
+                                // Standard Chart.js behavior
+                                defaultLegendClick(
+                                    e,
+                                    legendItem,
+                                    legend
+                                );
+                    
+                                return;
+                            }
+                    
+                            const visibleCount =
                                 chart.data.datasets.filter(
                                     (_, i) => chart.isDatasetVisible(i)
                                 ).length;
-        
-                            const isOnlyVisible =
-                                visibleDatasets === 1 &&
-                                chart.isDatasetVisible(clickedIndex);
-        
-                            if (isOnlyVisible) {
-        
-                                // Show all datasets
+                    
+                            const isSolo =
+                                visibleCount === 1 &&
+                                chart.isDatasetVisible(datasetIndex);
+                    
+                            if (isSolo) {
+                    
+                                // Restore all
                                 chart.data.datasets.forEach((_, i) => {
                                     chart.setDatasetVisibility(i, true);
                                 });
-        
+                    
                             } else {
-        
-                                // Show only clicked dataset
+                    
+                                // Show only selected dataset
                                 chart.data.datasets.forEach((_, i) => {
                                     chart.setDatasetVisibility(
                                         i,
-                                        i === clickedIndex
+                                        i === datasetIndex
                                     );
                                 });
-        
+                    
                             }
-        
+                    
                             chart.update();
                         }
                     }
@@ -259,39 +280,55 @@ function updateWCCChart() {
                 },
                 plugins: {
                     legend: {
-                        onClick: function(e, legendItem, legend) {
-        
+                        onClick(e, legendItem, legend) {
+                    
                             const chart = legend.chart;
-                            const clickedIndex = legendItem.datasetIndex;
-        
-                            const visibleDatasets =
+                            const datasetIndex = legendItem.datasetIndex;
+                    
+                            const ctrlPressed =
+                                e.native.ctrlKey ||
+                                e.native.metaKey;
+                    
+                            if (!ctrlPressed) {
+                    
+                                // Standard Chart.js behavior
+                                defaultLegendClick(
+                                    e,
+                                    legendItem,
+                                    legend
+                                );
+                    
+                                return;
+                            }
+                    
+                            const visibleCount =
                                 chart.data.datasets.filter(
                                     (_, i) => chart.isDatasetVisible(i)
                                 ).length;
-        
-                            const isOnlyVisible =
-                                visibleDatasets === 1 &&
-                                chart.isDatasetVisible(clickedIndex);
-        
-                            if (isOnlyVisible) {
-        
-                                // Show all datasets
+                    
+                            const isSolo =
+                                visibleCount === 1 &&
+                                chart.isDatasetVisible(datasetIndex);
+                    
+                            if (isSolo) {
+                    
+                                // Restore all
                                 chart.data.datasets.forEach((_, i) => {
                                     chart.setDatasetVisibility(i, true);
                                 });
-        
+                    
                             } else {
-        
-                                // Show only clicked dataset
+                    
+                                // Show only selected dataset
                                 chart.data.datasets.forEach((_, i) => {
                                     chart.setDatasetVisibility(
                                         i,
-                                        i === clickedIndex
+                                        i === datasetIndex
                                     );
                                 });
-        
+                    
                             }
-        
+                    
                             chart.update();
                         }
                     }
@@ -423,39 +460,55 @@ function updateDriverChart() {
                 },
                 plugins: {
                     legend: {
-                        onClick: function(e, legendItem, legend) {
-        
+                        onClick(e, legendItem, legend) {
+                    
                             const chart = legend.chart;
-                            const clickedIndex = legendItem.datasetIndex;
-        
-                            const visibleDatasets =
+                            const datasetIndex = legendItem.datasetIndex;
+                    
+                            const ctrlPressed =
+                                e.native.ctrlKey ||
+                                e.native.metaKey;
+                    
+                            if (!ctrlPressed) {
+                    
+                                // Standard Chart.js behavior
+                                defaultLegendClick(
+                                    e,
+                                    legendItem,
+                                    legend
+                                );
+                    
+                                return;
+                            }
+                    
+                            const visibleCount =
                                 chart.data.datasets.filter(
                                     (_, i) => chart.isDatasetVisible(i)
                                 ).length;
-        
-                            const isOnlyVisible =
-                                visibleDatasets === 1 &&
-                                chart.isDatasetVisible(clickedIndex);
-        
-                            if (isOnlyVisible) {
-        
-                                // Show all datasets
+                    
+                            const isSolo =
+                                visibleCount === 1 &&
+                                chart.isDatasetVisible(datasetIndex);
+                    
+                            if (isSolo) {
+                    
+                                // Restore all
                                 chart.data.datasets.forEach((_, i) => {
                                     chart.setDatasetVisibility(i, true);
                                 });
-        
+                    
                             } else {
-        
-                                // Show only clicked dataset
+                    
+                                // Show only selected dataset
                                 chart.data.datasets.forEach((_, i) => {
                                     chart.setDatasetVisibility(
                                         i,
-                                        i === clickedIndex
+                                        i === datasetIndex
                                     );
                                 });
-        
+                    
                             }
-        
+                    
                             chart.update();
                         }
                     }
