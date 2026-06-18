@@ -415,3 +415,10 @@ canvas.graph{
 .exp_std{
     margin: 32px;
 }
+
+.graph-thing{
+    font-size:2rem;
+    font-weight:bold;
+    color:black;
+    padding:64px;
+}
