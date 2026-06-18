@@ -423,9 +423,19 @@ canvas.graph{
     padding:64px;
 }
 
+div.description{
+    border-top: 16px solid black:
+    border-bottom: 16px solid black:
+}
+
 .description{
     padding: 8px;
     color:black;
     background: var(--f1_silver);
+    text-align: center;
+}
+
+.description thead{
+    font-size: 1.25rem;
     text-align: center;
 }
