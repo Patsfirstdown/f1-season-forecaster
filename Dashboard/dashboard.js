@@ -71,6 +71,45 @@ function updateWDCChart() {
                     mode: 'nearest',
                     intersect: false
                 },
+                plugins: {
+                    legend: {
+                        onClick: function(e, legendItem, legend) {
+        
+                            const chart = legend.chart;
+                            const clickedIndex = legendItem.datasetIndex;
+        
+                            const visibleDatasets =
+                                chart.data.datasets.filter(
+                                    (_, i) => chart.isDatasetVisible(i)
+                                ).length;
+        
+                            const isOnlyVisible =
+                                visibleDatasets === 1 &&
+                                chart.isDatasetVisible(clickedIndex);
+        
+                            if (isOnlyVisible) {
+        
+                                // Show all datasets
+                                chart.data.datasets.forEach((_, i) => {
+                                    chart.setDatasetVisibility(i, true);
+                                });
+        
+                            } else {
+        
+                                // Show only clicked dataset
+                                chart.data.datasets.forEach((_, i) => {
+                                    chart.setDatasetVisibility(
+                                        i,
+                                        i === clickedIndex
+                                    );
+                                });
+        
+                            }
+        
+                            chart.update();
+                        }
+                    }
+                },
                 onMouseLeave: (event, chart) => {
                   chart.setActiveElements([]);
                   chart.update();
