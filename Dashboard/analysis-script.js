@@ -302,12 +302,12 @@ function compareDrivers() {
         <h4>Head-to-Head</h4>
 
         <p>
-            ${driverA} ahead:
+            ${driverA} forecasted ahead:
             ${(aAhead * 100).toFixed(2)}%
         </p>
 
         <p>
-            ${driverB} ahead:
+            ${driverB} forecasted ahead:
             ${(bAhead * 100).toFixed(2)}%
         </p>
 
