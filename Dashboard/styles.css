@@ -427,26 +427,5 @@ canvas.graph{
     padding: 8px;
     color:black;
     background: var(--f1_silver);
-    list-style-type: none;
-}
-
-.description1{
-    color:black;
-    background: var(--f1_silver);
-    padding-right: 24px;
-}
-.description2{
-    color:black;
-    background: var(--f1_silver);
-    padding-right: 24px;
-}
-.description3{
-    color:black;
-    background: var(--f1_silver);
-    padding-right: 24px;
-}
-.description4{
-    color:black;
-    background: var(--f1_silver);
-    padding-right: 24px;
+    text-align: center;
 }
