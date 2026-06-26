@@ -445,3 +445,7 @@ div.description{
     width: min-content;
     text-align: center;
 }
+.graph_div {
+    padding-left: 32px;
+    width: 90%;
+}
