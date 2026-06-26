@@ -368,6 +368,9 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
     let colorA = predictionData.driverColor[driverA];
     let colorB = predictionData.driverColor[driverB];
 
+    const backgroundA = predictionData.driverColor[driverA];
+    const backgroundB = predictionData.driverColor[driverB];
+
     if (colorA === colorB) {
         colorA = pattern.draw('square', colorA);
         colorB = pattern.draw('circle', colorB);
