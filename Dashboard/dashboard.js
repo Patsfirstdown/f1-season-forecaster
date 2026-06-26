@@ -593,6 +593,7 @@ function updateVolatilityChart() {
     
             const driverData =
                 predictionData.race_data[race][driver];
+            console.log(driver, expectedPositions, position_std);
     
             if (!driverData) {
                 return null;
