@@ -333,10 +333,16 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
             labels.push(key);
             valuesA.push(driverA[key]);
         }
+        else {
+            valuesA.push(0);
+        }
         if (key in driverB) {
 
             labels.push(key);
             valuesB.push(driverB[key]);
+        }
+        else {
+            valuesB.push(0);
         }
     }
     let dnf_true = false;
