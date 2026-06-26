@@ -439,3 +439,9 @@ div.description{
     font-size: 1.25rem;
     text-align: center;
 }
+
+.disclaimer {
+    font-size: 1rem;
+    color: black;
+    width: min-content;
+}
