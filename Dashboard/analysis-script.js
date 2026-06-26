@@ -311,7 +311,8 @@ function compareDrivers() {
             ${(bAhead * 100).toFixed(2)}%
         </p>
         <br>
-        <div id="driverCompareChart">
+        <div>
+            <canvas class="graph" id="driverCompareChart"></canvas>
         </div>
     `;
 
