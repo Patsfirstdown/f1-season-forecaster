@@ -340,9 +340,8 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
         }
     }
     const dnf_true = false;
-    console.log(driverA);
 
-    if ("DNF" in driverA) {
+    if ("dnf_probability" in driverA) {
         dnf_true = true
 
         labels.push("DNF");
@@ -350,7 +349,7 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
         
     }
     if (dnf_true) {
-        if ("DNF" in driverB) {
+        if ("dnf_probability" in driverB) {
             dnf_true = true
             valuesB.push(driverB["DNF"]);
         }
@@ -369,6 +368,11 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
     const colorA = predictionData.driverColor[driverA];
     const colorB = predictionData.driverColor[driverB];
 
+    if (colorA === colorB) {
+        colorA = pattern.draw('square', colorA);
+        colorB = pattern.draw('circle', colorB);
+    }
+
     const ctx =
         document
         .getElementById("driverCompareChart")
@@ -384,14 +388,12 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
                     data: valuesA,
                     borderColor: colorA,
                     backgroundColor: colorA,
-                    stack: 'Stack 0',
                 },
                 {
                     label: `${nameB} Probability (%)`,
                     data: valuesB,
                     borderColor: colorB,
                     backgroundColor: colorB,
-                    stack: 'Stack 1',
                 }]
             },
 
