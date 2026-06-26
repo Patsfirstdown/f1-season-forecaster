@@ -609,6 +609,8 @@ function updateVolatilityChart() {
             data: points,
             backgroundColor: driverColors[driver],
             borderColor: driverColors[driver],
+            showLine: true,
+            tension: 0.3,
             pointRadius: 6,
             pointHoverRadius: 8
         });
@@ -657,7 +659,12 @@ function updateVolatilityChart() {
 
                         title: function(context) {
 
-                            return context[0].raw.driver;
+                            return {
+                                x: driverData.expected_finish,
+                                y: driverData.position_std,
+                                driver: driver,
+                                race: race
+                            };
 
                         },
 
