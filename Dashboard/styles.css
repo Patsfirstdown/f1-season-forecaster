@@ -153,6 +153,7 @@ div.headeritemsRight{
 .graph {
     width: 60%;
     display: none;
+    aspect-ratio: auto 1440 / 2880;
 }
 
 div.FAQs{
