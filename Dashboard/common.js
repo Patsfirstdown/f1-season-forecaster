@@ -48,6 +48,6 @@ async function loadFooter() {
     `;
 }
 document.addEventListener("DOMContentLoaded", () => {
-    loadHeader();
-    loadFooter();
+    createHeader();
+    createFooter();
 });
