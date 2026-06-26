@@ -33,7 +33,7 @@ async function createFooter() {
         <table class="footerForm">
                 <theader>
                     <tr>
-                        <td>
+                        <td class="disclaimer">
                             Data provided via FastF1 and Formula 1 timing data. This project is unofficial and not affiliated with Formula 1.
                         </td>
                         <td>
