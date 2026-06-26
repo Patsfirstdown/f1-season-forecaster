@@ -46,7 +46,7 @@ async function loadFooter() {
                 </theader>
             </table>
     `;
-
+}
 document.addEventListener("DOMContentLoaded", () => {
     loadHeader();
     loadFooter();
