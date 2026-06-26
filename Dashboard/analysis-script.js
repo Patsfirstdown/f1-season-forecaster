@@ -310,8 +310,88 @@ function compareDrivers() {
             ${driverB} forecasted ahead:
             ${(bAhead * 100).toFixed(2)}%
         </p>
-
+        <br>
+        <div id="driverCompareChart">
+        </div>
     `;
+
+    driverCompareChart(a,b,driverA,driverB);
+}
+
+function driverCompareChart(driverA,driverB,nameA,nameB) {
+    const labels = [];
+    const valuesA = [];
+    const valuesB = [];
+
+    for (let i = 1; i <= 22; i++) {
+
+        const key = i.toString();
+
+        if (key in driverA) {
+
+            labels.push(key);
+            valuesA.push(driverA[key]);
+        }
+        if (key in driverB) {
+
+            labels.push(key);
+            valuesB.push(driverB[key]);
+        }
+    }
+
+    if ("DNF" in driverA) {
+
+        labels.push("DNF");
+        valuesA.push(driverA["DNF"]);
+    }
+    if ("DNF" in driverB) {
+
+        labels.push("DNF");
+        valuesB.push(driverB["DNF"]);
+    }
+
+    if (positionChart) {
+        positionChart.destroy();
+    }
+    const colorA = predictionData.driverColor[driverA];
+    const colorB = predictionData.driverColor[driverB];
+
+    const ctx =
+        document
+        .getElementById("driverCompareChart")
+        .getContext("2d");
+
+    positionChart =
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: `${nameA} Probability (%)`,
+                    data: valuesA,
+                    borderColor: colorA,
+                    backgroundColor: colorA,
+                    stack: 'Stack 0',
+                },
+                {
+                    label: `${nameB} Probability (%)`,
+                    data: valuesB,
+                    borderColor: colorB,
+                    backgroundColor: colorB,
+                    stack: 'Stack 1',
+                }]
+            },
+
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: nameA + " vs " + nameB,
+                    }
+                }
+            }
+        });
 }
 
 async function initialize() {
