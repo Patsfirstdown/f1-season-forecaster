@@ -381,7 +381,7 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
     console.log(colorB);
     
     if (colorA === colorB) {
-        colorB = pattern.draw('circle', colorB);
+        colorB = pattern.draw('square', colorB);
     }
 
     const ctx =
