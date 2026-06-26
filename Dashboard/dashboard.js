@@ -2,6 +2,7 @@ let predictionData;
 let raceProbChart;
 let wccProbChart;
 let wdcProbChart;
+let dashVolatilityChart;
 let lastLegendClick = 0;
 let lastDatasetIndex = null;
 
