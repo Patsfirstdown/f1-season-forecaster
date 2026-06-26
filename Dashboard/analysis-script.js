@@ -345,34 +345,36 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
         dnf_true = true;
 
         labels.push("DNF");
-        valuesA.push(driverA["DNF"]);
+        valuesA.push(driverA["dnf_probability"]);
         
     }
     if (dnf_true) {
         if ("dnf_probability" in driverB) {
             dnf_true = true;
-            valuesB.push(driverB["DNF"]);
+            valuesB.push(driverB["dnf_probability"]);
         }
     }
     else{
         if ("DNF" in driverB) {
     
             labels.push("DNF");
-            valuesB.push(driverB["DNF"]);
+            valuesB.push(driverB["dnf_probability"]);
         }
     }
 
     if (positionChart) {
         positionChart.destroy();
     }
-    let colorA = predictionData.driverColor[driverA];
-    let colorB = predictionData.driverColor[driverB];
+    let colorA = predictionData.driverColor[nameA];
+    let colorB = predictionData.driverColor[nameB];
 
-    const backgroundA = predictionData.driverColor[driverA];
-    const backgroundB = predictionData.driverColor[driverB];
+    const backgroundA = predictionData.driverColor[nameA];
+    const backgroundB = predictionData.driverColor[nameB];
 
+    console.log(colorA);
+    console.log(colorB);
+    
     if (colorA === colorB) {
-        colorA = pattern.draw('square', colorA);
         colorB = pattern.draw('circle', colorB);
     }
 
