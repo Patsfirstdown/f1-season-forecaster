@@ -585,37 +585,33 @@ function updateVolatilityChart() {
 
     const driverColors = predictionData.driverColor;
 
-    const scatterData = [];
+    const datasets = [];
 
     driverNames.forEach(driver => {
-
-        const expectedPositions = races.map(race => {
-
+    
+        const points = races.map(race => {
+    
             const driverData =
                 predictionData.race_data[race][driver];
-
-            return driverData
-                ? driverData.expected_finish
-                : null;
-
-        });
-        const position_std = races.map(race => {
-
-            const driverData =
-                predictionData.race_data[race][driver];
-
-            return driverData
-                ? driverData.position_std
-                : null;
-        });
-
-        scatterData.push({
+    
+            if (!driverData) {
+                return null;
+            }
+    
+            return {
+                x: driverData.expected_finish,
+                y: driverData.position_std
+            };
+        }).filter(point => point !== null);
+    
+        datasets.push({
             label: driver,
-            x: expectedPositions,
-            y: position_std,
+            data: points,
             backgroundColor: driverColors[driver],
+            borderColor: driverColors[driver],
+            pointRadius: 6,
+            pointHoverRadius: 8
         });
-
     });
 
     const ctx =
@@ -630,7 +626,7 @@ function updateVolatilityChart() {
         data: {
             datasets: [{
                 label: "Drivers",
-                data: scatterData,
+                data: datasets,
                 pointRadius: 8,
                 pointHoverRadius: 10
             }]
