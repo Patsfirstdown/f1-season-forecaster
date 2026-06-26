@@ -26,7 +26,7 @@ async function createHeader() {
 
 }
 
-async function loadFooter() {
+async function createFooter() {
     document.getElementById(
         "footerForm"
     ).innerHTML = `
