@@ -152,7 +152,6 @@ div.headeritemsRight{
 
 .graph {
     width: 60%;
-    display: none;
     aspect-ratio: auto 1440 / 2880;
 }
 
@@ -241,7 +240,6 @@ li.right_link{
 }
 
 canvas.graph{
-    width:0px;
     max-width: 800px;
     margin: 0 auto;
 }
