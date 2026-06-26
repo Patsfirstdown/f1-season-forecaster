@@ -112,7 +112,8 @@ function updateVolatilityChart(selectedRace) {
         scatterData.push({
             x: raceData[driver].expected_finish,
             y: raceData[driver].position_std,
-            driver: driver
+            driver: driver,
+            color: predictionData.driverColor[driver],
         });
 
     });
