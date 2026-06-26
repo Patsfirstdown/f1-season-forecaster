@@ -339,11 +339,11 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
             valuesB.push(driverB[key]);
         }
     }
-    const dnf_true = False;
+    const dnf_true = false;
     console.log(driverA);
 
     if ("DNF" in driverA) {
-        dnf_true = True
+        dnf_true = true
 
         labels.push("DNF");
         valuesA.push(driverA["DNF"]);
@@ -351,6 +351,7 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
     }
     if (dnf_true) {
         if ("DNF" in driverB) {
+            dnf_true = true
             valuesB.push(driverB["DNF"]);
         }
     }
