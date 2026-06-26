@@ -339,16 +339,27 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
             valuesB.push(driverB[key]);
         }
     }
+    const dnf_true = False;
+    console.log(driverA);
 
     if ("DNF" in driverA) {
+        dnf_true = True
 
         labels.push("DNF");
         valuesA.push(driverA["DNF"]);
+        
     }
-    if ("DNF" in driverB) {
-
-        labels.push("DNF");
-        valuesB.push(driverB["DNF"]);
+    if (dnf_true) {
+        if ("DNF" in driverB) {
+            valuesB.push(driverB["DNF"]);
+        }
+    }
+    else{
+        if ("DNF" in driverB) {
+    
+            labels.push("DNF");
+            valuesB.push(driverB["DNF"]);
+        }
     }
 
     if (positionChart) {
