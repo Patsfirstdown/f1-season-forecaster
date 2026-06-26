@@ -207,11 +207,6 @@ function updateWCCChart() {
 
     const firstRace = races[0][0];
 
-    console.log(predictionData.wcc_data[firstRace]["Mercedes"]);
-    console.log("HI");
-    console.log(races);
-    console.log(Object.keys(predictionData.wcc_data));
-
     const teamNames = Object.keys(
         predictionData.wcc_data[firstRace]
     );
@@ -235,8 +230,6 @@ function updateWCCChart() {
     teamNames.forEach(team => {
 
         const expectedPositions = races.map(race => {
-            console.log(predictionData.wcc_data)
-            console.log(race)
             const teamData =
                 predictionData.wcc_data[race[0]][team];
 
@@ -592,7 +585,7 @@ function updateVolatilityChart() {
 
     const driverColors = predictionData.driverColor;
 
-    const datasets = [];
+    const scatterData = [];
 
     driverNames.forEach(driver => {
 
@@ -616,7 +609,7 @@ function updateVolatilityChart() {
                 : null;
         });
 
-        datasets.push({
+        scatterData.push({
             label: driver,
             x: expectedPositions,
             y: position_std,
