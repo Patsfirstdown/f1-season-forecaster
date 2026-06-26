@@ -1,6 +1,8 @@
-async function loadHeader() {
-    document.getElementById("mainHeader).innerHTML = `
-              <ul class="nav">
+async function createHeader() {
+    document.getElementById(
+        "mainHeader"
+    ).innerHTML = `
+        <ul class="nav">
                 <li>
                     <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/driver_race" align="right">Race</a>
                 </li>
@@ -20,7 +22,8 @@ async function loadHeader() {
                     <a class="right_link" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/dashboard.html" align="right">Home</a>
                 </li>
             </ul>
-      `;
+    `;
+
 }
 
 async function loadFooter() {
