@@ -327,10 +327,10 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
     for (let i = 1; i <= 22; i++) {
 
         const key = i.toString();
+        labels.push(key);
 
         if (key in driverA) {
-
-            labels.push(key);
+            
             valuesA.push(driverA[key]);
         }
         else {
@@ -338,7 +338,6 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
         }
         if (key in driverB) {
 
-            labels.push(key);
             valuesB.push(driverB[key]);
         }
         else {
