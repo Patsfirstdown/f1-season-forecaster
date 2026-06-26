@@ -339,10 +339,10 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
             valuesB.push(driverB[key]);
         }
     }
-    const dnf_true = false;
+    let dnf_true = false;
 
     if ("dnf_probability" in driverA) {
-        dnf_true = true
+        dnf_true = true;
 
         labels.push("DNF");
         valuesA.push(driverA["DNF"]);
@@ -350,7 +350,7 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
     }
     if (dnf_true) {
         if ("dnf_probability" in driverB) {
-            dnf_true = true
+            dnf_true = true;
             valuesB.push(driverB["DNF"]);
         }
     }
@@ -365,8 +365,8 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
     if (positionChart) {
         positionChart.destroy();
     }
-    const colorA = predictionData.driverColor[driverA];
-    const colorB = predictionData.driverColor[driverB];
+    let colorA = predictionData.driverColor[driverA];
+    let colorB = predictionData.driverColor[driverB];
 
     if (colorA === colorB) {
         colorA = pattern.draw('square', colorA);
