@@ -8,29 +8,6 @@ let lastDatasetIndex = null;
 const defaultLegendClick =
     Chart.defaults.plugins.legend.onClick;
 
-async function createFooter() {
-    document.getElementById(
-        "footerForm"
-    ).innerHTML = `
-        <table class="footerForm">
-                <theader>
-                    <tr>
-                        <td>
-                            Data provided via FastF1 and Formula 1 timing data. This project is unofficial and not affiliated with Formula 1.
-                        </td>
-                        <td>
-                            <a class="footerForm" href="https://www.instagram.com/jayden.pickin.official">Instagram</a>
-                        </td>
-                        <td>
-                            <a class="footerForm" href="https://linkedin.com/in/jayden-pickin">LinkedIn</a>
-                        </td>
-                    </tr>
-                </theader>
-            </table>
-    `;
-
-}
-
 async function loadData() {
     const response = await fetch("data/predictions.json");
     predictionData = await response.json();
@@ -603,8 +580,6 @@ function updateDriverChart() {
 async function initialize() {
 
     await loadData();
-
-    createFooter()
 
     updateDriverChart();
     updateWDCChart();
