@@ -132,7 +132,10 @@ function updateVolatilityChart(selectedRace) {
                 label: "Drivers",
                 data: scatterData,
                 pointRadius: 8,
-                pointHoverRadius: 10
+                pointHoverRadius: 10,
+                backgroundColor: (context) => context.raw.color,
+                borderColor: "#fff",
+                borderWidth: 1.5,
             }]
         },
         options: {
@@ -140,7 +143,6 @@ function updateVolatilityChart(selectedRace) {
 
             scales: {
                 x: {
-                    reverse: true,
                     title: {
                         display: true,
                         text: "Expected Finish"
