@@ -577,6 +577,119 @@ function updateDriverChart() {
     );
 }
 
+function updateVolatilityChart() {
+
+    const races = Object.keys(
+        predictionData.races
+    );
+
+    const firstRace = races[0];
+
+    const driverNames = Object.keys(
+        predictionData.race_data[firstRace]
+    );
+
+    const driverColors = predictionData.driverColor;
+
+    const datasets = [];
+
+    driverNames.forEach(driver => {
+
+        const expectedPositions = races.map(race => {
+
+            const driverData =
+                predictionData.race_data[race][driver];
+
+            return driverData
+                ? driverData.expected_finish
+                : null;
+
+        });
+        const position_std = races.map(race => {
+
+            const driverData =
+                predictionData.race_data[race][driver];
+
+            return driverData
+                ? driverData.position_std
+                : null;
+        });
+
+        datasets.push({
+            label: driver,
+            x: expectedPositions,
+            y: position_std,
+            backgroundColor: driverColors[driver],
+        });
+
+    });
+
+    const ctx =
+        document.getElementById("dash-expected-scatter");
+
+    if (dashVolatilityChart) {
+        dashVolatilityChart.destroy();
+    }
+
+    dashVolatilityChart = new Chart(ctx, {
+        type: "scatter",
+        data: {
+            datasets: [{
+                label: "Drivers",
+                data: scatterData,
+                pointRadius: 8,
+                pointHoverRadius: 10
+            }]
+        },
+        options: {
+            responsive: true,
+
+            scales: {
+                x: {
+                    reverse: true,
+                    title: {
+                        display: true,
+                        text: "Expected Finish"
+                    }
+                },
+
+                y: {
+                    title: {
+                        display: true,
+                        text: "Position Volatility"
+                    }
+                }
+            },
+
+            plugins: {
+                tooltip: {
+                    callbacks: {
+
+                        title: function(context) {
+
+                            return context[0].raw.driver;
+
+                        },
+
+                        label: function(context) {
+
+                            return [
+                                `Expected Finish: ${context.raw.x.toFixed(2)}`,
+                                `Volatility: ${context.raw.y.toFixed(2)}`
+                            ];
+
+                        }
+                    }
+                },
+
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
 async function initialize() {
 
     await loadData();
@@ -584,6 +697,7 @@ async function initialize() {
     updateDriverChart();
     updateWDCChart();
     updateWCCChart();
+    updateVolatilityChart()
 }
 
 initialize();
