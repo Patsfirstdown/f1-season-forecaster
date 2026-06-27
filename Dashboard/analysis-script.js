@@ -205,16 +205,18 @@ function compareDrivers() {
 
     const driverA =
         document.getElementById("driverSelect1").value;
-    const driverAName =
-        document.getElementById("driverSelect1").textContent;
     const driverB =
         document.getElementById("driverSelect2").value;
-    const driverBName =
-        document.getElementById("driverSelect2").textContent;
 
     const raceData =
         predictionData.race_data[race];
 
+    const driverAName =
+        raceData[driverA].driver_name;
+    
+    const driverBName =
+        raceData[driverB].driver_name;
+    
     let aAhead = 0;
     let bAhead = 0;
 
