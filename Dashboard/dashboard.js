@@ -573,6 +573,7 @@ function updateDriverChart() {
 
 function updateVolatilityChart() {
 
+    const teamCounts = {};
     const races = Object.keys(
         predictionData.races
     );
@@ -588,6 +589,17 @@ function updateVolatilityChart() {
     const datasets = [];
 
     driverNames.forEach(driver => {
+        const teamColor = driverColors[driver];
+        
+        if (!(teamColor in teamCounts)) {
+            teamCounts[teamColor] = 0;
+        }
+        const borderColor =
+            teamCounts[teamColor] === 0
+                ? "#FFFFFF"
+                : "#000000";
+        
+        teamCounts[teamColor]++;
     
         const points = races.map(race => {
     
@@ -611,6 +623,8 @@ function updateVolatilityChart() {
             data: points,
             backgroundColor: driverColors[driver],
             borderColor: driverColors[driver],
+            borderColor: borderColor,
+            borderWidth: 2,
             pointRadius: 6,
             pointHoverRadius: 8
         });
