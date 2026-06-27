@@ -72,22 +72,22 @@ function updateBetterScore() {
 
         betterList.push({
             driver: driver,
-            probability: resultsData[driver].betterScore
+            score: resultsData[driver].betterScore
         });
 
     });
 
-    scoreList.sort((a, b) => b.probability - a.probability);
+    betterList.sort((a, b) => b.score - a.score);
 
     const container =
         document.getElementById("betterScoreList");
 
     container.innerHTML = "";
 
-    scoreList.forEach(item => {
+    betterList.forEach(item => {
 
         const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
+        const scoreHere= Math.max(0.3, 1 - item.score);
 
         color=interpolateColor(scoreHere);
 
@@ -95,7 +95,7 @@ function updateBetterScore() {
         
         row.innerHTML = `
             <span>${item.driver}</span>
-            <span style="color:${color};">${(item.probability*100).toFixed(2)}</span>
+            <span style="color:${color};">${(item.score*100).toFixed(2)}</span>
         `;
 
         container.appendChild(row);
@@ -108,6 +108,7 @@ async function initialize() {
     await loadData();
 
     updateScore();
+    updateBetterScore();
 }
 
 initialize();
