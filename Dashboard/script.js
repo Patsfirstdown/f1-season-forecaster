@@ -94,18 +94,19 @@ function updateChart(race, driver) {
     for (let i = 1; i <= 22; i++) {
 
         const key = i.toString();
+        labels.push(key);
 
         if (key in driverData) {
-
-            labels.push(key);
             values.push(driverData[key]);
+        }
+        else {
+            values.push(0);
         }
     }
 
-    if ("DNF" in driverData) {
-
+    if ("dnf_probability" in driverData) {
         labels.push("DNF");
-        values.push(driverData["DNF"]);
+        values.push(driverData["dnf_probability"]);
     }
 
     if (positionChart) {
