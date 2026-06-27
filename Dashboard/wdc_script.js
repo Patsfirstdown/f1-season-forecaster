@@ -53,7 +53,7 @@ function populateDriverDropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent = predictionData.race_data[raceName][driver].name;
+        option.textContent = predictionData.race_data[raceName][driver].driver_name;
 
         driverSelect.appendChild(option);
     });
@@ -66,6 +66,8 @@ function updateChart(race, driver) {
 
     const driverData =
         predictionData.wdc_data[race][driver];
+
+    const name = predictionData.race_data[race][driver].driver_name;
 
     const labels = [];
     const values = [];
@@ -116,7 +118,7 @@ function updateChart(race, driver) {
                 plugins: {
                     title: {
                         display: true,
-                        text: driverData.name + " - " + race,
+                        text: name + " - " + race,
                     }
                 }
             }
@@ -126,13 +128,14 @@ function updateChart(race, driver) {
 function updateScore(selectedRace) {
 
     const wdcData = predictionData.wdc_data[selectedRace];
+    const raceData = predictionData.race_data[selectedRace];
 
     const scoreList = [];
 
     Object.keys(wdcData).forEach(driver => {
 
         scoreList.push({
-            driver: driver,
+            driver: raceData[driver].driver_name,
             probability: wdcData[driver].WDC_score
         });
 
@@ -152,7 +155,7 @@ function updateScore(selectedRace) {
         row.className = "score-row";
         
         row.innerHTML = `
-            <span>${item.driver.name}</span>
+            <span>${item.driver}</span>
             <span>${(item.probability * 100).toFixed(2)}%</span>
         `;
 
