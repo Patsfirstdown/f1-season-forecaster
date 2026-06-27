@@ -53,12 +53,12 @@ function populateDriverDropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent = driver;
+        option.textContent = predictionData.race_data[raceName][driver].name;
 
         driverSelect.appendChild(option);
     });
-    if (drivers.includes("Max Verstappen")) {
-        driverSelect.value = "Max Verstappen";
+    if (drivers.includes("VER")) {
+        driverSelect.value = "VER";
     }
 }
 
@@ -116,7 +116,7 @@ function updateChart(race, driver) {
                 plugins: {
                     title: {
                         display: true,
-                        text: driver + " - " + race,
+                        text: driverData.name + " - " + race,
                     }
                 }
             }
@@ -152,7 +152,7 @@ function updateScore(selectedRace) {
         row.className = "score-row";
         
         row.innerHTML = `
-            <span>${item.driver}</span>
+            <span>${item.driver.name}</span>
             <span>${(item.probability * 100).toFixed(2)}%</span>
         `;
 
