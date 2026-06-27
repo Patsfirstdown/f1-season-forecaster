@@ -95,7 +95,7 @@ function updateBetterScore() {
         
         row.innerHTML = `
             <span>${item.driver}</span>
-            <span style="color:${color};">${(item.score*100).toFixed(2)}</span>
+            <span style="color:${color};">${(item.score).toFixed(2)}</span>
         `;
 
         container.appendChild(row);
