@@ -7,19 +7,22 @@ async function createHeader() {
                     <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/driver_race" align="right">Race</a>
                 </li>
                 <li>
-                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/wdc.html" align="left">WDC</a>
+                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/wdc" align="left">WDC</a>
                 </li>
                 <li>
-                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/wcc.html" align="left">WCC</a>
+                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/wcc" align="left">WCC</a>
                 </li>
                 <li>
-                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/analysis.html" align="left">Analysis</a>
+                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/analysis" align="left">Analysis</a>
                 </li>
                 <li>
-                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/faq.html" align="center">FAQs</a>
+                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/faq" align="center">FAQs</a>
+                </li>
+                <li>
+                    <a class="header" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/Real_data" align="right">Real Scores</a>
                 </li>
                 <li class="right_link">
-                    <a class="right_link" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/dashboard.html" align="right">Home</a>
+                    <a class="right_link" href="https://patsfirstdown.github.io/f1-season-forecaster/Dashboard/dashboard" align="right">Home</a>
                 </li>
             </ul>
     `;
