@@ -8,6 +8,17 @@ async function loadData() {
     console.log(realData);
 }
 
+function interpolateColor(score) {
+    const start = { r: 232, g: 0, b: 45 };
+    const end = { r: 255, g: 255, b: 255 };
+
+    const r = Math.round(start.r + (end.r - start.r) * score);
+    const g = Math.round(start.g + (end.g - start.g) * score);
+    const b = Math.round(start.b + (end.b - start.b) * score);
+
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
 function updateScore(selectedRace) {
 
     const resultsData = realData;
@@ -32,13 +43,15 @@ function updateScore(selectedRace) {
 
     scoreList.forEach(item => {
 
-        const row = document.createElement("div");
+        const scoreHere= Math.max(0.3, 1 - item.probability);
+
+        color=interpolateColor(scoreHere);
 
         row.className = "score-row";
         
         row.innerHTML = `
             <span>${item.driver}</span>
-            <span>${(item.probability * 100).toFixed(2)}%</span>
+            <span style="color:${color};">${(item.probability*100).toFixed(2)}</span>
         `;
 
         container.appendChild(row);
