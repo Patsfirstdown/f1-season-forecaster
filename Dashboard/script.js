@@ -53,7 +53,7 @@ function populateDriverDropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent = driver.name;
+        option.textContent = predictionData.race_data[raceName][driver].name;
 
         driverSelect.appendChild(option);
     });
