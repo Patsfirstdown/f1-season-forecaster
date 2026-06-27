@@ -54,7 +54,7 @@ function populateDriver1Dropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent =  driver.name;
+        option.textContent = predictionData.race_data[raceName][driver].name;
 
         driverSelect.appendChild(option);
     });
@@ -89,7 +89,7 @@ function populateDriver2Dropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent =  drivername;
+        option.textContent = predictionData.race_data[raceName][driver].name;
 
         driverSelect.appendChild(option);
     });
@@ -112,7 +112,7 @@ function updateVolatilityChart(selectedRace) {
         scatterData.push({
             x: raceData[driver].expected_finish,
             y: raceData[driver].position_std,
-            driver: driver.name,
+            driver: raceData[driver].name;,
             color: predictionData.driverColor[driver],
         });
 
