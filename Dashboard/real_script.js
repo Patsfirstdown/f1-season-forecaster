@@ -43,6 +43,7 @@ function updateScore(selectedRace) {
 
     scoreList.forEach(item => {
 
+        const row = document.createElement("div");
         const scoreHere= Math.max(0.3, 1 - item.probability);
 
         color=interpolateColor(scoreHere);
