@@ -23,14 +23,14 @@ function interpolateColor(score) {
 
 function updateScore() {
 
-    const resultsData = realData;
+    const resultsData = realData["stats"];
 
     const scoreList = [];
 
     Object.keys(resultsData).forEach(driver => {
 
         scoreList.push({
-            driver: driver,
+            driver: resultsData[driver].name,
             probability: resultsData[driver].score
         });
 
@@ -64,14 +64,14 @@ function updateScore() {
 
 function updateBetterScore() {
 
-    const resultsData = realData;
+    const resultsData = realData["stats"];
 
     const betterList = [];
 
     Object.keys(resultsData).forEach(driver => {
 
         betterList.push({
-            driver: driver,
+            driver: resultsData[driver].name,
             score: resultsData[driver].betterScore
         });
 
