@@ -1,9 +1,11 @@
+let realData;
 let predictionData;
-let positionChart;
 
 async function loadData() {
     const response = await fetch("data/results.json");
+    const response2 = await fetch("data/predictions.json");
     realData = await response.json();
+    predictionData = await response2.json();
 
     console.log(realData);
 }
@@ -19,7 +21,7 @@ function interpolateColor(score) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-function updateScore(selectedRace) {
+function updateScore() {
 
     const resultsData = realData;
 
@@ -58,7 +60,47 @@ function updateScore(selectedRace) {
         container.appendChild(row);
 
     });
+}
 
+function updateBetterScore() {
+
+    const resultsData = realData;
+
+    const betterList = [];
+
+    Object.keys(resultsData).forEach(driver => {
+
+        betterList.push({
+            driver: driver,
+            probability: resultsData[driver].betterScore
+        });
+
+    });
+
+    scoreList.sort((a, b) => b.probability - a.probability);
+
+    const container =
+        document.getElementById("betterScoreList");
+
+    container.innerHTML = "";
+
+    scoreList.forEach(item => {
+
+        const row = document.createElement("div");
+        const scoreHere= Math.max(0.3, 1 - item.probability);
+
+        color=interpolateColor(scoreHere);
+
+        row.className = "score-row";
+        
+        row.innerHTML = `
+            <span>${item.driver}</span>
+            <span style="color:${color};">${(item.probability*100).toFixed(2)}</span>
+        `;
+
+        container.appendChild(row);
+
+    });
 }
 
 async function initialize() {
