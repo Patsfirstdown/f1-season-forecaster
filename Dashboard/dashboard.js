@@ -593,7 +593,7 @@ function updateVolatilityChart() {
     
             const driverData =
                 predictionData.race_data[race][driver];
-            console.log(driver, expectedPositions, position_std);
+            console.log(driver, driverData.expected_finish, driverData.position_std);
     
             if (!driverData) {
                 return null;
@@ -623,6 +623,8 @@ function updateVolatilityChart() {
     if (dashVolatilityChart) {
         dashVolatilityChart.destroy();
     }
+
+    console.log(datasets);
 
     dashVolatilityChart = new Chart(ctx, {
         type: "scatter",
