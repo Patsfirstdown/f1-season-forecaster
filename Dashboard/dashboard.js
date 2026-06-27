@@ -601,6 +601,8 @@ function updateVolatilityChart() {
             return {
                 x: driverData.expected_finish,
                 y: driverData.position_std
+                driver: driver,
+                race: race
             };
         }).filter(point => point !== null);
     
@@ -650,23 +652,18 @@ function updateVolatilityChart() {
             plugins: {
                 tooltip: {
                     callbacks: {
-
                         title: function(context) {
-
-                            return {
-                                driver: driver,
-                                race: race
-                            };
-
+                            const point = context[0].raw;
+                            return `${point.driver} - ${point.race}`;
                         },
-
+                
                         label: function(context) {
-
+                            const point = context.raw;
+                
                             return [
-                                `Expected Finish: ${context.raw.x.toFixed(2)}`,
-                                `Volatility: ${context.raw.y.toFixed(2)}`
+                                `Expected Finish: ${point.x.toFixed(2)}`,
+                                `Volatility: ${point.y.toFixed(2)}`
                             ];
-
                         }
                     }
                 },
