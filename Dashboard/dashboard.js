@@ -624,7 +624,7 @@ function updateVolatilityChart() {
             backgroundColor: driverColors[driver],
             borderColor: driverColors[driver],
             borderColor: borderColor,
-            borderWidth: 2,
+            borderWidth: 1,
             pointRadius: 6,
             pointHoverRadius: 8
         });
