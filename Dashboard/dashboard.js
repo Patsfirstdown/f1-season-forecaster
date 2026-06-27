@@ -600,9 +600,9 @@ function updateVolatilityChart() {
     
             return {
                 x: driverData.expected_finish,
-                y: driverData.position_std
+                y: driverData.position_std,
                 driver: driver,
-                race: race
+                race: race,
             };
         }).filter(point => point !== null);
     
