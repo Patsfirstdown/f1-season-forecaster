@@ -31,7 +31,19 @@ function updateWDCChart() {
 
     const datasets = [];
 
+    const teamCounts = {};
     driverNames.forEach(driver => {
+        const teamColor = driverColors[driver];
+        
+        if (!(teamColor in teamCounts)) {
+            teamCounts[teamColor] = 0;
+        }
+        const borderColor =
+            teamCounts[teamColor] === 0
+                ? "#FFFFFF"
+                : "#000000";
+        
+        teamCounts[teamColor]++;
 
         const expectedPositions = races.map(race => {
 
@@ -47,7 +59,8 @@ function updateWDCChart() {
         datasets.push({
             label: driver.replaceAll("_", " "),
             data: expectedPositions,
-            borderColor: driverColors[driver],
+            borderColor: borderColor,
+            borderWidth: 1,
             backgroundColor: driverColors[driver],
             fill: false,
             tension: 0.2,
@@ -406,7 +419,19 @@ function updateDriverChart() {
 
     const datasets = [];
 
+    const teamCounts = {};
     driverNames.forEach(driver => {
+        const teamColor = driverColors[driver];
+        
+        if (!(teamColor in teamCounts)) {
+            teamCounts[teamColor] = 0;
+        }
+        const borderColor =
+            teamCounts[teamColor] === 0
+                ? "#FFFFFF"
+                : "#000000";
+        
+        teamCounts[teamColor]++;
 
         const expectedPositions = races.map(race => {
 
@@ -422,7 +447,8 @@ function updateDriverChart() {
         datasets.push({
             label: driver.replaceAll("_", " "),
             data: expectedPositions,
-            borderColor: driverColors[driver],
+            borderColor: borderColor,
+            borderWidth: 1,
             backgroundColor: driverColors[driver],
             fill: false,
             tension: 0.2,
@@ -573,7 +599,6 @@ function updateDriverChart() {
 
 function updateVolatilityChart() {
 
-    const teamCounts = {};
     const races = Object.keys(
         predictionData.races
     );
@@ -588,6 +613,7 @@ function updateVolatilityChart() {
 
     const datasets = [];
 
+    const teamCounts = {};
     driverNames.forEach(driver => {
         const teamColor = driverColors[driver];
         
@@ -622,7 +648,6 @@ function updateVolatilityChart() {
             label: driver,
             data: points,
             backgroundColor: driverColors[driver],
-            borderColor: driverColors[driver],
             borderColor: borderColor,
             borderWidth: 1,
             pointRadius: 6,
