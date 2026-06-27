@@ -627,7 +627,9 @@ function updateVolatilityChart() {
 
     dashVolatilityChart = new Chart(ctx, {
         type: "scatter",
-        data: datasets,
+        data: {
+            datasets
+        },
         options: {
             responsive: true,
 
