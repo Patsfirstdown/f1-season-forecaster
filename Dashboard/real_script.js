@@ -51,7 +51,7 @@ async function initialize() {
 
     await loadData();
 
-    updateScores();
+    updateScore();
 }
 
 initialize();
