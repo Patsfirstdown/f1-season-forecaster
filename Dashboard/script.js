@@ -137,7 +137,7 @@ function updateChart(race, driver) {
                 plugins: {
                     title: {
                         display: true,
-                        text: driverData.name + " - " + race,
+                        text: driverData.driver_name + " - " + race,
                     }
                 }
             }
@@ -153,7 +153,7 @@ function updateDNFProbabilities(selectedRace) {
     Object.keys(raceData).forEach(driver => {
 
         dnfList.push({
-            driver: driver.driver_name,
+            driver: raceData[driver].driver_name,
             probability: raceData[driver].dnf_probability
         });
 
@@ -192,7 +192,7 @@ function updateScore(selectedRace) {
     Object.keys(raceData).forEach(driver => {
 
         dnfList.push({
-            driver: driver.driver_name,
+            driver: raceData[driver].driver_name,
             probability: raceData[driver].driver_score
         });
 
