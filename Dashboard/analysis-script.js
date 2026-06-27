@@ -54,12 +54,12 @@ function populateDriver1Dropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent = driver;
+        option.textContent =  driver["driver_name"];
 
         driverSelect.appendChild(option);
     });
     if (drivers.includes("Max Verstappen")) {
-        driverSelect.value = "Max Verstappen";
+        driverSelect.value = "VER";
     }
 }
 
@@ -89,13 +89,13 @@ function populateDriver2Dropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent = driver;
+        option.textContent =  driver["driver_name"];
 
         driverSelect.appendChild(option);
     });
     if (drivers.includes("Charles Leclerc") &&
-        driver1Select !== "Charles Leclerc") {
-        driverSelect.value = "Charles Leclerc";
+        driver1Select !== "LEC") {
+        driverSelect.value = "LEC";
     }
 }
 
