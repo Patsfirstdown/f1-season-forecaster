@@ -54,7 +54,7 @@ function populateDriver1Dropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent =  driver["driver_name"];
+        option.textContent =  driver.name;
 
         driverSelect.appendChild(option);
     });
@@ -89,11 +89,11 @@ function populateDriver2Dropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent =  driver["driver_name"];
+        option.textContent =  drivername;
 
         driverSelect.appendChild(option);
     });
-    if (drivers.includes("Charles Leclerc") &&
+    if (drivers.includes("LEC") &&
         driver1Select !== "LEC") {
         driverSelect.value = "LEC";
     }
@@ -112,7 +112,7 @@ function updateVolatilityChart(selectedRace) {
         scatterData.push({
             x: raceData[driver].expected_finish,
             y: raceData[driver].position_std,
-            driver: driver,
+            driver: driver.name,
             color: predictionData.driverColor[driver],
         });
 
@@ -203,9 +203,12 @@ function compareDrivers() {
 
     const driverA =
         document.getElementById("driverSelect1").value;
-
+    const driverAName =
+        document.getElementById("driverSelect1").textContent;
     const driverB =
         document.getElementById("driverSelect2").value;
+    const driverBName =
+        document.getElementById("driverSelect2").textContent;
 
     const raceData =
         predictionData.race_data[race];
@@ -258,8 +261,8 @@ function compareDrivers() {
 
             <tr>
                 <th>Metric</th>
-                <th>${driverA}</th>
-                <th>${driverB}</th>
+                <th>${driverAName}</th>
+                <th>${driverBName}</th>
             </tr>
 
             <tr>
@@ -305,12 +308,12 @@ function compareDrivers() {
         <h4>Head-to-Head</h4>
 
         <p>
-            ${driverA} forecasted ahead:
+            ${driverAName} forecasted ahead:
             ${(aAhead * 100).toFixed(2)}%
         </p>
 
         <p>
-            ${driverB} forecasted ahead:
+            ${driverBName} forecasted ahead:
             ${(bAhead * 100).toFixed(2)}%
         </p>
         <br>
