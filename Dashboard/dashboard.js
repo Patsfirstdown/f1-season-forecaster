@@ -654,8 +654,6 @@ function updateVolatilityChart() {
                         title: function(context) {
 
                             return {
-                                x: driverData.expected_finish,
-                                y: driverData.position_std,
                                 driver: driver,
                                 race: race
                             };
