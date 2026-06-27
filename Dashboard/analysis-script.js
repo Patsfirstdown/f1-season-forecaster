@@ -54,13 +54,13 @@ function populateDriver1Dropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent = predictionData.race_data[raceName][driver].name;
-        console.log(predictionData.race_data[raceName][driver].name)
+        option.textContent = predictionData.race_data[raceName][driver].driver_name;
+        console.log(predictionData.race_data[raceName][driver].driver_name)
         console.log(predictionData.race_data[raceName][driver])
 
         driverSelect.appendChild(option);
     });
-    if (drivers.includes("Max Verstappen")) {
+    if (drivers.includes("VER")) {
         driverSelect.value = "VER";
     }
 }
@@ -91,7 +91,7 @@ function populateDriver2Dropdown(raceName) {
             document.createElement("option");
 
         option.value = driver;
-        option.textContent = predictionData.race_data[raceName][driver].name;
+        option.textContent = predictionData.race_data[raceName][driver].driver_name;
 
         driverSelect.appendChild(option);
     });
@@ -114,7 +114,7 @@ function updateVolatilityChart(selectedRace) {
         scatterData.push({
             x: raceData[driver].expected_finish,
             y: raceData[driver].position_std,
-            driver: raceData[driver].name,
+            driver: raceData[driver].driver_name,
             color: predictionData.driverColor[driver],
         });
 
