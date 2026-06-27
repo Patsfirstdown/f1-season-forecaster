@@ -59,9 +59,11 @@ function updateWDCChart() {
         datasets.push({
             label: driver.replaceAll("_", " "),
             data: expectedPositions,
-            borderColor: borderColor,
-            borderWidth: 1,
+            borderColor: driverColors[driver],        // line color
             backgroundColor: driverColors[driver],
+            pointBackgroundColor: driverColors[driver],
+            pointBorderColor: borderColor,            // white/black teammate distinction
+            pointBorderWidth: 2,
             fill: false,
             tension: 0.2,
             pointRadius: 0,
@@ -447,9 +449,11 @@ function updateDriverChart() {
         datasets.push({
             label: driver.replaceAll("_", " "),
             data: expectedPositions,
-            borderColor: borderColor,
-            borderWidth: 1,
+            borderColor: driverColors[driver],        // line color
             backgroundColor: driverColors[driver],
+            pointBackgroundColor: driverColors[driver],
+            pointBorderColor: borderColor,            // white/black teammate distinction
+            pointBorderWidth: 2,
             fill: false,
             tension: 0.2,
             pointRadius: 0,
