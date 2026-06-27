@@ -609,8 +609,6 @@ function updateVolatilityChart() {
             data: points,
             backgroundColor: driverColors[driver],
             borderColor: driverColors[driver],
-            showLine: true,
-            tension: 0.3,
             pointRadius: 6,
             pointHoverRadius: 8
         });
@@ -635,7 +633,6 @@ function updateVolatilityChart() {
 
             scales: {
                 x: {
-                    reverse: true,
                     title: {
                         display: true,
                         text: "Expected Finish"
@@ -675,10 +672,96 @@ function updateVolatilityChart() {
                         }
                     }
                 },
+                onHover: (event, activeElements, chart) => {
 
+                    if (activeElements.length > 0) {
+            
+                        const hoveredDataset =
+                            activeElements[0].datasetIndex;
+            
+                        chart.data.datasets.forEach(
+                            (dataset, index) => {
+            
+                                if (index === hoveredDataset) {
+            
+                                    dataset.borderWidth = 5;
+            
+                                } else {
+            
+                                    dataset.borderWidth = 1;
+            
+                                }
+            
+                            }
+                        );
+            
+                    } else {
+            
+                        chart.data.datasets.forEach(
+                            dataset => {
+            
+                                dataset.borderWidth = 2;
+            
+                            }
+                        );
+            
+                    }
+            
+                    chart.update('none');
+                },
                 legend: {
-                    display: false
-                }
+                        onClick(e, legendItem, legend) {
+                    
+                            const chart = legend.chart;
+                            const datasetIndex = legendItem.datasetIndex;
+                    
+                            const ctrlPressed =
+                                e.native.ctrlKey ||
+                                e.native.metaKey;
+                    
+                            if (!ctrlPressed) {
+                    
+                                // Standard Chart.js behavior
+                                defaultLegendClick(
+                                    e,
+                                    legendItem,
+                                    legend
+                                );
+                    
+                                return;
+                            }
+                    
+                            const visibleCount =
+                                chart.data.datasets.filter(
+                                    (_, i) => chart.isDatasetVisible(i)
+                                ).length;
+                    
+                            const isSolo =
+                                visibleCount === 1 &&
+                                chart.isDatasetVisible(datasetIndex);
+                    
+                            if (isSolo) {
+                    
+                                // Restore all
+                                chart.data.datasets.forEach((_, i) => {
+                                    chart.setDatasetVisibility(i, true);
+                                });
+                    
+                            } else {
+                    
+                                // Show only selected dataset
+                                chart.data.datasets.forEach((_, i) => {
+                                    chart.setDatasetVisibility(
+                                        i,
+                                        i === datasetIndex
+                                    );
+                                });
+                    
+                            }
+                    
+                            chart.update();
+                        }
+                    }
             }
         }
     });
