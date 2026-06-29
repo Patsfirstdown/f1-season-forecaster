@@ -230,11 +230,11 @@ function updateWCCChart() {
         "Mercedes": "#00D7B6",
         "Ferrari": "#ED1131",
         "McLaren": "#F47600",
-        "Red Bull Racing": "#4781D7",
+        "Red Bull": "#4781D7",
         "Alpine": "#00A1E8",
         "Racing Bulls": "#6C98FF",
         "Williams": "#1868DB",
-        "Haas F1 Team": "#9C9FA2",
+        "Haas": "#9C9FA2",
         "Cadillac": "#909090",
         "Audi": "#F50537",
         "Aston Martin": "#229971"
