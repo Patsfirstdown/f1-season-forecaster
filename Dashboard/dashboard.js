@@ -831,21 +831,29 @@ function updateUpdates() {
         oldtempWDCAllcurrenttempWDCAll;
         oldtempWCCAllcurrenttempWCCAll;
         
-        currenttempWDC1 = Object.entries(Object.fromEntries(
-            Object.entries(predictionData.wdc_data[racename])
-                .map(([driver, data]) => [data.driver_name, data[1]])
+        currenttempWDC1 = Object.entries(
+            Object.fromEntries(
+                Object.entries(predictionData.wdc_data[racename])
+                    .map(([driver, data]) => [data.driver_name, data[1]])
+            )
         );
-        currenttempWCC1 = Object.entries(Object.fromEntries(
-            Object.entries(predictionData.wcc_data[racename])
-                .map(([team, data]) => [team, data[1]])
+        currenttempWCC1 = Object.entries(
+            Object.fromEntries(
+                Object.entries(predictionData.wcc_data[racename])
+                    .map(([team, data]) => [team, data[1]])
+            )
         );
-        currenttempWDCAll = Object.entries(Object.fromEntries(
-            Object.entries(predictionData.wdc_data[racename])
-                .map(([driver, data]) => [data.driver_name, data.expected_position])
+        currenttempWDCAll = Object.entries(
+            Object.fromEntries(
+                Object.entries(predictionData.wdc_data[racename])
+                    .map(([driver, data]) => [data.driver_name, data.expected_position])
+            )
         );
-        currenttempWCCAll = Object.entries(Object.fromEntries(
-            Object.entries(predictionData.wcc_data[racename])
-                .map(([team, data]) => [team, data.expected_position])
+        currenttempWCCAll = Object.entries(
+            Object.fromEntries(
+                Object.entries(predictionData.wcc_data[racename])
+                    .map(([team, data]) => [team, data.expected_position])
+            )
         );
 
         for (const team in currenttempWCC1) {
