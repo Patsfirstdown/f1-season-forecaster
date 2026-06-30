@@ -822,12 +822,12 @@ function updateUpdates() {
 
     const wdcNext = Object.fromEntries(
         Object.entries(predictionData.wdc_data[nextRace])
-            .map(([driver, data]) => [driver, data.expected_finish])
+            .map(([driver, data]) => [data.driver_name, data.expected_finish])
     );
 
     const wdcPrevious = Object.fromEntries(
         Object.entries(predictionData.wdc_data[previousRace])
-            .map(([driver, data]) => [driver, data.expected_finish])
+            .map(([driver, data]) => [data.driver_name, data.expected_finish])
     );
 
     
@@ -844,12 +844,12 @@ function updateUpdates() {
 
     const wdcNextWin = Object.fromEntries(
         Object.entries(predictionData.wdc_data[nextRace])
-            .map(([driver, data]) => [driver, data[1]])
+            .map(([driver, data]) => [data.driver_name, data[1]])
     );
 
     const wdcPreviousWin = Object.fromEntries(
         Object.entries(predictionData.wdc_data[previousRace])
-            .map(([driver, data]) => [driver, data[1]])
+            .map(([driver, data]) => [data.driver_name, data[1]])
     );
 
     const driverColors = predictionData.driverColor;
@@ -897,6 +897,10 @@ function updateUpdates() {
 
     
     document.getElementById("raceUpdates").innerHTML = `
+
+        <div>
+            <h3>Race Updates</h3>
+        </div>
 
         <table class="update-table">
 
