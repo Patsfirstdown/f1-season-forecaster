@@ -803,12 +803,12 @@ function updateUpdates() {
     let seasonWDC1=["race","driver",0];
     let seasonWDCAll=["race","driver",0];
 
+    const previousRace = races[races.length - 2];
     const driverNames = Object.keys(
-        predictionData.race_data[nextRace]
+        predictionData.race_data[previousRace]
     );
     
     const driverColors = predictionData.driverColor;
-    const previousRace = races[races.length - 2];
 
     let currenttempWDC1;
     let currenttempWCC1;
@@ -934,6 +934,43 @@ function updateUpdates() {
                 <td>Biggest Overall Loser</td>
                 <td>${sortedWDCAll.at(-1)[0]}: ${sortedWDCAll.at(-1)[1].toFixed(3)} Expected Positions</td>
                 <td>${sortedWCCAll.at(-1)[0]}: ${sortedWCCAll.at(-1)[1].toFixed(3)} Expected Positions</td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <div>
+            <h3 style="text-align: center;">Biggest Standings Updates</h3>
+        </div>
+        <table class="update-table">
+
+            <tr>
+                <th>Category</th>
+                <th>WDC</th>
+                <th>WCC</th>
+            </tr>
+
+            <tr class="higher">
+                <td>Biggest World Champion Gain</td>
+                
+                <td>${seasonWDC1[0][0]} ${seasonWDC1[0][1]}: +${seasonWDC1[0][2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWCC1[0][0]} ${seasonWCC1[0][1]}: +${seasonWCC1[0][2].toFixed(3)*100}% Champion Odds</td>
+            </tr>
+            <tr class="lower">
+                <td>Biggest World Champion Loser</td>
+                <td>${seasonWDC1.at(-1)[0]} ${seasonWDC1.at(-1)[1]}: ${seasonWDC1.at(-1)[2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWCC1.at(-1)[0]} ${seasonWCC1.at(-1)[1]}: ${seasonWCC1.at(-1)[2].toFixed(3)*100}% Champion Odds</td>
+            </tr>
+            <tr class="higher">
+                <td>Biggest Overall Gain</td>
+                <td>${seasonWDCAll[0][0]} ${seasonWDCAll[0][1]}: +${seasonWDCAll[0][2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWCC1[0][0]} ${seasonWCCAll[0][1]}: +${seasonWCC1[0][2].toFixed(3)} Expected Positions</td>
+            </tr>
+            <tr class="lower">
+                <td>Biggest Overall Loser</td>
+                <td>${seasonWDCAll.at(-1)[0]} ${seasonWDC1.at(-1)[1]}: ${seasonWDCAll.at(-1)[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWCC1.at(-1)[0]} ${seasonWCC1.at(-1)[1]}: ${seasonWCC1.at(-1)[2].toFixed(3)} Expected Positions</td>
             </tr>
 
         </table>
