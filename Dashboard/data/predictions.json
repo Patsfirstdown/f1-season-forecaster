@@ -10986,5 +10986,18 @@
         "HAD": "#4781D7",
         "PIA": "#F47600",
         "HUL": "#F50537"
+    },
+    "teamColor": {
+        "Mercedes": "#00D7B6",
+        "Ferrari": "#ED1131",
+        "McLaren": "#F47600",
+        "Red Bull": "#4781D7",
+        "Haas": "#9C9FA2",
+        "Racing Bulls": "#6C98FF",
+        "Audi": "#F50537",
+        "Alpine": "#00A1E8",
+        "Williams": "#1868DB",
+        "Cadillac": "#909090",
+        "Aston Martin": "#229971"
     }
 }
