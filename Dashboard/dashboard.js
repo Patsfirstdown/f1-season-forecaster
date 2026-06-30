@@ -873,8 +873,8 @@ function updateUpdates() {
             wccPrevious[team] -
             wccNext[team];
         wccGain[team] =
-            wccPreviousWin[team] -
-            wccNextWin[team];
+            wccNextWin[team] -
+            wccPreviousWin[team];
     }
 
     for (const driver in wdcNext) {
@@ -882,8 +882,8 @@ function updateUpdates() {
             wdcPrevious[driver] -
             wdcNext[driver];
         wdcGain[driver] =
-            wdcPreviousWin[driver] -
-            wdcNextWin[driver];
+            wdcNextWin[team] -
+            wdcPreviousWin[team];
     }
 
     const sortedWCC1 = Object.entries(wccGain)
@@ -909,26 +909,26 @@ function updateUpdates() {
             <tr>
                 <td>Biggest Championship Winner</td>
                 
-                <td>${sortedWDC1[0][0]} ${sortedWDC1[0][1].toFixed(3)}</td>
-                <td>${sortedWCC1[0][0]} ${sortedWCC1[0][1].toFixed(3)}</td>
+                <td>${sortedWDC1[0][0]} Gained ${sortedWDC1[0][1].toFixed(3)*100}% Championship Odds</td>
+                <td>${sortedWCC1[0][0]} Gained ${sortedWCC1[0][1].toFixed(3)*100}% Championship Odds</td>
             </tr>
 
             <tr>
                 <td>Biggest Championship Loser</td>
-                <td>${sortedWDC1.at(-1)[0]} ${sortedWDC1.at(-1)[1].toFixed(3)}</td>
-                <td>${sortedWCC1.at(-1)[0]} ${sortedWCC1.at(-1)[1].toFixed(3)}</td>
+                <td>${sortedWDC1.at(-1)[0]} Gained ${sortedWDC1.at(-1)[1].toFixed(3)*100}% Championship Odds</td>
+                <td>${sortedWCC1.at(-1)[0]} Gained ${sortedWCC1.at(-1)[1].toFixed(3)*100}% Championship Odds</td>
             </tr>
 
             <tr>
                 <td>Biggest Overall Winner</td>
-                <td>${sortedWDCAll[0][0]} ${sortedWDCAll[0][1].toFixed(3)}</td>
-                <td>${sortedWCCAll[0][0]} ${sortedWCCAll[0][1].toFixed(3)}</td>
+                <td>${sortedWDCAll[0][0]} Lost ${sortedWDCAll[0][1].toFixed(3)} Expected Positions</td>
+                <td>${sortedWCCAll[0][0]} Lost ${sortedWCCAll[0][1].toFixed(3)} Expected Positions</td>
             </tr>
 
             <tr>
                 <td>Biggest Overall Loser</td>
-                <td>${sortedWDCAll.at(-1)[0]} ${sortedWDCAll.at(-1)[1].toFixed(3)}</td>
-                <td>${sortedWCCAll.at(-1)[0]} ${sortedWCCAll.at(-1)[1].toFixed(3)}</td>
+                <td>${sortedWDCAll.at(-1)[0]} Lost ${sortedWDCAll.at(-1)[1].toFixed(3)} Expected Positions</td>
+                <td>${sortedWCCAll.at(-1)[0]} Lost ${sortedWCCAll.at(-1)[1].toFixed(3)} Expected Positions</td>
             </tr>
 
         </table>
