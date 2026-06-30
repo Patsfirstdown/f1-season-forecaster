@@ -226,19 +226,7 @@ function updateWCCChart() {
         predictionData.wcc_data[firstRace]
     );
 
-    const teamColors = {
-        "Mercedes": "#00D7B6",
-        "Ferrari": "#ED1131",
-        "McLaren": "#F47600",
-        "Red Bull": "#4781D7",
-        "Alpine": "#00A1E8",
-        "Racing Bulls": "#6C98FF",
-        "Williams": "#1868DB",
-        "Haas": "#9C9FA2",
-        "Cadillac": "#909090",
-        "Audi": "#F50537",
-        "Aston Martin": "#229971"
-    };
+    const teamColors = predictionData.teamColor;
 
     const datasets = [];
 
