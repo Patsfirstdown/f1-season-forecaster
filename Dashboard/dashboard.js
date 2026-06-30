@@ -800,8 +800,8 @@ function updateUpdates() {
 
     console.log(races)
 
-    const nextRace = races[-1];
-    const previousRace = races[-2];
+    const nextRace = races[races.length - 1];
+    const previousRace = races[races.length - 2];
 
     console.log(nextRace)
     console.log(previousRace)
