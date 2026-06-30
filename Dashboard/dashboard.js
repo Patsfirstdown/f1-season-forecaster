@@ -798,13 +798,13 @@ function updateUpdates() {
         predictionData.races
     );
 
-    console.log(races)
+    let seasonWCC1=["race","driver",0];
+    let seasonWCCAll=["race","driver",0];
+    let seasonWDC1=["race","driver",0];
+    let seasonWDCAll=["race","driver",0];
 
     const nextRace = races[races.length - 1];
     const previousRace = races[races.length - 2];
-
-    console.log(nextRace)
-    console.log(previousRace)
 
     const driverNames = Object.keys(
         predictionData.race_data[nextRace]
@@ -830,7 +830,6 @@ function updateUpdates() {
             .map(([driver, data]) => [data.driver_name, data.expected_finish])
     );
 
-    
 
     const wccNextWin = Object.fromEntries(
         Object.entries(predictionData.wcc_data[nextRace])
@@ -853,15 +852,6 @@ function updateUpdates() {
     );
 
     const driverColors = predictionData.driverColor;
-
-    console.log(wccNext)
-    console.log(wdcNext)
-    console.log(wccPrevious)
-    console.log(wdcPrevious)
-    console.log(wccNextWin)
-    console.log(wdcNextWin)
-    console.log(wccPreviousWin)
-    console.log(wdcPreviousWin)
     
     let wccGain = {};
     let wdcGain = {};
@@ -894,6 +884,87 @@ function updateUpdates() {
         .sort((a, b) => b[1] - a[1]);
     const sortedWDCAll = Object.entries(wdcGainAll)
         .sort((a, b) => b[1] - a[1]);
+
+    let currenttempWDC1;
+    let currenttempWCC1;
+    let currenttempWDCAll;
+    let currenttempWCCAll;
+
+    let oldtempWDC1;
+    let oldtempWCC1;
+    let oldtempWDCAll;
+    let oldtempWCCAll;
+
+    let sortedWCC1;
+    let sortedWDC1;
+    let sortedWCCAll;
+    let sortedWDCAll;
+    
+    for (race in races) {
+        oldtempWDC1=currenttempWDC1;
+        oldtempWCC1=currenttempWCC1;
+        oldtempWDCAllcurrenttempWDCAll;
+        oldtempWCCAllcurrenttempWCCAll;
+        
+        currenttempWDC1 = Object.entries(Object.fromEntries(
+            Object.entries(predictionData.wdc_data[racename])
+                .map(([driver, data]) => [data.driver_name, data[1]])
+        );
+        currenttempWCC1 = Object.entries(Object.fromEntries(
+            Object.entries(predictionData.wcc_data[racename])
+                .map(([team, data]) => [team, data[1]])
+        );
+        currenttempWDCAll = Object.entries(Object.fromEntries(
+            Object.entries(predictionData.wdc_data[racename])
+                .map(([driver, data]) => [data.driver_name, data.expected_position])
+        );
+        currenttempWCCAll = Object.entries(Object.fromEntries(
+            Object.entries(predictionData.wcc_data[racename])
+                .map(([team, data]) => [team, data.expected_position])
+        );
+
+        for (const team in currenttempWCC1) {
+            tempWCCAll[team] =
+                oldtempWCCAll[team] -
+                currenttempWCCAll[team];
+            tempWCC1[team] =
+                currenttempWCC1[team] -
+                oldtempWCC1[team];
+        }
+    
+        for (const driver in currenttempWDC1) {
+            tempWDCAll[driver] =
+                oldtempWDCAll[driver] -
+                currenttempWDCAll[driver];
+            tempWDC1[driver] =
+                currenttempWDC1[driver] -
+                oldtempWDC1[driver];
+        }
+
+        sortedWCC1 = Object.entries(tempWCC1)
+            .sort((a, b) => b[1] - a[1]);
+        sortedWDC1 = Object.entries(tempWDC1)
+            .sort((a, b) => b[1] - a[1]);
+        sortedWCCAll = Object.entries(tempWCCAll)
+            .sort((a, b) => b[1] - a[1]);
+        sortedWDCAll = Object.entries(tempWDCAll)
+            .sort((a, b) => b[1] - a[1]);
+
+        if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
+            seasonWDC1=[race,sortedWDC1[0][0],sortedWDC1[0][1]]
+        }
+        if(sortedWCC1[0][1]>seasonWCC1[0][0][0]) {
+            seasonWCC1=[race,sortedWCC1[0][0],sortedWCC1[0][1]]
+        }
+        if(sortedWDCAll[0][1]>seasonWDC1[0][0][0]) {
+            seasonWDC1=[race,sortedWDCAll[0][0],sortedWDCAll[0][1]]
+        }
+        if(sortedWCCAll[0][1]>seasonWCC1[0][0][0]) {
+            seasonWCC1=[race,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+        }
+
+    }
+    
 
     
     document.getElementById("raceUpdates").innerHTML = `
