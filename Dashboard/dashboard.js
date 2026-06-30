@@ -828,8 +828,8 @@ function updateUpdates() {
     for (race in races) {
         oldtempWDC1=currenttempWDC1;
         oldtempWCC1=currenttempWCC1;
-        oldtempWDCAllcurrenttempWDCAll;
-        oldtempWCCAllcurrenttempWCCAll;
+        oldtempWDCAll=currenttempWDCAll;
+        oldtempWCCAll=currenttempWCCAll;
         
         currenttempWDC1 = Object.entries(
             Object.fromEntries(
