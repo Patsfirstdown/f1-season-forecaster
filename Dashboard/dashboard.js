@@ -830,7 +830,7 @@ function updateUpdates() {
         oldtempWCC1=currenttempWCC1;
         oldtempWDCAll=currenttempWDCAll;
         oldtempWCCAll=currenttempWCCAll;
-        if predictionData.wcc_data.includes(racename) {
+        if (predictionData.wcc_data.includes(racename)) {
             currenttempWCC1 = Object.entries(
                 Object.fromEntries(
                     Object.entries(predictionData.wcc_data[racename])
