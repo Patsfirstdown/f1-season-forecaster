@@ -830,12 +830,38 @@ function updateUpdates() {
         oldtempWCC1=currenttempWCC1;
         oldtempWDCAll=currenttempWDCAll;
         oldtempWCCAll=currenttempWCCAll;
-
-        console.log(races);
-        console.log(predictionData);
-        console.log(predictionData.wdc_data);
-        console.log(racename);
-        console.log(predictionData.wdc_data[racename]);
+        if predictionData.wcc_data.includes(racename) {
+            currenttempWCC1 = Object.entries(
+                Object.fromEntries(
+                    Object.entries(predictionData.wcc_data[racename])
+                        .map(([team, data]) => [team, data[1]])
+                )
+            );
+            currenttempWCCAll = Object.entries(
+                Object.fromEntries(
+                    Object.entries(predictionData.wcc_data[racename])
+                        .map(([team, data]) => [team, data.expected_position])
+                )
+            );
+            for (const team in currenttempWCC1) {
+                tempWCCAll[team] =
+                    oldtempWCCAll[team] -
+                    currenttempWCCAll[team];
+                tempWCC1[team] =
+                    currenttempWCC1[team] -
+                    oldtempWCC1[team];
+            }
+            sortedWCC1 = Object.entries(tempWCC1)
+                .sort((a, b) => b[1] - a[1]);
+            sortedWCCAll = Object.entries(tempWCCAll)
+                .sort((a, b) => b[1] - a[1]);
+            if(sortedWCC1[0][1]>seasonWCC1[0][0][0]) {
+                seasonWCC1=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
+            }
+            if(sortedWCCAll[0][1]>seasonWCC1[0][0][0]) {
+                seasonWCC1=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+            }
+        }
         
         currenttempWDC1 = Object.entries(
             Object.fromEntries(
@@ -843,33 +869,13 @@ function updateUpdates() {
                     .map(([driver, data]) => [data.driver_name, data[1]])
             )
         );
-        currenttempWCC1 = Object.entries(
-            Object.fromEntries(
-                Object.entries(predictionData.wcc_data[racename])
-                    .map(([team, data]) => [team, data[1]])
-            )
-        );
+        
         currenttempWDCAll = Object.entries(
             Object.fromEntries(
                 Object.entries(predictionData.wdc_data[racename])
                     .map(([driver, data]) => [data.driver_name, data.expected_position])
             )
         );
-        currenttempWCCAll = Object.entries(
-            Object.fromEntries(
-                Object.entries(predictionData.wcc_data[racename])
-                    .map(([team, data]) => [team, data.expected_position])
-            )
-        );
-
-        for (const team in currenttempWCC1) {
-            tempWCCAll[team] =
-                oldtempWCCAll[team] -
-                currenttempWCCAll[team];
-            tempWCC1[team] =
-                currenttempWCC1[team] -
-                oldtempWCC1[team];
-        }
     
         for (const driver in currenttempWDC1) {
             tempWDCAll[driver] =
@@ -880,11 +886,7 @@ function updateUpdates() {
                 oldtempWDC1[driver];
         }
 
-        sortedWCC1 = Object.entries(tempWCC1)
-            .sort((a, b) => b[1] - a[1]);
         sortedWDC1 = Object.entries(tempWDC1)
-            .sort((a, b) => b[1] - a[1]);
-        sortedWCCAll = Object.entries(tempWCCAll)
             .sort((a, b) => b[1] - a[1]);
         sortedWDCAll = Object.entries(tempWDCAll)
             .sort((a, b) => b[1] - a[1]);
@@ -892,14 +894,8 @@ function updateUpdates() {
         if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
             seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
         }
-        if(sortedWCC1[0][1]>seasonWCC1[0][0][0]) {
-            seasonWCC1=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
-        }
         if(sortedWDCAll[0][1]>seasonWDC1[0][0][0]) {
             seasonWDC1=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
-        }
-        if(sortedWCCAll[0][1]>seasonWCC1[0][0][0]) {
-            seasonWCC1=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
         }
 
     }
