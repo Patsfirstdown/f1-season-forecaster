@@ -810,43 +810,43 @@ function updateUpdates() {
         predictionData.race_data[nextRace]
     );
 
-    const wccNext = Object.fromEntries(
+    let wccNext = Object.fromEntries(
         Object.entries(predictionData.wcc_data[nextRace])
             .map(([team, data]) => [team, data.expected_finish])
     );
 
-    const wccPrevious = Object.fromEntries(
+    let wccPrevious = Object.fromEntries(
         Object.entries(predictionData.wcc_data[previousRace])
             .map(([team, data]) => [team, data.expected_finish])
     );
 
-    const wdcNext = Object.fromEntries(
+    let wdcNext = Object.fromEntries(
         Object.entries(predictionData.wdc_data[nextRace])
             .map(([driver, data]) => [data.driver_name, data.expected_finish])
     );
 
-    const wdcPrevious = Object.fromEntries(
+    let wdcPrevious = Object.fromEntries(
         Object.entries(predictionData.wdc_data[previousRace])
             .map(([driver, data]) => [data.driver_name, data.expected_finish])
     );
 
 
-    const wccNextWin = Object.fromEntries(
+    let wccNextWin = Object.fromEntries(
         Object.entries(predictionData.wcc_data[nextRace])
             .map(([team, data]) => [team, data[1]])
     );
 
-    const wccPreviousWin = Object.fromEntries(
+    let wccPreviousWin = Object.fromEntries(
         Object.entries(predictionData.wcc_data[previousRace])
             .map(([team, data]) => [team, data[1]])
     );
 
-    const wdcNextWin = Object.fromEntries(
+    let wdcNextWin = Object.fromEntries(
         Object.entries(predictionData.wdc_data[nextRace])
             .map(([driver, data]) => [data.driver_name, data[1]])
     );
 
-    const wdcPreviousWin = Object.fromEntries(
+    let wdcPreviousWin = Object.fromEntries(
         Object.entries(predictionData.wdc_data[previousRace])
             .map(([driver, data]) => [data.driver_name, data[1]])
     );
@@ -858,7 +858,7 @@ function updateUpdates() {
     let wccGainAll = {};
     let wdcGainAll = {};
 
-    for (const team in wccNext) {
+    for (let team in wccNext) {
         wccGainAll[team] =
             wccPrevious[team] -
             wccNext[team];
@@ -867,7 +867,7 @@ function updateUpdates() {
             wccPreviousWin[team];
     }
 
-    for (const driver in wdcNext) {
+    for (let driver in wdcNext) {
         wdcGainAll[driver] =
             wdcPrevious[driver] -
             wdcNext[driver];
@@ -876,13 +876,13 @@ function updateUpdates() {
             wdcPreviousWin[driver];
     }
 
-    const sortedWCC1 = Object.entries(wccGain)
+    let sortedWCC1 = Object.entries(wccGain)
         .sort((a, b) => b[1] - a[1]);
-    const sortedWDC1 = Object.entries(wdcGain)
+    let sortedWDC1 = Object.entries(wdcGain)
         .sort((a, b) => b[1] - a[1]);
-    const sortedWCCAll = Object.entries(wccGainAll)
+    let sortedWCCAll = Object.entries(wccGainAll)
         .sort((a, b) => b[1] - a[1]);
-    const sortedWDCAll = Object.entries(wdcGainAll)
+    let sortedWDCAll = Object.entries(wdcGainAll)
         .sort((a, b) => b[1] - a[1]);
 
     let currenttempWDC1;
