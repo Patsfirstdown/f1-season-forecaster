@@ -810,7 +810,51 @@ function updateUpdates() {
     console.log(nextRace)
     console.log(previousRace)
 
-    const location = document.getElementById("raceUpdates")
+    const wdcGain = ["test","test2"]
+    const wdcGainAll = ["test3","test4"]
+    const wccGain = ["test5","test6"]
+    const wccGainAll = ["test7","test8"]
+
+    document.getElementById("raceUpdates").innerHTML = `
+
+        <table class="update-table">
+
+            <tr>
+                <th></th>
+                <th>WDC</th>
+                <th>WCC</th>
+            </tr>
+
+            <tr>
+                <td>Biggest Championship Winner</td>
+                <td>${wdcGain[0]} ${wdcGain[0]}</td>
+                <td>${wccGain[0]} ${wccGain[0]}</td>
+            </tr>
+
+            <tr>
+                <td>Biggest Championship Loser</td>
+                <td>${wdcGain[-1]} ${wdcGain[-1]}</td>
+                <td>${wccGain[-1]} ${wccGain[-1]}</td>
+            </tr>
+
+            <tr>
+                <td>Biggest Winner</td>
+                <td>${wdcGainAll[0]} ${wdcGainAll[0]}</td>
+                <td>${wccGainAll[0]} ${wccGainAll[0]}</td>
+            </tr>
+
+            <tr>
+                <td>Biggest Loser</td>
+                <td>${wdcGainAll[-1]} ${wdcGainAll[-1]}</td>
+                <td>${wccGainAll[-1]} ${wccGainAll[-1]}</td>
+            </tr>
+
+            
+
+        </table>
+
+        <br>
+    `;
 
 
 }
@@ -819,6 +863,7 @@ async function initialize() {
 
     await loadData();
 
+    updateUpdates()
     updateDriverChart();
     updateWDCChart();
     updateWCCChart();
