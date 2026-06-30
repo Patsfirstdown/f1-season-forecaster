@@ -822,12 +822,12 @@ function updateUpdates() {
 
     const wdcNext = Object.fromEntries(
         Object.entries(predictionData.wdc_data[nextRace])
-            .map(([driver, data]) => [team, data.expected_finish])
+            .map(([driver, data]) => [driver, data.expected_finish])
     );
 
     const wdcPrevious = Object.fromEntries(
         Object.entries(predictionData.wdc_data[previousRace])
-            .map(([driver, data]) => [team, data.expected_finish])
+            .map(([driver, data]) => [driver, data.expected_finish])
     );
 
     
