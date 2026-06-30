@@ -793,6 +793,28 @@ function updateVolatilityChart() {
     });
 }
 
+function updateUpdates() {
+    const races = Object.keys(
+        predictionData.races
+    );
+
+    const nextRace = races[-1];
+    const previousRace = races[-2];
+
+    const driverNames = Object.keys(
+        predictionData.race_data[firstRace]
+    );
+
+    const driverColors = predictionData.driverColor;
+
+    console.log(nextRace)
+    console.log(previousRace)
+
+    const location = document.getElementById("raceUpdates")
+
+
+}
+
 async function initialize() {
 
     await loadData();
