@@ -909,7 +909,7 @@ function updateUpdates() {
             <tr>
                 <td>Biggest Championship Winner</td>
                 
-                <td>${sortedWDC1[0][0]} ${sortedWDC1[0].values.toFixed(3)}</td>
+                <td>${sortedWDC1[0][0]} ${sortedWDC1[0][1].toFixed(3)}</td>
                 <td>${sortedWCC1[0][0]} ${sortedWCC1[0][1].toFixed(3)}</td>
             </tr>
 
