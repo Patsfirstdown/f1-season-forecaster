@@ -825,13 +825,13 @@ function updateUpdates() {
     let sortedWCCAll;
     let sortedWDCAll;
     
-    for (racename in races) {
+    for (racename of races) {
         oldtempWDC1=currenttempWDC1;
         oldtempWCC1=currenttempWCC1;
         oldtempWDCAll=currenttempWDCAll;
         oldtempWCCAll=currenttempWCCAll;
 
-
+        console.log(races);
         console.log(predictionData);
         console.log(predictionData.wdc_data);
         console.log(racename);
