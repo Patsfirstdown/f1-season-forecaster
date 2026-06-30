@@ -449,3 +449,17 @@ div.description{
     padding-left: 32px;
     width: 90%;
 }
+
+.update-table {
+    text-align: center;
+    color: black;
+    table-layout: fixed;
+    width: 100%;
+    padding: 16px;
+    border-top: 4px solid var(--f1_red) ;
+    font-size: 1.05rem;
+}
+.update-table th {
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--f1_red)
+}
