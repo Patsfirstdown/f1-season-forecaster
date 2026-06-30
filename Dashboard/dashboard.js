@@ -834,12 +834,12 @@ function updateUpdates() {
 
     const wccNextWin = Object.fromEntries(
         Object.entries(predictionData.wcc_data[nextRace])
-            .map(([team, data]) => [team, data.1])
+            .map(([team, data]) => [team, data[1]])
     );
 
     const wccPreviousWin = Object.fromEntries(
         Object.entries(predictionData.wcc_data[previousRace])
-            .map(([team, data]) => [team, data.1])
+            .map(([team, data]) => [team, data[1]])
     );
 
     const wdcNextWin = Object.fromEntries(
