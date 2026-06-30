@@ -810,21 +810,13 @@ function updateUpdates() {
         predictionData.race_data[nextRace]
     );
 
-    const wccNext = Object.keys(
-        predictionData.wcc_data[nextRace]
-    );
+    const wccNext = predictionData.wcc_data[nextRace]
 
-    const wdcNext = Object.keys(
-        predictionData.wdc_data[nextRace]
-    );
+    const wdcNext = predictionData.wdc_data[nextRace];
 
-    const wccPrevious = Object.keys(
-        predictionData.wcc_data[previousRace]
-    );
+    const wccPrevious = predictionData.wcc_data[previousRace]
 
-    const wdcPrevious = Object.keys(
-        predictionData.wdc_data[previousRace]
-    );
+    const wdcPrevious = predictionData.wdc_data[previousRace];
 
     const driverColors = predictionData.driverColor;
 
@@ -856,8 +848,8 @@ function updateUpdates() {
 
             <tr>
                 <td>Biggest Championship Loser</td>
-                <td>${wdcGain[-1]} ${wdcGain[-1]}</td>
-                <td>${wccGain[-1]} ${wccGain[-1]}</td>
+                <td>${wdcGain[wdcGain.length-1]} ${wdcGain[wdcGain.length-1]}</td>
+                <td>${wccGain[wccGain.length-1]} ${wccGain[wccGain.length-1]}</td>
             </tr>
 
             <tr>
@@ -868,8 +860,8 @@ function updateUpdates() {
 
             <tr>
                 <td>Biggest Loser</td>
-                <td>${wdcGainAll[-1]} ${wdcGainAll[-1]}</td>
-                <td>${wccGainAll[-1]} ${wccGainAll[-1]}</td>
+                <td>${wdcGainAll[wdcGain.length-1]} ${wdcGainAll[wdcGain.length-1]}</td>
+                <td>${wccGainAll[wccGain.length-1]} ${wccGainAll[wccGain.length-1]}</td>
             </tr>
 
             
