@@ -802,13 +802,31 @@ function updateUpdates() {
     const previousRace = races[-2];
 
     const driverNames = Object.keys(
-        predictionData.race_data[firstRace]
+        predictionData.race_data[nextRace]
+    );
+
+    const wccNext = Object.keys(
+        predictionData.wcc_data[nextRace]
+    );
+
+    const wdcNext = Object.keys(
+        predictionData.wdc_data[nextRace]
+    );
+
+    const wccPrevious = Object.keys(
+        predictionData.wcc_data[PreviousRace]
+    );
+
+    const wdcPrevious = Object.keys(
+        predictionData.wdc_data[PreviousRace]
     );
 
     const driverColors = predictionData.driverColor;
 
-    console.log(nextRace)
-    console.log(previousRace)
+    console.log(wccNext)
+    console.log(wdcNext)
+    console.log(wccPrevious)
+    console.log(wdcPrevious)
 
     const wdcGain = ["test","test2"]
     const wdcGainAll = ["test3","test4"]
