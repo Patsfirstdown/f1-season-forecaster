@@ -798,6 +798,8 @@ function updateUpdates() {
         predictionData.races
     );
 
+    console.log(races)
+
     const nextRace = races[-1];
     const previousRace = races[-2];
 
