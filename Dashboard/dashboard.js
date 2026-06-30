@@ -803,87 +803,12 @@ function updateUpdates() {
     let seasonWDC1=["race","driver",0];
     let seasonWDCAll=["race","driver",0];
 
-    const nextRace = races[races.length - 1];
-    const previousRace = races[races.length - 2];
-
     const driverNames = Object.keys(
         predictionData.race_data[nextRace]
     );
-
-    let wccNext = Object.fromEntries(
-        Object.entries(predictionData.wcc_data[nextRace])
-            .map(([team, data]) => [team, data.expected_finish])
-    );
-
-    let wccPrevious = Object.fromEntries(
-        Object.entries(predictionData.wcc_data[previousRace])
-            .map(([team, data]) => [team, data.expected_finish])
-    );
-
-    let wdcNext = Object.fromEntries(
-        Object.entries(predictionData.wdc_data[nextRace])
-            .map(([driver, data]) => [data.driver_name, data.expected_finish])
-    );
-
-    let wdcPrevious = Object.fromEntries(
-        Object.entries(predictionData.wdc_data[previousRace])
-            .map(([driver, data]) => [data.driver_name, data.expected_finish])
-    );
-
-
-    let wccNextWin = Object.fromEntries(
-        Object.entries(predictionData.wcc_data[nextRace])
-            .map(([team, data]) => [team, data[1]])
-    );
-
-    let wccPreviousWin = Object.fromEntries(
-        Object.entries(predictionData.wcc_data[previousRace])
-            .map(([team, data]) => [team, data[1]])
-    );
-
-    let wdcNextWin = Object.fromEntries(
-        Object.entries(predictionData.wdc_data[nextRace])
-            .map(([driver, data]) => [data.driver_name, data[1]])
-    );
-
-    let wdcPreviousWin = Object.fromEntries(
-        Object.entries(predictionData.wdc_data[previousRace])
-            .map(([driver, data]) => [data.driver_name, data[1]])
-    );
-
-    const driverColors = predictionData.driverColor;
     
-    let wccGain = {};
-    let wdcGain = {};
-    let wccGainAll = {};
-    let wdcGainAll = {};
-
-    for (let team in wccNext) {
-        wccGainAll[team] =
-            wccPrevious[team] -
-            wccNext[team];
-        wccGain[team] =
-            wccNextWin[team] -
-            wccPreviousWin[team];
-    }
-
-    for (let driver in wdcNext) {
-        wdcGainAll[driver] =
-            wdcPrevious[driver] -
-            wdcNext[driver];
-        wdcGain[driver] =
-            wdcNextWin[driver] -
-            wdcPreviousWin[driver];
-    }
-
-    let sortedWCC1 = Object.entries(wccGain)
-        .sort((a, b) => b[1] - a[1]);
-    let sortedWDC1 = Object.entries(wdcGain)
-        .sort((a, b) => b[1] - a[1]);
-    let sortedWCCAll = Object.entries(wccGainAll)
-        .sort((a, b) => b[1] - a[1]);
-    let sortedWDCAll = Object.entries(wdcGainAll)
-        .sort((a, b) => b[1] - a[1]);
+    const driverColors = predictionData.driverColor;
+    const previousRace = races[races.length - 2];
 
     let currenttempWDC1;
     let currenttempWCC1;
