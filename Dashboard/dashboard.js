@@ -911,18 +911,18 @@ function updateUpdates() {
             </tr>
 
             <tr class="higher">
-                <td>Biggest Championship Winner</td>
+                <td>Biggest World Champion Gain</td>
                 
                 <td>${sortedWDC1[0][0]}: +${sortedWDC1[0][1].toFixed(3)*100}% Champion Odds</td>
                 <td>${sortedWCC1[0][0]}: +${sortedWCC1[0][1].toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="lower">
-                <td>Biggest Championship Loser</td>
-                <td>${sortedWDC1.at(-1)[0]}: ${sortedWDC1.at(-1)[1].toFixed(3)*100}% Championship Odds</td>
-                <td>${sortedWCC1.at(-1)[0]}: ${sortedWCC1.at(-1)[1].toFixed(3)*100}% Championship Odds</td>
+                <td>Biggest World Champion Loser</td>
+                <td>${sortedWDC1.at(-1)[0]}: ${sortedWDC1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>
+                <td>${sortedWCC1.at(-1)[0]}: ${sortedWCC1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="higher">
-                <td>Biggest Overall Winner</td>
+                <td>Biggest Overall Gain</td>
                 <td>${sortedWDCAll[0][0]}: +${sortedWDCAll[0][1].toFixed(3)} Expected Positions</td>
                 <td>${sortedWCCAll[0][0]}: +${sortedWCCAll[0][1].toFixed(3)} Expected Positions</td>
             </tr>
