@@ -844,12 +844,12 @@ function updateUpdates() {
 
     const wdcNextWin = Object.fromEntries(
         Object.entries(predictionData.wdc_data[nextRace])
-            .map(([driver, data]) => [team, data.1])
+            .map(([driver, data]) => [driver, data[1]])
     );
 
     const wdcPreviousWin = Object.fromEntries(
         Object.entries(predictionData.wdc_data[previousRace])
-            .map(([driver, data]) => [team, data.1])
+            .map(([driver, data]) => [driver, data[1]])
     );
 
     const driverColors = predictionData.driverColor;
@@ -870,20 +870,20 @@ function updateUpdates() {
 
     for (const team in wccNext) {
         wccGainAll[team] =
-            wccprevious[team].1 -
-            wccNext[team].1;
+            wccPrevious[team] -
+            wccNext[team];
         wccGain[team] =
-            wccpreviousWin[team].1 -
-            wccNextWin[team].1;
+            wccPreviousWin[team] -
+            wccNextWin[team];
     }
 
     for (const driver in wdcNext) {
         wdcGainAll[driver] =
-            wdcprevious[driver].expected_finish -
-            wdcNext[driver].expected_finish;
+            wdcPrevious[driver] -
+            wdcNext[driver];
         wdcGain[driver] =
-            wdcpreviousWin[driver].1 -
-            wdcNextWin[driver].1;
+            wdcPreviousWin[driver] -
+            wdcNextWin[driver];
     }
 
     const sortedWCC1 = Object.entries(wccGain)
