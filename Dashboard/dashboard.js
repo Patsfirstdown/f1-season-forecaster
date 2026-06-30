@@ -830,6 +830,12 @@ function updateUpdates() {
         oldtempWCC1=currenttempWCC1;
         oldtempWDCAll=currenttempWDCAll;
         oldtempWCCAll=currenttempWCCAll;
+
+
+        console.log(predictionData);
+        console.log(predictionData.wdc_data);
+        console.log(racename);
+        console.log(predictionData.wdc_data[racename]);
         
         currenttempWDC1 = Object.entries(
             Object.fromEntries(
