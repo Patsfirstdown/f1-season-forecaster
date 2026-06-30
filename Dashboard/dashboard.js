@@ -810,13 +810,47 @@ function updateUpdates() {
         predictionData.race_data[nextRace]
     );
 
-    const wccNext = predictionData.wcc_data[nextRace]
+    const wccNext = Object.fromEntries(
+        Object.entries(predictionData.wcc_data[nextRace])
+            .map(([team, data]) => [team, data.expected_finish])
+    );
 
-    const wdcNext = predictionData.wdc_data[nextRace];
+    const wccPrevious = Object.fromEntries(
+        Object.entries(predictionData.wcc_data[previousRace])
+            .map(([team, data]) => [team, data.expected_finish])
+    );
 
-    const wccPrevious = predictionData.wcc_data[previousRace]
+    const wdcNext = Object.fromEntries(
+        Object.entries(predictionData.wdc_data[nextRace])
+            .map(([driver, data]) => [team, data.expected_finish])
+    );
 
-    const wdcPrevious = predictionData.wdc_data[previousRace];
+    const wdcPrevious = Object.fromEntries(
+        Object.entries(predictionData.wdc_data[previousRace])
+            .map(([driver, data]) => [team, data.expected_finish])
+    );
+
+    
+
+    const wccNextWin = Object.fromEntries(
+        Object.entries(predictionData.wcc_data[nextRace])
+            .map(([team, data]) => [team, data.1])
+    );
+
+    const wccPreviousWin = Object.fromEntries(
+        Object.entries(predictionData.wcc_data[previousRace])
+            .map(([team, data]) => [team, data.1])
+    );
+
+    const wdcNextWin = Object.fromEntries(
+        Object.entries(predictionData.wdc_data[nextRace])
+            .map(([driver, data]) => [team, data.1])
+    );
+
+    const wdcPreviousWin = Object.fromEntries(
+        Object.entries(predictionData.wdc_data[previousRace])
+            .map(([driver, data]) => [team, data.1])
+    );
 
     const driverColors = predictionData.driverColor;
 
@@ -824,12 +858,44 @@ function updateUpdates() {
     console.log(wdcNext)
     console.log(wccPrevious)
     console.log(wdcPrevious)
+    console.log(wccNextWin)
+    console.log(wdcNextWin)
+    console.log(wccPreviousWin)
+    console.log(wdcPreviousWin)
+    
+    let wccGain = {};
+    let wdcGain = {};
+    let wccGainAll = {};
+    let wdcGainAll = {};
 
-    const wdcGain = ["test","test2"]
-    const wdcGainAll = ["test3","test4"]
-    const wccGain = ["test5","test6"]
-    const wccGainAll = ["test7","test8"]
+    for (const team in wccNext) {
+        wccGainAll[team] =
+            wccprevious[team].1 -
+            wccNext[team].1;
+        wccGain[team] =
+            wccpreviousWin[team].1 -
+            wccNextWin[team].1;
+    }
 
+    for (const driver in wdcNext) {
+        wdcGainAll[driver] =
+            wdcprevious[driver].expected_finish -
+            wdcNext[driver].expected_finish;
+        wdcGain[driver] =
+            wdcpreviousWin[driver].1 -
+            wdcNextWin[driver].1;
+    }
+
+    const sortedWCC1 = Object.entries(wccGain)
+        .sort((a, b) => b[1] - a[1]);
+    const sortedWDC1 = Object.entries(wdcGain)
+        .sort((a, b) => b[1] - a[1]);
+    const sortedWCCAll = Object.entries(wccGainAll)
+        .sort((a, b) => b[1] - a[1]);
+    const sortedWDCAll = Object.entries(wdcGainAll)
+        .sort((a, b) => b[1] - a[1]);
+
+    
     document.getElementById("raceUpdates").innerHTML = `
 
         <table class="update-table">
@@ -842,26 +908,26 @@ function updateUpdates() {
 
             <tr>
                 <td>Biggest Championship Winner</td>
-                <td>${wdcGain[0]} ${wdcGain[0]}</td>
-                <td>${wccGain[0]} ${wccGain[0]}</td>
+                <td>${sortedWDC1[0]} ${sortedWDC1[0]}</td>
+                <td>${sortedWCC1[0]} ${sortedWCC1[0]}</td>
             </tr>
 
             <tr>
                 <td>Biggest Championship Loser</td>
-                <td>${wdcGain[wdcGain.length-1]} ${wdcGain[wdcGain.length-1]}</td>
-                <td>${wccGain[wccGain.length-1]} ${wccGain[wccGain.length-1]}</td>
+                <td>${sortedWDCAll[0]} ${sortedWCCAll[0]}</td>
+                <td>${sortedWDCAll[0]} ${sortedWCCAll[0]}</td>
             </tr>
 
             <tr>
                 <td>Biggest Winner</td>
-                <td>${wdcGainAll[0]} ${wdcGainAll[0]}</td>
-                <td>${wccGainAll[0]} ${wccGainAll[0]}</td>
+                <td>${sortedWDCAll[0]} ${sortedWDCAll[0]}</td>
+                <td>${sortedWCCAll[0]} ${sortedWCCAll[0]}</td>
             </tr>
 
             <tr>
                 <td>Biggest Loser</td>
-                <td>${wdcGainAll[wdcGain.length-1]} ${wdcGainAll[wdcGain.length-1]}</td>
-                <td>${wccGainAll[wccGain.length-1]} ${wccGainAll[wccGain.length-1]}</td>
+                <td>${sortedWDCAll[sortedWDCAll.length-1]} ${sortedWDCAll[sortedWDCAll.length-1]}</td>
+                <td>${sortedWCCAll[sortedWCCAll.length-1]} ${sortedWCCAll[sortedWCCAll.length-1]}</td>
             </tr>
 
             
