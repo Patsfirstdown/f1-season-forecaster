@@ -908,29 +908,28 @@ function updateUpdates() {
 
             <tr>
                 <td>Biggest Championship Winner</td>
-                <td>${sortedWDC1[0].key} ${sortedWDC1[0].values}</td>
-                <td>${sortedWCC1[0].key} ${sortedWCC1[0].values}</td>
+                
+                <td>${sortedWDC1[0][0]} ${sortedWDC1[0].values.toFixed(3)}</td>
+                <td>${sortedWCC1[0][0]} ${sortedWCC1[0][1].toFixed(3)}</td>
             </tr>
 
             <tr>
                 <td>Biggest Championship Loser</td>
-                <td>${sortedWDC1[sortedWDC1.length-1].key} ${sortedWDC1[sortedWDC1.length-1][0].values}</td>
-                <td>${sortedWCC1[sortedWCC1.length-1].key} ${sortedWCC1[sortedWCC1.length-1].values}</td>
+                <td>${sortedWDC1.at(-1)[0]} ${sortedWDC1.at(-1)[1].toFixed(3)}</td>
+                <td>${sortedWCC1.at(-1)[0]} ${sortedWCC1.at(-1)[1].toFixed(3)}</td>
             </tr>
 
             <tr>
-                <td>Biggest Winner</td>
-                <td>${sortedWDCAll[0].key} ${sortedWDCAll[0].values}</td>
-                <td>${sortedWCCAll[0].key} ${sortedWCCAll[0].values}</td>
+                <td>Biggest Overall Winner</td>
+                <td>${sortedWDCAll[0][0]} ${sortedWDCAll[0][1].toFixed(3)}</td>
+                <td>${sortedWCCAll[0][0]} ${sortedWCCAll[0][1].toFixed(3)}</td>
             </tr>
 
             <tr>
-                <td>Biggest Loser</td>
-                <td>${sortedWDCAll[sortedWDCAll.length-1].key} ${sortedWDCAll[sortedWDCAll.length-1].values}</td>
-                <td>${sortedWCCAll[sortedWCCAll.length-1].key} ${sortedWCCAll[sortedWCCAll.length-1].values}</td>
+                <td>Biggest Overall Loser</td>
+                <td>${sortedWDCAll.at(-1)[0]} ${sortedWDCAll.at(-1)[1].toFixed(3)}</td>
+                <td>${sortedWCCAll.at(-1)[0]} ${sortedWCCAll.at(-1)[1].toFixed(3)}</td>
             </tr>
-
-            
 
         </table>
 
