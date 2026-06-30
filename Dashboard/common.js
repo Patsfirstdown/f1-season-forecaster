@@ -42,9 +42,12 @@ async function createFooter() {
                         <td>
                             <a class="footerForm" href="https://linkedin.com/in/jayden-pickin">LinkedIn</a>
                         </td>
+                        <td>
+                            <a class="footerForm" href="https://forms.gle/3WqT9ftSMu1ftFBM6">Feedback</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="disclaimer">
+                        <td colspan="3" class="disclaimer">
                             Data provided via FastF1 and Formula 1 timing data. This project is unofficial and not affiliated with Formula 1.
                         </td>
                     </tr>
