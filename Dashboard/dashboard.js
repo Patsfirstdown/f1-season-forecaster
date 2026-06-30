@@ -801,6 +801,9 @@ function updateUpdates() {
     const nextRace = races[-1];
     const previousRace = races[-2];
 
+    console.log(nextRace)
+    console.log(previousRace)
+
     const driverNames = Object.keys(
         predictionData.race_data[nextRace]
     );
