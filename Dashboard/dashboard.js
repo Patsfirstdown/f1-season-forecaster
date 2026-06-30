@@ -899,7 +899,7 @@ function updateUpdates() {
     document.getElementById("raceUpdates").innerHTML = `
 
         <div>
-            <h3 style="text-align: center;">Race Updates</h3>
+            <h3 style="text-align: center;">Post ${previousRace} Race Updates</h3>
         </div>
 
         <table class="update-table">
@@ -934,6 +934,12 @@ function updateUpdates() {
 
         </table>
 
+        <br>
+
+        <div>
+            <h3 style="text-align: center;">Season Trends Charts</h3>
+        </div>
+        
         <br>
     `;
 
