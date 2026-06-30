@@ -819,11 +819,11 @@ function updateUpdates() {
     );
 
     const wccPrevious = Object.keys(
-        predictionData.wcc_data[PreviousRace]
+        predictionData.wcc_data[previousRace]
     );
 
     const wdcPrevious = Object.keys(
-        predictionData.wdc_data[PreviousRace]
+        predictionData.wdc_data[previousRace]
     );
 
     const driverColors = predictionData.driverColor;
