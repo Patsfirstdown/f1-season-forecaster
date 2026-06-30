@@ -825,7 +825,7 @@ function updateUpdates() {
     let sortedWCCAll;
     let sortedWDCAll;
     
-    for (race in races) {
+    for (racename in races) {
         oldtempWDC1=currenttempWDC1;
         oldtempWCC1=currenttempWCC1;
         oldtempWDCAll=currenttempWDCAll;
@@ -884,16 +884,16 @@ function updateUpdates() {
             .sort((a, b) => b[1] - a[1]);
 
         if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
-            seasonWDC1=[race,sortedWDC1[0][0],sortedWDC1[0][1]]
+            seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
         }
         if(sortedWCC1[0][1]>seasonWCC1[0][0][0]) {
-            seasonWCC1=[race,sortedWCC1[0][0],sortedWCC1[0][1]]
+            seasonWCC1=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
         }
         if(sortedWDCAll[0][1]>seasonWDC1[0][0][0]) {
-            seasonWDC1=[race,sortedWDCAll[0][0],sortedWDCAll[0][1]]
+            seasonWDC1=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
         }
         if(sortedWCCAll[0][1]>seasonWCC1[0][0][0]) {
-            seasonWCC1=[race,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+            seasonWCC1=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
         }
 
     }
