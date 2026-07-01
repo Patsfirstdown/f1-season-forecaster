@@ -798,7 +798,10 @@ function createTemp(racename,driver_team,one_all) {
         currenttemp = Object.entries(
             Object.fromEntries(
                 Object.entries(driver_team)
-                    .map(([driver, data]) => [data.driver_name, data[1]])
+                    .map(([driver, data]) => [
+                        data.driver_name,
+                        Number(data[1])
+                    ])
             )
         );
     }
@@ -806,7 +809,10 @@ function createTemp(racename,driver_team,one_all) {
         currenttemp = Object.entries(
             Object.fromEntries(
                 Object.entries(driver_team)
-                    .map(([driver, data]) => [data.driver_name, data.expected_position])
+                    .map(([driver, data]) => [
+                        data.driver_name,
+                        Number(data.expected_position)
+                    ])
             )
         );
     }
@@ -814,18 +820,19 @@ function createTemp(racename,driver_team,one_all) {
     return currenttemp
 }
 
-function createSorted(currenttemp,oldtemp) {
-    let tempOther = {}
+function createSorted(currenttemp, oldtemp) {
+    let tempOther = {};
+
     for (const driver in currenttemp) {
-        tempOther[driver] =
-            oldtemp[driver] -
-            currenttemp[driver];
+        const oldVal = Number(oldtemp?.[driver]);
+        const newVal = Number(currenttemp?.[driver]);
+
+        tempOther[driver] = oldVal - newVal;
     }
 
-    sorted = Object.entries(tempOther)
+    return Object.entries(tempOther)
+        .filter(([_, v]) => Number.isFinite(v))
         .sort((a, b) => b[1] - a[1]);
-
-    return sorted
 }
 
 function updateUpdates() {
@@ -991,10 +998,9 @@ function updateUpdates() {
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     };
     
-    console.log(seasonWDC1big)
-    console.log(seasonWDC1big[0][2]);
-    console.log(typeof seasonWDC1big[0][2]);
-    console.log(seasonWDC1big[0][2] instanceof Number);
+    console.log("sortedWDC1", sortedWDC1);
+    console.log("top value", sortedWDC1?.[0]);
+    console.log("value type", typeof sortedWDC1?.[0]?.[1]);
     
     document.getElementById("raceUpdates").innerHTML = `
 
