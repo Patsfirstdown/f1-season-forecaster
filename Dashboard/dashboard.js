@@ -918,16 +918,16 @@ function updateUpdates() {
                 sortedWCC1 = createSorted(currentWCC,oldtempWCC,"winProb")
 
                 if(sortedWCC1[0][1].value>seasonWCC1big[2]) {
-                    seasonWCC1big=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
+                    seasonWCC1big=[racename,sortedWCC1[0][1].name,sortedWCC1[0][1].value]
                 }
                 if(sortedWCCAll[0][1].value>seasonWCC1big[2]) {
-                    seasonWCC1big=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+                    seasonWCC1big=[racename,sortedWCCAll[0][1].name,sortedWCCAll[0][1].value]
                 }
                 if(sortedWCC1.at(-1)[1].value<seasonWCC1small[2]) {
-                    seasonWCC1small=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
+                    seasonWCC1small=[racename,sortedWCC1[0][1].name,sortedWCC1[0][1].value]
                 }
                 if(sortedWCCAll.at(-1)[1].value<seasonWCC1small[2]) {
-                    seasonWCC1small=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+                    seasonWCC1small=[racename,sortedWCCAll[0][1].name,sortedWCCAll[0][1].value]
                 }
             }
         }
@@ -945,16 +945,16 @@ function updateUpdates() {
                 sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
     
                 if(sortedWDC1[0][1].value>seasonWDC1big[2]) {
-                    seasonWDC1big=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
+                    seasonWDC1big=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
                 };
                 if(sortedWDCAll[0][1].value>seasonWDC1big[2]) {
-                    seasonWDC1big=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
+                    seasonWDC1big=[racename,sortedWDCAll[0][1].name,sortedWDCAll[0][1].value]
                 };
                 if(sortedWDC1.at(-1)[1].value<seasonWDC1small[2]) {
-                    seasonWDC1small=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
+                    seasonWDC1small=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
                 };
                 if(sortedWDCAll.at(-1)[1].value<seasonWDC1small[2]) {
-                    seasonWDC1small=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
+                    seasonWDC1small=[racename,sortedWDCAll[0][1].name,sortedWDCAll[0][1].value]
                 };
             }
         };
