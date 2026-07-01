@@ -978,8 +978,8 @@ function updateUpdates() {
 
         fiveC1 = createTemp(fiveCAgo,predictionData.wcc_data[fiveCAgo]);
 
-        fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp")
-        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb")
+        fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp");
+        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb");
 
         console.log(fiveC1S)
         console.log(fiveCAllS)
@@ -992,8 +992,8 @@ function updateUpdates() {
     } else {
         fiveC1 = createTemp(firstCRace,predictionData.wcc_data[firstCRace]);
 
-        fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp")
-        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb")
+        fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp");
+        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb");
 
         cateC=`<th>WDC</th>`
         row1C=`<td>${fiveC1[0][0]}: +${fiveC1[0][1].toFixed(3)*100}% Champion Odds</td>`
@@ -1006,8 +1006,8 @@ function updateUpdates() {
         const fiveDAgo = races[races.length - 5];
         fiveD1 = createTemp(fiveDAgo,predictionData.wdc_data[fiveDAgo]);
 
-        fiveD1S = createSorted(currentTempWDC1,fiveD1,"exp")
-        fiveDAllS = createSorted(currentTempWDCAll,fiveDAll,"winProb"))
+        fiveD1S = createSorted(currentTempWDC1,fiveD1,"exp");
+        fiveDAllS = createSorted(currentTempWDCAll,fiveDAll,"winProb");
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1[0][0]}: +${fiveD1[0][1].toFixed(3)*100}% Champion Odds</td>`
@@ -1017,8 +1017,8 @@ function updateUpdates() {
     } else {
         fiveD1 = createTemp(firstDRace,predictionData.wdc_data[firstDRace]);
 
-        fiveD1S = createSorted(currentTempWDC1,fiveD1,"exp")
-        fiveDAllS = createSorted(currentTempWDCAll,fiveDAll,"winProb"))
+        fiveD1S = createSorted(currentTempWDC1,fiveD1,"exp");
+        fiveDAllS = createSorted(currentTempWDCAll,fiveDAll,"winProb");
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1[0][0]}: +${fiveD1[0][1].toFixed(3)*100}% Champion Odds</td>`
