@@ -825,7 +825,7 @@ function normalizeWDC(driver_team) {
 
     for (const [key, data] of Object.entries(driver_team)) {
         out[key] = {
-            exp: Number(data?.expected_position),
+            exp: Number(data?.expected_finish),
             winProb: Number(data?.[1]),
             name: data?.driver_name ?? key
         };
@@ -839,7 +839,7 @@ function normalizeWCC(team_data) {
 
     for (const [key, data] of Object.entries(team_data)) {
         out[key] = {
-            exp: Number(data?.expected_position),
+            exp: Number(data?.expected_finish),
             winProb: Number(data?.[1]),
             name: key
         };
