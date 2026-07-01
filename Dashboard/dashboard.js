@@ -793,6 +793,40 @@ function updateVolatilityChart() {
     });
 }
 
+function createTemp(racename,driver_team,one_all,oldtemp,seasonWDC1) {
+    if(one_all==="one"){
+        currenttemp = Object.entries(
+            Object.fromEntries(
+                Object.entries(driver_team)
+                    .map(([driver, data]) => [data.driver_name, data[1]])
+            )
+        );
+    }
+    else {
+        currenttemp = Object.entries(
+            Object.fromEntries(
+                Object.entries(driver_team)
+                    .map(([driver, data]) => [data.driver_name, data.expected_position])
+            )
+        );
+    }
+
+    return currenttemp
+}
+
+function createSorted(currenttemp,oldtemp) {
+    for (const driver in currenttemp) {
+        tempOther[driver] =
+            oldtemp[driver] -
+            currenttemp[driver];
+    }
+
+    sorted = Object.entries(tempOther)
+        .sort((a, b) => b[1] - a[1]);
+
+    return sorted
+}
+
 function updateUpdates() {
     const races = Object.keys(
         predictionData.races
@@ -810,10 +844,10 @@ function updateUpdates() {
     
     const driverColors = predictionData.driverColor;
 
-    let currenttempWDC1;
-    let currenttempWCC1;
-    let currenttempWDCAll;
-    let currenttempWCCAll;
+    let currentTempWCC1;
+    let currentTempWDC1;
+    let currentTempWCCAll;
+    let currentTempWDCAll; 
 
     let oldtempWDC1;
     let oldtempWCC1;
@@ -824,37 +858,24 @@ function updateUpdates() {
     let sortedWDC1;
     let sortedWCCAll;
     let sortedWDCAll;
+
+    let teamCount=0;
+    let driverCount=0;
     
     for (racename of races) {
-        oldtempWDC1=currenttempWDC1;
-        oldtempWCC1=currenttempWCC1;
-        oldtempWDCAll=currenttempWDCAll;
-        oldtempWCCAll=currenttempWCCAll;
+        oldtempWDC1=sortedWDC1;
+        oldtempWCC1=sortedWCC1;
+        oldtempWDCAll=sortedWDCAll;
+        oldtempWCCAll=sortedWCCAll;
         if (Object.hasOwn(predictionData.wcc_data, raceName)) {
-            currenttempWCC1 = Object.entries(
-                Object.fromEntries(
-                    Object.entries(predictionData.wcc_data[racename])
-                        .map(([team, data]) => [team, data[1]])
-                )
-            );
-            currenttempWCCAll = Object.entries(
-                Object.fromEntries(
-                    Object.entries(predictionData.wcc_data[racename])
-                        .map(([team, data]) => [team, data.expected_position])
-                )
-            );
-            for (const team in currenttempWCC1) {
-                tempWCCAll[team] =
-                    oldtempWCCAll[team] -
-                    currenttempWCCAll[team];
-                tempWCC1[team] =
-                    currenttempWCC1[team] -
-                    oldtempWCC1[team];
-            }
-            sortedWCC1 = Object.entries(tempWCC1)
-                .sort((a, b) => b[1] - a[1]);
-            sortedWCCAll = Object.entries(tempWCCAll)
-                .sort((a, b) => b[1] - a[1]);
+            teamCount++;
+            
+            currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one",oldtempWCC1);
+            currentTempWCCAll = createTemp(racename,predictionData.wcc_data[racename],"notOne",oldtempWCCAll);
+
+            sortedWCC1 = createSorted(currentTempWCC1,oldtempWCC1)
+            sortedWCCAll = createSorted(currentTempWCCAll,oldtempWCCAll)
+
             if(sortedWCC1[0][1]>seasonWCC1[0][0][0]) {
                 seasonWCC1=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
             }
@@ -862,43 +883,54 @@ function updateUpdates() {
                 seasonWCC1=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
             }
         }
-        
-        currenttempWDC1 = Object.entries(
-            Object.fromEntries(
-                Object.entries(predictionData.wdc_data[racename])
-                    .map(([driver, data]) => [data.driver_name, data[1]])
-            )
-        );
-        
-        currenttempWDCAll = Object.entries(
-            Object.fromEntries(
-                Object.entries(predictionData.wdc_data[racename])
-                    .map(([driver, data]) => [data.driver_name, data.expected_position])
-            )
-        );
-    
-        for (const driver in currenttempWDC1) {
-            tempWDCAll[driver] =
-                oldtempWDCAll[driver] -
-                currenttempWDCAll[driver];
-            tempWDC1[driver] =
-                currenttempWDC1[driver] -
-                oldtempWDC1[driver];
-        }
+        if (Object.hasOwn(predictionData.wcc_data, raceName)) {
+            teamCount++;
+            
+            currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
+            currentTempWDCAll = createTemp(racename,predictionData.wdc_data[racename],"notOne");
 
-        sortedWDC1 = Object.entries(tempWDC1)
-            .sort((a, b) => b[1] - a[1]);
-        sortedWDCAll = Object.entries(tempWDCAll)
-            .sort((a, b) => b[1] - a[1]);
+            sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
+            sortedWDCAll = createSorted(currentTempWDCAll,oldtempWCDAll)
 
-        if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
-            seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
-        }
-        if(sortedWDCAll[0][1]>seasonWDC1[0][0][0]) {
-            seasonWDC1=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
-        }
+            if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
+                seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
+            };
+            if(sortedWDCAll[0][1]>seasonWDC1[0][0][0]) {
+                seasonWDC1=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
+            };
+        };
 
-    }
+    };
+
+    if (teamCount>=5) {
+        const fiveCAgo = races[races.length - 5];
+
+        fiveC1 = createTemp(racename,predictionData.wcc_data[fiveCAgo],"one");
+        fiveCAll = createTemp(racename,predictionData.wcc_data[fiveCAgo],"notOne");
+
+        fiveC1S = createSorted(currentTempWCC1,fiveC1)
+        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll)
+
+        cateC=`<th>WDC</th>`
+        row1C=`<td>${fiveC1[0][0]}: +${fiveC1[0][1].toFixed(3)*100}% Champion Odds</td>`
+        row2C=`<td>${fiveC1.at(-1)[0]}: ${fiveC1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
+        row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
+        row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
+    };
+    if (driverCount>=5) {
+        const fiveDAgo = races[races.length - 5];
+        fiveD1 = createTemp(racename,predictionData.wdc_data[fiveDAgo],"one");
+        fiveDAll = createTemp(racename,predictionData.wdc_data[fiveDAgo],"notOne");
+
+        fiveD1S = createSorted(currentTempWDC1,fiveD1)
+        fiveDAllS = createSorted(currentTempWDCAll,fiveDAll)
+
+        cateD=`<th>WDC</th>`
+        row1D=`<td>${fiveD1[0][0]}: +${fiveD1[0][1].toFixed(3)*100}% Champion Odds</td>`
+        row2D=`<td>${fiveD1.at(-1)[0]}: ${fiveD1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
+        row3D=`<td>${fiveDAllS[0][0]}: +${fiveDAllS[0][1].toFixed(3)} Expected Positions</td>`
+        row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
+    };
     
 
     
@@ -915,7 +947,7 @@ function updateUpdates() {
                 <th>WDC</th>
                 <th>WCC</th>
             </tr>
-
+            
             <tr class="higher">
                 <td>Biggest World Champion Gain</td>
                 
@@ -936,6 +968,43 @@ function updateUpdates() {
                 <td>Biggest Overall Loser</td>
                 <td>${sortedWDCAll.at(-1)[0]}: ${sortedWDCAll.at(-1)[1].toFixed(3)} Expected Positions</td>
                 <td>${sortedWCCAll.at(-1)[0]}: ${sortedWCCAll.at(-1)[1].toFixed(3)} Expected Positions</td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <div>
+            <h3 style="text-align: center;">Biggest Standings Updates</h3>
+        </div>
+        <table class="update-table">
+
+            <tr>
+                <th>Category</th>
+                ${cateD}
+                ${cateC}
+            </tr>
+
+            <tr class="higher">
+                <td>Last 5 Races World Championship Gain</td>
+                
+                ${row1D}
+                ${row1C}
+            </tr>
+            <tr class="lower">
+                <td>Biggest World Champion Loser</td>
+                ${row2D}
+                ${row2C}
+            </tr>
+            <tr class="higher">
+                <td>Biggest Overall Gain</td>
+                ${row3C}
+                ${row3C}
+            </tr>
+            <tr class="lower">
+                <td>Biggest Overall Loser</td>
+                ${row4C}
+                ${row4C}
             </tr>
 
         </table>
