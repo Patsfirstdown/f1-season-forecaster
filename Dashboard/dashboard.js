@@ -890,7 +890,7 @@ function updateUpdates() {
                 }
             }
         }
-        if (Object.hasOwn(predictionData.wcc_data, racename)) {
+        if (Object.hasOwn(predictionData.wdc_data, racename)) {
             driverCount++;
             console.log("preWDC1" + driverCount + predictionData.wdc_data[racename]);
             currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
@@ -903,7 +903,7 @@ function updateUpdates() {
             }
             else {
                 sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
-                sortedWDCAll = createSorted(currentTempWDCAll,oldtempWCDAll)
+                sortedWDCAll = createSorted(currentTempWDCAll,oldtempWDCAll)
                 console.log(sortedWDC1)
     
                 if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
