@@ -964,7 +964,7 @@ function updateUpdates() {
     if (teamCount>=5) {
         const fiveCAgo = races[races.length - 5];
 
-        fiveC1 = normalizeWCC(fiveCAgo,predictionData.wcc_data[fiveCAgo]);
+        fiveC1 = normalizeWCC(predictionData.wcc_data[fiveCAgo]);
 
         fiveC1S = createSorted(currentWCC,fiveC1,"exp");
         fiveCAllS = createSorted(currentWCC,fiveC1,"winProb");
@@ -973,12 +973,12 @@ function updateUpdates() {
         console.log(fiveCAllS)
 
         cateC=`<th>WDC</th>`
-        row1C=`<td>${fiveC1S[0][0]}: +${fiveC1S[0][1].toFixed(3)*100}% Champion Odds</td>`
-        row2C=`<td>${fiveC1S.at(-1)[0]}: ${fiveC1S.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
-        row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
-        row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
+        row1C=`<td>${fiveC1S[0][0].name}: +${fiveC1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
+        row2C=`<td>${fiveC1S.at(-1)[1].name}: ${fiveC1S.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>`
+        row3C=`<td>${fiveCAllS[0][0].name}: +${fiveCAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4C=`<td>${fiveCAllS.at.at(-1)[1].name}: ${fiveCAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
     } else {
-        fiveC1 = normalizeWCC(firstCRace,predictionData.wcc_data[firstCRace]);
+        fiveC1 = normalizeWCC(predictionData.wcc_data[firstCRace]);
 
         console.log(fiveC1)
 
@@ -997,7 +997,7 @@ function updateUpdates() {
     }
     if (driverCount>=5) {
         const fiveDAgo = races[races.length - 5];
-        fiveD1 = normalizeWCC(fiveDAgo,predictionData.wdc_data[fiveDAgo]);
+        fiveD1 = normalizeWCC(predictionData.wdc_data[fiveDAgo]);
 
         fiveD1S = createSorted(currentWDC,fiveD1,"exp");
         fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
@@ -1008,7 +1008,7 @@ function updateUpdates() {
         row3D=`<td>${fiveDAllS[0][0]}: +${fiveDAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
-        fiveD1 = normalizeWCC(firstDRace,predictionData.wdc_data[firstDRace]);
+        fiveD1 = normalizeWCC(predictionData.wdc_data[firstDRace]);
 
         fiveD1S = createSorted(currentWDC,fiveD1,"exp");
         fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
