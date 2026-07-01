@@ -793,33 +793,6 @@ function updateVolatilityChart() {
     });
 }
 
-function createTemp(racename,driver_team,one_all) {
-    if(one_all==="one"){
-        currenttemp = Object.entries(
-            Object.fromEntries(
-                Object.entries(driver_team)
-                    .map(([key, data]) => [
-                        data?.driver_name ?? key,
-                        Number(data?.[1] ?? data?.expected_position)
-                    ])
-            )
-        );
-    }
-    else {
-        currenttemp = Object.entries(
-            Object.fromEntries(
-                Object.entries(driver_team)
-                    .map(([key, data]) => [
-                        data?.driver_name ?? key,
-                        Number(data?.[1] ?? data?.expected_position)
-                    ])
-            )
-        );
-    }
-
-    return currenttemp
-}
-
 function normalizeWDC(driver_team) {
     const out = {};
 
@@ -924,7 +897,10 @@ function updateUpdates() {
                 sortedWCCAll = createSorted(currentWCC,oldtempWCC,"exp")
                 sortedWCC1 = createSorted(currentWCC,oldtempWCC,"winProb")
 
+                console.log(`${sortedWCC1[0][1].value}>${seasonWCC1big[2]}`)
+
                 if(sortedWCC1[0][1].value>seasonWCC1big[2]) {
+                    console.log(`SAVE: ${racename},${sortedWCC1[0][1].name},${sortedWCC1[0][1].value}`)
                     seasonWCC1big=[racename,sortedWCC1[0][1].name,sortedWCC1[0][1].value]
                 }
                 if(sortedWCCAll[0][1].value>seasonWCCAllbig[2]) {
@@ -950,11 +926,10 @@ function updateUpdates() {
             else {
                 sortedWDCAll = createSorted(currentWDC,oldtempWDC,"exp")
                 sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
-
-                console.log(sortedWDCAll)
-                console.log(seasonWDC1big)
     
+                console.log(`${sortedWCC1[0][1].value}>${seasonWCC1big[2]}`)
                 if(sortedWDC1[0][1].value>seasonWDC1big[2]) {
+                    console.log(`SAVE: ${racename},${sortedWCC1[0][1].name},${sortedWCC1[0][1].value}`)
                     seasonWDC1big=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
                 };
                 if(sortedWDCAll[0][1].value>seasonWDCAllbig[2]) {
@@ -979,9 +954,6 @@ function updateUpdates() {
         fiveCAllS = createSorted(currentWCC,fiveC1,"exp");
         fiveC1S = createSorted(currentWCC,fiveC1,"winProb");
 
-        console.log(fiveC1S)
-        console.log(fiveCAllS)
-
         cateC=`<th>WCC</th>`
         row1C=`<td>${fiveC1S[0][1].name}: +${(fiveC1S[0][1].value*100).toFixed(3)}% Champion Odds</td>`
         row2C=`<td>${fiveC1S.at(-1)[1].name}: ${(fiveC1S.at(-1)[1].value*100).toFixed(3)}% Champion Odds</td>`
@@ -990,13 +962,8 @@ function updateUpdates() {
     } else {
         fiveC1 = normalizeWCC(predictionData.wcc_data[firstCRace]);
 
-        console.log(fiveC1)
-
         fiveCAllS = createSorted(currentWCC,fiveC1,"exp");
         fiveC1S = createSorted(currentWCC,fiveC1,"winProb");
-
-        console.log(fiveC1S)
-        console.log(fiveCAllS)
 
         cateC=`<th>WCC</th>`
         row1C=`<td>${fiveC1S[0][1].name}: +${(fiveC1S[0][1].value*100).toFixed(3)}% Champion Odds</td>`
@@ -1011,8 +978,6 @@ function updateUpdates() {
 
         fiveDAllS = createSorted(currentWDC,fiveD1,"exp");
         fiveD1S = createSorted(currentWDC,fiveD1,"winProb");
-
-        console.log(`HELLO ${fiveDAllS[0]}`)
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1S[0][1].name}: +${(fiveD1S[0][1].value*100).toFixed(3)}% Champion Odds</td>`
@@ -1031,10 +996,6 @@ function updateUpdates() {
         row3D=`<td>${fiveDAllS[0][1].name}: +${fiveDAllS[0][1].value.toFixed(3)} Expected Positions</td>`
         row4D=`<td>${fiveDAllS.at(-1)[1].name}: ${fiveDAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
     };
-    
-    console.log("sortedWDC1", sortedWDC1);
-    console.log("top value", sortedWDC1?.[0]);
-    console.log("value type", typeof sortedWDC1?.[0]?.[1]);
     
     document.getElementById("raceUpdates").innerHTML = `
 
