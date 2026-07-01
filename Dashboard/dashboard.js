@@ -964,7 +964,7 @@ function updateUpdates() {
     if (teamCount>=5) {
         const fiveCAgo = races[races.length - 5];
 
-        fiveC1 = createTemp(fiveCAgo,predictionData.wcc_data[fiveCAgo]);
+        fiveC1 = normalizeWCC(fiveCAgo,predictionData.wcc_data[fiveCAgo]);
 
         fiveC1S = createSorted(currentWCC,fiveC1,"exp");
         fiveCAllS = createSorted(currentWCC,fiveC1,"winProb");
@@ -978,7 +978,7 @@ function updateUpdates() {
         row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
-        fiveC1 = createTemp(firstCRace,predictionData.wcc_data[firstCRace]);
+        fiveC1 = normalizeWCC(firstCRace,predictionData.wcc_data[firstCRace]);
 
         console.log(fiveC1)
 
@@ -997,7 +997,7 @@ function updateUpdates() {
     }
     if (driverCount>=5) {
         const fiveDAgo = races[races.length - 5];
-        fiveD1 = createTemp(fiveDAgo,predictionData.wdc_data[fiveDAgo]);
+        fiveD1 = normalizeWCC(fiveDAgo,predictionData.wdc_data[fiveDAgo]);
 
         fiveD1S = createSorted(currentWDC,fiveD1,"exp");
         fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
@@ -1008,7 +1008,7 @@ function updateUpdates() {
         row3D=`<td>${fiveDAllS[0][0]}: +${fiveDAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
-        fiveD1 = createTemp(firstDRace,predictionData.wdc_data[firstDRace]);
+        fiveD1 = normalizeWCC(firstDRace,predictionData.wdc_data[firstDRace]);
 
         fiveD1S = createSorted(currentWDC,fiveD1,"exp");
         fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
