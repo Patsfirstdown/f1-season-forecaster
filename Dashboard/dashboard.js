@@ -929,8 +929,7 @@ function updateUpdates() {
         row2C=`<td>${fiveC1.at(-1)[0]}: ${fiveC1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
         row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
-    };
-    else {
+    } else {
         const fiveCAgo = races[0];
 
         fiveC1 = createTemp(racename,predictionData.wcc_data[fiveCAgo],"one");
@@ -959,8 +958,7 @@ function updateUpdates() {
         row2D=`<td>${fiveD1.at(-1)[0]}: ${fiveD1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
         row3D=`<td>${fiveDAllS[0][0]}: +${fiveDAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
-    };
-    else {
+    } else {
         const fiveDAgo = races[0];
         fiveD1 = createTemp(racename,predictionData.wdc_data[fiveDAgo],"one");
         fiveDAll = createTemp(racename,predictionData.wdc_data[fiveDAgo],"notOne");
