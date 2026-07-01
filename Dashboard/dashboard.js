@@ -798,9 +798,9 @@ function createTemp(racename,driver_team,one_all) {
         currenttemp = Object.entries(
             Object.fromEntries(
                 Object.entries(driver_team)
-                    .map(([driver, data]) => [
-                        data.driver_name,
-                        Number(data[1])
+                    .map(([key, data]) => [
+                        data?.driver_name ?? key,
+                        Number(data?.[1] ?? data?.expected_position)
                     ])
             )
         );
@@ -809,9 +809,9 @@ function createTemp(racename,driver_team,one_all) {
         currenttemp = Object.entries(
             Object.fromEntries(
                 Object.entries(driver_team)
-                    .map(([driver, data]) => [
-                        data.driver_name,
-                        Number(data.expected_position)
+                    .map(([key, data]) => [
+                        data?.driver_name ?? key,
+                        Number(data?.[1] ?? data?.expected_position)
                     ])
             )
         );
@@ -820,19 +820,52 @@ function createTemp(racename,driver_team,one_all) {
     return currenttemp
 }
 
-function createSorted(currenttemp, oldtemp) {
-    let tempOther = {};
+function normalizeWDC(driver_team) {
+    const out = {};
 
-    for (const driver in currenttemp) {
-        const oldVal = Number(oldtemp?.[driver]);
-        const newVal = Number(currenttemp?.[driver]);
-
-        tempOther[driver] = oldVal - newVal;
+    for (const [key, data] of Object.entries(driver_team)) {
+        out[key] = {
+            exp: Number(data?.expected_position),
+            winProb: Number(data?.[1]),
+            name: data?.driver_name ?? key
+        };
     }
 
-    return Object.entries(tempOther)
-        .filter(([_, v]) => Number.isFinite(v))
-        .sort((a, b) => b[1] - a[1]);
+    return out;
+}
+
+function normalizeWCC(team_data) {
+    const out = {};
+
+    for (const [key, data] of Object.entries(team_data)) {
+        out[key] = {
+            exp: Number(data?.expected_position),
+            winProb: Number(data?.[1]),
+            name: key
+        };
+    }
+
+    return out;
+}
+
+function createSorted(current, old, metric) {
+    const diff = {};
+
+    for (const key in current) {
+
+        const currVal = current?.[key]?.[metric];
+        const oldVal = old?.[key]?.[metric];
+
+        if (!Number.isFinite(currVal) || !Number.isFinite(oldVal)) continue;
+
+        diff[key] = {
+            name: current[key].name,
+            value: oldVal - currVal
+        };
+    }
+
+    return Object.entries(diff)
+        .sort((a, b) => b[1].value - a[1].value);
 }
 
 function updateUpdates() {
@@ -887,14 +920,14 @@ function updateUpdates() {
                 firstCRace=racename;
             }
             teamCount++;
-            currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one");
-            currentTempWCCAll = createTemp(racename,predictionData.wcc_data[racename],"notOne");
+
+            currentWCC = normalizeWCC(predictionData.wcc_data[racename]);
             if(!oldtempWCC1) {
                 //skip
             }
             else {
-                sortedWCC1 = createSorted(currentTempWCC1,oldtempWCC1)
-                sortedWCCAll = createSorted(currentTempWCCAll,oldtempWCCAll)
+                sortedWCCAll = createSorted(currentTempWCC1,oldtempWCC1,"exp")
+                sortedWCC1 = createSorted(currentTempWCC1,oldtempWCC1,"winProb")
     
                 if(sortedWCC1[0][1]>seasonWCC1big[2]) {
                     seasonWCC1big=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
@@ -915,15 +948,13 @@ function updateUpdates() {
                 firstDRace=racename;
             }
             driverCount++;
-            currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
-            currentTempWDCAll = createTemp(racename,predictionData.wdc_data[racename],"notOne");
-
+            currentWDC = normalizeWDC(predictionData.wdc_data[racename]);
             if(!oldtempWDC1) {
                 //skip
             }
             else {
-                sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
-                sortedWDCAll = createSorted(currentTempWDCAll,oldtempWDCAll)
+                sortedWDCAll = createSorted(currentTempWDC1,oldtempWDC1,"exp")
+                sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1,"winProb")
     
                 if(sortedWDC1[0][1]>seasonWDC1big[2]) {
                     seasonWDC1big=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
