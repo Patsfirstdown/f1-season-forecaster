@@ -985,11 +985,11 @@ function updateUpdates() {
 
         console.log(fiveC1)
 
-        fiveC1S = createSorted(currentWCC,fiveC1,"exp");
-        fiveCAllS = createSorted(currentWCC,fiveC1,"winProb");
+        fiveCAllS = createSorted(currentWCC,fiveC1,"exp");
+        fiveC1S = createSorted(currentWCC,fiveC1,"winProb");
 
-        console.log(fiveC1S[0])
-        console.log(fiveCAllS[0])
+        console.log(fiveC1S)
+        console.log(fiveCAllS)
 
         cateC=`<th>WDC</th>`
         row1C=`<td>${fiveC1S[0][1].name}: +${fiveC1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
@@ -1002,10 +1002,10 @@ function updateUpdates() {
         const fiveDAgo = races[races.length - 5];
         fiveD1 = normalizeWCC(predictionData.wdc_data[fiveDAgo]);
 
-        fiveD1S = createSorted(currentWDC,fiveD1,"exp");
-        fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
+        fiveDAllS = createSorted(currentWDC,fiveD1,"exp");
+        fiveD1S = createSorted(currentWDC,fiveD1,"winProb");
 
-        console.log(`HELLO ${fiveDAllS}`)
+        console.log(`HELLO ${fiveDAllS[0}`)
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1S[0][1].name}: +${fiveD1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
@@ -1015,8 +1015,8 @@ function updateUpdates() {
     } else {
         fiveD1 = normalizeWCC(predictionData.wdc_data[firstDRace]);
 
-        fiveD1S = createSorted(currentWDC,fiveD1,"exp");
-        fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
+        fiveDAllS = createSorted(currentWDC,fiveD1,"exp");
+        fiveD1S = createSorted(currentWDC,fiveD1,"winProb");
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1S[0][1].name}: +${fiveD1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
