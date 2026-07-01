@@ -1036,9 +1036,11 @@ function updateUpdates() {
         </table>
 
         <br>
+        <br>
+        <br>
 
         <div>
-            <h3 style="text-align: center;">Biggest 5 Races World Championship Changes</h3>
+            <h3 style="text-align: center;">Biggest 5 Races World Championship Movements</h3>
         </div>
         <table class="update-table">
 
@@ -1075,7 +1077,7 @@ function updateUpdates() {
         <br>
 
         <div>
-            <h3 style="text-align: center;">Biggest Standings Updates</h3>
+            <h3 style="text-align: center;">Biggest Standings Movements</h3>
         </div>
         <table class="update-table">
 
@@ -1088,23 +1090,23 @@ function updateUpdates() {
             <tr class="higher">
                 <td>Biggest World Champion Gain</td>
                 
-                <td>${seasonWDC1big[0]} ${seasonWDC1big[1]}: +${(seasonWDC1big[2]*100).toFixed(3)}% Champion Odds</td>
-                <td>${seasonWCC1big[0]} ${seasonWCC1big[1]}: +${(seasonWCC1big[2]*100).toFixed(3)}% Champion Odds</td>
+                <td>Pre-${seasonWDC1big[0]} ${seasonWDC1big[1]}: +${(seasonWDC1big[2]*100).toFixed(3)}% Champion Odds</td>
+                <td>Pre-${seasonWCC1big[0]} ${seasonWCC1big[1]}: +${(seasonWCC1big[2]*100).toFixed(3)}% Champion Odds</td>
             </tr>
             <tr class="lower">
                 <td>Biggest World Champion Loser</td>
-                <td>${seasonWDC1small[0]} ${seasonWDC1small[1]}: ${(seasonWDC1small[2]*100).toFixed(3)}% Champion Odds</td>
-                <td>${seasonWCC1small[0]} ${seasonWCC1small[1]}: ${(seasonWCC1small[2]*100).toFixed(3)}% Champion Odds</td>
+                <td>Pre-${seasonWDC1small[0]} ${seasonWDC1small[1]}: ${(seasonWDC1small[2]*100).toFixed(3)}% Champion Odds</td>
+                <td>Pre-${seasonWCC1small[0]} ${seasonWCC1small[1]}: ${(seasonWCC1small[2]*100).toFixed(3)}% Champion Odds</td>
             </tr>
             <tr class="higher">
                 <td>Biggest Overall Gain</td>
-                <td>${seasonWDCAllbig[0]} ${seasonWDCAllbig[1]}: +${seasonWDCAllbig[2].toFixed(3)} Expected Positions</td>
-                <td>${seasonWCCAllbig[0]} ${seasonWCCAllbig[1]}: +${seasonWCCAllbig[2].toFixed(3)} Expected Positions</td>
+                <td>Pre-${seasonWDCAllbig[0]} ${seasonWDCAllbig[1]}: +${seasonWDCAllbig[2].toFixed(3)} Expected Positions</td>
+                <td>Pre-${seasonWCCAllbig[0]} ${seasonWCCAllbig[1]}: +${seasonWCCAllbig[2].toFixed(3)} Expected Positions</td>
             </tr>
             <tr class="lower">
                 <td>Biggest Overall Loser</td>
-                <td>${seasonWDCAllsmall[0]} ${seasonWDCAllsmall[1]}: ${seasonWDCAllsmall[2].toFixed(3)} Expected Positions</td>
-                <td>${seasonWCCAllsmall[0]} ${seasonWCCAllsmall[1]}: ${seasonWCCAllsmall[2].toFixed(3)} Expected Positions</td>
+                <td>Pre-${seasonWDCAllsmall[0]} ${seasonWDCAllsmall[1]}: ${seasonWDCAllsmall[2].toFixed(3)} Expected Positions</td>
+                <td>Pre-${seasonWCCAllsmall[0]} ${seasonWCCAllsmall[1]}: ${seasonWCCAllsmall[2].toFixed(3)} Expected Positions</td>
             </tr>
 
         </table>
