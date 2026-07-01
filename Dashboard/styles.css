@@ -476,7 +476,10 @@ div.description{
     font-style: italic;
 }
 
-.update-table th,td{
-    padding: 16px;
-    
+.update-table th{
+    padding: 16px;    
+}
+
+.update-table td{
+    padding: 16px;    
 }
