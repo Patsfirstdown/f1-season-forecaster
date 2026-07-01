@@ -927,9 +927,9 @@ function updateUpdates() {
                 sortedWDCAll = createSorted(currentWDC,oldtempWDC,"exp")
                 sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
     
-                console.log(`${sortedWCC1[0][1].value}>${seasonWCC1big[2]}`)
+                console.log(`${sortedWDC1[0][1].value}>${seasonWDC1big[2]}`)
                 if(sortedWDC1[0][1].value>seasonWDC1big[2]) {
-                    console.log(`SAVE: ${racename},${sortedWCC1[0][1].name},${sortedWCC1[0][1].value}`)
+                    console.log(`SAVE: ${racename},${sortedWDC1[0][1].name},${sortedWDC1[0][1].value}`)
                     seasonWDC1big=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
                 };
                 if(sortedWDCAll[0][1].value>seasonWDCAllbig[2]) {
