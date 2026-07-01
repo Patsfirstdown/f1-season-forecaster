@@ -826,7 +826,7 @@ function normalizeWDC(driver_team) {
     for (const [key, data] of Object.entries(driver_team)) {
         out[key] = {
             exp: Number(data?.expected_finish),
-            winProb: Number(data?.[1]),
+            winProb: Number(data?.["1"]),
             name: data?.driver_name ?? key
         };
     }
@@ -840,7 +840,7 @@ function normalizeWCC(team_data) {
     for (const [key, data] of Object.entries(team_data)) {
         out[key] = {
             exp: Number(data?.expected_finish),
-            winProb: Number(data?.[1]),
+            winProb: Number(data?.["1"]),
             name: key
         };
     }
@@ -948,13 +948,13 @@ function updateUpdates() {
                     seasonWDC1big=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
                 };
                 if(sortedWDCAll[0][1].value>seasonWDC1big[2]) {
-                    seasonWDC1big=[racename,sortedWDCAll[0][1].name,sortedWDCAll[0][1].value]
+                    seasonWDCAllbig=[racename,sortedWDCAll[0][1].name,sortedWDCAll[0][1].value]
                 };
                 if(sortedWDC1.at(-1)[1].value<seasonWDC1small[2]) {
                     seasonWDC1small=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
                 };
-                if(sortedWDCAll.at(-1)[1].value<seasonWDC1small[2]) {
-                    seasonWDC1small=[racename,sortedWDCAll[0][1].name,sortedWDCAll[0][1].value]
+                if(sortedWDCAll.at(-1)[1].value<seasonWDCAllsmall[2]) {
+                    seasonWDCAllsmall=[racename,sortedWDCAll[0][1].name,sortedWDCAll[0][1].value]
                 };
             }
         };
@@ -1120,8 +1120,8 @@ function updateUpdates() {
             </tr>
             <tr class="lower">
                 <td>Biggest World Champion Loser</td>
-                <td>${seasonWDC1small[0]} ${seasonWDC1small[1]}: ${seasonWDC1small[2].toFixed(3)*100}% Champion Odds</td>
-                <td>${seasonWCC1small[0]} ${seasonWCC1small[1]}: ${seasonWCC1small[2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWDC1small[0]} ${seasonWDC1small[1]}: -${seasonWDC1small[2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWCC1small[0]} ${seasonWCC1small[1]}: -${seasonWCC1small[2].toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="higher">
                 <td>Biggest Overall Gain</td>
@@ -1130,8 +1130,8 @@ function updateUpdates() {
             </tr>
             <tr class="lower">
                 <td>Biggest Overall Loser</td>
-                <td>${seasonWDCAllsmall[0]} ${seasonWDCAllsmall[1]}: ${seasonWDCAllsmall[2].toFixed(3)} Expected Positions</td>
-                <td>${seasonWCCAllsmall[0]} ${seasonWCCAllsmall[1]}: ${seasonWCCAllsmall[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWDCAllsmall[0]} ${seasonWDCAllsmall[1]}: -${seasonWDCAllsmall[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWCCAllsmall[0]} ${seasonWCCAllsmall[1]}: -${seasonWCCAllsmall[2].toFixed(3)} Expected Positions</td>
             </tr>
 
         </table>
