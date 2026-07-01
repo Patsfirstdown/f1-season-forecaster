@@ -926,16 +926,16 @@ function updateUpdates() {
                 sortedWCCAll = createSorted(currentWCC,oldtempWCC,"exp")
                 sortedWCC1 = createSorted(currentWCC,oldtempWCC,"winProb")
 
-                if(sortedWCC1[0][1]>seasonWCC1big[2]) {
+                if(sortedWCC1[0][1].value>seasonWCC1big[2]) {
                     seasonWCC1big=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
                 }
-                if(sortedWCCAll[0][1]>seasonWCC1big[2]) {
+                if(sortedWCCAll[0][1].value>seasonWCC1big[2]) {
                     seasonWCC1big=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
                 }
-                if(sortedWCC1[0][1]<seasonWCC1small[2]) {
+                if(sortedWCC1.at(-1)[1].value<seasonWCC1small[2]) {
                     seasonWCC1small=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
                 }
-                if(sortedWCCAll[0][1]<seasonWCC1small[2]) {
+                if(sortedWCCAll.at(-1)[1].value<seasonWCC1small[2]) {
                     seasonWCC1small=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
                 }
             }
@@ -950,22 +950,23 @@ function updateUpdates() {
                 //skip
             }
             else {
+                console.log(currentWDC)
                 sortedWDCAll = createSorted(currentWDC,oldtempWDC,"exp")
                 sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
 
                 console.log(sortedWDCAll)
                 console.log(sortedWDC1)
     
-                if(sortedWDC1[0][1]>seasonWDC1big[2]) {
+                if(sortedWDC1[0][1].value>seasonWDC1big[2]) {
                     seasonWDC1big=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
                 };
-                if(sortedWDCAll[0][1]>seasonWDC1big[2]) {
+                if(sortedWDCAll[0][1].value>seasonWDC1big[2]) {
                     seasonWDC1big=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
                 };
-                if(sortedWDC1[0][1]<seasonWDC1small[2]) {
+                if(sortedWDC1.at(-1)[1].value<seasonWDC1small[2]) {
                     seasonWDC1small=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
                 };
-                if(sortedWDCAll[0][1]<seasonWDC1small[2]) {
+                if(sortedWDCAll.at(-1)[1].value<seasonWDC1small[2]) {
                     seasonWDC1small=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
                 };
             }
