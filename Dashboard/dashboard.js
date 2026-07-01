@@ -992,7 +992,7 @@ function updateUpdates() {
         row1C=`<td>${fiveC1S[0][1].name}: +${fiveC1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
         row2C=`<td>${fiveC1S.at(-1)[1].name}: ${fiveC1S.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>`
         row3C=`<td>${fiveCAllS[0][1]}.name: +${fiveCAllS[0][1].value.toFixed(3)} Expected Positions</td>`
-        row4C=`<td>${fiveCAllS.at(-1)[1].name}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
+        row4C=`<td>${fiveCAllS.at(-1)[1].name}: ${fiveCAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
 
     }
     if (driverCount>=5) {
