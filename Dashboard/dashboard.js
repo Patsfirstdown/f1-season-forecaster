@@ -969,8 +969,8 @@ function updateUpdates() {
 
         fiveC1 = normalizeWCC(predictionData.wcc_data[fiveCAgo]);
 
-        fiveC1S = createSorted(currentWCC,fiveC1,"exp");
-        fiveCAllS = createSorted(currentWCC,fiveC1,"winProb");
+        fiveCAllS = createSorted(currentWCC,fiveC1,"exp");
+        fiveC1S = createSorted(currentWCC,fiveC1,"winProb");
 
         console.log(fiveC1S)
         console.log(fiveCAllS)
@@ -988,8 +988,8 @@ function updateUpdates() {
         fiveC1S = createSorted(currentWCC,fiveC1,"exp");
         fiveCAllS = createSorted(currentWCC,fiveC1,"winProb");
 
-        console.log(fiveC1S)
-        console.log(fiveCAllS)
+        console.log(fiveC1S[0])
+        console.log(fiveCAllS[0])
 
         cateC=`<th>WDC</th>`
         row1C=`<td>${fiveC1S[0][1].name}: +${fiveC1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
