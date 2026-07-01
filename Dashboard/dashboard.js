@@ -925,7 +925,7 @@ function updateUpdates() {
             else {
                 sortedWCCAll = createSorted(currentWCC,oldtempWCC,"exp")
                 sortedWCC1 = createSorted(currentWCC,oldtempWCC,"winProb")
-    
+
                 if(sortedWCC1[0][1]>seasonWCC1big[2]) {
                     seasonWCC1big=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
                 }
@@ -952,6 +952,9 @@ function updateUpdates() {
             else {
                 sortedWDCAll = createSorted(currentWDC,oldtempWDC,"exp")
                 sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
+
+                console.log(sortedWDCAll)
+                console.log(sortedWDC1)
     
                 if(sortedWDC1[0][1]>seasonWDC1big[2]) {
                     seasonWDC1big=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
