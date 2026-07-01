@@ -867,7 +867,7 @@ function updateUpdates() {
         oldtempWCC1=sortedWCC1;
         oldtempWDCAll=sortedWDCAll;
         oldtempWCCAll=sortedWCCAll;
-        if (Object.hasOwn(predictionData.wcc_data, raceName)) {
+        if (Object.hasOwn(predictionData.wcc_data, racename)) {
             teamCount++;
             
             currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one",oldtempWCC1);
@@ -883,7 +883,7 @@ function updateUpdates() {
                 seasonWCC1=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
             }
         }
-        if (Object.hasOwn(predictionData.wcc_data, raceName)) {
+        if (Object.hasOwn(predictionData.wcc_data, racename)) {
             teamCount++;
             
             currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
