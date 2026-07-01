@@ -995,6 +995,9 @@ function updateUpdates() {
         fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp");
         fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb");
 
+        console.log(fiveC1S)
+        console.log(fiveCAllS)
+
         cateC=`<th>WDC</th>`
         row1C=`<td>${fiveC1[0][0]}: +${fiveC1[0][1].toFixed(3)*100}% Champion Odds</td>`
         row2C=`<td>${fiveC1.at(-1)[0]}: ${fiveC1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
