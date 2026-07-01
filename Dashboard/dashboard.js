@@ -870,8 +870,9 @@ function updateUpdates() {
         oldtempWCCAll=sortedWCCAll;
         if (Object.hasOwn(predictionData.wcc_data, racename)) {
             teamCount++;
-            
+            console.log("preWCC1" + teamCount + predictionData.wcc_data[racename]);
             currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one",oldtempWCC1);
+            console.log("preWCCAll" + teamCount + predictionData.wcc_data[racename]);
             currentTempWCCAll = createTemp(racename,predictionData.wcc_data[racename],"notOne",oldtempWCCAll);
             if(!oldtempWCC1) {
                 console.log(oldtempWCC1);
@@ -891,8 +892,9 @@ function updateUpdates() {
         }
         if (Object.hasOwn(predictionData.wcc_data, racename)) {
             driverCount++;
-
+            console.log("preWDC1" + driverCount + predictionData.wdc_data[racename]);
             currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
+            console.log("preWDCAll" + driverCount + predictionData.wdc_data[racename]);
             currentTempWDCAll = createTemp(racename,predictionData.wdc_data[racename],"notOne");
 
             if(!oldtempWDC1) {
