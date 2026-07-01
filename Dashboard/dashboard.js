@@ -874,12 +874,13 @@ function updateUpdates() {
                 console.log("C MADE IT")
                 console.log(racename)
                 const firstCRace=racename;
+                console.log("firstCRace below")
+                console.log(firstCRace)
             }
             teamCount++;
             currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one",oldtempWCC1);
             currentTempWCCAll = createTemp(racename,predictionData.wcc_data[racename],"notOne",oldtempWCCAll);
             if(!oldtempWCC1) {
-                console.log(oldtempWCC1);
                 //skip
             }
             else {
@@ -904,7 +905,6 @@ function updateUpdates() {
 
             if(!oldtempWDC1) {
                 //skip
-                console.log(oldtempWDC1);
             }
             else {
                 sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
@@ -936,7 +936,8 @@ function updateUpdates() {
         row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
-        
+        console.log("CHECK HERE")
+        console.log(firstCRace)
         fiveC1 = createTemp(racename,predictionData.wcc_data[firstCRace],"one");
         fiveCAll = createTemp(racename,predictionData.wcc_data[firstCRace],"notOne");
 
