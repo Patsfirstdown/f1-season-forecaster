@@ -850,22 +850,24 @@ function normalizeWCC(team_data) {
 
 function createSorted(current, old, metric) {
     const diff = {};
+    console.log("RUNNING SORTED");
+    console.log(current);
 
     for (const key in current) {
-        console.log(key)
+        console.log(key);
         const currVal = current?.[key]?.[metric];
-        console.log(currVal)
+        console.log(currVal);
         const oldVal = old?.[key]?.[metric];
-        console.log(oldVal)
+        console.log(oldVal);
         if (!Number.isFinite(currVal) || !Number.isFinite(oldVal)) continue;
-        console.log("CONTINUE")
-        console.log(`${oldVal}-${currVal}=${oldVal - currVal}`)
+        console.log("CONTINUE");
+        console.log(`${oldVal}-${currVal}=${oldVal - currVal}`);
         diff[key] = {
             name: current[key].name,
             value: oldVal - currVal
         };
     }
-    console.log(diff)
+    console.log(diff);
 
     return Object.entries(diff)
         .sort((a, b) => b[1].value - a[1].value);
@@ -923,7 +925,7 @@ function updateUpdates() {
                 firstCRace=racename;
             }
             teamCount++;
-
+            console.log(`${teamCount}-${oldtempWCC1}`)
             currentWCC = normalizeWCC(predictionData.wcc_data[racename]);
             if(!oldtempWCC1) {
                 //skip
