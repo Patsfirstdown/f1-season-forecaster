@@ -920,13 +920,13 @@ function updateUpdates() {
                 if(sortedWCC1[0][1].value>seasonWCC1big[2]) {
                     seasonWCC1big=[racename,sortedWCC1[0][1].name,sortedWCC1[0][1].value]
                 }
-                if(sortedWCCAll[0][1].value>seasonWCC1big[2]) {
+                if(sortedWCCAll[0][1].value>seasonWCCAllbig[2]) {
                     seasonWCC1big=[racename,sortedWCCAll[0][1].name,sortedWCCAll[0][1].value]
                 }
                 if(sortedWCC1.at(-1)[1].value<seasonWCC1small[2]) {
                     seasonWCC1small=[racename,sortedWCC1[0][1].name,sortedWCC1[0][1].value]
                 }
-                if(sortedWCCAll.at(-1)[1].value<seasonWCC1small[2]) {
+                if(sortedWCCAll.at(-1)[1].value<seasonWCCAllsmall[2]) {
                     seasonWCC1small=[racename,sortedWCCAll[0][1].name,sortedWCCAll[0][1].value]
                 }
             }
@@ -943,11 +943,14 @@ function updateUpdates() {
             else {
                 sortedWDCAll = createSorted(currentWDC,oldtempWDC,"exp")
                 sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
+
+                console.log(sortedWDCAll)
+                console.log(seasonWDC1big)
     
                 if(sortedWDC1[0][1].value>seasonWDC1big[2]) {
                     seasonWDC1big=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
                 };
-                if(sortedWDCAll[0][1].value>seasonWDC1big[2]) {
+                if(sortedWDCAll[0][1].value>seasonWDCAllbig[2]) {
                     seasonWDCAllbig=[racename,sortedWDCAll[0][1].name,sortedWDCAll[0][1].value]
                 };
                 if(sortedWDC1.at(-1)[1].value<seasonWDC1small[2]) {
@@ -1001,6 +1004,8 @@ function updateUpdates() {
 
         fiveD1S = createSorted(currentWDC,fiveD1,"exp");
         fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
+
+        console.log(`HELLO ${fiveDAllS}`)
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1S[0][1].name}: +${fiveD1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
