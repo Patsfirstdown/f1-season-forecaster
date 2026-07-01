@@ -895,20 +895,14 @@ function updateUpdates() {
     
     const driverColors = predictionData.driverColor;
 
-    let currentTempWCC1;
-    let currentTempWDC1;
-    let currentTempWCCAll;
-    let currentTempWDCAll; 
+    let currentWCC;
+    let currentWDC;
 
-    let oldtempWDC1;
-    let oldtempWCC1;
-    let oldtempWDCAll;
-    let oldtempWCCAll;
+    let oldtempWDC;
+    let oldtempWCC;
 
-    let sortedWCC1;
-    let sortedWDC1;
-    let sortedWCCAll;
-    let sortedWDCAll;
+    let sortedWCC;
+    let sortedWDC;
 
     let teamCount=0;
     let driverCount=0;
@@ -916,10 +910,8 @@ function updateUpdates() {
     let firstDRace;
     
     for (racename of races) {
-        oldtempWDC1=currentTempWDC1;
-        oldtempWCC1=currentTempWCC1;
-        oldtempWDCAll=currentTempWDCAll;
-        oldtempWCCAll=currentTempWCCAll;
+        oldtempWDC=currentWDC;
+        oldtempWCC=currentWCC;
         if (Object.hasOwn(predictionData.wcc_data, racename)) {
             if (teamCount<1) {
                 firstCRace=racename;
@@ -931,8 +923,8 @@ function updateUpdates() {
                 //skip
             }
             else {
-                sortedWCCAll = createSorted(currentTempWCC1,oldtempWCC1,"exp")
-                sortedWCC1 = createSorted(currentTempWCC1,oldtempWCC1,"winProb")
+                sortedWCCAll = createSorted(currentWCC,oldtempWCC,"exp")
+                sortedWCC1 = createSorted(currentWCC,oldtempWCC,"winProb")
     
                 if(sortedWCC1[0][1]>seasonWCC1big[2]) {
                     seasonWCC1big=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
@@ -958,8 +950,8 @@ function updateUpdates() {
                 //skip
             }
             else {
-                sortedWDCAll = createSorted(currentTempWDC1,oldtempWDC1,"exp")
-                sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1,"winProb")
+                sortedWDCAll = createSorted(currentWDC,oldtempWDC,"exp")
+                sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
     
                 if(sortedWDC1[0][1]>seasonWDC1big[2]) {
                     seasonWDC1big=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
@@ -983,8 +975,8 @@ function updateUpdates() {
 
         fiveC1 = createTemp(fiveCAgo,predictionData.wcc_data[fiveCAgo]);
 
-        fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp");
-        fiveCAllS = createSorted(currentTempWCCAll,fiveC1,"winProb");
+        fiveC1S = createSorted(currentWCC,fiveC1,"exp");
+        fiveCAllS = createSorted(currentWCC,fiveC1,"winProb");
 
         console.log(fiveC1S)
         console.log(fiveCAllS)
@@ -999,8 +991,8 @@ function updateUpdates() {
 
         console.log(fiveC1)
 
-        fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp");
-        fiveCAllS = createSorted(currentTempWCCAll,fiveC1,"winProb");
+        fiveC1S = createSorted(currentWCC,fiveC1,"exp");
+        fiveCAllS = createSorted(currentWCC,fiveC1,"winProb");
 
         console.log(fiveC1S)
         console.log(fiveCAllS)
@@ -1016,8 +1008,8 @@ function updateUpdates() {
         const fiveDAgo = races[races.length - 5];
         fiveD1 = createTemp(fiveDAgo,predictionData.wdc_data[fiveDAgo]);
 
-        fiveD1S = createSorted(currentTempWDC1,fiveD1,"exp");
-        fiveDAllS = createSorted(currentTempWDCAll,fiveD1,"winProb");
+        fiveD1S = createSorted(currentWDC,fiveD1,"exp");
+        fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1S[0][0]}: +${fiveD1S[0][1].toFixed(3)*100}% Champion Odds</td>`
@@ -1027,8 +1019,8 @@ function updateUpdates() {
     } else {
         fiveD1 = createTemp(firstDRace,predictionData.wdc_data[firstDRace]);
 
-        fiveD1S = createSorted(currentTempWDC1,fiveD1,"exp");
-        fiveDAllS = createSorted(currentTempWDCAll,fiveD1,"winProb");
+        fiveD1S = createSorted(currentWDC,fiveD1,"exp");
+        fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1S[0][0]}: +${fiveD1S[0][1].toFixed(3)*100}% Champion Odds</td>`
