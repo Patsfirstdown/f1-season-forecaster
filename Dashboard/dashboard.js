@@ -1088,13 +1088,13 @@ function updateUpdates() {
             <tr class="higher">
                 <td>Biggest World Champion Gain</td>
                 
-                <td>${seasonWDC1big[0]} ${seasonWDC1big[1]}: +${(seasonWDC1big[2].value*100).toFixed(3)}% Champion Odds</td>
-                <td>${seasonWCC1big[0]} ${seasonWCC1big[1]}: +${(seasonWCC1big[2].value*100).toFixed(3)}% Champion Odds</td>
+                <td>${seasonWDC1big[0]} ${seasonWDC1big[1]}: +${(seasonWDC1big[2]*100).toFixed(3)}% Champion Odds</td>
+                <td>${seasonWCC1big[0]} ${seasonWCC1big[1]}: +${(seasonWCC1big[2]*100).toFixed(3)}% Champion Odds</td>
             </tr>
             <tr class="lower">
                 <td>Biggest World Champion Loser</td>
-                <td>${seasonWDC1small[0]} ${seasonWDC1small[1]}: ${(seasonWDC1small[2].value*100).toFixed(3)}% Champion Odds</td>
-                <td>${seasonWCC1small[0]} ${seasonWCC1small[1]}: ${(seasonWCC1small[2].value*100).toFixed(3)}% Champion Odds</td>
+                <td>${seasonWDC1small[0]} ${seasonWDC1small[1]}: ${(seasonWDC1small[2]*100).toFixed(3)}% Champion Odds</td>
+                <td>${seasonWCC1small[0]} ${seasonWCC1small[1]}: ${(seasonWCC1small[2]*100).toFixed(3)}% Champion Odds</td>
             </tr>
             <tr class="higher">
                 <td>Biggest Overall Gain</td>
