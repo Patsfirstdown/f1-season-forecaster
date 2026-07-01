@@ -794,6 +794,8 @@ function updateVolatilityChart() {
 }
 
 function createTemp(racename,driver_team,one_all,oldtemp,seasonWDC1) {
+    console.log("racename:", racename);
+    console.log("driver_team:", driver_team);
     if(one_all==="one"){
         currenttemp = Object.entries(
             Object.fromEntries(
@@ -864,10 +866,10 @@ function updateUpdates() {
     let driverCount=0;
     
     for (racename of races) {
-        oldtempWDC1=sortedWDC1;
-        oldtempWCC1=sortedWCC1;
-        oldtempWDCAll=sortedWDCAll;
-        oldtempWCCAll=sortedWCCAll;
+        oldtempWDC1=currentTempWDC1;
+        oldtempWCC1=currentTempWCC1;
+        oldtempWDCAll=currentTempWDCAll;
+        oldtempWCCAll=currentTempWCCAll;
         if (Object.hasOwn(predictionData.wcc_data, racename)) {
             teamCount++;
             console.log("preWCC1" + teamCount + predictionData.wcc_data[racename]);
