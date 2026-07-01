@@ -833,11 +833,16 @@ function updateUpdates() {
         predictionData.races
     );
 
-    let seasonWCC1=["race","driver",0];
-    let seasonWCCAll=["race","driver",0];
-    let seasonWDC1=["race","driver",0];
-    let seasonWDCAll=["race","driver",0];
+    let seasonWCC1big=["race","driver",0];
+    let seasonWCCAllbig=["race","driver",0];
+    let seasonWDC1big=["race","driver",0];
+    let seasonWDCAllbig=["race","driver",0];
 
+    let seasonWCC1small=["race","driver",0];
+    let seasonWCCAllsmall=["race","driver",0];
+    let seasonWDC1small=["race","driver",0];
+    let seasonWDCAllsmall=["race","driver",0];
+    
     const previousRace = races[races.length - 2];
     const driverNames = Object.keys(
         predictionData.race_data[previousRace]
@@ -884,11 +889,17 @@ function updateUpdates() {
                 sortedWCC1 = createSorted(currentTempWCC1,oldtempWCC1)
                 sortedWCCAll = createSorted(currentTempWCCAll,oldtempWCCAll)
     
-                if(sortedWCC1[0][1]>seasonWCC1[0][0][0]) {
-                    seasonWCC1=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
+                if(sortedWCC1[0][1]>seasonWCC1big[0][0][0]) {
+                    seasonWCC1big=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
                 }
-                if(sortedWCCAll[0][1]>seasonWCC1[0][0][0]) {
-                    seasonWCC1=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+                if(sortedWCCAll[0][1]>seasonWCC1big[0][0][0]) {
+                    seasonWCC1big=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+                }
+                if(sortedWCC1[0][1]<seasonWCC1small[0][0][0]) {
+                    seasonWCC1small=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
+                }
+                if(sortedWCCAll[0][1]<seasonWCC1small[0][0][0]) {
+                    seasonWCC1small=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
                 }
             }
         }
@@ -907,11 +918,17 @@ function updateUpdates() {
                 sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
                 sortedWDCAll = createSorted(currentTempWDCAll,oldtempWDCAll)
     
-                if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
-                    seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
+                if(sortedWDC1[0][1]>seasonWDC1big[0][0][0]) {
+                    seasonWDC1big=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
                 };
-                if(sortedWDCAll[0][1]>seasonWDC1[0][0][0]) {
-                    seasonWDC1=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
+                if(sortedWDCAll[0][1]>seasonWDC1big[0][0][0]) {
+                    seasonWDC1big=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
+                };
+                if(sortedWDC1[0][1]<seasonWDC1small[0][0][0]) {
+                    seasonWDC1small=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
+                };
+                if(sortedWDCAll[0][1]<seasonWDC1small[0][0][0]) {
+                    seasonWDC1small=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
                 };
             }
         };
@@ -974,7 +991,10 @@ function updateUpdates() {
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     };
     
-    console.log(seasonWDC1)
+    console.log(seasonWDC1big)
+    console.log(seasonWDC1big[0][2]);
+    console.log(typeof seasonWDC1big[0][2]);
+    console.log(seasonWDC1big[0][2] instanceof Number);
     
     document.getElementById("raceUpdates").innerHTML = `
 
@@ -1067,23 +1087,23 @@ function updateUpdates() {
             <tr class="higher">
                 <td>Biggest World Champion Gain</td>
                 
-                <td>${seasonWDC1[0][0]} ${seasonWDC1[0][1]}: +${seasonWDC1[0][2].toFixed(3)*100}% Champion Odds</td>
-                <td>${seasonWCC1[0][0]} ${seasonWCC1[0][1]}: +${seasonWCC1[0][2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWDC1big[0][0]} ${seasonWDC1big[0][1]}: +${seasonWDC1big[0][2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWCC1big[0][0]} ${seasonWCC1big[0][1]}: +${seasonWCC1big[0][2].toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="lower">
                 <td>Biggest World Champion Loser</td>
-                <td>${seasonWDC1.at(-1)[0]} ${seasonWDC1.at(-1)[1]}: ${seasonWDC1.at(-1)[2].toFixed(3)*100}% Champion Odds</td>
-                <td>${seasonWCC1.at(-1)[0]} ${seasonWCC1.at(-1)[1]}: ${seasonWCC1.at(-1)[2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWDC1small.at(-1)[0]} ${seasonWDC1small.at(-1)[1]}: ${seasonWDC1small.at(-1)[2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWCC1small.at(-1)[0]} ${seasonWCC1small.at(-1)[1]}: ${seasonWCC1small.at(-1)[2].toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="higher">
                 <td>Biggest Overall Gain</td>
-                <td>${seasonWDCAll[0][0]} ${seasonWDCAll[0][1]}: +${seasonWDCAll[0][2].toFixed(3)} Expected Positions</td>
-                <td>${seasonWCC1[0][0]} ${seasonWCCAll[0][1]}: +${seasonWCC1[0][2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWDCAllbig[0][0]} ${seasonWDCAllbig[0][1]}: +${seasonWDCAllbig[0][2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWCCAllbig[0][0]} ${seasonWCCAllbig[0][1]}: +${seasonWCCAllbig[0][2].toFixed(3)} Expected Positions</td>
             </tr>
             <tr class="lower">
                 <td>Biggest Overall Loser</td>
-                <td>${seasonWDCAll.at(-1)[0]} ${seasonWDC1.at(-1)[1]}: ${seasonWDCAll.at(-1)[2].toFixed(3)} Expected Positions</td>
-                <td>${seasonWCC1.at(-1)[0]} ${seasonWCC1.at(-1)[1]}: ${seasonWCC1.at(-1)[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWDCAllsmall.at(-1)[0]} ${seasonWDCAllsmall.at(-1)[1]}: ${seasonWDCAllsmall.at(-1)[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWCCAllsmall.at(-1)[0]} ${seasonWCCAllsmall.at(-1)[1]}: ${seasonWCCAllsmall.at(-1)[2].toFixed(3)} Expected Positions</td>
             </tr>
 
         </table>
