@@ -794,8 +794,6 @@ function updateVolatilityChart() {
 }
 
 function createTemp(racename,driver_team,one_all,oldtemp,seasonWDC1) {
-    console.log("racename:", racename);
-    console.log("driver_team:", driver_team);
     if(one_all==="one"){
         currenttemp = Object.entries(
             Object.fromEntries(
@@ -871,13 +869,14 @@ function updateUpdates() {
         oldtempWDCAll=currentTempWDCAll;
         oldtempWCCAll=currentTempWCCAll;
         if (Object.hasOwn(predictionData.wcc_data, racename)) {
+            console.log(teamCount)
             if (teamCount<1) {
-                const firstCRace=racename
+                console.log("C MADE IT")
+                console.log(racename)
+                const firstCRace=racename;
             }
             teamCount++;
-            console.log("preWCC1" + teamCount + predictionData.wcc_data[racename]);
             currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one",oldtempWCC1);
-            console.log("preWCCAll" + teamCount + predictionData.wcc_data[racename]);
             currentTempWCCAll = createTemp(racename,predictionData.wcc_data[racename],"notOne",oldtempWCCAll);
             if(!oldtempWCC1) {
                 console.log(oldtempWCC1);
@@ -897,12 +896,10 @@ function updateUpdates() {
         }
         if (Object.hasOwn(predictionData.wdc_data, racename)) {
             if (driverCount<1) {
-                const firstDRace=racename
+                const firstDRace=racename;
             }
             driverCount++;
-            console.log("preWDC1" + driverCount + predictionData.wdc_data[racename]);
             currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
-            console.log("preWDCAll" + driverCount + predictionData.wdc_data[racename]);
             currentTempWDCAll = createTemp(racename,predictionData.wdc_data[racename],"notOne");
 
             if(!oldtempWDC1) {
@@ -912,7 +909,6 @@ function updateUpdates() {
             else {
                 sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
                 sortedWDCAll = createSorted(currentTempWDCAll,oldtempWDCAll)
-                console.log(sortedWDC1)
     
                 if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
                     seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
