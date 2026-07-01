@@ -919,7 +919,7 @@ function updateUpdates() {
             teamCount++;
             console.log(`${teamCount}-${oldtempWCC1}`)
             currentWCC = normalizeWCC(predictionData.wcc_data[racename]);
-            if(!oldtempWCC1) {
+            if(!oldtempWCC) {
                 //skip
             }
             else {
@@ -946,7 +946,7 @@ function updateUpdates() {
             }
             driverCount++;
             currentWDC = normalizeWDC(predictionData.wdc_data[racename]);
-            if(!oldtempWDC1) {
+            if(!oldtempWDC) {
                 //skip
             }
             else {
