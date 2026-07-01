@@ -973,10 +973,10 @@ function updateUpdates() {
         console.log(fiveCAllS)
 
         cateC=`<th>WDC</th>`
-        row1C=`<td>${fiveC1S[0][0].name}: +${fiveC1S[0][0].value.toFixed(3)*100}% Champion Odds</td>`
-        row2C=`<td>${fiveC1S.at(-1)[1].name}: ${fiveC1S.at(-1)[0].value.toFixed(3)*100}% Champion Odds</td>`
-        row3C=`<td>${fiveCAllS[0][0].name}: +${fiveCAllS[0][0].value.toFixed(3)} Expected Positions</td>`
-        row4C=`<td>${fiveCAllS.at.at(-1)[1].name}: ${fiveCAllS.at(-1)[0].value.toFixed(3)} Expected Positions</td>`
+        row1C=`<td>${fiveC1S[0][1].name}: +${fiveC1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
+        row2C=`<td>${fiveC1S.at(-1)[1].name}: ${fiveC1S.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>`
+        row3C=`<td>${fiveCAllS[0][1].name}: +${fiveCAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4C=`<td>${fiveCAllS.at.at(-1)[1].name}: ${fiveCAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
     } else {
         fiveC1 = normalizeWCC(predictionData.wcc_data[firstCRace]);
 
@@ -989,10 +989,10 @@ function updateUpdates() {
         console.log(fiveCAllS)
 
         cateC=`<th>WDC</th>`
-        row1C=`<td>${fiveC1S[0][0].name}: +${fiveC1S[0][0].value.toFixed(3)*100}% Champion Odds</td>`
-        row2C=`<td>${fiveC1S.at(-1)[0].name}: ${fiveC1S.at(-1)[0].value.toFixed(3)*100}% Champion Odds</td>`
-        row3C=`<td>${fiveCAllS[0][0]}.name: +${fiveCAllS[0][0].value.toFixed(3)} Expected Positions</td>`
-        row4C=`<td>${fiveCAllS.at(-1)[0].name}: ${fiveCAllS.at(-1)[0].toFixed(3)} Expected Positions</td>`
+        row1C=`<td>${fiveC1S[0][1].name}: +${fiveC1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
+        row2C=`<td>${fiveC1S.at(-1)[1].name}: ${fiveC1S.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>`
+        row3C=`<td>${fiveCAllS[0][1]}.name: +${fiveCAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4C=`<td>${fiveCAllS.at(-1)[1].name}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
 
     }
     if (driverCount>=5) {
@@ -1003,10 +1003,10 @@ function updateUpdates() {
         fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
 
         cateD=`<th>WDC</th>`
-        row1D=`<td>${fiveD1S[0][0].name}: +${fiveD1S[0][0].value.toFixed(3)*100}% Champion Odds</td>`
-        row2D=`<td>${fiveD1S.at(-1)[0].name}: ${fiveD1S.at(-1)[0].value.toFixed(3)*100}% Champion Odds</td>`
-        row3D=`<td>${fiveDAllS[0][0].name}: +${fiveDAllS[0][0].value.toFixed(3)} Expected Positions</td>`
-        row4D=`<td>${fiveDAllS.at(-1)[0].name}: ${fiveDAllS.at(-1)[0].value.toFixed(3)} Expected Positions</td>`
+        row1D=`<td>${fiveD1S[0][1].name}: +${fiveD1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
+        row2D=`<td>${fiveD1S.at(-1)[1].name}: ${fiveD1S.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>`
+        row3D=`<td>${fiveDAllS[0][1].name}: +${fiveDAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4D=`<td>${fiveDAllS.at(-1)[1].name}: ${fiveDAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
     } else {
         fiveD1 = normalizeWCC(predictionData.wdc_data[firstDRace]);
 
@@ -1014,10 +1014,10 @@ function updateUpdates() {
         fiveDAllS = createSorted(currentWDC,fiveD1,"winProb");
 
         cateD=`<th>WDC</th>`
-        row1D=`<td>${fiveD1S[0][0].name}: +${fiveD1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
-        row2D=`<td>${fiveD1S.at(-1)[0].name}: ${fiveD1S.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>`
-        row3D=`<td>${fiveDAllS[0][0].name}: +${fiveDAllS[0][1].value.toFixed(3)} Expected Positions</td>`
-        row4D=`<td>${fiveDAllS.at(-1)[0].name}: ${fiveDAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
+        row1D=`<td>${fiveD1S[0][1].name}: +${fiveD1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
+        row2D=`<td>${fiveD1S.at(-1)[1].name}: ${fiveD1S.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>`
+        row3D=`<td>${fiveDAllS[0][1].name}: +${fiveDAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4D=`<td>${fiveDAllS.at(-1)[1].name}: ${fiveDAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
     };
     
     console.log("sortedWDC1", sortedWDC1);
@@ -1041,23 +1041,23 @@ function updateUpdates() {
             <tr class="higher">
                 <td>Biggest World Champion Gain</td>
                 
-                <td>${sortedWDC1[0][0].name}: +${sortedWDC1[0][0].value.toFixed(3)*100}% Champion Odds</td>
-                <td>${sortedWCC1[0][0].name}: +${sortedWCC1[0][0].value.toFixed(3)*100}% Champion Odds</td>
+                <td>${sortedWDC1[0][1].name}: +${sortedWDC1[0][1].value.toFixed(3)*100}% Champion Odds</td>
+                <td>${sortedWCC1[0][1].name}: +${sortedWCC1[0][1].value.toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="lower">
                 <td>Biggest World Champion Loser</td>
-                <td>${sortedWDC1.at(-1)[0].name}: ${sortedWDC1.at(-1)[0].value.toFixed(3)*100}% Champion Odds</td>
-                <td>${sortedWCC1.at(-1)[0].name}: ${sortedWCC1.at(-1)[0].value.toFixed(3)*100}% Champion Odds</td>
+                <td>${sortedWDC1.at(-1)[1].name}: ${sortedWDC1.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>
+                <td>${sortedWCC1.at(-1)[1].name}: ${sortedWCC1.at(-1)[1].value.toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="higher">
                 <td>Biggest Overall Gain</td>
-                <td>${sortedWDCAll[0][0].name}: +${sortedWDCAll[0][0].value.toFixed(3)} Expected Positions</td>
-                <td>${sortedWCCAll[0][0].name}: +${sortedWCCAll[0][0].value.toFixed(3)} Expected Positions</td>
+                <td>${sortedWDCAll[0][1].name}: +${sortedWDCAll[0][1].value.toFixed(3)} Expected Positions</td>
+                <td>${sortedWCCAll[0][1].name}: +${sortedWCCAll[0][1].value.toFixed(3)} Expected Positions</td>
             </tr>
             <tr class="lower">
                 <td>Biggest Overall Loser</td>
-                <td>${sortedWDCAll.at(-1)[0].name}: ${sortedWDCAll.at(-1)[0].value.toFixed(3)} Expected Positions</td>
-                <td>${sortedWCCAll.at(-1)[0].name}: ${sortedWCCAll.at(-1)[0].value.toFixed(3)} Expected Positions</td>
+                <td>${sortedWDCAll.at(-1)[1].name}: ${sortedWDCAll.at(-1)[1].value.toFixed(3)} Expected Positions</td>
+                <td>${sortedWCCAll.at(-1)[1].name}: ${sortedWCCAll.at(-1)[1].value.toFixed(3)} Expected Positions</td>
             </tr>
 
         </table>
