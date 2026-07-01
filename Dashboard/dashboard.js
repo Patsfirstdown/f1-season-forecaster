@@ -855,7 +855,7 @@ function createSorted(current, old, metric, higherIsBetter = true) {
         const currVal = current?.[key]?.[metric];
         const oldVal = old?.[key]?.[metric];
         if (!Number.isFinite(currVal) || !Number.isFinite(oldVal)) continue;
-        if(metric="exp") {
+        if(metric==="exp") {
             diff[key] = {
                 name: current[key].name,
                 value: oldVal - currVal
@@ -1132,8 +1132,8 @@ function updateUpdates() {
             </tr>
             <tr class="lower">
                 <td>Biggest World Champion Loser</td>
-                <td>${seasonWDC1small[0]} ${seasonWDC1small[1]}: -${(seasonWDC1small[2].value*100).toFixed(3)}% Champion Odds</td>
-                <td>${seasonWCC1small[0]} ${seasonWCC1small[1]}: -${(seasonWCC1small[2].value*100).toFixed(3)}% Champion Odds</td>
+                <td>${seasonWDC1small[0]} ${seasonWDC1small[1]}: ${(seasonWDC1small[2].value*100).toFixed(3)}% Champion Odds</td>
+                <td>${seasonWCC1small[0]} ${seasonWCC1small[1]}: ${(seasonWCC1small[2].value*100).toFixed(3)}% Champion Odds</td>
             </tr>
             <tr class="higher">
                 <td>Biggest Overall Gain</td>
@@ -1142,8 +1142,8 @@ function updateUpdates() {
             </tr>
             <tr class="lower">
                 <td>Biggest Overall Loser</td>
-                <td>${seasonWDCAllsmall[0]} ${seasonWDCAllsmall[1]}: -${seasonWDCAllsmall[2].toFixed(3)} Expected Positions</td>
-                <td>${seasonWCCAllsmall[0]} ${seasonWCCAllsmall[1]}: -${seasonWCCAllsmall[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWDCAllsmall[0]} ${seasonWDCAllsmall[1]}: ${seasonWDCAllsmall[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWCCAllsmall[0]} ${seasonWCCAllsmall[1]}: ${seasonWCCAllsmall[2].toFixed(3)} Expected Positions</td>
             </tr>
 
         </table>
