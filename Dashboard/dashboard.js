@@ -871,6 +871,9 @@ function updateUpdates() {
         oldtempWDCAll=currentTempWDCAll;
         oldtempWCCAll=currentTempWCCAll;
         if (Object.hasOwn(predictionData.wcc_data, racename)) {
+            if (teamCount<1) {
+                const firstCRace=racename
+            }
             teamCount++;
             console.log("preWCC1" + teamCount + predictionData.wcc_data[racename]);
             currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one",oldtempWCC1);
@@ -893,6 +896,9 @@ function updateUpdates() {
             }
         }
         if (Object.hasOwn(predictionData.wdc_data, racename)) {
+            if (driverCount<1) {
+                const firstDRace=racename
+            }
             driverCount++;
             console.log("preWDC1" + driverCount + predictionData.wdc_data[racename]);
             currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
@@ -934,10 +940,9 @@ function updateUpdates() {
         row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
-        const fiveCAgo = races[0];
-
-        fiveC1 = createTemp(racename,predictionData.wcc_data[fiveCAgo],"one");
-        fiveCAll = createTemp(racename,predictionData.wcc_data[fiveCAgo],"notOne");
+        
+        fiveC1 = createTemp(racename,predictionData.wcc_data[firstCRace],"one");
+        fiveCAll = createTemp(racename,predictionData.wcc_data[firstCRace],"notOne");
 
         fiveC1S = createSorted(currentTempWCC1,fiveC1)
         fiveCAllS = createSorted(currentTempWCCAll,fiveCAll)
@@ -963,9 +968,9 @@ function updateUpdates() {
         row3D=`<td>${fiveDAllS[0][0]}: +${fiveDAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
-        const fiveDAgo = races[0];
-        fiveD1 = createTemp(racename,predictionData.wdc_data[fiveDAgo],"one");
-        fiveDAll = createTemp(racename,predictionData.wdc_data[fiveDAgo],"notOne");
+
+        fiveD1 = createTemp(racename,predictionData.wdc_data[firstDRace],"one");
+        fiveDAll = createTemp(racename,predictionData.wdc_data[firstDRace],"notOne");
 
         fiveD1S = createSorted(currentTempWDC1,fiveD1)
         fiveDAllS = createSorted(currentTempWDCAll,fiveDAll)
