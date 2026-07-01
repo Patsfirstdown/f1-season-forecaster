@@ -992,6 +992,8 @@ function updateUpdates() {
     } else {
         fiveC1 = createTemp(firstCRace,predictionData.wcc_data[firstCRace]);
 
+        console.log(fiveC1)
+
         fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp");
         fiveCAllS = createSorted(currentTempWCCAll,fiveC1,"winProb");
 
