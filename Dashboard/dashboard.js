@@ -1005,7 +1005,7 @@ function updateUpdates() {
         fiveDAllS = createSorted(currentWDC,fiveD1,"exp");
         fiveD1S = createSorted(currentWDC,fiveD1,"winProb");
 
-        console.log(`HELLO ${fiveDAllS[0}`)
+        console.log(`HELLO ${fiveDAllS[0]}`)
 
         cateD=`<th>WDC</th>`
         row1D=`<td>${fiveD1S[0][1].name}: +${fiveD1S[0][1].value.toFixed(3)*100}% Champion Odds</td>`
