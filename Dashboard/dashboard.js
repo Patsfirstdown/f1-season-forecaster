@@ -993,7 +993,7 @@ function updateUpdates() {
         fiveC1 = createTemp(firstCRace,predictionData.wcc_data[firstCRace]);
 
         fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp")
-        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb"))
+        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb")
 
         cateC=`<th>WDC</th>`
         row1C=`<td>${fiveC1[0][0]}: +${fiveC1[0][1].toFixed(3)*100}% Champion Odds</td>`
