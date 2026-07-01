@@ -815,6 +815,7 @@ function createTemp(racename,driver_team,one_all,oldtemp,seasonWDC1) {
 }
 
 function createSorted(currenttemp,oldtemp) {
+    let tempOther = {}
     for (const driver in currenttemp) {
         tempOther[driver] =
             oldtemp[driver] -
