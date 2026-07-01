@@ -979,28 +979,28 @@ function updateUpdates() {
         fiveC1 = createTemp(fiveCAgo,predictionData.wcc_data[fiveCAgo]);
 
         fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp");
-        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb");
+        fiveCAllS = createSorted(currentTempWCCAll,fiveC1,"winProb");
 
         console.log(fiveC1S)
         console.log(fiveCAllS)
 
         cateC=`<th>WDC</th>`
-        row1C=`<td>${fiveC1[0][0]}: +${fiveC1[0][1].toFixed(3)*100}% Champion Odds</td>`
-        row2C=`<td>${fiveC1.at(-1)[0]}: ${fiveC1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
+        row1C=`<td>${fiveC1S[0][0]}: +${fiveC1S[0][1].toFixed(3)*100}% Champion Odds</td>`
+        row2C=`<td>${fiveC1S.at(-1)[0]}: ${fiveC1S.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
         row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
         fiveC1 = createTemp(firstCRace,predictionData.wcc_data[firstCRace]);
 
         fiveC1S = createSorted(currentTempWCC1,fiveC1,"exp");
-        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll,"winProb");
+        fiveCAllS = createSorted(currentTempWCCAll,fiveC1,"winProb");
 
         console.log(fiveC1S)
         console.log(fiveCAllS)
 
         cateC=`<th>WDC</th>`
-        row1C=`<td>${fiveC1[0][0]}: +${fiveC1[0][1].toFixed(3)*100}% Champion Odds</td>`
-        row2C=`<td>${fiveC1.at(-1)[0]}: ${fiveC1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
+        row1C=`<td>${fiveC1S[0][0]}: +${fiveC1S[0][1].toFixed(3)*100}% Champion Odds</td>`
+        row2C=`<td>${fiveC1S.at(-1)[0]}: ${fiveC1S.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
         row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
 
@@ -1010,22 +1010,22 @@ function updateUpdates() {
         fiveD1 = createTemp(fiveDAgo,predictionData.wdc_data[fiveDAgo]);
 
         fiveD1S = createSorted(currentTempWDC1,fiveD1,"exp");
-        fiveDAllS = createSorted(currentTempWDCAll,fiveDAll,"winProb");
+        fiveDAllS = createSorted(currentTempWDCAll,fiveD1,"winProb");
 
         cateD=`<th>WDC</th>`
-        row1D=`<td>${fiveD1[0][0]}: +${fiveD1[0][1].toFixed(3)*100}% Champion Odds</td>`
-        row2D=`<td>${fiveD1.at(-1)[0]}: ${fiveD1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
+        row1D=`<td>${fiveD1S[0][0]}: +${fiveD1S[0][1].toFixed(3)*100}% Champion Odds</td>`
+        row2D=`<td>${fiveD1S.at(-1)[0]}: ${fiveD1S.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
         row3D=`<td>${fiveDAllS[0][0]}: +${fiveDAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
         fiveD1 = createTemp(firstDRace,predictionData.wdc_data[firstDRace]);
 
         fiveD1S = createSorted(currentTempWDC1,fiveD1,"exp");
-        fiveDAllS = createSorted(currentTempWDCAll,fiveDAll,"winProb");
+        fiveDAllS = createSorted(currentTempWDCAll,fiveD1,"winProb");
 
         cateD=`<th>WDC</th>`
-        row1D=`<td>${fiveD1[0][0]}: +${fiveD1[0][1].toFixed(3)*100}% Champion Odds</td>`
-        row2D=`<td>${fiveD1.at(-1)[0]}: ${fiveD1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
+        row1D=`<td>${fiveD1S[0][0]}: +${fiveD1S[0][1].toFixed(3)*100}% Champion Odds</td>`
+        row2D=`<td>${fiveD1S.at(-1)[0]}: ${fiveD1S.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
         row3D=`<td>${fiveDAllS[0][0]}: +${fiveDAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     };
