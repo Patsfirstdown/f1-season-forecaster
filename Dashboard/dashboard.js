@@ -889,16 +889,16 @@ function updateUpdates() {
                 sortedWCC1 = createSorted(currentTempWCC1,oldtempWCC1)
                 sortedWCCAll = createSorted(currentTempWCCAll,oldtempWCCAll)
     
-                if(sortedWCC1[0][1]>seasonWCC1big[0][0][0]) {
+                if(sortedWCC1[0][1]>seasonWCC1big[3]) {
                     seasonWCC1big=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
                 }
-                if(sortedWCCAll[0][1]>seasonWCC1big[0][0][0]) {
+                if(sortedWCCAll[0][1]>seasonWCC1big[3]) {
                     seasonWCC1big=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
                 }
-                if(sortedWCC1[0][1]<seasonWCC1small[0][0][0]) {
+                if(sortedWCC1[0][1]<seasonWCC1small[3]) {
                     seasonWCC1small=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
                 }
-                if(sortedWCCAll[0][1]<seasonWCC1small[0][0][0]) {
+                if(sortedWCCAll[0][1]<seasonWCC1small[3]) {
                     seasonWCC1small=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
                 }
             }
@@ -918,16 +918,16 @@ function updateUpdates() {
                 sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
                 sortedWDCAll = createSorted(currentTempWDCAll,oldtempWDCAll)
     
-                if(sortedWDC1[0][1]>seasonWDC1big[0][0][0]) {
+                if(sortedWDC1[0][1]>seasonWDC1big[3]) {
                     seasonWDC1big=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
                 };
-                if(sortedWDCAll[0][1]>seasonWDC1big[0][0][0]) {
+                if(sortedWDCAll[0][1]>seasonWDC1big[3]) {
                     seasonWDC1big=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
                 };
-                if(sortedWDC1[0][1]<seasonWDC1small[0][0][0]) {
+                if(sortedWDC1[0][1]<seasonWDC1small[3]) {
                     seasonWDC1small=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
                 };
-                if(sortedWDCAll[0][1]<seasonWDC1small[0][0][0]) {
+                if(sortedWDCAll[0][1]<seasonWDC1small[3]) {
                     seasonWDC1small=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
                 };
             }
@@ -1087,23 +1087,23 @@ function updateUpdates() {
             <tr class="higher">
                 <td>Biggest World Champion Gain</td>
                 
-                <td>${seasonWDC1big[0][0]} ${seasonWDC1big[0][1]}: +${seasonWDC1big[0][2].toFixed(3)*100}% Champion Odds</td>
-                <td>${seasonWCC1big[0][0]} ${seasonWCC1big[0][1]}: +${seasonWCC1big[0][2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWDC1big[0]} ${seasonWDC1big[1]}: +${seasonWDC1big[2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWCC1big[0]} ${seasonWCC1big[1]}: +${seasonWCC1big[2].toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="lower">
                 <td>Biggest World Champion Loser</td>
-                <td>${seasonWDC1small.at(-1)[0]} ${seasonWDC1small.at(-1)[1]}: ${seasonWDC1small.at(-1)[2].toFixed(3)*100}% Champion Odds</td>
-                <td>${seasonWCC1small.at(-1)[0]} ${seasonWCC1small.at(-1)[1]}: ${seasonWCC1small.at(-1)[2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWDC1small[0]} ${seasonWDC1small[1]}: ${seasonWDC1small[2].toFixed(3)*100}% Champion Odds</td>
+                <td>${seasonWCC1small[0]} ${seasonWCC1small[1]}: ${seasonWCC1small[2].toFixed(3)*100}% Champion Odds</td>
             </tr>
             <tr class="higher">
                 <td>Biggest Overall Gain</td>
-                <td>${seasonWDCAllbig[0][0]} ${seasonWDCAllbig[0][1]}: +${seasonWDCAllbig[0][2].toFixed(3)} Expected Positions</td>
-                <td>${seasonWCCAllbig[0][0]} ${seasonWCCAllbig[0][1]}: +${seasonWCCAllbig[0][2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWDCAllbig[0]} ${seasonWDCAllbig[1]}: +${seasonWDCAllbig[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWCCAllbig[0]} ${seasonWCCAllbig[1]}: +${seasonWCCAllbig[2].toFixed(3)} Expected Positions</td>
             </tr>
             <tr class="lower">
                 <td>Biggest Overall Loser</td>
-                <td>${seasonWDCAllsmall.at(-1)[0]} ${seasonWDCAllsmall.at(-1)[1]}: ${seasonWDCAllsmall.at(-1)[2].toFixed(3)} Expected Positions</td>
-                <td>${seasonWCCAllsmall.at(-1)[0]} ${seasonWCCAllsmall.at(-1)[1]}: ${seasonWCCAllsmall.at(-1)[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWDCAllsmall[0]} ${seasonWDCAllsmall[1]}: ${seasonWDCAllsmall[2].toFixed(3)} Expected Positions</td>
+                <td>${seasonWCCAllsmall[0]} ${seasonWCCAllsmall[1]}: ${seasonWCCAllsmall[2].toFixed(3)} Expected Positions</td>
             </tr>
 
         </table>
