@@ -862,6 +862,8 @@ function updateUpdates() {
 
     let teamCount=0;
     let driverCount=0;
+    let firstCRace;
+    let firstDRace;
     
     for (racename of races) {
         oldtempWDC1=currentTempWDC1;
@@ -869,13 +871,8 @@ function updateUpdates() {
         oldtempWDCAll=currentTempWDCAll;
         oldtempWCCAll=currentTempWCCAll;
         if (Object.hasOwn(predictionData.wcc_data, racename)) {
-            console.log(teamCount)
             if (teamCount<1) {
-                console.log("C MADE IT")
-                console.log(racename)
-                const firstCRace=racename;
-                console.log("firstCRace below")
-                console.log(firstCRace)
+                firstCRace=racename;
             }
             teamCount++;
             currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one",oldtempWCC1);
@@ -897,7 +894,7 @@ function updateUpdates() {
         }
         if (Object.hasOwn(predictionData.wdc_data, racename)) {
             if (driverCount<1) {
-                const firstDRace=racename;
+                firstDRace=racename;
             }
             driverCount++;
             currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
@@ -936,8 +933,6 @@ function updateUpdates() {
         row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     } else {
-        console.log("CHECK HERE")
-        console.log(firstCRace)
         fiveC1 = createTemp(racename,predictionData.wcc_data[firstCRace],"one");
         fiveCAll = createTemp(racename,predictionData.wcc_data[firstCRace],"notOne");
 
