@@ -902,6 +902,7 @@ function updateUpdates() {
             else {
                 sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
                 sortedWDCAll = createSorted(currentTempWDCAll,oldtempWCDAll)
+                console.log(sortedWDC1)
     
                 if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
                     seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
@@ -929,8 +930,38 @@ function updateUpdates() {
         row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
         row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     };
+    else {
+        const fiveCAgo = races[0];
+
+        fiveC1 = createTemp(racename,predictionData.wcc_data[fiveCAgo],"one");
+        fiveCAll = createTemp(racename,predictionData.wcc_data[fiveCAgo],"notOne");
+
+        fiveC1S = createSorted(currentTempWCC1,fiveC1)
+        fiveCAllS = createSorted(currentTempWCCAll,fiveCAll)
+
+        cateC=`<th>WDC</th>`
+        row1C=`<td>${fiveC1[0][0]}: +${fiveC1[0][1].toFixed(3)*100}% Champion Odds</td>`
+        row2C=`<td>${fiveC1.at(-1)[0]}: ${fiveC1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
+        row3C=`<td>${fiveCAllS[0][0]}: +${fiveCAllS[0][1].toFixed(3)} Expected Positions</td>`
+        row4C=`<td>${fiveCAllS.at(-1)[0]}: ${fiveCAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
+
+    }
     if (driverCount>=5) {
         const fiveDAgo = races[races.length - 5];
+        fiveD1 = createTemp(racename,predictionData.wdc_data[fiveDAgo],"one");
+        fiveDAll = createTemp(racename,predictionData.wdc_data[fiveDAgo],"notOne");
+
+        fiveD1S = createSorted(currentTempWDC1,fiveD1)
+        fiveDAllS = createSorted(currentTempWDCAll,fiveDAll)
+
+        cateD=`<th>WDC</th>`
+        row1D=`<td>${fiveD1[0][0]}: +${fiveD1[0][1].toFixed(3)*100}% Champion Odds</td>`
+        row2D=`<td>${fiveD1.at(-1)[0]}: ${fiveD1.at(-1)[1].toFixed(3)*100}% Champion Odds</td>`
+        row3D=`<td>${fiveDAllS[0][0]}: +${fiveDAllS[0][1].toFixed(3)} Expected Positions</td>`
+        row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
+    };
+    else {
+        const fiveDAgo = races[0];
         fiveD1 = createTemp(racename,predictionData.wdc_data[fiveDAgo],"one");
         fiveDAll = createTemp(racename,predictionData.wdc_data[fiveDAgo],"notOne");
 
@@ -987,7 +1018,7 @@ function updateUpdates() {
         <br>
 
         <div>
-            <h3 style="text-align: center;">Biggest Standings Updates</h3>
+            <h3 style="text-align: center;">Biggest 5 Races World Championship Changes</h3>
         </div>
         <table class="update-table">
 
@@ -998,7 +1029,7 @@ function updateUpdates() {
             </tr>
 
             <tr class="higher">
-                <td>Last 5 Races World Championship Gain</td>
+                <td>Biggest World Champion Gain</td>
                 
                 ${row1D}
                 ${row1C}
