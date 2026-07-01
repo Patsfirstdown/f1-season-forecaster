@@ -974,7 +974,7 @@ function updateUpdates() {
         row4D=`<td>${fiveDAllS.at(-1)[0]}: ${fiveDAllS.at(-1)[1].toFixed(3)} Expected Positions</td>`
     };
     
-
+    console.log(seasonWDC1)
     
     document.getElementById("raceUpdates").innerHTML = `
 
