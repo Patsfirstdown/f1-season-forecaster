@@ -873,32 +873,43 @@ function updateUpdates() {
             
             currentTempWCC1 = createTemp(racename,predictionData.wcc_data[racename],"one",oldtempWCC1);
             currentTempWCCAll = createTemp(racename,predictionData.wcc_data[racename],"notOne",oldtempWCCAll);
-
-            sortedWCC1 = createSorted(currentTempWCC1,oldtempWCC1)
-            sortedWCCAll = createSorted(currentTempWCCAll,oldtempWCCAll)
-
-            if(sortedWCC1[0][1]>seasonWCC1[0][0][0]) {
-                seasonWCC1=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
+            if(!oldtempWCC1) {
+                console.log(oldtempWCC1);
+                //skip
             }
-            if(sortedWCCAll[0][1]>seasonWCC1[0][0][0]) {
-                seasonWCC1=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+            else {
+                sortedWCC1 = createSorted(currentTempWCC1,oldtempWCC1)
+                sortedWCCAll = createSorted(currentTempWCCAll,oldtempWCCAll)
+    
+                if(sortedWCC1[0][1]>seasonWCC1[0][0][0]) {
+                    seasonWCC1=[racename,sortedWCC1[0][0],sortedWCC1[0][1]]
+                }
+                if(sortedWCCAll[0][1]>seasonWCC1[0][0][0]) {
+                    seasonWCC1=[racename,sortedWCCAll[0][0],sortedWCCAll[0][1]]
+                }
             }
         }
         if (Object.hasOwn(predictionData.wcc_data, racename)) {
-            teamCount++;
-            
+            driverCount++;
+
             currentTempWDC1 = createTemp(racename,predictionData.wdc_data[racename],"one");
             currentTempWDCAll = createTemp(racename,predictionData.wdc_data[racename],"notOne");
 
-            sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
-            sortedWDCAll = createSorted(currentTempWDCAll,oldtempWCDAll)
-
-            if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
-                seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
-            };
-            if(sortedWDCAll[0][1]>seasonWDC1[0][0][0]) {
-                seasonWDC1=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
-            };
+            if(!oldtempWDC1) {
+                //skip
+                console.log(oldtempWDC1);
+            }
+            else {
+                sortedWDC1 = createSorted(currentTempWDC1,oldtempWDC1)
+                sortedWDCAll = createSorted(currentTempWDCAll,oldtempWCDAll)
+    
+                if(sortedWDC1[0][1]>seasonWDC1[0][0][0]) {
+                    seasonWDC1=[racename,sortedWDC1[0][0],sortedWDC1[0][1]]
+                };
+                if(sortedWDCAll[0][1]>seasonWDC1[0][0][0]) {
+                    seasonWDC1=[racename,sortedWDCAll[0][0],sortedWDCAll[0][1]]
+                };
+            }
         };
 
     };
