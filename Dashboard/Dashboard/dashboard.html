@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Professional Website-->
+        <title>F1 Forecast Dashboard</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
+        <script src="common.js"></script>
+        <script src="dashboard.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div id="mainHeader" class="mainHeader">
+        </div>
+        <div>
+            <header class="welcome" style="border-bottom: 32px solid var(--f1_silver)">
+                <h1>F1 Forecaster Dashboard</h1>
+            </header>
+        </div>
+        <div id="raceUpdates" class="updates">
+        </div>
+        <div class="description">
+            <table class="description">
+                <thead>
+                    <th colspan="4" style="border-bottom:2px solid var(--f1_red)">
+                        Graph Tips
+                    </th>
+                </thead>
+                <tr>
+                    <td>
+                        Single Click: Hide Driver
+                    </td>
+                    <td>
+                        Windows: Ctrl Click: Show Only Driver
+                    </td>
+                    <td>
+                        Mac: Cmd Click: Show Only Driver
+                    </td>
+                    <td>
+                        Ctrl/Cmd Click Again: Show All Drivers
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="homeDisplay">
+            <table class="tableDisplay">
+                <tr class="rowDisplay">
+                    <td class="graph-thing">
+                        <span class="bigger">Race</span><br>Expected Finish Position
+                    </td>
+                        <td class="dashCol">
+                        <canvas id="raceChart" class="dashChart"></canvas>
+                    </td>
+                </tr>
+                <tr class="rowDisplay">
+                    <td class="graph-thing">
+                        <span class="bigger">WDC</span><br>Expected Finish Position
+                    </td>
+                    <td class="dashCol">
+                        <canvas id="wdcChart" class="dashChart"></canvas>
+                    </td>
+                </tr>
+                <tr class="rowDisplay">
+                    <td class="graph-thing">
+                        <span class="bigger">WCC</span><br>Expected Finish Position
+                    </td>
+                    <td class="dashCol">
+                        <canvas id="wccChart" class="dashChart"></canvas>
+                    </td>
+                </tr>
+                <tr class="rowDisplay">
+                    <td class="graph-thing">
+                        Expected <span class="bigger">Race</span> Position<br>Volatility<br>Scatter Plot
+                    </td>
+                    <td class="dashCol">
+                        <canvas id="dash-expected-scatter" class="dashChart"></canvas>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="footerForm">
+        </div>
+    </body>
+</html>

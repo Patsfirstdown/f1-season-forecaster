@@ -1,0 +1,517 @@
+{
+    "stats": {
+        "RUS": {
+            "name": "George Russell",
+            "results": {
+                "1": 2,
+                "beatTeammate": -16,
+                "DNF": 1,
+                "2": 2,
+                "4": 2,
+                "12": 1
+            },
+            "raceCount": 8,
+            "score": 0.35625,
+            "betterScore": -2.9388704754750243
+        },
+        "ANT": {
+            "name": "Andrea Kimi Antonelli",
+            "results": {
+                "2": 1,
+                "beatTeammate": 16,
+                "DNF": 1,
+                "1": 5,
+                "3": 1
+            },
+            "raceCount": 8,
+            "score": 0.6812499999999999,
+            "betterScore": 4.905970597608279
+        },
+        "LEC": {
+            "name": "Charles Leclerc",
+            "results": {
+                "3": 2,
+                "beatTeammate": -45,
+                "DNF": 2,
+                "4": 2,
+                "8": 2
+            },
+            "raceCount": 8,
+            "score": 0.13749999999999998,
+            "betterScore": -5.0745116624598126
+        },
+        "HAM": {
+            "name": "Lewis Hamilton",
+            "results": {
+                "4": 1,
+                "beatTeammate": 45,
+                "DNF": 0,
+                "3": 1,
+                "6": 2,
+                "2": 2,
+                "1": 1,
+                "5": 1
+            },
+            "raceCount": 8,
+            "score": 0.3375,
+            "betterScore": 3.079691978239378
+        },
+        "NOR": {
+            "name": "Lando Norris",
+            "results": {
+                "5": 2,
+                "beatTeammate": -14,
+                "DNF": 3,
+                "2": 1,
+                "3": 1,
+                "7": 1
+            },
+            "raceCount": 8,
+            "score": 0.09375000000000003,
+            "betterScore": -0.8419283048847788
+        },
+        "VER": {
+            "name": "Max Verstappen",
+            "results": {
+                "6": 1,
+                "beatTeammate": 13,
+                "DNF": 2,
+                "8": 1,
+                "5": 1,
+                "3": 1,
+                "4": 1,
+                "2": 1
+            },
+            "raceCount": 8,
+            "score": 0.13749999999999998,
+            "betterScore": -0.24900862717595829
+        },
+        "BEA": {
+            "name": "Oliver Bearman",
+            "results": {
+                "7": 1,
+                "beatTeammate": -13,
+                "DNF": 3,
+                "5": 1,
+                "11": 1,
+                "10": 1,
+                "14": 1
+            },
+            "raceCount": 8,
+            "score": 0.018750000000000017,
+            "betterScore": 1.9478728753483978
+        },
+        "LIN": {
+            "name": "Arvid Lindblad",
+            "results": {
+                "8": 1,
+                "beatTeammate": -15,
+                "DNF": 1,
+                "12": 1,
+                "14": 2,
+                "7": 1,
+                "9": 1,
+                "10": 1
+            },
+            "raceCount": 8,
+            "score": 0.08125,
+            "betterScore": 3.8728335455592844
+        },
+        "BOR": {
+            "name": "Gabriel Bortoleto",
+            "results": {
+                "9": 1,
+                "beatTeammate": 23,
+                "DNF": 1,
+                "13": 2,
+                "12": 1,
+                "11": 3
+            },
+            "raceCount": 8,
+            "score": 0.006250000000000002,
+            "betterScore": 5.621138178740082
+        },
+        "GAS": {
+            "name": "Pierre Gasly",
+            "results": {
+                "10": 1,
+                "beatTeammate": 16,
+                "DNF": 1,
+                "6": 1,
+                "7": 2,
+                "8": 1,
+                "3": 1,
+                "13": 1
+            },
+            "raceCount": 8,
+            "score": 0.14375000000000002,
+            "betterScore": 7.4641640373299705
+        },
+        "OCO": {
+            "name": "Esteban Ocon",
+            "results": {
+                "11": 1,
+                "beatTeammate": 13,
+                "DNF": 0,
+                "14": 2,
+                "10": 1,
+                "13": 2,
+                "9": 1,
+                "16": 1
+            },
+            "raceCount": 8,
+            "score": 0.05,
+            "betterScore": 2.548873361836797
+        },
+        "ALB": {
+            "name": "Alexander Albon",
+            "results": {
+                "12": 1,
+                "beatTeammate": -16,
+                "DNF": 2,
+                "20": 1,
+                "10": 1,
+                "8": 1,
+                "18": 1,
+                "17": 1
+            },
+            "raceCount": 8,
+            "score": 0.012500000000000004,
+            "betterScore": 0.032245188000622385
+        },
+        "LAW": {
+            "name": "Liam Lawson",
+            "results": {
+                "13": 1,
+                "beatTeammate": 15,
+                "DNF": 1,
+                "7": 2,
+                "9": 2,
+                "6": 1,
+                "8": 1
+            },
+            "raceCount": 8,
+            "score": 0.13125000000000003,
+            "betterScore": 7.5485786653024505
+        },
+        "COL": {
+            "name": "Franco Colapinto",
+            "results": {
+                "14": 2,
+                "beatTeammate": -16,
+                "DNF": 0,
+                "10": 2,
+                "16": 1,
+                "7": 1,
+                "6": 1,
+                "15": 1
+            },
+            "raceCount": 8,
+            "score": 0.1,
+            "betterScore": 6.599287901838475
+        },
+        "SAI": {
+            "name": "Carlos Sainz",
+            "results": {
+                "15": 2,
+                "beatTeammate": 16,
+                "DNF": 2,
+                "9": 3,
+                "12": 1
+            },
+            "raceCount": 8,
+            "score": 0.03750000000000001,
+            "betterScore": 2.516901578067402
+        },
+        "PER": {
+            "name": "Sergio P\u00e9rez",
+            "results": {
+                "16": 2,
+                "beatTeammate": 17,
+                "DNF": 2,
+                "15": 2,
+                "17": 1,
+                "14": 1
+            },
+            "raceCount": 8,
+            "score": -0.0375,
+            "betterScore": -2.3919487314170325
+        },
+        "STR": {
+            "name": "Lance Stroll",
+            "results": {
+                "17": 2,
+                "beatTeammate": -10,
+                "DNF": 5,
+                "15": 1
+            },
+            "raceCount": 8,
+            "score": -0.09375,
+            "betterScore": 1.788494570583986
+        },
+        "ALO": {
+            "name": "Fernando Alonso",
+            "results": {
+                "beatTeammate": 10,
+                "DNF": 4,
+                "18": 2,
+                "15": 1,
+                "10": 1
+            },
+            "raceCount": 8,
+            "score": -0.049999999999999996,
+            "betterScore": 3.191498611114739
+        },
+        "BOT": {
+            "name": "Valtteri Bottas",
+            "results": {
+                "beatTeammate": -17,
+                "DNF": 4,
+                "13": 1,
+                "19": 1,
+                "18": 1,
+                "16": 1
+            },
+            "raceCount": 8,
+            "score": -0.075,
+            "betterScore": 2.3674476567100844
+        },
+        "HAD": {
+            "name": "Isack Hadjar",
+            "results": {
+                "beatTeammate": -13,
+                "DNF": 2,
+                "8": 1,
+                "12": 1,
+                "5": 1,
+                "4": 1,
+                "6": 2
+            },
+            "raceCount": 8,
+            "score": 0.0875,
+            "betterScore": 2.2364739189685463
+        },
+        "PIA": {
+            "name": "Oscar Piastri",
+            "results": {
+                "beatTeammate": 14,
+                "DNF": 2,
+                "2": 1,
+                "3": 1,
+                "11": 1,
+                "5": 2,
+                "4": 1
+            },
+            "raceCount": 8,
+            "score": 0.11250000000000002,
+            "betterScore": 0.6604996805624375
+        },
+        "HUL": {
+            "name": "Nico H\u00fclkenberg",
+            "results": {
+                "beatTeammate": -23,
+                "DNF": 3,
+                "11": 2,
+                "12": 2,
+                "13": 1
+            },
+            "raceCount": 8,
+            "score": -0.056249999999999994,
+            "betterScore": 0.11865516912987781
+        }
+    },
+    "results": {
+        "Melbourne": {
+            "RUS": 1,
+            "ANT": 2,
+            "LEC": 3,
+            "HAM": 4,
+            "NOR": 5,
+            "VER": 6,
+            "BEA": 7,
+            "LIN": 8,
+            "BOR": 9,
+            "GAS": 10,
+            "OCO": 11,
+            "ALB": 12,
+            "LAW": 13,
+            "COL": 14,
+            "SAI": 15,
+            "PER": 16,
+            "STR": 17,
+            "ALO": "DNF",
+            "BOT": "DNF",
+            "HAD": "DNF",
+            "PIA": "DNF",
+            "HUL": "DNF"
+        },
+        "Shanghai": {
+            "RUS": 2,
+            "ANT": 1,
+            "LEC": 4,
+            "HAM": 3,
+            "NOR": "DNF",
+            "VER": "DNF",
+            "BEA": 5,
+            "LIN": 12,
+            "BOR": "DNF",
+            "GAS": 6,
+            "OCO": 14,
+            "ALB": "DNF",
+            "LAW": 7,
+            "COL": 10,
+            "SAI": 9,
+            "PER": 15,
+            "STR": "DNF",
+            "ALO": "DNF",
+            "BOT": 13,
+            "HAD": 8,
+            "PIA": "DNF",
+            "HUL": 11
+        },
+        "Suzuka": {
+            "RUS": 4,
+            "ANT": 1,
+            "LEC": 3,
+            "HAM": 6,
+            "NOR": 5,
+            "VER": 8,
+            "BEA": "DNF",
+            "LIN": 14,
+            "BOR": 13,
+            "GAS": 7,
+            "OCO": 10,
+            "ALB": 20,
+            "LAW": 9,
+            "COL": 16,
+            "SAI": 15,
+            "PER": 17,
+            "STR": "DNF",
+            "ALO": 18,
+            "BOT": 19,
+            "HAD": 12,
+            "PIA": 2,
+            "HUL": 11
+        },
+        "Miami Gardens": {
+            "RUS": 4,
+            "ANT": 1,
+            "LEC": 8,
+            "HAM": 6,
+            "NOR": 2,
+            "VER": 5,
+            "BEA": 11,
+            "LIN": 14,
+            "BOR": 12,
+            "GAS": "DNF",
+            "OCO": 13,
+            "ALB": 10,
+            "LAW": "DNF",
+            "COL": 7,
+            "SAI": 9,
+            "PER": 16,
+            "STR": 17,
+            "ALO": 15,
+            "BOT": 18,
+            "HAD": "DNF",
+            "PIA": 3,
+            "HUL": "DNF"
+        },
+        "Montr\u00e9al": {
+            "RUS": "DNF",
+            "ANT": 1,
+            "LEC": 4,
+            "HAM": 2,
+            "NOR": "DNF",
+            "VER": 3,
+            "BEA": 10,
+            "LIN": "DNF",
+            "BOR": 13,
+            "GAS": 8,
+            "OCO": 14,
+            "ALB": "DNF",
+            "LAW": 7,
+            "COL": 6,
+            "SAI": 9,
+            "PER": "DNF",
+            "STR": 15,
+            "ALO": "DNF",
+            "BOT": 16,
+            "HAD": 5,
+            "PIA": 11,
+            "HUL": 12
+        },
+        "Monte Carlo": {
+            "RUS": 12,
+            "ANT": 1,
+            "LEC": "DNF",
+            "HAM": 2,
+            "NOR": "DNF",
+            "VER": "DNF",
+            "BEA": "DNF",
+            "LIN": 7,
+            "BOR": 11,
+            "GAS": 3,
+            "OCO": 9,
+            "ALB": 8,
+            "LAW": 6,
+            "COL": 14,
+            "SAI": "DNF",
+            "PER": 15,
+            "STR": "DNF",
+            "ALO": 10,
+            "BOT": "DNF",
+            "HAD": 4,
+            "PIA": 5,
+            "HUL": 13
+        },
+        "Barcelona": {
+            "RUS": 2,
+            "ANT": "DNF",
+            "LEC": "DNF",
+            "HAM": 1,
+            "NOR": 3,
+            "VER": 4,
+            "BEA": "DNF",
+            "LIN": 9,
+            "BOR": 11,
+            "GAS": 7,
+            "OCO": 13,
+            "ALB": 18,
+            "LAW": 8,
+            "COL": 10,
+            "SAI": 12,
+            "PER": 14,
+            "STR": "DNF",
+            "ALO": "DNF",
+            "BOT": "DNF",
+            "HAD": 6,
+            "PIA": 5,
+            "HUL": "DNF"
+        },
+        "Spielberg": {
+            "RUS": 1,
+            "ANT": 3,
+            "LEC": 8,
+            "HAM": 5,
+            "NOR": 7,
+            "VER": 2,
+            "BEA": 14,
+            "LIN": 10,
+            "BOR": 11,
+            "GAS": 13,
+            "OCO": 16,
+            "ALB": 17,
+            "LAW": 9,
+            "COL": 15,
+            "SAI": "DNF",
+            "PER": "DNF",
+            "STR": "DNF",
+            "ALO": 18,
+            "BOT": "DNF",
+            "HAD": 6,
+            "PIA": 4,
+            "HUL": 12
+        }
+    }
+}
