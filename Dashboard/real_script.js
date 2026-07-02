@@ -69,7 +69,7 @@ function updateScore(year) {
             row.innerHTML = `
                 <span>${yearHappen}</span>
                 <span>${item.driver}</span>
-                <span style="color:${color};">${(item.probability*100).toFixed(2)}</span>
+                <span style="color:${color};">${(item.probability*100).toFixed(3)}</span>
             `;
 
             container.appendChild(row);
@@ -105,7 +105,7 @@ function updateScore(year) {
             row.innerHTML = `
                 <span>${yearHappen}</span>
                 <span>${item.driver}</span>
-                <span style="color:${color};">${(item.probability*100).toFixed(2)}</span>
+                <span style="color:${color};">${(item.probability*100).toFixed(3)}</span>
             `;
 
             container.appendChild(row);
@@ -159,7 +159,7 @@ function updateBetterScore(year) {
             row.innerHTML = `
                 <span>${yearHappen}</span>
                 <span>${item.driver}</span>
-                <span style="color:${color};">${(item.probability).toFixed(2)}</span>
+                <span style="color:${color};">${(item.probability).toFixed(3)}</span>
             `;
 
             container.appendChild(row);
@@ -195,7 +195,7 @@ function updateBetterScore(year) {
             row.innerHTML = `
                 <span>${yearHappen}</span>
                 <span>${item.driver}</span>
-                <span style="color:${color};">${(item.probability).toFixed(2)}</span>
+                <span style="color:${color};">${(item.probability).toFixed(3)}</span>
             `;
 
             container.appendChild(row);
