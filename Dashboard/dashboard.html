@@ -4,6 +4,7 @@
         <!--Professional Website-->
         <title>F1 Forecast Dashboard</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
         <script src="common.js"></script>
         <script src="dashboard.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -45,7 +46,7 @@
             <table class="tableDisplay">
                 <tr class="rowDisplay">
                     <td class="graph-thing">
-                        Race:
+                        <span class="bigger">Race</span><br>Expected Finish Position
                     </td>
                         <td class="dashCol">
                         <canvas id="raceChart" class="dashChart"></canvas>
@@ -53,7 +54,7 @@
                 </tr>
                 <tr class="rowDisplay">
                     <td class="graph-thing">
-                        WDC:
+                        <span class="bigger">WDC</span><br>Expected Finish Position
                     </td>
                     <td class="dashCol">
                         <canvas id="wdcChart" class="dashChart"></canvas>
@@ -61,7 +62,7 @@
                 </tr>
                 <tr class="rowDisplay">
                     <td class="graph-thing">
-                        WCC:
+                        <span class="bigger">WCC</span><br>Expected Finish Position
                     </td>
                     <td class="dashCol">
                         <canvas id="wccChart" class="dashChart"></canvas>
@@ -69,7 +70,7 @@
                 </tr>
                 <tr class="rowDisplay">
                     <td class="graph-thing">
-                        Expected Scatter:
+                        Expected <span class="bigger">Race</span> Position<br>Volatility<br>Scatter Plot
                     </td>
                     <td class="dashCol">
                         <canvas id="dash-expected-scatter" class="dashChart"></canvas>

@@ -25,7 +25,7 @@
             },
             "raceCount": 8,
             "score": 0.6812499999999999,
-            "betterScore": 4.8959705976082795
+            "betterScore": 4.905970597608279
         },
         "LEC": {
             "name": "Charles Leclerc",
@@ -38,7 +38,7 @@
             },
             "raceCount": 8,
             "score": 0.13749999999999998,
-            "betterScore": -5.132844995793146
+            "betterScore": -5.0745116624598126
         },
         "HAM": {
             "name": "Lewis Hamilton",
@@ -54,7 +54,7 @@
             },
             "raceCount": 8,
             "score": 0.3375,
-            "betterScore": 3.0463586449060447
+            "betterScore": 3.079691978239378
         },
         "NOR": {
             "name": "Lando Norris",
@@ -84,7 +84,7 @@
             },
             "raceCount": 8,
             "score": 0.13749999999999998,
-            "betterScore": -0.28400862717595826
+            "betterScore": -0.24900862717595829
         },
         "BEA": {
             "name": "Oliver Bearman",
@@ -99,7 +99,7 @@
             },
             "raceCount": 8,
             "score": 0.018750000000000017,
-            "betterScore": 1.8645395420150643
+            "betterScore": 1.9478728753483978
         },
         "LIN": {
             "name": "Arvid Lindblad",
@@ -129,7 +129,7 @@
             },
             "raceCount": 8,
             "score": 0.006250000000000002,
-            "betterScore": 5.644471512073415
+            "betterScore": 5.621138178740082
         },
         "GAS": {
             "name": "Pierre Gasly",
@@ -145,7 +145,7 @@
             },
             "raceCount": 8,
             "score": 0.14375000000000002,
-            "betterScore": 7.47416403732997
+            "betterScore": 7.4641640373299705
         },
         "OCO": {
             "name": "Esteban Ocon",
@@ -161,7 +161,7 @@
             },
             "raceCount": 8,
             "score": 0.05,
-            "betterScore": 2.578873361836797
+            "betterScore": 2.548873361836797
         },
         "ALB": {
             "name": "Alexander Albon",
@@ -192,7 +192,7 @@
             },
             "raceCount": 8,
             "score": 0.13125000000000003,
-            "betterScore": 7.528578665302451
+            "betterScore": 7.5485786653024505
         },
         "COL": {
             "name": "Franco Colapinto",
@@ -208,7 +208,7 @@
             },
             "raceCount": 8,
             "score": 0.1,
-            "betterScore": 6.492621235171809
+            "betterScore": 6.599287901838475
         },
         "SAI": {
             "name": "Carlos Sainz",
@@ -221,7 +221,7 @@
             },
             "raceCount": 8,
             "score": 0.03750000000000001,
-            "betterScore": 2.4419015780674016
+            "betterScore": 2.516901578067402
         },
         "PER": {
             "name": "Sergio P\u00e9rez",
@@ -247,7 +247,7 @@
             },
             "raceCount": 8,
             "score": -0.09375,
-            "betterScore": 1.688494570583986
+            "betterScore": 1.788494570583986
         },
         "ALO": {
             "name": "Fernando Alonso",
@@ -274,7 +274,7 @@
             },
             "raceCount": 8,
             "score": -0.075,
-            "betterScore": 2.2841143233767514
+            "betterScore": 2.3674476567100844
         },
         "HAD": {
             "name": "Isack Hadjar",
@@ -289,7 +289,7 @@
             },
             "raceCount": 8,
             "score": 0.0875,
-            "betterScore": 2.1964739189685463
+            "betterScore": 2.2364739189685463
         },
         "PIA": {
             "name": "Oscar Piastri",
@@ -304,7 +304,7 @@
             },
             "raceCount": 8,
             "score": 0.11250000000000002,
-            "betterScore": 0.7804996805624375
+            "betterScore": 0.6604996805624375
         },
         "HUL": {
             "name": "Nico H\u00fclkenberg",

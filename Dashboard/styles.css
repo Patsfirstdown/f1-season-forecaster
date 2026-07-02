@@ -16,8 +16,9 @@ h1 {
     background-color: black;
     text-align: center;
     color: white;
-    font-size: 4vw;
+    font-size: 7vw;
     vertical-align: center;
+    text-shadow: 2px 2px 2px var(--f1_red);
 }
 
 h2 {
@@ -65,6 +66,14 @@ table.footerForm, tr.footerForm, th.footerForm,td.footerForm{
 }
 
 table.dropdown_table{
+    background-color: var(--f1_silver);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: black;
+}
+
+table.year_dropdown_table{
+    table-layout: fixed;
     background-color: var(--f1_silver);
     padding-top: 5px;
     padding-bottom: 5px;
@@ -181,7 +190,7 @@ header.banner{
     padding: 0px;
     display: flex;
     justify-content: center;
-    height: 200px;
+
     width: 100%;
     align-items: center;
     background-color: black;
@@ -195,6 +204,7 @@ header.banner{
 ul li a:hover {
     transform: scale(1.05);
     background-color: var(--f1_red);
+    font-weight: bold;
 }
 
 ul.nav{
@@ -251,6 +261,7 @@ canvas.graph{
 
 .dashCol{
     width: 80% !important;
+    padding: 16px;
 }
 
 .dashChart{
@@ -293,14 +304,34 @@ canvas.graph{
 }
 
 .tableDisplay{
-  border-collapse: collapse; 
+  border-collapse: separate; 
   width: 100%;
+  border-spacing: 0 12px;
+  background-color: black;
+}
+
+.tableDisplay tr td,
+.tableDisplay tr th {
+    background: var(--f1_silver);
+}
+
+.tableDisplay tr td:first-child,
+.tableDisplay tr th:first-child {
+    border-radius: 12px 0 0 12px;
+}
+
+.tableDisplay tr td:last-child,
+.tableDisplay tr th:last-child {
+    border-radius: 0 12px 12px 0;
 }
 
 .rowDisplay{
     border-bottom: 50px solid var(--f1_silver);
     border-top: 50px solid var(--f1_silver);
     padding: 12px;
+    border-radius: 10px;
+    border-color:coral;
+    padding: 12px 16px;
 }
 
 .dnf-row {
@@ -330,7 +361,7 @@ canvas.graph{
 
 .score-row {
     display: grid;
-    grid-template-columns: 1fr 80px;
+    grid-template-columns: 60px 1fr 80px;
     gap: 20px;
     max-width: 350px;
     margin: 0 auto;
@@ -401,6 +432,10 @@ canvas.graph{
     color: black;
 }
 
+.bigger {
+    font-size: 200%;
+}
+
 .higher{
     background-color: DarkSeaGreen;
     font-weight: bold;
@@ -420,6 +455,7 @@ canvas.graph{
     font-weight:bold;
     color:black;
     padding:64px;
+    text-align: center;
 }
 
 div.description{
@@ -455,10 +491,10 @@ div.description{
     color: black;
     table-layout: fixed;
     width: 100%;
-    padding: 16px;
     border-collapse: collapse;
     border-top: 4px solid var(--f1_red);
     font-size: 1.05rem;
+    border-radius: 32px;
 }
 
 .update-table th {
@@ -482,4 +518,19 @@ div.description{
 
 .update-table td{
     padding: 16px;    
+}
+
+.info {
+    text-align: center;
+    background-color: var(--f1_silver);
+    color: black;
+    padding: 4px;
+}
+
+table.info {
+    border-bottom: 16px solid black;
+    font-size: 1.2rem;
+    background-image: linear-gradient(to right,white, var(--f1_red));
+    color: transparent;
+    background-clip: text;
 }

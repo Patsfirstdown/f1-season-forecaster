@@ -1040,7 +1040,7 @@ function updateUpdates() {
         <br>
 
         <div>
-            <h3 style="text-align: center;">Biggest 5 Races World Championship Movements</h3>
+            <h3 style="text-align: center;">Biggest Movements Past 5 Races World Championship</h3>
         </div>
         <table class="update-table">
 
@@ -1077,7 +1077,7 @@ function updateUpdates() {
         <br>
 
         <div>
-            <h3 style="text-align: center;">Biggest Standings Movements</h3>
+            <h3 style="text-align: center;">Biggest Race to Race Standings Movements</h3>
         </div>
         <table class="update-table">
 
@@ -1135,4 +1135,3 @@ async function initialize() {
 }
 
 initialize();
-

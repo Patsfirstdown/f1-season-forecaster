@@ -14,9 +14,11 @@ function populateRaceDropdown() {
         document.getElementById("raceSelect");
 
     const races =
-        Object.entries(predictionData.races);
-
-    races.sort((a, b) => a[1] - b[1]);
+        Object.entries(predictionData.races)
+        .filter(([raceName]) =>
+            predictionData.wcc_data.hasOwnProperty(raceName)
+        )
+        .sort((a, b) => a[1] - b[1]);
 
     races.forEach(([raceName, round]) => {
 
@@ -31,63 +33,60 @@ function populateRaceDropdown() {
     raceSelect.selectedIndex = raceSelect.options.length - 1;
 }
 
-function populateDriverDropdown(raceName) {
+function populateTeamDropdown(raceName) {
 
     if (!raceName) {
         return;
     }
 
-    const driverSelect =
-        document.getElementById("driverSelect");
+    const teamSelect =
+        document.getElementById("teamSelect");
 
-    driverSelect.innerHTML = "";
+    teamSelect.innerHTML = "";
 
-    const drivers =
+    const teams =
         Object.keys(
-            predictionData.wdc_data[raceName]
+            predictionData.wcc_data[raceName]
         ).sort();
 
-    drivers.forEach(driver => {
+    teams.forEach(team => {
 
         const option =
             document.createElement("option");
 
-        option.value = driver;
-        option.textContent = predictionData.race_data[raceName][driver].driver_name;
+        option.value = team;
+        option.textContent = team;
 
-        driverSelect.appendChild(option);
+        teamSelect.appendChild(option);
     });
-    if (drivers.includes("VER")) {
-        driverSelect.value = "VER";
-    }
 }
 
-function updateChart(race, driver) {
+function updateChart(race, team) {
 
-    const driverData =
-        predictionData.wdc_data[race][driver];
-
-    const name = predictionData.race_data[race][driver].driver_name;
+    const teamData =
+        predictionData.wcc_data[race][team];
 
     const labels = [];
     const values = [];
 
-    const color = predictionData.driverColor[driver];
+    const teamColors = predictionData.teamColor;
+
+    color = teamColors[team];
 
     document.getElementById("expectedFinish")
-        .textContent = driverData.expected_finish.toFixed(2);
+        .textContent = teamData.expected_finish.toFixed(2);
     
     document.getElementById("winProb")
-        .textContent = (driverData.win_probability*100).toFixed(2) + "%";
+        .textContent = teamData.win_probability.toFixed(4)*100 + "%";
 
-    for (let i = 1; i <= 22; i++) {
+    for (let i = 1; i <= 11; i++) {
 
         const key = i.toString();
 
-        if (key in driverData) {
+        if (key in teamData) {
 
             labels.push(key);
-            values.push(driverData[key]);
+            values.push(teamData[key]);
         }
     }
 
@@ -118,7 +117,7 @@ function updateChart(race, driver) {
                 plugins: {
                     title: {
                         display: true,
-                        text: name + " - " + race,
+                        text: team + " - " + race,
                     }
                 }
             }
@@ -127,16 +126,15 @@ function updateChart(race, driver) {
 
 function updateScore(selectedRace) {
 
-    const wdcData = predictionData.wdc_data[selectedRace];
-    const raceData = predictionData.race_data[selectedRace];
+    const wccData = predictionData.wcc_data[selectedRace];
 
     const scoreList = [];
 
-    Object.keys(wdcData).forEach(driver => {
+    Object.keys(wccData).forEach(team => {
 
         scoreList.push({
-            driver: raceData[driver].driver_name,
-            probability: wdcData[driver].WDC_score
+            team: team,
+            probability: wccData[team].WCC_score
         });
 
     });
@@ -155,7 +153,7 @@ function updateScore(selectedRace) {
         row.className = "score-row";
         
         row.innerHTML = `
-            <span>${item.driver}</span>
+            <span>${item.team}</span>
             <span>${(item.probability * 100).toFixed(2)}%</span>
         `;
 
@@ -165,15 +163,15 @@ function updateScore(selectedRace) {
 
 }
 
-function updateWDCHeatmap(selectedRace) {
+function updateWCCHeatmap(selectedRace) {
 
-    const wdcData = predictionData.wdc_data[selectedRace];
+    const wccData = predictionData.wcc_data[selectedRace];
 
     let maxProb = 0;
 
-    Object.values(wdcData).forEach(driverData => {
-        for (let pos = 1; pos <= 22; pos++) {
-            const prob = Number(driverData[String(pos)]) || 0;
+    Object.values(wccData).forEach(teamData => {
+        for (let pos = 1; pos <= 11; pos++) {
+            const prob = Number(teamData[String(pos)]) || 0;
     
             if (prob > maxProb) {
                 maxProb = prob;
@@ -184,24 +182,24 @@ function updateWDCHeatmap(selectedRace) {
     let html = `
         <table class="heatmap-table">
             <tr>
-                <th class="heatmap-header">Driver</th>
+                <th class="heatmap-header">Team</th>
     `;
 
-    for (let pos = 1; pos <= 22; pos++) {
+    for (let pos = 1; pos <= 11; pos++) {
         html += `<th class="heatmap-header">P${pos}</th>`;
     }
 
     html += `</tr>`;
 
-    Object.keys(wdcData).forEach(driver => {
+    Object.keys(wccData).forEach(team => {
 
         html += `<tr>`;
-        html += `<td class="heatmap-driver">${driver}</td>`;
+        html += `<td class="heatmap-driver">${team}</td>`;
 
-        for (let pos = 1; pos <= 22; pos++) {
+        for (let pos = 1; pos <= 11; pos++) {
 
             const prob =
-                wdcData[driver][String(pos)];
+                wccData[team][String(pos)];
 
             const opacity = prob / maxProb;
 
@@ -223,7 +221,7 @@ function updateWDCHeatmap(selectedRace) {
     html += `</table>`;
 
     document.getElementById(
-        "wdcHeatmap"
+        "wccHeatmap"
     ).innerHTML = html;
 }
 
@@ -238,7 +236,7 @@ async function initialize() {
 
     if (raceSelect.options.length > 0) {
 
-        populateDriverDropdown(
+        populateTeamDropdown(
             raceSelect.options[0].value
         );
     }
@@ -250,7 +248,7 @@ document
 .getElementById("raceSelect")
 .addEventListener("change", function() {
 
-    populateDriverDropdown(this.value);
+    populateTeamDropdown(this.value);
 
 });
 
@@ -263,18 +261,20 @@ document
     const race =
         document.getElementById("raceSelect").value;
 
-    const driver =
-        document.getElementById("driverSelect").value;
+    const team =
+        document.getElementById("teamSelect").value;
+    
     const card = document.querySelector('canvas.graph');
     card.style.setProperty('width', '60%', "important");
-    
+
     const stat = document.querySelector('.stats-card');
     stat.style.display = "block";
 
     const graph = document.querySelector('.graph');
     graph.style.display = "flex";
-
-    updateChart(race, driver);
-    updateWDCHeatmap(race);
+    
+    updateChart(race, team);
+    updateWCCHeatmap(race);
     updateScore(race);
+
 });

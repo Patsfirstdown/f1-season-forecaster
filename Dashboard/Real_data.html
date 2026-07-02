@@ -5,6 +5,7 @@
         <title>Result Scores</title>
         <link rel="stylesheet" href="styles.css">
         <script src="common.js"></script>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
         <script src="real_script.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
@@ -13,19 +14,54 @@
         </div>
         <div>
             <header class="banner">
-                <h1>Driver Result Scores</h1>
+                <h1>Driver Result<br>Scores</h1>
             </header>
         </div>
-        
+        <table class="year_dropdown_table">
+            <theader>
+                <th>
+                    
+                </th>
+            </theader>
+            <tr>
+                <td align="Right">Year</td>
+                <td>
+                    <!--
+                    Year list
+                    -->
+                    <label for="year_picked"></label>
+                    <select class="select-box" id="yearSelect" name="year_picked" required>
+                </td>
+            </tr>
+        </table>
         <div>
             <div class="dashboard_card">
                 <h3 class="score-title">Driver+Car Scores</h3>
+                <h4 class="info">Score based on Wins, Podiums, Points Finishes and DNF Rate</h4>
+                <table class="info">
+                    <tr>
+                        <th>100 to 50: Dominant</th>
+                        <th>50 to 20: Fighting for Wins</th>
+                        <th>20 to 5: Battling in the Points</th>
+                        <th>5 to 0: Battling for the Points</th>
+                        <th>0 to -100: Consistent DNFs and Maybe Points Battles</th>
+                    </tr>
+                </table>
                 <div id="scoreList" class="dnfProbList"></div>
             </div>
         </div>
         <div>
             <div class="dashboard_card">
                 <h3 class="score-title">Driver Scores</h3>
+                <h4 class="info">Score based on Expected Position, Teammate Head to Head, Consistency and Improvement</h4>
+                <table class="info">
+                    <tr>
+                        <th>10 to 5: Beyond Expectations</th>
+                        <th>5 to 2.5: Above Expecations</th>
+                        <th>2.5 to -2.5: Within Expectations</th>
+                        <th>-2.5 to -inf: Performing Below Expectations</th>
+                    </tr>
+                </table>
                 <div id="betterScoreList" class="dnfProbList"></div>
             </div>
         </div>
