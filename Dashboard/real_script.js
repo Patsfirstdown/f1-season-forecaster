@@ -125,6 +125,8 @@ function updateBetterScore(year) {
     const betterList = [];
 
     if (year==="top10") {
+        const warning=document.getElementById("yearWarning");
+        warning.innerHTML = '<p class="info">Top 10 Final Season Scores since 2018</p>';
         let count=0;
         resultsData = oldData[year]["betterScores"];
         console.log(resultsData);
