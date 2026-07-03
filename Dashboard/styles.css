@@ -361,9 +361,9 @@ canvas.graph{
 
 .score-row {
     display: grid;
-    grid-template-columns: 60px 1fr 80px;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    max-width: 350px;
+    max-width: 750px;
     margin: 0 auto;
     padding: 8px 0;
     font-size: 150%;
@@ -533,4 +533,26 @@ table.info {
     background-image: linear-gradient(to right,white, var(--f1_red));
     color: transparent;
     background-clip: text;
+}
+
+.wdc {
+    color:rgb(255, 215, 0);
+    font-weight: bold;
+    text-shadow: 1px 1px 1px white;
+}
+
+.wdc2 {
+    color:rgb(192, 192, 192);
+    font-weight:bold;
+    text-shadow: 1px 1px 1px royalblue;
+}
+
+.wdc3 {
+    color:rgb(205,127,50);
+    font-weight:bold;
+    text-shadow: 1px 1px 1px white;
+}
+
+.wdcOther {
+    color: white;
 }

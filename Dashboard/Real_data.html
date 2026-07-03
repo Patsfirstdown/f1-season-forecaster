@@ -24,13 +24,24 @@
                 </th>
             </theader>
             <tr>
-                <td align="Right">Year</td>
+                <td align="Right">Data</td>
                 <td>
-                    <!--
-                    Year list
-                    -->
                     <label for="year_picked"></label>
                     <select class="select-box" id="yearSelect" name="year_picked" required>
+                </td>
+            </tr>
+            <tr id="driverDropdown2" class="driverDropdownReal">
+                <td align="Right" id="driverDropdownText"></td>
+                <td>
+                    <label for="year_picked"></label>
+                    <select class="select-box" id="driverSelect" name="driver_picked" required>
+                </td>
+            </tr>
+            <tr id="extraDropdown">
+                <td align="Right">Data</td>
+                <td>
+                    <label for="year_picked"></label>
+                    <select class="select-box" id="extraSelect" name="driver_picked" required>
                 </td>
             </tr>
         </table>
@@ -53,16 +64,18 @@
             </div>
         </div>
         <div>
+            
             <div class="dashboard_card">
                 <h3 class="score-title">Driver Scores</h3>
+                <div id="otherWarning"></div>
                 <h4 class="info">Score based on Expected Position, Teammate Head to Head, Consistency and Improvement</h4>
-                <table class="info">
-                    <tr>
-                        <th>5+: Beyond Expectations</th>
-                        <th>5 to 2.5: Above Expecations</th>
-                        <th>2.5 to -2.5: Within Expectations</th>
-                        <th>-2.5 to -inf: Performing Below Expectations</th>
-                    </tr>
+                <table class="info" id="betterInfo">
+                    <tr><th>6+: Beyond Expectations</th>
+                        <th>6 to 3: Above Expecations</th>
+                        <th>3 to 1: Within Expectations</th>
+                        <th>1 to 0: Performing Below Expectations</th>
+                        <th>0 to -inf: Beyond Below Expectations</th>
+                        </tr>
                 </table>
                 <div id="betterScoreList" class="dnfProbList"></div>
             </div>
