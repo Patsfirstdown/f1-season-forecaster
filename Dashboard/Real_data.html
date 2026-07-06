@@ -20,29 +20,52 @@
         <table class="year_dropdown_table">
             <theader>
                 <th>
-                    
                 </th>
             </theader>
             <tr>
-                <td align="Right">Data</td>
+                <td align="Right">Time Span</td>
                 <td>
                     <label for="year_picked"></label>
-                    <select class="select-box" id="yearSelect" name="year_picked" required>
+                    <select class="select-box" id="yearSelect" name="year_picked" required></select>
+                </td>
+                <td align="Right">How Many</td>
+                <td>
+                    <label for="limit_picked"></label>
+                    <select class="select-box" id="limitSelect" name="limit_picked" required>
+                        <option value="10">Top 10</option>
+                        <option value="20">Top 20</option>
+                        <option value="30">Top 30</option>
+                        <option value="10000">All</option>
+                    </select>
                 </td>
             </tr>
             <tr id="driverDropdown2" class="driverDropdownReal">
                 <td align="Right" id="driverDropdownText"></td>
                 <td>
                     <label for="year_picked"></label>
-                    <select class="select-box" id="driverSelect" name="driver_picked" required>
+                    <select class="select-box" id="driverSelect" name="driver_picked" required></select>
                 </td>
+                <td></td>
             </tr>
             <tr id="extraDropdown">
                 <td align="Right">Data</td>
                 <td>
                     <label for="year_picked"></label>
                     <select class="select-box" id="extraSelect" name="driver_picked" required>
+                    </select>
                 </td>
+                <td></td>
+            </tr>
+        </table>
+        <table  class="realLegend">
+            <th colspan="4" style="color:white;font-size:2rem;" text-align="center">
+                Legend
+            </th>
+            <tr>
+                <td class="wdc" align="center">World Champion</td>
+                <td class="wdc2" align="center">Runner Up</td>
+                <td class="wdc3" align="center">Third</td>
+                <td class="wdcOther" align="center">Raced</td>
             </tr>
         </table>
         <div id="yearWarning"></div>
@@ -60,11 +83,15 @@
                         <th>0 to -100: Consistent DNFs and Maybe Points Battles</th>
                     </tr>
                 </table>
-                <div id="scoreList" class="dnfProbList"></div>
+                <div class="score-row">
+                    <span id="scoreHeader" class="wdcOther"></span>
+                    <span class="wdcOther">Driver</span>
+                    <span class="wdcOther">Score</span>
+                </div>
+                <div id="scoreList" class="scoreList"></div>
             </div>
         </div>
         <div>
-            
             <div class="dashboard_card">
                 <h3 class="score-title">Driver Scores</h3>
                 <div id="otherWarning"></div>
@@ -77,7 +104,33 @@
                         <th>0 to -inf: Beyond Below Expectations</th>
                         </tr>
                 </table>
-                <div id="betterScoreList" class="dnfProbList"></div>
+                <div class="score-row">
+                    <span id="betterScoreHeader" class="wdcOther"></span>
+                    <span class="wdcOther">Driver</span>
+                    <span class="wdcOther">Score</span>
+                </div>
+                <div id="betterScoreList" class="scoreList"></div>
+            </div>
+        </div>
+        <div>
+            <div class="dashboard_card">
+                <h3 class="score-title">Combined Scores</h3>
+                <div id="otherWarning"></div>
+                <h4 class="info">Score based on Driver Car Score * Driver Score</h4>
+                <table class="info" id="combinedInfo">
+                    <tr><th>6+: Beyond Expectations</th>
+                        <th>6 to 3: Above Expecations</th>
+                        <th>3 to 1: Within Expectations</th>
+                        <th>1 to 0: Performing Below Expectations</th>
+                        <th>0 to -inf: Beyond Below Expectations</th>
+                        </tr>
+                </table>
+                <div class="score-row">
+                    <span id="combinedScoreHeader" class="wdcOther"></span>
+                    <span class="wdcOther">Driver</span>
+                    <span class="wdcOther">Score</span>
+                </div>
+                <div id="combinedScoreList" class="scoreList"></div>
             </div>
         </div>
         <div id="footerForm">

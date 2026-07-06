@@ -3,7 +3,10 @@ let predictionData;
 let resultsData;
 let oldData;
 let driverClass;
-let driverDropdownText = document.getElementById("driverDropdownText")
+let driverDropdownText = document.getElementById("driverDropdownText");
+let cscoreHeader = document.getElementById("combinedScoreHeader");
+let bscoreHeader = document.getElementById("betterScoreHeader");
+let scoreHeader = document.getElementById("scoreHeader");
 let wdcFirstList = {
     2025: "Lando Norris",
     2024: "Max Verstappen",
@@ -20,9 +23,68 @@ let wdcFirstList = {
     2013: "Sebastian Vettel",
     2012: "Sebastian Vettel",
     2011: "Sebastian Vettel",
-    2010: "Sebastian Vettel"
+    2010: "Sebastian Vettel",
+    2009: "Jenson Button",
+    2008: "Lewis Hamilton",
+    2007: "Kimi Räikkönen",
+    2006: "Fernando Alonso",
+    2005: "Fernando Alonso",
+    2004: "Michael Schumacher",
+    2003: "Michael Schumacher",
+    2002: "Michael Schumacher",
+    2001: "Michael Schumacher",
+    2000: "Michael Schumacher",
+    1999: "Mika Häkkinen",
+    1998: "Mika Häkkinen",
+    1997: "Jacques Villeneuve",
+    1996: "Damon Hill",
+    1995: "Michael Schumacher",
+    1994: "Michael Schumacher",
+    1993: "Alain Prost",
+    1992: "Nigel Mansell",
+    1991: "Ayrton Senna",
+    1990: "Ayrton Senna",
+    1989: "Alain Prost",
+    1988: "Ayrton Senna",
+    1987: "Nelson Piquet",
+    1986: "Alain Prost",
+    1985: "Alain Prost",
+    1984: "Niki Lauda",
+    1983: "Nelson Piquet",
+    1982: "Keke Rosberg",
+    1981: "Nelson Piquet",
+    1980: "Alan Jones",
+    1979: "Jody Scheckter",
+    1978: "Mario Andretti",
+    1977: "Niki Lauda",
+    1976: "James Hunt",
+    1975: "Niki Lauda",
+    1974: "Emerson Fittipaldi",
+    1973: "Jackie Stewart",
+    1972: "Emerson Fittipaldi",
+    1971: "Jackie Stewart",
+    1970: "Jochen Rindt",
+    1969: "Jackie Stewart",
+    1968: "Graham Hill",
+    1967: "Denny Hulme",
+    1966: "Jack Brabham",
+    1965: "Jim Clark",
+    1964: "John Surtees",
+    1963: "Jim Clark",
+    1962: "Graham Hill",
+    1961: "Phil Hill",
+    1960: "Jack Brabham",
+    1959: "Jack Brabham",
+    1958: "Mike Hawthorn",
+    1957: "Juan Fangio",
+    1956: "Juan Fangio",
+    1955: "Juan Fangio",
+    1954: "Juan Fangio",
+    1953: "Alberto Ascari",
+    1952: "Alberto Ascari",
+    1951: "Juan Fangio",
+    1950: "Nino Farina"
 };
-
 let wdcSecondList = {
     2025: "Max Verstappen",
     2024: "Lando Norris",
@@ -39,9 +101,68 @@ let wdcSecondList = {
     2013: "Fernando Alonso",
     2012: "Fernando Alonso",
     2011: "Jenson Button",
-    2010: "Fernando Alonso"
+    2010: "Fernando Alonso",
+    2009: "Sebastian Vettel",
+    2008: "Felipe Massa",
+    2007: "Lewis Hamilton",
+    2006: "Michael Schumacher",
+    2005: "Kimi Räikkönen",
+    2004: "Rubens Barrichello",
+    2003: "Kimi Räikkönen",
+    2002: "Rubens Barrichello",
+    2001: "David Coulthard",
+    2000: "Mika Häkkinen",
+    1999: "Eddie Irvine",
+    1998: "Michael Schumacher",
+    1997: "Michael Schumacher",
+    1996: "Jacques Villeneuve",
+    1995: "Damon Hill",
+    1994: "Damon Hill",
+    1993: "Ayrton Senna",
+    1992: "Riccardo Patrese",
+    1991: "Nigel Mansell",
+    1990: "Alain Prost",
+    1989: "Ayrton Senna",
+    1988: "Alain Prost",
+    1987: "Nigel Mansell",
+    1986: "Nigel Mansell",
+    1985: "Michele Alboreto",
+    1984: "Alain Prost",
+    1983: "Alain Prost",
+    1982: "Didier Pironi",
+    1981: "Carlos Reutemann",
+    1980: "Nelson Piquet",
+    1979: "Gilles Villeneuve",
+    1978: "Ronnie Peterson",
+    1977: "Jody Scheckter",
+    1976: "Niki Lauda",
+    1975: "Emerson Fittipaldi",
+    1974: "Clay Regazzoni",
+    1973: "Emerson Fittipaldi",
+    1972: "Jackie Stewart",
+    1971: "Ronnie Peterson",
+    1970: "Jacky Ickx",
+    1969: "Jacky Ickx",
+    1968: "Jackie Stewart",
+    1967: "Jack Brabham",
+    1966: "John Surtees",
+    1965: "Graham Hill",
+    1964: "Graham Hill",
+    1963: "Graham Hill",
+    1962: "Jim Clark",
+    1961: "Wolfgang von Trips",
+    1960: "Bruce McLaren",
+    1959: "Tony Brooks",
+    1958: "Stirling Moss",
+    1957: "Stirling Moss",
+    1956: "Stirling Moss",
+    1955: "Stirling Moss",
+    1954: "José Froilán González",
+    1953: "Juan Manuel Fangio",
+    1952: "Giuseppe Farina",
+    1951: "Alberto Ascari",
+    1950: "Juan Manuel Fangio"
 };
-
 let wdcThirdList = {
     2025: "Oscar Piastri",
     2024: "Charles Leclerc",
@@ -58,7 +179,67 @@ let wdcThirdList = {
     2013: "Mark Webber",
     2012: "Kimi Räikkönen",
     2011: "Mark Webber",
-    2010: "Mark Webber"
+    2010: "Mark Webber",
+    2009: "Rubens Barrichello",
+    2008: "Kimi Räikkönen",
+    2007: "Fernando Alonso",
+    2006: "Felipe Massa",
+    2005: "Michael Schumacher",
+    2004: "Jenson Button",
+    2003: "Juan Pablo Montoya",
+    2002: "Juan Pablo Montoya",
+    2001: "Michael Schumacher",
+    2000: "David Coulthard",
+    1999: "Heinz-Harald Frentzen",
+    1998: "David Coulthard",
+    1997: "Heinz-Harald Frentzen",
+    1996: "Michael Schumacher",
+    1995: "David Coulthard",
+    1994: "Michael Schumacher",
+    1993: "Damon Hill",
+    1992: "Michael Schumacher",
+    1991: "Riccardo Patrese",
+    1990: "Nelson Piquet",
+    1989: "Riccardo Patrese",
+    1988: "Gerhard Berger",
+    1987: "Ayrton Senna",
+    1986: "Nelson Piquet",
+    1985: "Keke Rosberg",
+    1984: "Elio de Angelis",
+    1983: "René Arnoux",
+    1982: "John Watson",
+    1981: "Alan Jones",
+    1980: "Carlos Reutemann",
+    1979: "Alan Jones",
+    1978: "Carlos Reutemann",
+    1977: "Mario Andretti",
+    1976: "Jody Scheckter",
+    1975: "Carlos Pace",
+    1974: "Jody Scheckter",
+    1973: "François Cevert",
+    1972: "Denny Hulme",
+    1971: "Jackie Stewart",
+    1970: "Clay Regazzoni",
+    1969: "Bruce McLaren",
+    1968: "Denny Hulme",
+    1967: "Jim Clark",
+    1966: "Jackie Stewart",
+    1965: "Jackie Stewart",
+    1964: "Jim Clark",
+    1963: "Richie Ginther",
+    1962: "Bruce McLaren",
+    1961: "Stirling Moss",
+    1960: "Innes Ireland",
+    1959: "Stirling Moss",
+    1958: "Tony Brooks",
+    1957: "Peter Collins",
+    1956: "Peter Collins",
+    1955: "Eugenio Castellotti",
+    1954: "Mike Hawthorn",
+    1953: "Nino Farina",
+    1952: "Piero Taruffi",
+    1951: "José Froilán González",
+    1950: "Luigi Fagioli"
 };
 
 async function loadData() {
@@ -81,630 +262,117 @@ function interpolateColor(score) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-function updateDriverBetterScore(yearInput,driverInput) {
-    resultsData = oldData[yearInput][driverInput];
-
-    const betterList = [];
-    Object.keys(resultsData).forEach(dataPoint => {
-        betterList.push({
-            driverName: driverInput,
-            yearHappen: dataPoint,
-            probability: resultsData[dataPoint].betterScore
-        });
-    });
-
-    const warning=document.getElementById("yearWarning");
-    warning.innerHTML = '';
-
-    betterList.sort((a, b) => b.probability - a.probability);
-
-    const container =
-        document.getElementById("betterScoreList");
-
-    container.innerHTML = "";
-
-    betterList.forEach(item => {
-
-        yearHappen=item.yearHappen
-
-        const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-
-        color=interpolateColor(scoreHere);
-
-        driverClass=`class="wdcOther"`;
-
-        if(wdcFirstList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc"`;
-        } else if(wdcSecondList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc2"`;
-        } else if(wdcThirdList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc3"`;
-        }
-
-        row.className = "score-row";
-        
-        row.innerHTML = `
-            <span ${driverClass};>${yearHappen}</span>
-            <span ${driverClass};>${item.driverName}</span>
-            <span style="color:${color};">${(item.probability).toFixed(3)}</span>
-        `;
-        container.appendChild(row);
-
-    });
-}
-
-function updateDriverScore(yearInput,driverInput) {
-    resultsData = oldData[yearInput][driverInput];
-    const scoreList = [];
-    Object.keys(resultsData).forEach(driver => {
-        scoreList.push({
-            driverName: driverInput,
-            yearHappen: driver,
-            probability: resultsData[driver].score
-        });
-    });
-
-    const warning=document.getElementById("yearWarning");
-    warning.innerHTML = '';
-
-    scoreList.sort((a, b) => b.probability - a.probability);
-
-    const container =
-        document.getElementById("scoreList");
-
-    container.innerHTML = "";
-
-    scoreList.forEach(item => {
-
-        yearHappen=item.yearHappen
-
-        const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-
-        color=interpolateColor(scoreHere);
-
-        driverClass=`class="wdcOther"`;
-        console.log(wdcFirstList[yearHappen])
-        console.log(item.driverName)
-        if(wdcFirstList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc"`;
-        } else if(wdcSecondList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc2"`;
-        } else if(wdcThirdList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc3"`;
-        }
-
-        row.className = "score-row";
-        
-        row.innerHTML = `
-            <span ${driverClass};>${yearHappen}</span>
-            <span ${driverClass};>${item.driverName}</span>
-            <span style="color:${color};">${(item.probability*100).toFixed(3)}</span>
-        `;
-        container.appendChild(row);
-
-    });
-}
-
-function updateBetterScoreYears(yearInput,driverInput) {
-    if (driverInput==="2026") {
-        resultsData = realData["stats"];
-    } else {
-        resultsData = oldData[yearInput][driverInput];
-    }
-
-    const scoreList = [];
-    Object.keys(resultsData).forEach(driver => {
-
-        scoreList.push({
-            driverName: resultsData[driver]["name"],
-            yearHappen: driverInput,
-            probability: resultsData[driver]["betterScore"]
-        });
-    });
-
-    const warning=document.getElementById("yearWarning");
-    warning.innerHTML = '';
-
-    scoreList.sort((a, b) => b.probability - a.probability);
-
-    const container =
-        document.getElementById("betterScoreList");
-
-    container.innerHTML = "";
-
-    scoreList.forEach(item => {
-        
-        yearHappen=item.yearHappen
-        
-        const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-        
-        color=interpolateColor(scoreHere);
-        
-        driverClass=`class="wdcOther"`;
-        
-        if(wdcFirstList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc"`;
-        } else if(wdcSecondList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc2"`;
-        } else if(wdcThirdList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc3"`;
-        }
-
-        row.className = "score-row";
-        
-        row.innerHTML = `
-            <span ${driverClass};>${yearHappen}</span>
-            <span ${driverClass};>${item.driverName}</span>
-            <span style="color:${color};">${(item.probability).toFixed(3)}</span>
-        `;
-        container.appendChild(row);
-
-    });
-}
-
-function updateScoreYears(yearInput,driverInput) {
-    if (driverInput==="2026") {
-        resultsData = realData["stats"];
-    } else {
-        resultsData = oldData[yearInput][driverInput];
-    }
-
-    const scoreList = [];
-
-    Object.keys(resultsData).forEach(driver => {
-
-        scoreList.push({
-            driverName: resultsData[driver]["name"],
-            yearHappen: driverInput,
-            probability: resultsData[driver]["score"]
-        });
-    });
-
-    const warning=document.getElementById("yearWarning");
-    warning.innerHTML = '';
-
-    scoreList.sort((a, b) => b.probability - a.probability);
-
-    const container =
-        document.getElementById("scoreList");
-
-    container.innerHTML = "";
-
-    scoreList.forEach(item => {
-        
-        yearHappen=item.yearHappen
-        
-        const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-        
-        color=interpolateColor(scoreHere);
-        
-        driverClass=`class="wdcOther"`;
-        
-        if(wdcFirstList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc"`;
-        } else if(wdcSecondList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc2"`;
-        } else if(wdcThirdList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc3"`;
-        }
-
-        row.className = "score-row";
-        
-        row.innerHTML = `
-            <span ${driverClass};>${yearHappen}</span>
-            <span ${driverClass};>${item.driverName}</span>
-            <span style="color:${color};">${(item.probability*100).toFixed(3)}</span>
-        `;
-        container.appendChild(row);
-
-    });
-}
-
-function updateBetterScoreRank10(yearInput,driverInput) {
-    resultsData = oldData[yearInput][driverInput]["betterScores"];
-
-    const scoreList = [];
-    Object.keys(resultsData).forEach(driver => {
-        scoreList.push({
-            driverName: resultsData[driver]["driver"],
-            yearHappen: resultsData[driver]["year"],
-            probability: resultsData[driver]["score"]
-        });
-    });
-
-    const warning=document.getElementById("yearWarning");
-    warning.innerHTML = '';
-
-    if(yearInput==="Bottom x Drivers"){
-        scoreList.sort((b, a) => b.probability - a.probability);
-    } else {
-        scoreList.sort((a, b) => b.probability - a.probability);
-    }
-
-    const container =
-        document.getElementById("betterScoreList");
-
-    container.innerHTML = "";
-
-    scoreList.forEach(item => {
-        
-        yearHappen=item.yearHappen
-        
-        const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-        
-        color=interpolateColor(scoreHere);
-        
-        driverClass=`class="wdcOther"`;
-        
-        if(wdcFirstList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc"`;
-        } else if(wdcSecondList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc2"`;
-        } else if(wdcThirdList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc3"`;
-        }
-
-        row.className = "score-row";
-        
-        row.innerHTML = `
-            <span ${driverClass};>${yearHappen}</span>
-            <span ${driverClass};>${item.driverName}</span>
-            <span style="color:${color};">${(item.probability).toFixed(3)}</span>
-        `;
-        container.appendChild(row);
-
-    });
-}
-
-function updateScoreRank10(yearInput,driverInput) {
-    resultsData = oldData[yearInput][driverInput]["scores"];
-
-    const scoreList = [];
-
-    Object.keys(resultsData).forEach(driver => {
-        scoreList.push({
-            driverName: resultsData[driver]["driver"],
-            yearHappen: resultsData[driver]["year"],
-            probability: resultsData[driver]["score"]
-        });
-    });
-
-    const warning=document.getElementById("yearWarning");
-    warning.innerHTML = '';
-    if(yearInput==="Bottom x Drivers"){
-        scoreList.sort((b, a) => b.probability - a.probability);
-    } else {
-        scoreList.sort((a, b) => b.probability - a.probability);
-    }
-
-    const container =
-        document.getElementById("scoreList");
-
-    container.innerHTML = "";
-
-    scoreList.forEach(item => {
-        
-        yearHappen=item.yearHappen
-        
-        const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-        
-        color=interpolateColor(scoreHere);
-        
-        driverClass=`class="wdcOther"`;
-        
-        if(wdcFirstList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc"`;
-        } else if(wdcSecondList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc2"`;
-        } else if(wdcThirdList[yearHappen]===item.driverName) {
-            driverClass=`class="wdc3"`;
-        }
-
-        row.className = "score-row";
-        
-        row.innerHTML = `
-            <span ${driverClass};>${yearHappen}</span>
-            <span ${driverClass};>${item.driverName}</span>
-            <span style="color:${color};">${(item.probability).toFixed(3)}</span>
-        `;
-        container.appendChild(row);
-
-    });
-}
-
 function range(size, startAt = 0) {
     return [...Array(size).keys()].map(i => i + parseInt(startAt,10));
 }
 
-function updateBetterScoreYearSpan(yearInput,driverInput,metricInput) {
-    let maxSeasons = 0;
-    let firstYear = driverInput.slice(0,4)
-    let lastYear = driverInput.slice(-4)
+function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
+    resultsData = oldData["Years"];
+    const scoreList=[];
 
-    season_year_range=lastYear-firstYear+1
-
-    seasonYears=range(season_year_range,firstYear)
-    if(metricInput != "Driver Average") {
-        resultsData = oldData[yearInput][driverInput][metricInput]["betterScores"];
-    } else {
-        resultsData = oldData[yearInput][driverInput][metricInput];
-    }
-
-    const scoreList = [];
-    if(metricInput != "Driver Average") {
-        Object.keys(resultsData).forEach(driver => {
-            scoreList.push({
-                driverName: resultsData[driver]["driver"],
-                yearHappen: resultsData[driver]["year"],
-                probability: resultsData[driver]["score"]
-            });
-        });
-    } else {
-        Object.keys(resultsData).forEach(driver => {
-            if (resultsData[driver]["score"]["SeasonCount"]>maxSeasons) {
-                maxSeasons=resultsData[driver]["score"]["SeasonCount"]
-            };
-            scoreList.push({
-                driverName: driver,
-                yearHappen: resultsData[driver]["year"],
-                score: resultsData[driver]["betterScore"]["TotalScore"],
-                seasons: resultsData[driver]["score"]["SeasonCount"]
-            });
-        });
-    }
-
-    const warning=document.getElementById("yearWarning");
-    warning.innerHTML = '';
-
-    if(yearInput==="Bottom x Drivers"){
-        scoreList.sort((b, a) => b.probability - a.probability);
-    } else if (metricInput === "Driver Average") {
-        scoreList.sort((a,b) => b.score/b.seasons - a.score/a.seasons)
-    } else {
-    scoreList.sort((a, b) => b.probability - a.probability);
-    }
-
-    const container =
-        document.getElementById("betterScoreList");
-
-    container.innerHTML = "";
-
-    scoreList.forEach(item => {
-        
-        yearHappen=item.yearHappen
-        
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-        
-        color=interpolateColor(scoreHere);
-        
-        driverClass=`class="wdcOther"`;
-        
-        
-        if(metricInput != "Driver Average") {
-            const row = document.createElement("div");
-            row.className = "score-row";
-            if(wdcFirstList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc"`;
-            } else if(wdcSecondList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc2"`;
-            } else if(wdcThirdList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc3"`;
-            }
-            row.innerHTML = `
-                <span ${driverClass};>${yearHappen}</span>
-                <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.probability*100).toFixed(3)}</span>
-            `;
-            container.appendChild(row);
-        }  else {
-            if (item.seasons>=Math.floor(maxSeasons/2)) {
-                for (const yearOfyears of seasonYears) {
-                    if(item.driverName === wdcFirstList[yearOfyears]) {
-                        driverClass=`class="wdc"`
-                    }
+    Object.keys(wdcFirstList).forEach(year => {
+        driver=wdcFirstList[year]
+        if(year>=yearStart) {
+            if(year<yearEnd) {
+                if (Object.hasOwn(resultsData[year], driver)) {
+                    scoreList.push({
+                        driverName: driver,
+                        yearHappen: year,
+                        score: resultsData[year][driver]["score"],
+                        betterScore: resultsData[year][driver]["betterScore"],
+                        combinedScore: resultsData[year][driver]["combinedScore"]
+                    });
                 }
-                const row = document.createElement("div");
-                row.className = "score-row";
-                row.innerHTML = `
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.score/item.seasons).toFixed(3)}</span>
-                `;
-                container.appendChild(row);
             }
         }
     });
-}
+    count=0
 
-function updateScoreYearSpan(yearInput,driverInput,metricInput) {
-    let maxSeasons = 0;
-    let firstYear = driverInput.slice(0,4)
-    let lastYear = driverInput.slice(-4)
-
-    season_year_range=lastYear-firstYear+1
-
-    seasonYears=range(season_year_range,firstYear)
-    if(metricInput != "Driver Average") {
-        resultsData = oldData[yearInput][driverInput][metricInput]["scores"];
-    } else {
-        resultsData = oldData[yearInput][driverInput][metricInput];
-    }
-
-    const scoreList = [];
-    if(metricInput != "Driver Average") {
-        Object.keys(resultsData).forEach(driver => {
-            scoreList.push({
-                driverName: resultsData[driver]["driver"],
-                yearHappen: resultsData[driver]["year"],
-                probability: resultsData[driver]["score"]
-            });
-        });
-    }  else {
-        Object.keys(resultsData).forEach(driver => {
-            if (resultsData[driver]["score"]["SeasonCount"]>maxSeasons) {
-                maxSeasons=resultsData[driver]["score"]["SeasonCount"]
-            };
-            scoreList.push({
-                driverName: driver,
-                yearHappen: resultsData[driver]["year"],
-                score: resultsData[driver]["score"]["TotalScore"],
-                seasons: resultsData[driver]["score"]["SeasonCount"]
-            });
-        });
-    }
-
-    const warning=document.getElementById("yearWarning");
-    warning.innerHTML = '';
-    if(yearInput==="Bottom x Drivers"){
-        scoreList.sort((b, a) => b.probability - a.probability);
-    } else if (metricInput === "Driver Average") {
-        scoreList.sort((a,b) => b.score/b.seasons - a.score/a.seasons)
-    } else {
-        scoreList.sort((a, b) => b.probability - a.probability);
-    }
+    scoreList.sort((a, b) => b.score - a.score);
 
     const container =
         document.getElementById("scoreList");
 
     container.innerHTML = "";
-
     scoreList.forEach(item => {
-        
-        yearHappen=item.yearHappen
-        
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-        
-        color=interpolateColor(scoreHere);
-        
-        driverClass=`class="wdcOther"`;
-        
-        if(metricInput != "Driver Average") {
+        count++;
+        if(count<=limit) {
+            yearHappen=item.yearHappen
+            
             const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, 1 - item.score);
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdc"`;
+    
             row.className = "score-row";
-            if(wdcFirstList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc"`;
-            } else if(wdcSecondList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc2"`;
-            } else if(wdcThirdList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc3"`;
-            }
+            
             row.innerHTML = `
                 <span ${driverClass};>${yearHappen}</span>
                 <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.probability*100).toFixed(3)}</span>
+                <span style="color:${color};">${(item.score).toFixed(3)}</span>
             `;
             container.appendChild(row);
-        }  else {
-            if(item.seasons>=Math.floor(maxSeasons/2)) {
-                for (const yearOfyears of seasonYears) {
-                    if(item.driverName === wdcFirstList[yearOfyears]) {
-                        driverClass=`class="wdc"`
-                    }
-                }
-                const row = document.createElement("div");
-                row.className = "score-row";
-                row.innerHTML = `
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.score/item.seasons*100).toFixed(3)}</span>
-                `;
-                container.appendChild(row);
-            }
         }
-
     });
-}
+    count=0
+    scoreList.sort((a, b) => b.betterScore - a.betterScore);
 
-function updateScoresWDC() {
-    resultsData = oldData["Drivers"];
-
-    const scoreList=[];
-
-    Object.keys(wdcFirstList).forEach(year => {
-        driver=wdcFirstList[year]
-        console.log(driver)
-        console.log(resultsData[driver][year])
-        scoreList.push({
-            driverName: driver,
-            yearHappen: year,
-            probability: resultsData[driver][year]["score"]
-        });
-        console.log(scoreList)
-    });
-
-    scoreList.sort((a, b) => b.probability - a.probability);
-
-    const container =
-        document.getElementById("scoreList");
-
-    container.innerHTML = "";
-
-    scoreList.forEach(item => {
-        
-        yearHappen=item.yearHappen
-        
-        const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-        
-        color=interpolateColor(scoreHere);
-        
-        driverClass=`class="wdc"`;
-
-        row.className = "score-row";
-        
-        row.innerHTML = `
-            <span ${driverClass};>${yearHappen}</span>
-            <span ${driverClass};>${item.driverName}</span>
-            <span style="color:${color};">${(item.probability*100).toFixed(3)}</span>
-        `;
-        container.appendChild(row);
-    });
-}
-
-function updateBetterScoresWDC() {
-    resultsData = oldData["Drivers"];
-
-    const scoreList=[];
-
-    Object.keys(wdcFirstList).forEach(year => {
-        driver=wdcFirstList[year]
-        scoreList.push({
-            driverName: driver,
-            yearHappen: year,
-            probability: resultsData[driver][year]["betterScore"]
-        });
-    });
-
-    scoreList.sort((a, b) => b.probability - a.probability);
-
-    const container =
+    const betterScorecontainer =
         document.getElementById("betterScoreList");
 
-    container.innerHTML = "";
-
+    betterScorecontainer.innerHTML = "";
     scoreList.forEach(item => {
-        
-        yearHappen=item.yearHappen
-        
-        const row = document.createElement("div");
-        const scoreHere= Math.max(0.3, 1 - item.probability);
-        
-        color=interpolateColor(scoreHere);
-        
-        driverClass=`class="wdc"`;
+        count++;
+        if(count<=limit) {
+            yearHappen=item.yearHappen
+            
+            const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, 1 - item.betterScore);
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdc"`;
+    
+            row.className = "score-row";
+            
+            row.innerHTML = `
+                <span ${driverClass};>${yearHappen}</span>
+                <span ${driverClass};>${item.driverName}</span>
+                <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
+            `;
+            betterScorecontainer.appendChild(row);
+        }
+    });
+    count-0
+    scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
 
-        row.className = "score-row";
-        
-        row.innerHTML = `
-            <span ${driverClass};>${yearHappen}</span>
-            <span ${driverClass};>${item.driverName}</span>
-            <span style="color:${color};">${(item.probability).toFixed(3)}</span>
-        `;
-        container.appendChild(row);
+    const combinedScorecontainer =
+        document.getElementById("combinedScoreList");
+
+    combinedScorecontainer.innerHTML = "";
+    scoreList.forEach(item => {
+        count++;
+        if(count<=limit) {
+            yearHappen=item.yearHappen
+            
+            const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, 1 - item.combinedScore);
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdc"`;
+    
+            row.className = "score-row";
+            
+            row.innerHTML = `
+                <span ${driverClass};>${yearHappen}</span>
+                <span ${driverClass};>${item.driverName}</span>
+                <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
+            `;
+            combinedScorecontainer.appendChild(row);
+        }
     });
 }
 
@@ -743,8 +411,7 @@ function populateDriverDropdown(year) {
     let drivers;
     driverSelect.options.length = 0;
 
-    if(year==="Drivers") {
-        console.log("DRIVERS")
+    if(year==="Single Driver") {
         drivers =
             Object.keys(oldData["Years"]);
     } else {
@@ -753,31 +420,27 @@ function populateDriverDropdown(year) {
     }
 
     drivers.sort();
+    const driverDropdownText = document.getElementById("driverDropdownText")
 
     for (const driver of drivers) {
-        if (year.includes("Bottom")) {
-            const option = document.createElement("option");
-            const numberHere = driver.slice(-2);
-            option.value = driver;
-            option.textContent = "Bottom "+numberHere+" Season Scores";
-            driverSelect.appendChild(option);
-        } else if (year.includes("Top")) {
-            const option = document.createElement("option");
-            numberHere = driver.slice(-2)
-            option.value = driver;
-            option.textContent = "Top "+numberHere+" Season Scores";
-            yearSelect.appendChild(option);
-        } else {
-            const option = document.createElement("option");
-            option.value = driver;
-            option.textContent = driver;
-            driverSelect.appendChild(option);
+        driverDropdownText.innerHTML = "WIP"
+        const option = document.createElement("option");
+        option.value = driver;
+        option.textContent = driver;
+        driverSelect.appendChild(option);
+        if (year==="Single Driver") {
+            driverSelect.selectedIndex = driverSelect.options.length - 1;
+        } else if (year.includes("Span")) {
+            driverSelect.selectedIndex = driverSelect.options.length - 1;
+        } else if (year.includes("Cycle")) {
+            driverSelect.selectedIndex = driverSelect.options.length - 1;
         }
     }
     if (year==="Years") {
+        driverDropdownText.innerHTML = "Year"
         const option = document.createElement("option");
-        option.value = 2026;
-        option.textContent = 2026;
+        option.value = "2026";
+        option.textContent = "2026";
         driverSelect.appendChild(option);
         driverSelect.selectedIndex = driverSelect.options.length - 1;
     }
@@ -789,25 +452,832 @@ function populateExtraDropdown(span,yearSpan) {
     
     extraSelect.options.length = 0;
     const metricOptions = [];
-    console.log(span)
-    console.log(oldData["Years"][yearSpan])
-    if (span==="Drivers") {
+    if (span==="Single Driver") {
         Object.keys(oldData["Years"][yearSpan]).forEach(driver => {
-            console.log(oldData["Years"][yearSpan][driver])
-            metricOptions.push(oldData["Years"][yearSpan][driver]["name"])
+            metricOptions.push(driver)
         });
-        console.log(metricOptions)
     } else {
         Object.keys(oldData[span][yearSpan]).forEach(keyName => {
             metricOptions.push(keyName)
         });
     } 
-    console.log(metricOptions)
     for (const metric of metricOptions) {
         const option = document.createElement("option");
         option.value = metric;
         option.textContent = metric;
         extraSelect.appendChild(option);
+    }
+}
+
+function updateAllTimeScores(avgOrSeason,limit) {
+    const scoreList=[];
+    let count = 0;
+    resultsData = oldData["All Time"][avgOrSeason];
+    const containerScoreList =
+    document.getElementById("scoreList");
+
+    const containerBetterScoreList =
+    document.getElementById("betterScoreList");
+    
+    const containerCombinedScoreList =
+        document.getElementById("combinedScoreList");
+    if(avgOrSeason==="Driver Averages") {
+        Object.keys(resultsData).forEach(driver => {
+            const seasonTotal = resultsData[driver]["seasons"]
+            if (seasonTotal>=2) {
+                scoreList.push({
+                    driverName: driver,
+                    yearHappen: resultsData[driver]["RookieYear"],
+                    score: resultsData[driver]["score"]/seasonTotal,
+                    betterScore: resultsData[driver]["betterScore"]/seasonTotal,
+                    combinedScore: resultsData[driver]["combinedScore"]/seasonTotal
+                });
+            }
+        });
+    
+        scoreList.sort((a, b) => b.score - a.score);
+    
+        containerScoreList.innerHTML = "";
+        count = 0;
+    
+        scoreList.forEach(item => {
+            count++
+            if (count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                Object.keys(wdcFirstList).forEach(yearWDC => {
+                    if(wdcFirstList[yearWDC]===item.driverName) {
+                        driverClass=`class="wdc"`;
+                    }
+                }) 
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.score).toFixed(3)}</span>
+                `;
+                containerScoreList.appendChild(row);
+            }
+        });
+
+        count = 0;
+    
+        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    
+        containerBetterScoreList.innerHTML = "";
+    
+        scoreList.forEach(item => {
+            count++
+            if(count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                Object.keys(wdcFirstList).forEach(yearWDC => {
+                    if(wdcFirstList[yearWDC]===item.driverName) {
+                        driverClass=`class="wdc"`;
+                    }
+                }) 
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
+                `;
+                containerBetterScoreList.appendChild(row);
+            }
+        });
+
+        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    
+        containerCombinedScoreList.innerHTML = "";
+        count=0
+    
+        scoreList.forEach(item => {
+            count++
+            if (count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                Object.keys(wdcFirstList).forEach(yearWDC => {
+                    if(wdcFirstList[yearWDC]===item.driverName) {
+                        driverClass=`class="wdc"`;
+                    }
+                })
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
+                `;
+                containerCombinedScoreList.appendChild(row);
+            }
+        });
+    } else {
+        Object.keys(resultsData).forEach(driver => {
+            Object.keys(resultsData[driver]).forEach(year => {
+                scoreList.push({
+                    driverName: driver,
+                    yearHappen: year,
+                    score: resultsData[driver][year]["score"],
+                    betterScore: resultsData[driver][year]["betterScore"],
+                    combinedScore: resultsData[driver][year]["combinedScore"]
+                })
+            });
+        });
+    
+        scoreList.sort((a, b) => b.score - a.score);
+    
+        containerScoreList.innerHTML = "";
+    
+        scoreList.forEach(item => {
+            count++;
+            if(count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                if(wdcFirstList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc"`;
+                } else if(wdcSecondList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc2"`;
+                } else if(wdcThirdList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc3"`;
+                }
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.score).toFixed(3)}</span>
+                `;
+                containerScoreList.appendChild(row);
+            }
+        });
+    
+        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    
+        containerBetterScoreList.innerHTML = "";
+        count=0
+    
+        scoreList.forEach(item => {
+            count++
+            if(count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                if(wdcFirstList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc"`;
+                } else if(wdcSecondList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc2"`;
+                } else if(wdcThirdList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc3"`;
+                }
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
+                `;
+                containerBetterScoreList.appendChild(row);
+            }
+        });
+
+        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    
+        containerCombinedScoreList.innerHTML = "";
+        count=0
+    
+        scoreList.forEach(item => {
+            count++
+            if(count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                if(wdcFirstList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc"`;
+                } else if(wdcSecondList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc2"`;
+                } else if(wdcThirdList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc3"`;
+                }
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
+                `;
+                containerCombinedScoreList.appendChild(row);
+            }
+        });
+    }
+}
+
+function updateYearScores(year,limit) {
+    const scoreList=[];
+    if(year==="2026") {
+        resultsData = realData["stats"];    
+    } else {
+        resultsData = oldData["Years"][year];    
+    }
+
+    let count = 0;
+    console.log(resultsData)
+    Object.keys(resultsData).forEach(driver => {
+        if(year==="2026") {
+            scoreList.push({
+                driverName: resultsData[driver]["name"],
+                yearHappen: year,
+                score: resultsData[driver]["score"],
+                betterScore: resultsData[driver]["betterScore"],
+                combinedScore: resultsData[driver]["combinedScore"]
+            });
+        } else {
+            scoreList.push({
+                driverName: driver,
+                yearHappen: year,
+                score: resultsData[driver]["score"],
+                betterScore: resultsData[driver]["betterScore"],
+                combinedScore: resultsData[driver]["combinedScore"]
+            });
+        }
+    });
+
+    scoreList.sort((a, b) => b.score - a.score);
+
+    const containerScoreList =
+        document.getElementById("scoreList");
+
+    containerScoreList.innerHTML = "";
+
+    scoreList.forEach(item => {
+        count++;
+        if(count<=limit) {
+            
+            const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdcOther"`;
+            if(wdcFirstList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc"`;
+            } else if(wdcSecondList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc2"`;
+            } else if(wdcThirdList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc3"`;
+            }
+    
+            row.className = "score-row";
+
+            row.innerHTML = `
+                <span ${driverClass}>${item.yearHappen}</span>
+                <span ${driverClass}>${item.driverName}</span>
+                <span style="color:${color}">${(item.score).toFixed(3)}</span>
+            `;
+            containerScoreList.appendChild(row);
+        }
+    });
+
+    scoreList.sort((a, b) => b.betterScore - a.betterScore);
+
+    const containerBetterScoreList =
+        document.getElementById("betterScoreList");
+
+    containerBetterScoreList.innerHTML = "";
+    count=0
+
+    scoreList.forEach(item => {
+        count++
+        if(count<=limit) {
+            yearHappen=item.yearHappen
+            
+            const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdcOther"`;
+            if(wdcFirstList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc"`;
+            } else if(wdcSecondList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc2"`;
+            } else if(wdcThirdList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc3"`;
+            }
+    
+            row.className = "score-row";
+
+            row.innerHTML = `
+                <span ${driverClass};>${item.yearHappen}</span>
+                <span ${driverClass};>${item.driverName}</span>
+                <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
+            `;
+            containerBetterScoreList.appendChild(row);
+        }
+    });
+
+    scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+
+    const containerCombinedScoreList =
+        document.getElementById("combinedScoreList");
+
+    containerCombinedScoreList.innerHTML = "";
+    count=0
+
+    scoreList.forEach(item => {
+        count++
+        if(count<=limit) {
+            yearHappen=item.yearHappen
+            
+            const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdcOther"`;
+            if(wdcFirstList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc"`;
+            } else if(wdcSecondList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc2"`;
+            } else if(wdcThirdList[item.yearHappen]===item.driverName) {
+                driverClass=`class="wdc3"`;
+            }
+    
+            row.className = "score-row";
+            
+            row.innerHTML = `
+                <span ${driverClass};>${item.yearHappen}</span>
+                <span ${driverClass};>${item.driverName}</span>
+                <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
+            `;
+            containerCombinedScoreList.appendChild(row);
+        }
+    });
+}
+
+function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
+    const scoreList=[];
+    let count = 0;
+    const containerScoreList =
+    document.getElementById("scoreList");
+
+    const containerBetterScoreList =
+    document.getElementById("betterScoreList");
+    
+    const containerCombinedScoreList =
+        document.getElementById("combinedScoreList");
+
+    if(avgOrSeason==="Driver Averages") {
+        resultsData = oldData[timeSpan][secondSpan][avgOrSeason];    
+        Object.keys(resultsData).forEach(driver => {
+            const seasonTotal = resultsData[driver]["seasons"]
+            scoreList.push({
+                driverName: driver,
+                yearHappen: resultsData[driver]["RookieYear"],
+                score: resultsData[driver]["score"]/seasonTotal,
+                betterScore: resultsData[driver]["betterScore"]/seasonTotal,
+                combinedScore: resultsData[driver]["combinedScore"]/seasonTotal
+            });
+        });
+    
+        scoreList.sort((a, b) => b.score - a.score);
+    
+    
+        containerScoreList.innerHTML = "";
+        count = 0;
+    
+        scoreList.forEach(item => {
+            count++
+            if (count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                Object.keys(wdcFirstList).forEach(yearWDC => {
+                    if(wdcFirstList[yearWDC]===item.driverName) {
+                        driverClass=`class="wdc"`;
+                    }
+                }) 
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};></span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.score).toFixed(3)}</span>
+                `;
+                containerScoreList.appendChild(row);
+            }
+        });
+
+        count = 0;
+    
+        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    
+    
+        containerBetterScoreList.innerHTML = "";
+    
+        scoreList.forEach(item => {
+            count++
+            if(count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                Object.keys(wdcFirstList).forEach(yearWDC => {
+                    if(wdcFirstList[yearWDC]===item.driverName) {
+                        driverClass=`class="wdc"`;
+                    }
+                }) 
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};></span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
+                `;
+                containerBetterScoreList.appendChild(row);
+            }
+        });
+    
+    
+        containerCombinedScoreList.innerHTML = "";
+        count=0
+        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    
+        scoreList.forEach(item => {
+            count++
+            if (count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                Object.keys(wdcFirstList).forEach(yearWDC => {
+                    if(wdcFirstList[yearWDC]===item.driverName) {
+                        driverClass=`class="wdc"`;
+                    }
+                })
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};></span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
+                `;
+                containerCombinedScoreList.appendChild(row);
+            }
+        });
+    } else {
+        Object.keys(resultsData).forEach(driver => {
+            scoreList.push({
+                driverName: driver,
+                yearHappen: resultsData[driver]["year"],
+                score: resultsData[driver]["score"],
+                betterScore: resultsData[driver]["betterScore"],
+                combinedScore: resultsData[driver]["combinedScore"]
+            });
+        });
+    
+        scoreList.sort((a, b) => b.score - a.score);
+    
+        containerScoreList.innerHTML = "";
+    
+        scoreList.forEach(item => {
+            count++;
+            if(count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                if(wdcFirstList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc"`;
+                } else if(wdcSecondList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc2"`;
+                } else if(wdcThirdList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc3"`;
+                }
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.score).toFixed(3)}</span>
+                `;
+                containerScoreList.appendChild(row);
+            }
+        });
+    
+        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    
+        containerBetterScoreList.innerHTML = "";
+        count=0
+    
+        scoreList.forEach(item => {
+            count++
+            if(count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                if(wdcFirstList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc"`;
+                } else if(wdcSecondList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc2"`;
+                } else if(wdcThirdList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc3"`;
+                }
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
+                `;
+                containerBetterScoreList.appendChild(row);
+            }
+        });
+        
+        containerCombinedScoreList.innerHTML = "";
+        count=0
+        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    
+        scoreList.forEach(item => {
+            count++
+            if(count<=limit) {
+                yearHappen=item.yearHappen
+                
+                const row = document.createElement("div");
+                const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
+                
+                color=interpolateColor(scoreHere);
+                
+                driverClass=`class="wdcOther"`;
+                if(wdcFirstList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc"`;
+                } else if(wdcSecondList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc2"`;
+                } else if(wdcThirdList[yearHappen]===item.driverName) {
+                    driverClass=`class="wdc3"`;
+                }
+        
+                row.className = "score-row";
+                
+                row.innerHTML = `
+                    <span ${driverClass};>${yearHappen}</span>
+                    <span ${driverClass};>${item.driverName}</span>
+                    <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
+                `;
+                containerCombinedScoreList.appendChild(row);
+            }
+        });
+    }
+}
+
+function updateSingleDriverScores(driverInput, limit) {
+    const scoreList=[];
+    let count = 0;
+    const containerScoreList =
+    document.getElementById("scoreList");
+
+    const containerBetterScoreList =
+    document.getElementById("betterScoreList");
+    
+    const containerCombinedScoreList =
+    document.getElementById("combinedScoreList");
+
+    console.log(driverInput)
+    console.log(oldData["Single Driver"])
+
+    resultsData = oldData["Single Driver"][driverInput]
+    console.log(resultsData)
+
+    Object.keys(resultsData).forEach(year => {
+        scoreList.push({
+            driverName: driverInput,
+            yearHappen: year,
+            score: resultsData[year]["score"],
+            betterScore: resultsData[year]["betterScore"],
+            combinedScore: resultsData[year]["combinedScore"]
+        })
+    });
+
+    scoreList.sort((a, b) => b.score - a.score);
+
+    containerScoreList.innerHTML = "";
+
+    scoreList.forEach(item => {
+        count++;
+        if(count<=limit) {
+            yearHappen=item.yearHappen
+            
+            const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdcOther"`;
+            if(wdcFirstList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc"`;
+            } else if(wdcSecondList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc2"`;
+            } else if(wdcThirdList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc3"`;
+            }
+
+            row.className = "score-row";
+            
+            row.innerHTML = `
+                <span ${driverClass};>${yearHappen}</span>
+                <span ${driverClass};>${item.driverName}</span>
+                <span style="color:${color};">${(item.score).toFixed(3)}</span>
+            `;
+            containerScoreList.appendChild(row);
+        }
+    });
+
+    scoreList.sort((a, b) => b.betterScore - a.betterScore);
+
+    containerBetterScoreList.innerHTML = "";
+    count=0
+
+    scoreList.forEach(item => {
+        count++
+        if(count<=limit) {
+            yearHappen=item.yearHappen
+            
+            const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdcOther"`;
+            if(wdcFirstList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc"`;
+            } else if(wdcSecondList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc2"`;
+            } else if(wdcThirdList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc3"`;
+            }
+
+            row.className = "score-row";
+            
+            row.innerHTML = `
+                <span ${driverClass};>${yearHappen}</span>
+                <span ${driverClass};>${item.driverName}</span>
+                <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
+            `;
+            containerBetterScoreList.appendChild(row);
+        }
+    });
+
+    scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+
+    containerCombinedScoreList.innerHTML = "";
+    count=0
+
+    scoreList.forEach(item => {
+        count++
+        if(count<=limit) {
+            yearHappen=item.yearHappen
+            
+            const row = document.createElement("div");
+            const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
+            
+            color=interpolateColor(scoreHere);
+            
+            driverClass=`class="wdcOther"`;
+            if(wdcFirstList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc"`;
+            } else if(wdcSecondList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc2"`;
+            } else if(wdcThirdList[yearHappen]===item.driverName) {
+                driverClass=`class="wdc3"`;
+            }
+
+            row.className = "score-row";
+            
+            row.innerHTML = `
+                <span ${driverClass};>${yearHappen}</span>
+                <span ${driverClass};>${item.driverName}</span>
+                <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
+            `;
+            containerCombinedScoreList.appendChild(row);
+        }
+    });
+
+}
+
+function updateHeaders(dropdown1,infoClass) {
+
+    console.log(dropdown1)
+    console.log(infoClass)
+
+    if (dropdown1==="Years") {
+        console.log("YEARS")
+        if(infoClass==="Driver Averages") {
+            scoreHeader.innerHTML="First Season"
+            bscoreHeader.innerHTML="First Season"
+            cscoreHeader.innerHTML="First Season"
+        } else {
+            scoreHeader.innerHTML="Year"
+            bscoreHeader.innerHTML="Year"
+            cscoreHeader.innerHTML="Year"
+        }
+    } else if (dropdown1.includes("Span")) {
+        console.log("SPAN")
+        scoreHeader.innerHTML=""
+        bscoreHeader.innerHTML=""
+        cscoreHeader.innerHTML=""
+    } else if (dropdown1.includes("Cycle")) {
+        scoreHeader.innerHTML=""
+        bscoreHeader.innerHTML=""
+        cscoreHeader.innerHTML=""
+    } else if (dropdown1==="Single Driver") {
+        scoreHeader.innerHTML="Year"
+        bscoreHeader.innerHTML="Year"
+        cscoreHeader.innerHTML="Year"
+    } else if (dropdown1==="WDCs") {
+        scoreHeader.innerHTML="Year"
+        bscoreHeader.innerHTML="Year"
+        cscoreHeader.innerHTML="Year"
+    } else if (dropdown1==="All Time") {
+        console.log("All Time")
+        if(infoClass==="Driver Averages") {
+            console.log("Driver Averages")
+            scoreHeader.innerHTML="First Season"
+            bscoreHeader.innerHTML="First Season"
+            cscoreHeader.innerHTML="First Season"
+        } else {
+            console.log("OTHER")
+            scoreHeader.innerHTML="Year"
+            bscoreHeader.innerHTML="Year"
+            cscoreHeader.innerHTML="Year"
+        }
     }
 }
 
@@ -818,117 +1288,125 @@ async function initialize() {
     extraSelect.style.visibility = "collapse";
 
     populateYearDropdown();
-
     const year = document.getElementById("yearSelect").value;
-     if (year!="WDCs") {
-        driverDropdownText.innerHTML = "Year";
-        populateDriverDropdown(year);
-        const driver = document.getElementById("driverSelect").value;
-        updateScoreYears(year,driver);
-        updateBetterScoreYears(year,driver);
-    } else {
-        updateScoresWDC()
-        updateBetterScoresWDC()
-    }
+    populateDriverDropdown(year);
+    const secondYear = document.getElementById("driverSelect").value;
+    const limit = document.getElementById("limitSelect").value;
+    updateYearScores(secondYear,limit)
+    updateHeaders(year,secondYear)
 }
 
 initialize();
 
-document
-.getElementById("yearSelect")
+let firstDropdown = document.getElementById("yearSelect");
+let secondDropdown = document.getElementById("driverSelect");
+let thirdDropdown = document.getElementById("extraSelect");
+let visibleThirdDropdown = document.getElementById("extraDropdown");
+let visibleSecondDropdown = document.getElementById("driverDropdown2");
+let limitDropdown = document.getElementById("limitSelect");
+
+firstDropdown
 .addEventListener("change", function() {
+    //Year, 5 Year Span, 10 Year Span, Regulation Cycle, All Time
     const year = document.getElementById("yearSelect").value;
-    if(year==="Years") {
-        driverDropdownText.innerHTML = "Year";
-    } else if (year==="Bottom x Drivers") {
-        driverDropdownText.innerHTML = "Number of Drivers";
-    } else if (year==="Top x Drivers") {
-        driverDropdownText.innerHTML = "Number of Drivers";
-    } else if (year==="Drivers") {
-        driverDropdownText.innerHTML = "Season";
-    } else if (year==="5 Year Span") {
-        driverDropdownText.innerHTML = "5 Years";
-    } else if (year==="Regulation") {
-        driverDropdownText.innerHTML = "Regulation Period";
-    }
-    const dropdown = document.getElementById("driverSelect");
-    const driverDropdown = document.getElementById("driverDropdown2");
-    const extraSelect = document.getElementById("extraDropdown");
-     if (year==="WDCs") {
-        driverDropdown.style.visibility = "collapse";
-        extraSelect.style.visibility = "collapse";
-        updateScoresWDC()
-        updateBetterScoresWDC()
-    } else {
-        driverDropdown.style.visibility = "visible";
-        populateDriverDropdown(year);
+    let secondYear = document.getElementById("driverSelect").value;
+    const limit = Number(document.getElementById("limitSelect").value);
+    let extra = document.getElementById("extraSelect").value;
     
-        const driver = document.getElementById("driverSelect").value;
-        
-        if (year==="Years"){
-            extraSelect.style.visibility = "collapse";
-            updateScoreYears(year,driver);
-            updateBetterScoreYears(year,driver);
-        } else if (year.includes("x Drivers")) {
-            extraSelect.style.visibility = "collapse";
-            updateBetterScoreRank10(year,driver);
-            updateScoreRank10(year,driver);
-        } else if (year==="Drivers") {
-            populateExtraDropdown(year,driver);
-            extraSelect.style.visibility = "visible";
-            const driverData = document.getElementById("extraSelect").value;
-            updateDriverScore(year,driverData);
-            updateDriverBetterScore(year,driverData);
-        } else {
-            extraSelect.style.visibility = "visible";
-            populateExtraDropdown(year,driver);
-            const metric = document.getElementById("extraSelect").value;
-            updateBetterScoreYearSpan(year,driver,metric);
-            updateScoreYearSpan(year,driver,metric);
-        }
+    if(year==="Years") {
+        console.log("YEARS")
+        visibleSecondDropdown.style.visibility = "visible";
+        populateDriverDropdown(year);
+        secondYear = secondDropdown.value;
+        updateYearScores(secondYear,limit)
+        visibleThirdDropdown.style.visibility = "collapse";
+    } else if(year==="All Time") {
+        populateDriverDropdown(year);
+        visibleSecondDropdown.style.visibility = "visible";
+        visibleThirdDropdown.style.visibility = "collapse";
+        secondYear = secondDropdown.value;
+        updateAllTimeScores(secondYear,limit)
+    } else if(year==="WDCs") {
+        visibleSecondDropdown.style.visibility = "collapse";
+        visibleThirdDropdown.style.visibility = "collapse";
+        updateScoresWDC(limit)
+    } else if(year==="Single Driver") {
+        populateDriverDropdown(year);
+        visibleSecondDropdown.style.visibility = "visible";
+        visibleThirdDropdown.style.visibility = "visible";
+        secondYear = secondDropdown.value;
+        populateExtraDropdown(year,secondYear)
+        let extra = document.getElementById("extraSelect").value;
+        updateSingleDriverScores(extra,limit)
+    } else {
+        populateDriverDropdown(year);
+        visibleSecondDropdown.style.visibility = "visible";
+        visibleThirdDropdown.style.visibility = "visible";
+        secondYear = secondDropdown.value;
+        populateExtraDropdown(year,secondYear)
+        let extra = document.getElementById("extraSelect").value;
+        updatePartTimeScores(year,secondYear,extra,limit)
+    }
+    updateHeaders(year,secondYear)
+});
+
+secondDropdown
+.addEventListener("change", function() {
+    //Drivers(All, List), WDC(if not years),
+    const year = document.getElementById("yearSelect").value;
+    let secondYear = document.getElementById("driverSelect").value;
+    const limit = Number(document.getElementById("limitSelect").value);
+    let extra = document.getElementById("extraSelect").value;
+    if(year==="Years") {
+        updateYearScores(secondYear,limit)
+    } else if(year==="All Time") {
+        updateAllTimeScores(secondYear,limit)
+        visibleThirdDropdown.style.visibility = "collapse";
+    } else if(year==="WDCs") {
+        updateScoresWDC(limit)
+        visibleThirdDropdown.style.visibility = "collapse";
+    } else if (year==="Single Driver") {
+        secondYear = document.getElementById("driverSelect").value;
+        visibleThirdDropdown.style.visibility = "visible";
+        populateExtraDropdown(year,secondYear)
+        let extra = document.getElementById("extraSelect").value;
+        updateSingleDriverScores(extra,limit)
+    } else {
+        populateExtraDropdown(year,secondYear)
+        visibleThirdDropdown.style.visibility = "visible";
+        let extra = document.getElementById("extraSelect").value;
+        updatePartTimeScores(year,secondYear,extra,limit)
+    }
+    updateHeaders(year,secondYear)
+});
+
+limitDropdown
+.addEventListener("change", function() {
+    //NOOOOOO
+    const year = firstDropdown.value;
+    let secondYear = secondDropdown.value;
+    let extra = thirdDropdown.value;
+    const limit = Number(document.getElementById("limitSelect").value);
+    if(year==="Years") {
+        updateYearScores(secondYear,limit)
+    } else if(year==="All Time") {
+        updateAllTimeScores(secondYear,limit)
+    } else if(year==="WDCs") {
+        updateScoresWDC(limit)
+    } else if(year==="Single Drivers") {
+        updateSingleDriverScores(extra,limit)
+    } else {
+        updatePartTimeScores(year,secondYear,extra,limit)
     }
 });
-document
-.getElementById("driverSelect")
+
+thirdDropdown
 .addEventListener("change", function() {
-    const driver = document.getElementById("driverSelect").value;
+    //check driverSelect
     const year = document.getElementById("yearSelect").value;
-    const extraSelect = document.getElementById("extraDropdown");
-    extraSelect.style.visibility = "collapse";
-    if (year==="Years"){
-        updateScoreYears(year,driver);
-        updateBetterScoreYears(year,driver);
-    } else if (year.includes("x Drivers")) {
-        updateBetterScoreRank10(year,driver)
-        updateScoreRank10(year,driver)
-    } else if (year==="Drivers") {
-        extraSelect.style.visibility = "visible";
-        populateExtraDropdown(year,driver)
-        const driverData = document.getElementById("extraSelect").value;
-        updateDriverScore(year,driverData);
-        updateDriverBetterScore(year,driverData);
-    } else {
-        extraSelect.style.visibility = "visible";
-        populateExtraDropdown(year,driver)
-        const metric = document.getElementById("extraSelect").value;
-        updateBetterScoreYearSpan(year,driver,metric);
-        updateScoreYearSpan(year,driver,metric);
-    }
-});
-document
-.getElementById("extraSelect")
-.addEventListener("change", function() {
-    const driver = document.getElementById("driverSelect").value;
-    const year = document.getElementById("yearSelect").value;
-    const metric = document.getElementById("extraSelect").value;
-    if(year==="5 Year Span") {
-        updateBetterScoreYearSpan(year,driver,metric)
-        updateScoreYearSpan(year,driver,metric)
-    } else if (year==="Regulations") {
-        updateBetterScoreYearSpan(year,driver,metric)
-        updateScoreYearSpan(year,driver,metric)
-    } else {
-        updateDriverScore(year,metric);
-        updateDriverBetterScore(year,metric);
-    }
+    let secondYear = document.getElementById("driverSelect").value;
+    let extra = document.getElementById("extraSelect").value;
+    const limit = Number(document.getElementById("limitSelect").value);
+    updateHeaders(year,secondYear)
+    updatePartTimeScores(year,secondYear,extra,limit)
 });

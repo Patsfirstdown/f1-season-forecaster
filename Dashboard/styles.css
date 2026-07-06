@@ -358,6 +358,14 @@ canvas.graph{
 .dnfProbList{
     padding-bottom: 32px;
 }
+.scoreList{
+    padding-bottom: 32px;
+    max-height: 500px;
+    overflow-y: auto;
+
+    border: 1px solid #444;
+    border-radius: 10px;
+}
 
 .score-row {
     display: grid;
@@ -555,4 +563,14 @@ table.info {
 
 .wdcOther {
     color: white;
+}
+
+.realLegend {
+    background-color: black;
+    margin-top: 16px;
+    margin-bottom: 5px;
+    color: black;
+    table-layout: fixed;
+    font-size: 1.5rem;
+    border: 2px solid var(--f1_red)
 }
