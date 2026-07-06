@@ -152,7 +152,7 @@ function updateScore(selectedRace) {
 
         const row = document.createElement("div");
 
-        row.className = "score-row";
+        row.className = "dnf-row";
         
         row.innerHTML = `
             <span>${item.driver}</span>

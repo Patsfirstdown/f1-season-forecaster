@@ -864,6 +864,7 @@ function updateUpdates() {
     const driverNames = Object.keys(
         predictionData.race_data[previousRace]
     );
+    const upcomingRace = races[races.length-1];
     
     const driverColors = predictionData.driverColor;
 
@@ -880,6 +881,9 @@ function updateUpdates() {
     let driverCount=0;
     let firstCRace;
     let firstDRace;
+
+    let firmTeams=[];
+    let firmDrivers=[];
     
     for (racename of races) {
         oldtempWDC=currentWDC;
@@ -897,10 +901,7 @@ function updateUpdates() {
                 sortedWCCAll = createSorted(currentWCC,oldtempWCC,"exp")
                 sortedWCC1 = createSorted(currentWCC,oldtempWCC,"winProb")
 
-                console.log(`${sortedWCC1[0][1].value}>${seasonWCC1big[2]}`)
-
                 if(sortedWCC1[0][1].value>seasonWCC1big[2]) {
-                    console.log(`SAVE: ${racename},${sortedWCC1[0][1].name},${sortedWCC1[0][1].value}`)
                     seasonWCC1big=[racename,sortedWCC1[0][1].name,sortedWCC1[0][1].value]
                 }
                 if(sortedWCCAll[0][1].value>seasonWCCAllbig[2]) {
@@ -927,9 +928,7 @@ function updateUpdates() {
                 sortedWDCAll = createSorted(currentWDC,oldtempWDC,"exp")
                 sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
     
-                console.log(`${sortedWDC1[0][1].value}>${seasonWDC1big[2]}`)
                 if(sortedWDC1[0][1].value>seasonWDC1big[2]) {
-                    console.log(`SAVE: ${racename},${sortedWDC1[0][1].name},${sortedWDC1[0][1].value}`)
                     seasonWDC1big=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
                 };
                 if(sortedWDCAll[0][1].value>seasonWDCAllbig[2]) {
@@ -945,6 +944,101 @@ function updateUpdates() {
         };
 
     };
+
+    Object.keys(currentWCC).forEach(team => {
+        Object.keys(predictionData.wcc_data[upcomingRace][team]).forEach(pos => {
+            if(!pos.includes("_")) {
+                if(predictionData.wcc_data[upcomingRace][team][pos]>=.9) {
+                    firmTeams.push({
+                        "Team":team,
+                        "Pos":pos,
+                        "Odds":predictionData.wcc_data[upcomingRace][team][pos]
+                    })
+                }
+            }
+        })
+    });
+    console.log(firmTeams)
+    Object.keys(currentWDC).forEach(driver => {
+        Object.keys(predictionData.wdc_data[upcomingRace][driver]).forEach(pos => {
+            if(!pos.includes("_")) {
+                if(predictionData.wdc_data[upcomingRace][driver][pos]>=.9) {
+                    console.log(predictionData.wdc_data[upcomingRace][driver])
+                    firmDrivers.push({
+                        "Driver":predictionData.wdc_data[upcomingRace][driver]["driver_name"],
+                        "Pos":pos,
+                        "Odds":predictionData.wdc_data[upcomingRace][driver][pos]
+                    })
+                }
+            }
+        })
+    });
+    console.log(firmDrivers)
+
+    firmPlaces=document.getElementById("firmPlaces");
+
+    const positions = {};
+
+    firmDrivers.forEach(entry => {
+        if (!positions[entry.Pos]) {
+            positions[entry.Pos] = {
+                driver: "",
+                team: ""
+            };
+        }
+        positions[entry.Pos].driver = entry.Driver;
+        positions[entry.Pos].driverOdds = entry.Odds;
+    });
+
+    firmTeams.forEach(entry => {
+        if (!positions[entry.Pos]) {
+            positions[entry.Pos] = {
+                driver: "",
+                team: ""
+            };
+        }
+        positions[entry.Pos].team = entry.Team;
+        positions[entry.Pos].teamOdds = entry.Odds;
+    });
+
+    const sortedPositions = Object.keys(positions)
+        .map(Number)
+        .sort((a, b) => a - b);
+
+    const table = document.createElement("table");
+    table.className = "firm-table";
+
+    const header = table.insertRow();
+    ["Pos", "Driver", "Team"].forEach(text => {
+        const th = document.createElement("th");
+        th.textContent = text;
+        header.appendChild(th);
+    });
+
+    sortedPositions.forEach(pos => {
+        const row = table.insertRow();
+        const posCell = row.insertCell();
+        posCell.textContent = pos ?? "";
+        if (positions[pos].driverOdds === 1) {
+            if (positions[pos].teamOdds === 1) {
+                rowCell.classList.add("locked");
+            }
+        }
+        const driverCell = row.insertCell();
+        driverCell.textContent = positions[pos].driver ?? "";
+        if (positions[pos].driverOdds === 1) {
+            driverCell.classList.add("locked");
+        }
+        const teamCell = row.insertCell();
+        teamCell.textContent = positions[pos].team ?? "";
+
+        if (positions[pos].teamOdds === 1) {
+            teamCell.classList.add("locked");
+        }
+    });
+
+    firmPlaces.replaceChildren(table);
+
 
     if (teamCount>=5) {
         const fiveCAgo = races[races.length - 5];
@@ -1113,11 +1207,6 @@ function updateUpdates() {
 
         <br>
 
-        <div>
-            <h3 style="text-align: center;">Season Trends Charts</h3>
-        </div>
-        
-        <br>
     `;
 
 

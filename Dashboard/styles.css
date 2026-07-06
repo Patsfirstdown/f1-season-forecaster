@@ -574,3 +574,82 @@ table.info {
     font-size: 1.5rem;
     border: 2px solid var(--f1_red)
 }
+
+h3.oneOff{
+    border-top: 8px dashed var(--f1_silver);
+    padding-top: 64px;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+h4.oneOff {
+    font-size: 1.5rem;
+}
+
+.firmPlaces {
+    text-align: center;
+}
+
+.firmPlaces table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0 8px; 
+    padding: 16px;
+    border: 30px solid black;
+    border-radius: 64px;
+}
+
+.firmPlaces th {
+    font-size: 2rem;
+    color: black;
+    font-weight: bold;
+    border-bottom: 2px solid var(--f1_red);
+}
+
+.firmPlaces tr {
+    font-size: 1.5rem;
+    color: black;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.firmPlaces tr:not(:last-child) {
+    border-bottom: 1px dashed #ddd;
+}
+
+.locked {
+    background-color: darkseagreen;
+    font-weight: bold;
+}
+
+.predStats {
+    color:black;
+    text-align: center;
+}
+
+.predStats table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0 8px; 
+    padding: 16px;
+    border: 30px solid black;
+    border-radius: 64px;
+}
+
+.predStats th {
+    font-size: 2rem;
+    color: black;
+    font-weight: bold;
+    border-bottom: 2px solid var(--f1_red);
+}
+
+.predStats tr {
+    font-size: 1.5rem;
+    color: black;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.predStats tr:not(:last-child) {
+    border-bottom: 1px dashed #ddd;
+}

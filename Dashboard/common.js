@@ -3,28 +3,31 @@ async function createHeader() {
         "mainHeader"
     ).innerHTML = `
         <ul class="nav">
-                <li>
-                    <a class="header" href="driver_race.html" align="right">Race</a>
-                </li>
-                <li>
-                    <a class="header" href="wdc.html" align="left">WDC</a>
-                </li>
-                <li>
-                    <a class="header" href="wcc.html" align="left">WCC</a>
-                </li>
-                <li>
-                    <a class="header" href="analysis.html" align="left">Analysis</a>
-                </li>
-                <li>
-                    <a class="header" href="faq.html" align="center">FAQs</a>
-                </li>
-                <li>
-                    <a class="header" href="Real_data.html" align="right">Real Scores</a>
-                </li>
-                <li class="right_link">
-                    <a class="right_link" href="dashboard.html" align="right">Home</a>
-                </li>
-            </ul>
+            <li>
+                <a class="header" href="upcoming_forecast.html" align="right">Next Race</a>
+            </li>                
+            <li>
+                <a class="header" href="driver_race.html" align="right">Driver</a>
+            </li>
+            <li>
+                <a class="header" href="wdc.html" align="left">WDC</a>
+            </li>
+            <li>
+                <a class="header" href="wcc.html" align="left">WCC</a>
+            </li>
+            <li>
+                <a class="header" href="analysis.html" align="left">Analysis</a>
+            </li>
+            <li>
+                <a class="header" href="faq.html" align="center">FAQs</a>
+            </li>
+            <li>
+                <a class="header" href="Real_data.html" align="right">Real Scores</a>
+            </li>
+            <li class="right_link">
+                <a class="right_link" href="dashboard.html" align="right">Home</a>
+            </li>
+        </ul>
     `;
 
 }

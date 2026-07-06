@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Professional Website-->
+        <title>Driver Race Forecast</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="common.js"></script>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
+        <script src="upcoming_script.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div id="mainHeader" class="mainHeader">
+        </div>
+        <div>
+            <header class="banner">
+                <h1>Full Race Forecast</h1>
+            </header>
+        </div>
+        <div>
+            <div>
+                <div class="dashboard_card">
+                    <h3 class="dnf-title">Driver Prediction Stats</h3>
+                    <div id="expectedPositions" class="predStats"></div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div>
+            <h3 class="dnf-title">Finish Probability Heatmap</h3>
+        </div>
+        <div id="raceHeatmap" class="heatmap"></div>
+        <div id="footerForm">
+        </div>
+    </body>
+</html>

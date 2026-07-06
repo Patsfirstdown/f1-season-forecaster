@@ -423,17 +423,22 @@ function populateDriverDropdown(year) {
     const driverDropdownText = document.getElementById("driverDropdownText")
 
     for (const driver of drivers) {
-        driverDropdownText.innerHTML = "WIP"
+        
         const option = document.createElement("option");
         option.value = driver;
         option.textContent = driver;
         driverSelect.appendChild(option);
         if (year==="Single Driver") {
+            driverDropdownText.innerHTML = "Year Raced"
             driverSelect.selectedIndex = driverSelect.options.length - 1;
         } else if (year.includes("Span")) {
+            driverDropdownText.innerHTML = "Span"
             driverSelect.selectedIndex = driverSelect.options.length - 1;
         } else if (year.includes("Cycle")) {
+            driverDropdownText.innerHTML = "Regulation"
             driverSelect.selectedIndex = driverSelect.options.length - 1;
+        } else if(year==="All Time") {
+            driverDropdownText.innerHTML = "Data"
         }
     }
     if (year==="Years") {
@@ -1099,6 +1104,7 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
 }
 
 function updateSingleDriverScores(driverInput, limit) {
+    console.log("UPDATING SINGLE DRIVER")
     const scoreList=[];
     let count = 0;
     const containerScoreList =
@@ -1393,7 +1399,7 @@ limitDropdown
         updateAllTimeScores(secondYear,limit)
     } else if(year==="WDCs") {
         updateScoresWDC(limit)
-    } else if(year==="Single Drivers") {
+    } else if(year==="Single Driver") {
         updateSingleDriverScores(extra,limit)
     } else {
         updatePartTimeScores(year,secondYear,extra,limit)
@@ -1408,5 +1414,9 @@ thirdDropdown
     let extra = document.getElementById("extraSelect").value;
     const limit = Number(document.getElementById("limitSelect").value);
     updateHeaders(year,secondYear)
-    updatePartTimeScores(year,secondYear,extra,limit)
+    if(year==="Single Driver") {
+        updateSingleDriverScores(extra,limit)
+    } else {
+        updatePartTimeScores(year,secondYear,extra,limit)
+    }
 });
