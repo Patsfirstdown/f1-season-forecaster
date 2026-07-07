@@ -653,3 +653,16 @@ h4.oneOff {
 .predStats tr:not(:last-child) {
     border-bottom: 1px dashed #ddd;
 }
+
+.noChance {
+    color: var(--f1_red);
+    font-style: italic;
+}
+
+.gain {
+    color: darkgreen;
+}
+
+.loss {
+    color: darkred;
+}

@@ -269,6 +269,7 @@ function range(size, startAt = 0) {
 function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
     resultsData = oldData["Years"];
     const scoreList=[];
+    const absLimit=Math.abs(limit)
 
     Object.keys(wdcFirstList).forEach(year => {
         driver=wdcFirstList[year]
@@ -288,7 +289,11 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
     });
     count=0
 
-    scoreList.sort((a, b) => b.score - a.score);
+    if(limit>0) {
+        scoreList.sort((a, b) => b.score - a.score);
+    } else {
+        scoreList.sort((b, a) => b.score - a.score);
+    }
 
     const container =
         document.getElementById("scoreList");
@@ -296,7 +301,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
     container.innerHTML = "";
     scoreList.forEach(item => {
         count++;
-        if(count<=limit) {
+        if(count<=absLimit) {
             yearHappen=item.yearHappen
             
             const row = document.createElement("div");
@@ -317,7 +322,12 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
         }
     });
     count=0
-    scoreList.sort((a, b) => b.betterScore - a.betterScore);
+
+    if(limit>0) {
+        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    } else {
+        scoreList.sort((b, a) => b.betterScore - a.betterScore);
+    }
 
     const betterScorecontainer =
         document.getElementById("betterScoreList");
@@ -325,7 +335,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
     betterScorecontainer.innerHTML = "";
     scoreList.forEach(item => {
         count++;
-        if(count<=limit) {
+        if(count<=absLimit) {
             yearHappen=item.yearHappen
             
             const row = document.createElement("div");
@@ -346,7 +356,11 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
         }
     });
     count-0
-    scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    if(limit>0) {
+        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    } else {
+        scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
+    }
 
     const combinedScorecontainer =
         document.getElementById("combinedScoreList");
@@ -354,7 +368,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
     combinedScorecontainer.innerHTML = "";
     scoreList.forEach(item => {
         count++;
-        if(count<=limit) {
+        if(count<=absLimit) {
             yearHappen=item.yearHappen
             
             const row = document.createElement("div");
@@ -480,6 +494,7 @@ function updateAllTimeScores(avgOrSeason,limit) {
     resultsData = oldData["All Time"][avgOrSeason];
     const containerScoreList =
     document.getElementById("scoreList");
+    const absLimit = Math.abs(limit)
 
     const containerBetterScoreList =
     document.getElementById("betterScoreList");
@@ -500,14 +515,18 @@ function updateAllTimeScores(avgOrSeason,limit) {
             }
         });
     
-        scoreList.sort((a, b) => b.score - a.score);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.score - a.score);
+        } else {
+            scoreList.sort((b, a) => b.score - a.score);
+        }
     
         containerScoreList.innerHTML = "";
         count = 0;
     
         scoreList.forEach(item => {
             count++
-            if (count<=limit) {
+            if (count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -534,14 +553,17 @@ function updateAllTimeScores(avgOrSeason,limit) {
         });
 
         count = 0;
-    
-        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.betterScore - a.betterScore);
+        } else {
+            scoreList.sort((b, a) => b.betterScore - a.betterScore);
+        }
     
         containerBetterScoreList.innerHTML = "";
     
         scoreList.forEach(item => {
             count++
-            if(count<=limit) {
+            if(count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -567,14 +589,18 @@ function updateAllTimeScores(avgOrSeason,limit) {
             }
         });
 
-        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        } else {
+            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
+        }
     
         containerCombinedScoreList.innerHTML = "";
         count=0
     
         scoreList.forEach(item => {
             count++
-            if (count<=limit) {
+            if (count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -612,13 +638,17 @@ function updateAllTimeScores(avgOrSeason,limit) {
             });
         });
     
-        scoreList.sort((a, b) => b.score - a.score);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.score - a.score);
+        } else {
+            scoreList.sort((b, a) => b.score - a.score);
+        }
     
         containerScoreList.innerHTML = "";
     
         scoreList.forEach(item => {
             count++;
-            if(count<=limit) {
+            if(count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -646,14 +676,18 @@ function updateAllTimeScores(avgOrSeason,limit) {
             }
         });
     
-        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.betterScore - a.betterScore);
+        } else {
+            scoreList.sort((b, a) => b.betterScore - a.betterScore);
+        }
     
         containerBetterScoreList.innerHTML = "";
         count=0
     
         scoreList.forEach(item => {
             count++
-            if(count<=limit) {
+            if(count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -681,14 +715,18 @@ function updateAllTimeScores(avgOrSeason,limit) {
             }
         });
 
-        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        } else {
+            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
+        }
     
         containerCombinedScoreList.innerHTML = "";
         count=0
     
         scoreList.forEach(item => {
             count++
-            if(count<=limit) {
+            if(count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -725,6 +763,7 @@ function updateYearScores(year,limit) {
     } else {
         resultsData = oldData["Years"][year];    
     }
+    const absLimit = Math.abs(limit);
 
     let count = 0;
     console.log(resultsData)
@@ -748,7 +787,11 @@ function updateYearScores(year,limit) {
         }
     });
 
-    scoreList.sort((a, b) => b.score - a.score);
+    if (limit>0) {
+        scoreList.sort((a, b) => b.score - a.score);
+    } else {
+        scoreList.sort((b, a) => b.score - a.score);
+    }
 
     const containerScoreList =
         document.getElementById("scoreList");
@@ -757,7 +800,7 @@ function updateYearScores(year,limit) {
 
     scoreList.forEach(item => {
         count++;
-        if(count<=limit) {
+        if(count<=absLimit) {
             
             const row = document.createElement("div");
             const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
@@ -784,7 +827,11 @@ function updateYearScores(year,limit) {
         }
     });
 
-    scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    if (limit>0) {
+        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    } else {
+        scoreList.sort((b, a) => b.betterScore - a.betterScore);
+    }
 
     const containerBetterScoreList =
         document.getElementById("betterScoreList");
@@ -794,7 +841,7 @@ function updateYearScores(year,limit) {
 
     scoreList.forEach(item => {
         count++
-        if(count<=limit) {
+        if(count<=absLimit) {
             yearHappen=item.yearHappen
             
             const row = document.createElement("div");
@@ -822,7 +869,11 @@ function updateYearScores(year,limit) {
         }
     });
 
-    scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    if (limit>0) {
+        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    } else {
+        scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
+    }
 
     const containerCombinedScoreList =
         document.getElementById("combinedScoreList");
@@ -832,7 +883,7 @@ function updateYearScores(year,limit) {
 
     scoreList.forEach(item => {
         count++
-        if(count<=limit) {
+        if(count<=absLimit) {
             yearHappen=item.yearHappen
             
             const row = document.createElement("div");
@@ -867,6 +918,8 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
     const containerScoreList =
     document.getElementById("scoreList");
 
+    const absLimit = Math.abs(limit)
+
     const containerBetterScoreList =
     document.getElementById("betterScoreList");
     
@@ -879,40 +932,47 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
             const seasonTotal = resultsData[driver]["seasons"]
             scoreList.push({
                 driverName: driver,
-                yearHappen: resultsData[driver]["RookieYear"],
+                seasons: seasonTotal,
                 score: resultsData[driver]["score"]/seasonTotal,
                 betterScore: resultsData[driver]["betterScore"]/seasonTotal,
                 combinedScore: resultsData[driver]["combinedScore"]/seasonTotal
             });
         });
     
-        scoreList.sort((a, b) => b.score - a.score);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.score - a.score);
+        } else {
+            scoreList.sort((b, a) => b.score - a.score);
+        }
     
     
         containerScoreList.innerHTML = "";
         count = 0;
+        minYear=parseInt(secondSpan.substring(0,4))
+        maxYear=parseInt(secondSpan.substring(5))+1
+        yearLength=maxYear-minYear
+        yearRange = range(yearLength,minYear)
     
         scoreList.forEach(item => {
             count++
-            if (count<=limit) {
-                yearHappen=item.yearHappen
+            if (count<=absLimit) {
                 
                 const row = document.createElement("div");
                 const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
                 
                 color=interpolateColor(scoreHere);
-                
+
                 driverClass=`class="wdcOther"`;
-                Object.keys(wdcFirstList).forEach(yearWDC => {
-                    if(wdcFirstList[yearWDC]===item.driverName) {
+                for (const year of yearRange) {
+                    if(wdcFirstList[year]===item.driverName) {
                         driverClass=`class="wdc"`;
                     }
-                }) 
+                }
         
                 row.className = "score-row";
                 
                 row.innerHTML = `
-                    <span ${driverClass};></span>
+                    <span ${driverClass};>${item.seasons}</span>
                     <span ${driverClass};>${item.driverName}</span>
                     <span style="color:${color};">${(item.score).toFixed(3)}</span>
                 `;
@@ -922,14 +982,18 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
 
         count = 0;
     
-        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.betterScore - a.betterScore);
+        } else {
+            scoreList.sort((b, a) => b.betterScore - a.betterScore);
+        }
     
     
         containerBetterScoreList.innerHTML = "";
     
         scoreList.forEach(item => {
             count++
-            if(count<=limit) {
+            if(count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -938,16 +1002,16 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
                 color=interpolateColor(scoreHere);
                 
                 driverClass=`class="wdcOther"`;
-                Object.keys(wdcFirstList).forEach(yearWDC => {
-                    if(wdcFirstList[yearWDC]===item.driverName) {
+                for (const year of yearRange) {
+                    if(wdcFirstList[year]===item.driverName) {
                         driverClass=`class="wdc"`;
                     }
-                }) 
+                } 
         
                 row.className = "score-row";
                 
                 row.innerHTML = `
-                    <span ${driverClass};></span>
+                    <span ${driverClass};>${item.seasons}</span>
                     <span ${driverClass};>${item.driverName}</span>
                     <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
                 `;
@@ -958,11 +1022,15 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
     
         containerCombinedScoreList.innerHTML = "";
         count=0
-        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        } else {
+            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
+        }
     
         scoreList.forEach(item => {
             count++
-            if (count<=limit) {
+            if (count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -971,16 +1039,16 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
                 color=interpolateColor(scoreHere);
                 
                 driverClass=`class="wdcOther"`;
-                Object.keys(wdcFirstList).forEach(yearWDC => {
-                    if(wdcFirstList[yearWDC]===item.driverName) {
+                for (const year of yearRange) {
+                    if(wdcFirstList[year]===item.driverName) {
                         driverClass=`class="wdc"`;
                     }
-                })
+                }
         
                 row.className = "score-row";
                 
                 row.innerHTML = `
-                    <span ${driverClass};></span>
+                    <span ${driverClass};>${item.seasons}</span>
                     <span ${driverClass};>${item.driverName}</span>
                     <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
                 `;
@@ -998,13 +1066,17 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
             });
         });
     
-        scoreList.sort((a, b) => b.score - a.score);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.score - a.score);
+        } else {
+            scoreList.sort((b, a) => b.score - a.score);
+        }
     
         containerScoreList.innerHTML = "";
     
         scoreList.forEach(item => {
             count++;
-            if(count<=limit) {
+            if(count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -1032,14 +1104,18 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
             }
         });
     
-        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.betterScore - a.betterScore);
+        } else {
+            scoreList.sort((b, a) => b.betterScore - a.betterScore);
+        }
     
         containerBetterScoreList.innerHTML = "";
         count=0
     
         scoreList.forEach(item => {
             count++
-            if(count<=limit) {
+            if(count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -1069,11 +1145,15 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
         
         containerCombinedScoreList.innerHTML = "";
         count=0
-        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        if (limit>0) {
+            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        } else {
+            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
+        }
     
         scoreList.forEach(item => {
             count++
-            if(count<=limit) {
+            if(count<=absLimit) {
                 yearHappen=item.yearHappen
                 
                 const row = document.createElement("div");
@@ -1104,6 +1184,7 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
 }
 
 function updateSingleDriverScores(driverInput, limit) {
+    const absLimit = Math.abs(limit)
     console.log("UPDATING SINGLE DRIVER")
     const scoreList=[];
     let count = 0;
@@ -1132,13 +1213,17 @@ function updateSingleDriverScores(driverInput, limit) {
         })
     });
 
-    scoreList.sort((a, b) => b.score - a.score);
+    if (limit>0) {
+        scoreList.sort((a, b) => b.score - a.score);
+    } else {
+        scoreList.sort((b, a) => b.score - a.score);
+    }
 
     containerScoreList.innerHTML = "";
 
     scoreList.forEach(item => {
         count++;
-        if(count<=limit) {
+        if(count<=absLimit) {
             yearHappen=item.yearHappen
             
             const row = document.createElement("div");
@@ -1166,14 +1251,18 @@ function updateSingleDriverScores(driverInput, limit) {
         }
     });
 
-    scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    if (limit>0) {
+        scoreList.sort((a, b) => b.betterScore - a.betterScore);
+    } else {
+        scoreList.sort((b, a) => b.betterScore - a.betterScore);
+    }
 
     containerBetterScoreList.innerHTML = "";
     count=0
 
     scoreList.forEach(item => {
         count++
-        if(count<=limit) {
+        if(count<=absLimit) {
             yearHappen=item.yearHappen
             
             const row = document.createElement("div");
@@ -1201,14 +1290,18 @@ function updateSingleDriverScores(driverInput, limit) {
         }
     });
 
-    scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+    if (limit>0) {
+            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
+        } else {
+            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
+        }
 
     containerCombinedScoreList.innerHTML = "";
     count=0
 
     scoreList.forEach(item => {
         count++
-        if(count<=limit) {
+        if(count<=absLimit) {
             yearHappen=item.yearHappen
             
             const row = document.createElement("div");
@@ -1238,10 +1331,11 @@ function updateSingleDriverScores(driverInput, limit) {
 
 }
 
-function updateHeaders(dropdown1,infoClass) {
+function updateHeaders(dropdown1,infoClass,extra) {
 
     console.log(dropdown1)
     console.log(infoClass)
+    console.log(extra)
 
     if (dropdown1==="Years") {
         console.log("YEARS")
@@ -1255,14 +1349,25 @@ function updateHeaders(dropdown1,infoClass) {
             cscoreHeader.innerHTML="Year"
         }
     } else if (dropdown1.includes("Span")) {
-        console.log("SPAN")
-        scoreHeader.innerHTML=""
-        bscoreHeader.innerHTML=""
-        cscoreHeader.innerHTML=""
+        if(extra==="Driver Averages") {
+            scoreHeader.innerHTML="Seasons"
+            bscoreHeader.innerHTML="Seasons"
+            cscoreHeader.innerHTML="Seasons"
+        } else {
+            scoreHeader.innerHTML=""
+            bscoreHeader.innerHTML=""
+            cscoreHeader.innerHTML=""
+        }
     } else if (dropdown1.includes("Cycle")) {
-        scoreHeader.innerHTML=""
-        bscoreHeader.innerHTML=""
-        cscoreHeader.innerHTML=""
+        if(extra==="Driver Averages") {
+            scoreHeader.innerHTML="Seasons"
+            bscoreHeader.innerHTML="Seasons"
+            cscoreHeader.innerHTML="Seasons"
+        } else {
+            scoreHeader.innerHTML=""
+            bscoreHeader.innerHTML=""
+            cscoreHeader.innerHTML=""
+        }
     } else if (dropdown1==="Single Driver") {
         scoreHeader.innerHTML="Year"
         bscoreHeader.innerHTML="Year"
@@ -1272,14 +1377,11 @@ function updateHeaders(dropdown1,infoClass) {
         bscoreHeader.innerHTML="Year"
         cscoreHeader.innerHTML="Year"
     } else if (dropdown1==="All Time") {
-        console.log("All Time")
         if(infoClass==="Driver Averages") {
-            console.log("Driver Averages")
             scoreHeader.innerHTML="First Season"
             bscoreHeader.innerHTML="First Season"
             cscoreHeader.innerHTML="First Season"
         } else {
-            console.log("OTHER")
             scoreHeader.innerHTML="Year"
             bscoreHeader.innerHTML="Year"
             cscoreHeader.innerHTML="Year"
@@ -1342,7 +1444,7 @@ firstDropdown
         visibleThirdDropdown.style.visibility = "visible";
         secondYear = secondDropdown.value;
         populateExtraDropdown(year,secondYear)
-        let extra = document.getElementById("extraSelect").value;
+        extra = document.getElementById("extraSelect").value;
         updateSingleDriverScores(extra,limit)
     } else {
         populateDriverDropdown(year);
@@ -1350,10 +1452,11 @@ firstDropdown
         visibleThirdDropdown.style.visibility = "visible";
         secondYear = secondDropdown.value;
         populateExtraDropdown(year,secondYear)
-        let extra = document.getElementById("extraSelect").value;
+        extra = document.getElementById("extraSelect").value;
         updatePartTimeScores(year,secondYear,extra,limit)
     }
-    updateHeaders(year,secondYear)
+    extra = document.getElementById("extraSelect").value;
+    updateHeaders(year,secondYear,extra)
 });
 
 secondDropdown
@@ -1375,14 +1478,15 @@ secondDropdown
         secondYear = document.getElementById("driverSelect").value;
         visibleThirdDropdown.style.visibility = "visible";
         populateExtraDropdown(year,secondYear)
-        let extra = document.getElementById("extraSelect").value;
+        extra = document.getElementById("extraSelect").value;
         updateSingleDriverScores(extra,limit)
     } else {
         populateExtraDropdown(year,secondYear)
         visibleThirdDropdown.style.visibility = "visible";
-        let extra = document.getElementById("extraSelect").value;
+        extra = document.getElementById("extraSelect").value;
         updatePartTimeScores(year,secondYear,extra,limit)
     }
+    extra = document.getElementById("extraSelect").value;
     updateHeaders(year,secondYear)
 });
 

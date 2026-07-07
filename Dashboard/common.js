@@ -5,7 +5,10 @@ async function createHeader() {
         <ul class="nav">
             <li>
                 <a class="header" href="upcoming_forecast.html" align="right">Next Race</a>
-            </li>                
+            </li>
+            <li>
+                <a class="header" href="Championship_outlook.html" align="right">WC Outlook</a>
+            </li>
             <li>
                 <a class="header" href="driver_race.html" align="right">Driver</a>
             </li>

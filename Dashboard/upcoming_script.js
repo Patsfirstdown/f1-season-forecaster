@@ -203,8 +203,8 @@ function updateFullTable(selectedRace) {
             driver: raceData[driver].driver_name,
             expFinish: raceData[driver].expected_finish,
             score: raceData[driver].driver_score*100,
-            dnfProb: raceData[driver].dnf_probability
-
+            dnfProb: raceData[driver].dnf_probability,
+            winProb: raceData[driver][1]
         });
 
     });
@@ -238,7 +238,8 @@ function buildDriverTable(driverList) {
         ["driver", "Driver"],
         ["expFinish", "Expected Finish"],
         ["dnfProb", "DNF %"],
-        ["score", "Score"]
+        ["score", "Score"],
+        ["winProb","Win Chance"]
     ];
 
     columns.forEach(([key, label]) => {
@@ -273,7 +274,18 @@ function buildDriverTable(driverList) {
         row.insertCell().textContent = driver.driver;
         row.insertCell().textContent = driver.expFinish.toFixed(2);
         row.insertCell().textContent = (driver.dnfProb * 100).toFixed(1) + "%";
-        row.insertCell().textContent = driver.score.toFixed(3);
+        const scoreCell = row.insertCell();
+        scoreCell.textContent = driver.score.toFixed(3);
+
+        if (driver.score === 0) {
+            scoreCell.classList.add("noChance");
+        }
+        const winCell = row.insertCell();
+        winCell.textContent = (driver.winProb*100).toFixed(2) + "%";
+
+        if (driver.winProb === 0) {
+            winCell.classList.add("noChance");
+        }
 
     });
 
