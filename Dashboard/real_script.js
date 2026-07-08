@@ -7,6 +7,38 @@ let driverDropdownText = document.getElementById("driverDropdownText");
 let cscoreHeader = document.getElementById("combinedScoreHeader");
 let bscoreHeader = document.getElementById("betterScoreHeader");
 let scoreHeader = document.getElementById("scoreHeader");
+const scoreState = {
+    currentSort: "score",
+    ascending: false,
+    scoreList: [],
+    scoreKey: "",
+    container: null,
+    displayKey: "",
+    averageYears: null,
+    limit: 10
+};
+
+const betterScoreState = {
+    currentSort: "betterScore",
+    ascending: false,
+    scoreList: [],
+    scoreKey: "",
+    container: null,
+    displayKey: "",
+    averageYears: null,
+    limit: 10
+};
+
+const combinedScoreState = {
+    currentSort: "combinedScore",
+    ascending: false,
+    scoreList: [],
+    scoreKey: "",
+    container: null,
+    displayKey: "",
+    averageYears: null,
+    limit: 10
+};
 let wdcFirstList = {
     2025: "Lando Norris",
     2024: "Max Verstappen",
@@ -279,6 +311,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
                     scoreList.push({
                         driverName: driver,
                         yearHappen: year,
+                        raceCount: resultsData[year][driver]["races"],
                         score: resultsData[year][driver]["score"],
                         betterScore: resultsData[year][driver]["betterScore"],
                         combinedScore: resultsData[year][driver]["combinedScore"]
@@ -315,6 +348,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
             
             row.innerHTML = `
                 <span ${driverClass};>${yearHappen}</span>
+                <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
                 <span style="color:${color};">${(item.score).toFixed(3)}</span>
             `;
@@ -349,6 +383,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
             
             row.innerHTML = `
                 <span ${driverClass};>${yearHappen}</span>
+                <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
                 <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
             `;
@@ -382,6 +417,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
             
             row.innerHTML = `
                 <span ${driverClass};>${yearHappen}</span>
+                <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
                 <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
             `;
@@ -504,10 +540,12 @@ function updateAllTimeScores(avgOrSeason,limit) {
     if(avgOrSeason==="Driver Averages") {
         Object.keys(resultsData).forEach(driver => {
             const seasonTotal = resultsData[driver]["seasons"]
+            console.log(resultsData[driver])
             if (seasonTotal>=2) {
                 scoreList.push({
                     driverName: driver,
                     yearHappen: resultsData[driver]["RookieYear"],
+                    raceCount: resultsData[driver]["races"],
                     score: resultsData[driver]["score"]/seasonTotal,
                     betterScore: resultsData[driver]["betterScore"]/seasonTotal,
                     combinedScore: resultsData[driver]["combinedScore"]/seasonTotal
@@ -515,263 +553,55 @@ function updateAllTimeScores(avgOrSeason,limit) {
             }
         });
     
-        if (limit>0) {
-            scoreList.sort((a, b) => b.score - a.score);
-        } else {
-            scoreList.sort((b, a) => b.score - a.score);
-        }
-    
-        containerScoreList.innerHTML = "";
-        count = 0;
-    
-        scoreList.forEach(item => {
-            count++
-            if (count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                Object.keys(wdcFirstList).forEach(yearWDC => {
-                    if(wdcFirstList[yearWDC]===item.driverName) {
-                        driverClass=`class="wdc"`;
-                    }
-                }) 
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.score).toFixed(3)}</span>
-                `;
-                containerScoreList.appendChild(row);
-            }
-        });
-
-        count = 0;
-        if (limit>0) {
-            scoreList.sort((a, b) => b.betterScore - a.betterScore);
-        } else {
-            scoreList.sort((b, a) => b.betterScore - a.betterScore);
-        }
-    
-        containerBetterScoreList.innerHTML = "";
-    
-        scoreList.forEach(item => {
-            count++
-            if(count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                Object.keys(wdcFirstList).forEach(yearWDC => {
-                    if(wdcFirstList[yearWDC]===item.driverName) {
-                        driverClass=`class="wdc"`;
-                    }
-                }) 
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
-                `;
-                containerBetterScoreList.appendChild(row);
-            }
-        });
-
-        if (limit>0) {
-            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
-        } else {
-            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
-        }
-    
-        containerCombinedScoreList.innerHTML = "";
-        count=0
-    
-        scoreList.forEach(item => {
-            count++
-            if (count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                Object.keys(wdcFirstList).forEach(yearWDC => {
-                    if(wdcFirstList[yearWDC]===item.driverName) {
-                        driverClass=`class="wdc"`;
-                    }
-                })
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
-                `;
-                containerCombinedScoreList.appendChild(row);
-            }
-        });
+        renderScoreList(scoreList, "score", containerScoreList, limit, "yearHappen", Object.keys(wdcFirstList),scoreState);
+        renderScoreList(scoreList, "betterScore", containerBetterScoreList, limit, "yearHappen", Object.keys(wdcFirstList),betterScoreState);
+        renderScoreList(scoreList, "combinedScore", containerCombinedScoreList, limit, "yearHappen", Object.keys(wdcFirstList),combinedScoreState);
     } else {
         Object.keys(resultsData).forEach(driver => {
             Object.keys(resultsData[driver]).forEach(year => {
+                console.log(resultsData[driver])
                 scoreList.push({
                     driverName: driver,
                     yearHappen: year,
+                    raceCount: resultsData[driver][year]["races"],
                     score: resultsData[driver][year]["score"],
                     betterScore: resultsData[driver][year]["betterScore"],
                     combinedScore: resultsData[driver][year]["combinedScore"]
                 })
             });
         });
-    
-        if (limit>0) {
-            scoreList.sort((a, b) => b.score - a.score);
-        } else {
-            scoreList.sort((b, a) => b.score - a.score);
-        }
-    
-        containerScoreList.innerHTML = "";
-    
-        scoreList.forEach(item => {
-            count++;
-            if(count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                if(wdcFirstList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc"`;
-                } else if(wdcSecondList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc2"`;
-                } else if(wdcThirdList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc3"`;
-                }
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.score).toFixed(3)}</span>
-                `;
-                containerScoreList.appendChild(row);
-            }
-        });
-    
-        if (limit>0) {
-            scoreList.sort((a, b) => b.betterScore - a.betterScore);
-        } else {
-            scoreList.sort((b, a) => b.betterScore - a.betterScore);
-        }
-    
-        containerBetterScoreList.innerHTML = "";
-        count=0
-    
-        scoreList.forEach(item => {
-            count++
-            if(count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                if(wdcFirstList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc"`;
-                } else if(wdcSecondList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc2"`;
-                } else if(wdcThirdList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc3"`;
-                }
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
-                `;
-                containerBetterScoreList.appendChild(row);
-            }
-        });
-
-        if (limit>0) {
-            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
-        } else {
-            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
-        }
-    
-        containerCombinedScoreList.innerHTML = "";
-        count=0
-    
-        scoreList.forEach(item => {
-            count++
-            if(count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                if(wdcFirstList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc"`;
-                } else if(wdcSecondList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc2"`;
-                } else if(wdcThirdList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc3"`;
-                }
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
-                `;
-                containerCombinedScoreList.appendChild(row);
-            }
-        });
+        renderScoreList(scoreList, "score", containerScoreList, limit, "yearHappen",null,scoreState);
+        renderScoreList(scoreList, "betterScore", containerBetterScoreList, limit, "yearHappen",null,betterScoreState);
+        renderScoreList(scoreList, "combinedScore", containerCombinedScoreList, limit, "yearHappen",null,combinedScoreState);
     }
 }
 
 function updateYearScores(year,limit) {
-    const scoreList=[];
     if(year==="2026") {
         resultsData = realData["stats"];    
     } else {
         resultsData = oldData["Years"][year];    
     }
-    const absLimit = Math.abs(limit);
-
+    const absLimit = Math.abs(limit)
+    console.log("UPDATING SINGLE DRIVER")
+    const scoreList=[];
     let count = 0;
-    console.log(resultsData)
+    const containerScoreList =
+    document.getElementById("scoreList");
+
+    const containerBetterScoreList =
+    document.getElementById("betterScoreList");
+    
+    const containerCombinedScoreList =
+    document.getElementById("combinedScoreList");
+
+
     Object.keys(resultsData).forEach(driver => {
         if(year==="2026") {
             scoreList.push({
                 driverName: resultsData[driver]["name"],
                 yearHappen: year,
+                raceCount: resultsData[driver]["raceCount"],
                 score: resultsData[driver]["score"],
                 betterScore: resultsData[driver]["betterScore"],
                 combinedScore: resultsData[driver]["combinedScore"]
@@ -780,6 +610,7 @@ function updateYearScores(year,limit) {
             scoreList.push({
                 driverName: driver,
                 yearHappen: year,
+                raceCount: resultsData[driver]["races"],
                 score: resultsData[driver]["score"],
                 betterScore: resultsData[driver]["betterScore"],
                 combinedScore: resultsData[driver]["combinedScore"]
@@ -787,129 +618,9 @@ function updateYearScores(year,limit) {
         }
     });
 
-    if (limit>0) {
-        scoreList.sort((a, b) => b.score - a.score);
-    } else {
-        scoreList.sort((b, a) => b.score - a.score);
-    }
-
-    const containerScoreList =
-        document.getElementById("scoreList");
-
-    containerScoreList.innerHTML = "";
-
-    scoreList.forEach(item => {
-        count++;
-        if(count<=absLimit) {
-            
-            const row = document.createElement("div");
-            const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
-            
-            color=interpolateColor(scoreHere);
-            
-            driverClass=`class="wdcOther"`;
-            if(wdcFirstList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc"`;
-            } else if(wdcSecondList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc2"`;
-            } else if(wdcThirdList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc3"`;
-            }
-    
-            row.className = "score-row";
-
-            row.innerHTML = `
-                <span ${driverClass}>${item.yearHappen}</span>
-                <span ${driverClass}>${item.driverName}</span>
-                <span style="color:${color}">${(item.score).toFixed(3)}</span>
-            `;
-            containerScoreList.appendChild(row);
-        }
-    });
-
-    if (limit>0) {
-        scoreList.sort((a, b) => b.betterScore - a.betterScore);
-    } else {
-        scoreList.sort((b, a) => b.betterScore - a.betterScore);
-    }
-
-    const containerBetterScoreList =
-        document.getElementById("betterScoreList");
-
-    containerBetterScoreList.innerHTML = "";
-    count=0
-
-    scoreList.forEach(item => {
-        count++
-        if(count<=absLimit) {
-            yearHappen=item.yearHappen
-            
-            const row = document.createElement("div");
-            const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
-            
-            color=interpolateColor(scoreHere);
-            
-            driverClass=`class="wdcOther"`;
-            if(wdcFirstList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc"`;
-            } else if(wdcSecondList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc2"`;
-            } else if(wdcThirdList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc3"`;
-            }
-    
-            row.className = "score-row";
-
-            row.innerHTML = `
-                <span ${driverClass};>${item.yearHappen}</span>
-                <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
-            `;
-            containerBetterScoreList.appendChild(row);
-        }
-    });
-
-    if (limit>0) {
-        scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
-    } else {
-        scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
-    }
-
-    const containerCombinedScoreList =
-        document.getElementById("combinedScoreList");
-
-    containerCombinedScoreList.innerHTML = "";
-    count=0
-
-    scoreList.forEach(item => {
-        count++
-        if(count<=absLimit) {
-            yearHappen=item.yearHappen
-            
-            const row = document.createElement("div");
-            const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
-            
-            color=interpolateColor(scoreHere);
-            
-            driverClass=`class="wdcOther"`;
-            if(wdcFirstList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc"`;
-            } else if(wdcSecondList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc2"`;
-            } else if(wdcThirdList[item.yearHappen]===item.driverName) {
-                driverClass=`class="wdc3"`;
-            }
-    
-            row.className = "score-row";
-            
-            row.innerHTML = `
-                <span ${driverClass};>${item.yearHappen}</span>
-                <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
-            `;
-            containerCombinedScoreList.appendChild(row);
-        }
-    });
+    renderScoreList(scoreList, "score", containerScoreList, limit, "yearHappen",null,scoreState);
+    renderScoreList(scoreList, "betterScore", containerBetterScoreList, limit, "yearHappen",null,betterScoreState);
+    renderScoreList(scoreList, "combinedScore", containerCombinedScoreList, limit, "yearHappen",null,combinedScoreState);
 }
 
 function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
@@ -927,259 +638,46 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
         document.getElementById("combinedScoreList");
 
     if(avgOrSeason==="Driver Averages") {
+
+        let minYear=parseInt(secondSpan.substring(0,5))
+        console.log(minYear)
+        let maxYear=parseInt(secondSpan.substring(5))
+        console.log(maxYear)
+        let yearLength=maxYear-minYear
+        let yearRange = range(yearLength,minYear)
+
         resultsData = oldData[timeSpan][secondSpan][avgOrSeason];    
         Object.keys(resultsData).forEach(driver => {
+            console.log(resultsData[driver])
             const seasonTotal = resultsData[driver]["seasons"]
             scoreList.push({
                 driverName: driver,
                 seasons: seasonTotal,
+                raceCount: resultsData[driver]["races"],
                 score: resultsData[driver]["score"]/seasonTotal,
                 betterScore: resultsData[driver]["betterScore"]/seasonTotal,
                 combinedScore: resultsData[driver]["combinedScore"]/seasonTotal
             });
         });
-    
-        if (limit>0) {
-            scoreList.sort((a, b) => b.score - a.score);
-        } else {
-            scoreList.sort((b, a) => b.score - a.score);
-        }
-    
-    
-        containerScoreList.innerHTML = "";
-        count = 0;
-        minYear=parseInt(secondSpan.substring(0,4))
-        maxYear=parseInt(secondSpan.substring(5))+1
-        yearLength=maxYear-minYear
-        yearRange = range(yearLength,minYear)
-    
-        scoreList.forEach(item => {
-            count++
-            if (count<=absLimit) {
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
-                
-                color=interpolateColor(scoreHere);
-
-                driverClass=`class="wdcOther"`;
-                for (const year of yearRange) {
-                    if(wdcFirstList[year]===item.driverName) {
-                        driverClass=`class="wdc"`;
-                    }
-                }
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${item.seasons}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.score).toFixed(3)}</span>
-                `;
-                containerScoreList.appendChild(row);
-            }
-        });
-
-        count = 0;
-    
-        if (limit>0) {
-            scoreList.sort((a, b) => b.betterScore - a.betterScore);
-        } else {
-            scoreList.sort((b, a) => b.betterScore - a.betterScore);
-        }
-    
-    
-        containerBetterScoreList.innerHTML = "";
-    
-        scoreList.forEach(item => {
-            count++
-            if(count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                for (const year of yearRange) {
-                    if(wdcFirstList[year]===item.driverName) {
-                        driverClass=`class="wdc"`;
-                    }
-                } 
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${item.seasons}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
-                `;
-                containerBetterScoreList.appendChild(row);
-            }
-        });
-    
-    
-        containerCombinedScoreList.innerHTML = "";
-        count=0
-        if (limit>0) {
-            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
-        } else {
-            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
-        }
-    
-        scoreList.forEach(item => {
-            count++
-            if (count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                for (const year of yearRange) {
-                    if(wdcFirstList[year]===item.driverName) {
-                        driverClass=`class="wdc"`;
-                    }
-                }
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${item.seasons}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
-                `;
-                containerCombinedScoreList.appendChild(row);
-            }
-        });
+        renderScoreList(scoreList, "score", containerScoreList, limit, "seasons", yearRange,scoreState);
+        renderScoreList(scoreList, "betterScore", containerBetterScoreList, limit, "seasons", yearRange,betterScoreState);
+        renderScoreList(scoreList, "combinedScore", containerCombinedScoreList, limit, "seasons", yearRange,combinedScoreState);
     } else {
         Object.keys(resultsData).forEach(driver => {
+            console.log(resultsData[driver])
             scoreList.push({
                 driverName: driver,
                 yearHappen: resultsData[driver]["year"],
+                raceCount: resultsData[driver]["races"],
                 score: resultsData[driver]["score"],
                 betterScore: resultsData[driver]["betterScore"],
                 combinedScore: resultsData[driver]["combinedScore"]
             });
         });
     
-        if (limit>0) {
-            scoreList.sort((a, b) => b.score - a.score);
-        } else {
-            scoreList.sort((b, a) => b.score - a.score);
-        }
-    
-        containerScoreList.innerHTML = "";
-    
-        scoreList.forEach(item => {
-            count++;
-            if(count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                if(wdcFirstList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc"`;
-                } else if(wdcSecondList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc2"`;
-                } else if(wdcThirdList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc3"`;
-                }
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.score).toFixed(3)}</span>
-                `;
-                containerScoreList.appendChild(row);
-            }
-        });
-    
-        if (limit>0) {
-            scoreList.sort((a, b) => b.betterScore - a.betterScore);
-        } else {
-            scoreList.sort((b, a) => b.betterScore - a.betterScore);
-        }
-    
-        containerBetterScoreList.innerHTML = "";
-        count=0
-    
-        scoreList.forEach(item => {
-            count++
-            if(count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                if(wdcFirstList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc"`;
-                } else if(wdcSecondList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc2"`;
-                } else if(wdcThirdList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc3"`;
-                }
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
-                `;
-                containerBetterScoreList.appendChild(row);
-            }
-        });
-        
-        containerCombinedScoreList.innerHTML = "";
-        count=0
-        if (limit>0) {
-            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
-        } else {
-            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
-        }
-    
-        scoreList.forEach(item => {
-            count++
-            if(count<=absLimit) {
-                yearHappen=item.yearHappen
-                
-                const row = document.createElement("div");
-                const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
-                
-                color=interpolateColor(scoreHere);
-                
-                driverClass=`class="wdcOther"`;
-                if(wdcFirstList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc"`;
-                } else if(wdcSecondList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc2"`;
-                } else if(wdcThirdList[yearHappen]===item.driverName) {
-                    driverClass=`class="wdc3"`;
-                }
-        
-                row.className = "score-row";
-                
-                row.innerHTML = `
-                    <span ${driverClass};>${yearHappen}</span>
-                    <span ${driverClass};>${item.driverName}</span>
-                    <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
-                `;
-                containerCombinedScoreList.appendChild(row);
-            }
-        });
+        renderScoreList(scoreList, "score", containerScoreList, limit, "yearHappen",null,scoreState);
+        renderScoreList(scoreList, "betterScore", containerBetterScoreList, limit, "yearHappen",null,betterScoreState);
+        renderScoreList(scoreList, "combinedScore", containerCombinedScoreList, limit, "yearHappen",null,combinedScoreState);
     }
 }
 
@@ -1197,138 +695,24 @@ function updateSingleDriverScores(driverInput, limit) {
     const containerCombinedScoreList =
     document.getElementById("combinedScoreList");
 
-    console.log(driverInput)
     console.log(oldData["Single Driver"])
 
     resultsData = oldData["Single Driver"][driverInput]
-    console.log(resultsData)
 
     Object.keys(resultsData).forEach(year => {
         scoreList.push({
             driverName: driverInput,
             yearHappen: year,
+            raceCount: resultsData[year]["races"],
             score: resultsData[year]["score"],
             betterScore: resultsData[year]["betterScore"],
             combinedScore: resultsData[year]["combinedScore"]
         })
     });
 
-    if (limit>0) {
-        scoreList.sort((a, b) => b.score - a.score);
-    } else {
-        scoreList.sort((b, a) => b.score - a.score);
-    }
-
-    containerScoreList.innerHTML = "";
-
-    scoreList.forEach(item => {
-        count++;
-        if(count<=absLimit) {
-            yearHappen=item.yearHappen
-            
-            const row = document.createElement("div");
-            const scoreHere= Math.max(0.3, Math.min(1,1 - item.score/100));
-            
-            color=interpolateColor(scoreHere);
-            
-            driverClass=`class="wdcOther"`;
-            if(wdcFirstList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc"`;
-            } else if(wdcSecondList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc2"`;
-            } else if(wdcThirdList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc3"`;
-            }
-
-            row.className = "score-row";
-            
-            row.innerHTML = `
-                <span ${driverClass};>${yearHappen}</span>
-                <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.score).toFixed(3)}</span>
-            `;
-            containerScoreList.appendChild(row);
-        }
-    });
-
-    if (limit>0) {
-        scoreList.sort((a, b) => b.betterScore - a.betterScore);
-    } else {
-        scoreList.sort((b, a) => b.betterScore - a.betterScore);
-    }
-
-    containerBetterScoreList.innerHTML = "";
-    count=0
-
-    scoreList.forEach(item => {
-        count++
-        if(count<=absLimit) {
-            yearHappen=item.yearHappen
-            
-            const row = document.createElement("div");
-            const scoreHere= Math.max(0.3, Math.min(1,1 - item.betterScore));
-            
-            color=interpolateColor(scoreHere);
-            
-            driverClass=`class="wdcOther"`;
-            if(wdcFirstList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc"`;
-            } else if(wdcSecondList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc2"`;
-            } else if(wdcThirdList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc3"`;
-            }
-
-            row.className = "score-row";
-            
-            row.innerHTML = `
-                <span ${driverClass};>${yearHappen}</span>
-                <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
-            `;
-            containerBetterScoreList.appendChild(row);
-        }
-    });
-
-    if (limit>0) {
-            scoreList.sort((a, b) => b.combinedScore - a.combinedScore);
-        } else {
-            scoreList.sort((b, a) => b.combinedScore - a.combinedScore);
-        }
-
-    containerCombinedScoreList.innerHTML = "";
-    count=0
-
-    scoreList.forEach(item => {
-        count++
-        if(count<=absLimit) {
-            yearHappen=item.yearHappen
-            
-            const row = document.createElement("div");
-            const scoreHere= Math.max(0.3, Math.min(1,1 - item.combinedScore));
-            
-            color=interpolateColor(scoreHere);
-            
-            driverClass=`class="wdcOther"`;
-            if(wdcFirstList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc"`;
-            } else if(wdcSecondList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc2"`;
-            } else if(wdcThirdList[yearHappen]===item.driverName) {
-                driverClass=`class="wdc3"`;
-            }
-
-            row.className = "score-row";
-            
-            row.innerHTML = `
-                <span ${driverClass};>${yearHappen}</span>
-                <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
-            `;
-            containerCombinedScoreList.appendChild(row);
-        }
-    });
-
+    renderScoreList(scoreList, "score", containerScoreList, limit, "yearHappen",null,scoreState);
+    renderScoreList(scoreList, "betterScore", containerBetterScoreList, limit, "yearHappen",null,betterScoreState);
+    renderScoreList(scoreList, "combinedScore", containerCombinedScoreList, limit, "yearHappen",null,combinedScoreState);
 }
 
 function updateHeaders(dropdown1,infoClass,extra) {
@@ -1389,6 +773,172 @@ function updateHeaders(dropdown1,infoClass,extra) {
     }
 }
 
+function randomDriver() {
+    console.log("CLICK")
+
+    driverInfo.innerHTML=""
+
+    let extra = document.getElementById("extraSelect").value;
+    let limit = 1000;
+
+    let minYear=Object.keys(oldData["Years"]).map(Number)[0]
+    let yearLength=Object.keys(oldData["Years"]).length
+    let yearRange = range(yearLength,minYear)
+
+    let yearSpan = yearRange[Math.floor(Math.random()*yearRange.length)];
+
+    let driverInputs=Object.keys(oldData["Years"][yearSpan]);
+
+    let driverInput = driverInputs[Math.floor(Math.random()*driverInputs.length)];
+
+    updateSingleDriverScores(driverInput, limit)
+
+    const driverHeader = document.createElement("h2")
+
+    driverHeader.textContent = driverInput;
+    driverHeader.className = "driverOther";
+
+    let secondPlace = false;
+
+    for (const year of yearRange) {
+        if(wdcFirstList[year]===driverInput) {
+            driverHeader.className = "driverWDC1";
+            break
+        } else if(wdcSecondList[year]===driverInput) {
+            driverHeader.className = "driverWDC2";
+            secondPlace=true;
+        } else if(wdcThirdList[year]===driverInput && !secondPlace) {
+            driverHeader.className = "driverWDC3";
+        }
+    }
+
+    driverInfo.append(driverHeader)
+
+}
+
+function renderScoreList(
+    scoreList,
+    scoreKey,
+    container,
+    limit,
+    displayKey,
+    averageYears = null,
+    state
+) {
+    state.scoreList = scoreList;
+    state.scoreKey = scoreKey;
+    state.container = container;
+    state.displayKey = displayKey;
+    state.averageYears = averageYears;
+    state.limit = limit;
+
+    const absLimit = Math.abs(limit);
+
+    scoreList.sort((a, b) => {
+        let result;
+        if (typeof a[state.currentSort] === "string") {
+            result = a[state.currentSort].localeCompare(b[state.currentSort]);
+        } else {
+            result = a[state.currentSort] - b[state.currentSort];
+        }
+        return state.ascending ? result : -result;
+    });
+
+    container.replaceChildren();
+
+    scoreList.slice(0, absLimit).forEach(item => {
+
+        const row = document.createElement("div");
+        
+        row.className = 'score-row'; 
+
+        const divisor = scoreKey === "score" ? 100 : 1;
+        const scoreHere = Math.max(
+            0.3,
+            Math.min(1, 1 - item[scoreKey] / divisor)
+        );
+
+        const color = interpolateColor(scoreHere);
+
+        let driverClass = `class="wdcOther"`;
+
+        if (averageYears !== null) {
+
+            // Average / span of years
+
+            secondPlace=false;
+
+            for (const year of averageYears) {
+                if (wdcFirstList[year] === item.driverName) {
+                    driverClass = `class="wdc"`;
+                    break;
+                } else if (wdcSecondList[year] === item.driverName) {
+                    driverClass = `class="wdc2"`;
+                    secondPlace=true;
+                } else if (wdcThirdList[year] === item.driverName && !secondPlace) {
+                    driverClass = `class="wdc3"`;
+                }
+            }
+            row.innerHTML = `
+                <span ${driverClass}>${item[displayKey]}</span>
+                <span ${driverClass}>${item.raceCount}</span>
+                <span ${driverClass}>${item.driverName}</span>
+                <span style="color:${color};">
+                    ${item[scoreKey].toFixed(3)}
+                </span>
+            `;
+
+        } else {
+
+            // Single season
+            const year = item.yearHappen;
+
+            if (wdcFirstList[year] === item.driverName) {
+                driverClass = `class="wdc"`;
+            } else if (wdcSecondList[year] === item.driverName) {
+                driverClass = `class="wdc2"`;
+            } else if (wdcThirdList[year] === item.driverName) {
+                driverClass = `class="wdc3"`;
+            }
+            row.className = "score-row";
+    
+            row.innerHTML = `
+                <span ${driverClass}>${item[displayKey]}</span>
+                <span ${driverClass}>${item.raceCount}</span>
+                <span ${driverClass}>${item.driverName}</span>
+                <span style="color:${color};">
+                    ${item[scoreKey].toFixed(3)}
+                </span>
+            `;
+        }
+
+
+        container.appendChild(row);
+
+    });
+
+}
+
+function sortAndRender(sortKey, state) {
+
+    if (state.currentSort === sortKey) {
+        state.ascending = !state.ascending;
+    } else {
+        state.currentSort = sortKey;
+        state.ascending = true;
+    }
+
+    renderScoreList(
+        state.scoreList,
+        state.scoreKey,
+        state.container,
+        state.limit,
+        state.displayKey,
+        state.averageYears,
+        state
+    );
+}
+
 async function initialize() {
 
     await loadData();
@@ -1412,6 +962,7 @@ let thirdDropdown = document.getElementById("extraSelect");
 let visibleThirdDropdown = document.getElementById("extraDropdown");
 let visibleSecondDropdown = document.getElementById("driverDropdown2");
 let limitDropdown = document.getElementById("limitSelect");
+let driverInfo = document.getElementById("driverInfo");
 
 firstDropdown
 .addEventListener("change", function() {
@@ -1420,6 +971,8 @@ firstDropdown
     let secondYear = document.getElementById("driverSelect").value;
     const limit = Number(document.getElementById("limitSelect").value);
     let extra = document.getElementById("extraSelect").value;
+
+    driverInfo.innerHTML="";
     
     if(year==="Years") {
         console.log("YEARS")
@@ -1466,6 +1019,9 @@ secondDropdown
     let secondYear = document.getElementById("driverSelect").value;
     const limit = Number(document.getElementById("limitSelect").value);
     let extra = document.getElementById("extraSelect").value;
+
+    driverInfo.innerHTML="";
+
     if(year==="Years") {
         updateYearScores(secondYear,limit)
     } else if(year==="All Time") {
@@ -1497,6 +1053,9 @@ limitDropdown
     let secondYear = secondDropdown.value;
     let extra = thirdDropdown.value;
     const limit = Number(document.getElementById("limitSelect").value);
+
+    driverInfo.innerHTML="";
+
     if(year==="Years") {
         updateYearScores(secondYear,limit)
     } else if(year==="All Time") {
@@ -1517,6 +1076,9 @@ thirdDropdown
     let secondYear = document.getElementById("driverSelect").value;
     let extra = document.getElementById("extraSelect").value;
     const limit = Number(document.getElementById("limitSelect").value);
+
+    driverInfo.innerHTML="";
+
     updateHeaders(year,secondYear)
     if(year==="Single Driver") {
         updateSingleDriverScores(extra,limit)
@@ -1524,3 +1086,24 @@ thirdDropdown
         updatePartTimeScores(year,secondYear,extra,limit)
     }
 });
+
+document
+.getElementById("randomButton")
+.addEventListener("click", function() {
+    randomDriver()
+});
+
+scoreHeader.onclick = () => sortAndRender("yearHappen", scoreState);
+racesHeader.onclick = () => sortAndRender("races", scoreState);
+driverHeader.onclick = () => sortAndRender("driverName", scoreState);
+valueHeader.onclick = () => sortAndRender("score", scoreState);
+
+betterScoreHeader.onclick = () => sortAndRender("yearHappen", betterScoreState);
+betterRaceHeader.onclick = () => sortAndRender("races", betterScoreState);
+betterDriverHeader.onclick = () => sortAndRender("driverName", betterScoreState);
+betterValueHeader.onclick = () => sortAndRender("betterScore", betterScoreState);
+
+combinedScoreHeader.onclick = () => sortAndRender("yearHappen", combinedScoreState);
+combinedRaceHeader.onclick = () => sortAndRender("races", combinedScoreState);
+combinedDriverHeader.onclick = () => sortAndRender("driverName", combinedScoreState);
+combinedValueHeader.onclick = () => sortAndRender("combinedScore", combinedScoreState);

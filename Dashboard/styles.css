@@ -369,9 +369,9 @@ canvas.graph{
 
 .score-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
-    max-width: 750px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 8px 0;
     font-size: 150%;
@@ -665,4 +665,74 @@ h4.oneOff {
 
 .loss {
     color: darkred;
+}
+
+.banner h2 {
+    text-align: center;
+    background-color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 5rem;
+    padding-top: 64px;
+    border-top: 4px solid var(--f1_red);
+    font-weight: bold;
+    font-style: oblique;
+    font-display: block;
+    text-shadow: 2px 2px 2px #4a90e2;
+    
+}
+
+.randomButton {
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #E8002D, #C0C0C0);
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.randomButton:hover {
+    background: #E8002D;
+}
+
+.randomButton:active {
+    transform: scale(0.97);
+}
+
+.driverOther {
+    font-size: 3.5rem;
+    background-color: var(--f1_red);
+    background-image: linear-gradient(to right, black 0%, black 20%, var(--f1_red) 40%,var(--f1_red) 60%, black 80%, black 100%);
+    padding: 8px;
+}
+
+.driverWDC1 {
+    color:rgb(255, 215, 0);
+    font-weight: bold;
+    text-shadow: 1px 1px 1px white;
+    font-size: 3.5rem;
+    background-image: linear-gradient(to right, black 0%, black 20%, var(--f1_red) 40%,var(--f1_red) 60%, black 80%, black 100%);
+    padding: 8px;
+}
+
+.driverWDC2 {
+    color:rgb(192, 192, 192);
+    font-weight:bold;
+    text-shadow: 1px 1px 1px royalblue;
+    font-size: 3.5rem;
+    background-image: linear-gradient(to right, black 0%, black 20%, var(--f1_red) 40%,var(--f1_red) 60%, black 80%, black 100%);
+    padding: 8px;
+}
+
+.driverWDC3 {
+    color:rgb(205,127,50);
+    font-weight:bold;
+    text-shadow: 1px 1px 1px white;
+    font-size: 3.5rem;
+    background-image: linear-gradient(to right, black 0%, black 20%, var(--f1_red) 40%,var(--f1_red) 60%, black 80%, black 100%);
+    padding: 8px;
+}
+
+.score-header span {
+    cursor: pointer;
 }

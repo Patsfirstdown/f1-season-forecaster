@@ -7,7 +7,6 @@
         <script src="common.js"></script>
         <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
         <script src="real_script.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
         <div id="mainHeader" class="mainHeader">
@@ -41,6 +40,9 @@
                         <option value="10000">All</option>
                     </select>
                 </td>
+                <td>
+                    <button type="button" class="randomButton" id="randomButton">Random Driver</button>
+                </td>
             </tr>
             <tr id="driverDropdown2" class="driverDropdownReal">
                 <td align="Right" id="driverDropdownText"></td>
@@ -60,6 +62,8 @@
                 <td></td>
             </tr>
         </table>
+        <div id="driverInfo">
+        </div>
         <table  class="realLegend">
             <th colspan="4" style="color:white;font-size:2rem;" text-align="center">
                 Legend
@@ -86,10 +90,11 @@
                         <th>0 to -100: Consistent DNFs and Maybe Points Battles</th>
                     </tr>
                 </table>
-                <div class="score-row">
+                <div class="score-row score-header">
                     <span id="scoreHeader" class="wdcOther"></span>
-                    <span class="wdcOther">Driver</span>
-                    <span class="wdcOther">Score</span>
+                    <span id="racesHeader" class="wdcOther">Races</span>
+                    <span id="driverHeader" class="wdcOther">Driver</span>
+                    <span id="valueHeader" class="wdcOther">Score</span>
                 </div>
                 <div id="scoreList" class="scoreList"></div>
             </div>
@@ -109,8 +114,9 @@
                 </table>
                 <div class="score-row">
                     <span id="betterScoreHeader" class="wdcOther"></span>
-                    <span class="wdcOther">Driver</span>
-                    <span class="wdcOther">Score</span>
+                    <span id="betterRaceHeader" class="wdcOther">Races</span>
+                    <span id="betterDriverHeader" class="wdcOther">Driver</span>
+                    <span id="betterValueHeader" class="wdcOther">Score</span>
                 </div>
                 <div id="betterScoreList" class="scoreList"></div>
             </div>
@@ -130,8 +136,9 @@
                 </table>
                 <div class="score-row">
                     <span id="combinedScoreHeader" class="wdcOther"></span>
-                    <span class="wdcOther">Driver</span>
-                    <span class="wdcOther">Score</span>
+                    <span id="combinedRaceHeader" class="wdcOther">Races</span>
+                    <span id="combinedDriverHeader" class="wdcOther">Driver</span>
+                    <span id="combinedValueHeader" class="wdcOther">Score</span>
                 </div>
                 <div id="combinedScoreList" class="scoreList"></div>
             </div>
