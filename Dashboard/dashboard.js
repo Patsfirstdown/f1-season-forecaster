@@ -648,7 +648,7 @@ function updateVolatilityChart() {
     });
 
     const ctx =
-        document.getElementById("dash-expected-scatter");
+        document.getElementById("dash-expected-scatter").getContext("2d");
 
     if (dashVolatilityChart) {
         dashVolatilityChart.destroy();
@@ -663,6 +663,8 @@ function updateVolatilityChart() {
         },
         options: {
             responsive: true,
+            devicePixelRatio: 2,
+            maintainAspectRatio: false,
 
             scales: {
                 x: {
@@ -680,6 +682,43 @@ function updateVolatilityChart() {
                 }
             },
 
+            onHover: (event, activeElements, chart) => {
+
+                if (activeElements.length > 0) {
+        
+                    const hoveredDataset =
+                        activeElements[0].datasetIndex;
+        
+                    chart.data.datasets.forEach(
+                        (dataset, index) => {
+        
+                            if (index === hoveredDataset) {
+        
+                                dataset.borderWidth = 5;
+        
+                            } else {
+        
+                                dataset.borderWidth = 1;
+        
+                            }
+        
+                        }
+                    );
+        
+                } else {
+        
+                    chart.data.datasets.forEach(
+                        dataset => {
+        
+                            dataset.borderWidth = 2;
+        
+                        }
+                    );
+        
+                }
+        
+                chart.update('none');
+            },
             plugins: {
                 tooltip: {
                     callbacks: {
@@ -697,43 +736,6 @@ function updateVolatilityChart() {
                             ];
                         }
                     }
-                },
-                onHover: (event, activeElements, chart) => {
-
-                    if (activeElements.length > 0) {
-            
-                        const hoveredDataset =
-                            activeElements[0].datasetIndex;
-            
-                        chart.data.datasets.forEach(
-                            (dataset, index) => {
-            
-                                if (index === hoveredDataset) {
-            
-                                    dataset.borderWidth = 5;
-            
-                                } else {
-            
-                                    dataset.borderWidth = 1;
-            
-                                }
-            
-                            }
-                        );
-            
-                    } else {
-            
-                        chart.data.datasets.forEach(
-                            dataset => {
-            
-                                dataset.borderWidth = 2;
-            
-                            }
-                        );
-            
-                    }
-            
-                    chart.update('none');
                 },
                 legend: {
                         onClick(e, legendItem, legend) {
@@ -1220,7 +1222,16 @@ async function initialize() {
     updateDriverChart();
     updateWDCChart();
     updateWCCChart();
-    updateVolatilityChart()
+    updateVolatilityChart();
+
+    console.log(
+        dashVolatilityChart.width,
+        dashVolatilityChart.height
+    );
+
+    console.log(
+        dashVolatilityChart.canvas.getBoundingClientRect().width
+    );
 }
 
 initialize();
