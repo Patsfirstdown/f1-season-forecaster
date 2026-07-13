@@ -4,6 +4,7 @@ let resultsData;
 let oldData;
 let driverClass;
 let currentGrid;
+let currentBox = document.getElementById("currentGrid");
 
 let wdcFirstList = {
     2025: "Lando Norris",
@@ -613,10 +614,8 @@ function updateAllTimeScores(limit) {
             let wdc1Count=Object.values(wdcFirstList).filter(val => val === driver).length;
             let wdc2Count=Object.values(wdcSecondList).filter(val => val === driver).length;
             let wdc3Count=Object.values(wdcThirdList).filter(val => val === driver).length;
-            let superScoreAVG=((5*wdc1Count+resultsData[driver]["combinedScore"]+resultsData[driver]["dnfFreeCombinedScore"])/2)/seasonTotal
+            let superScoreAVG=((5*wdc1Count+2*wdc2Count+wdc3Count+resultsData[driver]["combinedScore"]+resultsData[driver]["dnfFreeCombinedScore"])/2)/seasonTotal
             let superScoreSeason=(driverMaxScores[driver][0]+driverMaxScores[driver][1])/2+wdc1Count+wdc2Count/2+wdc3Count/3
-            console.log(lastSeason)
-            console.log(previousYear)
             if(lastSeason===previousYear) {
                 previousSuperScoreAVG=((5*(wdc1Count-wdc1remove)+resultsData[driver]["combinedScore"]+resultsData[driver]["dnfFreeCombinedScore"]-combinedRemove-dnfFreeRemove)/2)/(seasonTotal-1)
                 previousSuperScoreSeason=(previousMaxScore[driver][0]+previousMaxScore[driver][1])/2+(wdc1Count-wdc1remove)+(wdc2Count-wdc2remove)/2+(wdc3Count-wdc3remove)/3
@@ -692,75 +691,146 @@ function renderScoreList(
 
     container.replaceChildren();
     let count=0;
-    console.log(scoreList)
+    console.log(currentBox);
+    console.log(currentBox.checked)
 
-    scoreList.slice(0, absLimit).forEach(item => {
-        count++;
-
-        const row = document.createElement("div");
+    if(currentBox.checked) {
+        scoreList.slice(0, absLimit).forEach(item => {
+            if (currentGrid.includes(item.driverName)) {
+                count++;
         
-        row.className = 'score-rowALL'; 
-
-        let divisor = scoreKey === "score" ? 100 : 6;
-
-        const scoreHere = Math.max(
-            0.3,
-            Math.min(1, 1 - item[scoreKey] / divisor)
-        );
-
-        let driverClass = `class="wdcOtherALL"`;
-        active=""
-
-        if (currentGrid.includes(item.driverName)) {
-            active = `style="font-style:italic;"`;
-        };
-
-        // Average / span of years
-
-        secondPlace=false;
-
-        for (const year of averageYears) {
-            if (wdcFirstList[year] === item.driverName) {
-                driverClass = `class="wdcALL"`;
-                break;
-            } else if (wdcSecondList[year] === item.driverName) {
-                driverClass = `class="wdc2ALL"`;
-                secondPlace=true;
-            } else if (wdcThirdList[year] === item.driverName && !secondPlace) {
-                driverClass = `class="wdc3ALL"`;
+                const row = document.createElement("div");
+                
+                row.className = 'score-rowALL'; 
+        
+                let divisor = scoreKey === "score" ? 100 : 6;
+        
+                const scoreHere = Math.max(
+                    0.3,
+                    Math.min(1, 1 - item[scoreKey] / divisor)
+                );
+        
+                let driverClass = `class="wdcOtherALL"`;
+                active=""
+        
+                if (currentGrid.includes(item.driverName)) {
+                    active = `style="font-style:italic;"`;
+                };
+        
+                // Average / span of years
+        
+                secondPlace=false;
+        
+                for (const year of averageYears) {
+                    if (wdcFirstList[year] === item.driverName) {
+                        driverClass = `class="wdcALL"`;
+                        break;
+                    } else if (wdcSecondList[year] === item.driverName) {
+                        driverClass = `class="wdc2ALL"`;
+                        secondPlace=true;
+                    } else if (wdcThirdList[year] === item.driverName && !secondPlace) {
+                        driverClass = `class="wdc3ALL"`;
+                    }
+                }
+                let rankBigger='';
+                if(item.rankDelta>0) {
+                    rankBigger=`<span class="delta_positive">${item.rankDelta >= 0 ? "+" : ""}${item.rankDelta}</span>`
+                } else if (item.rankDelta<0) {
+                    rankBigger=`<span class="delta_negative">${item.rankDelta >= 0 ? "+" : ""}${item.rankDelta}</span>`
+                }
+                let scoreBigger='';
+                if(item.scoreDelta>0) {
+                    scoreBigger=`<span class="delta_positive">${item.scoreDelta >= 0 ? "+" : ""}${item.scoreDelta.toFixed(3)}</span>`
+                } else if (item.scoreDelta<0) {
+                    scoreBigger=`<span class="delta_negative">${item.scoreDelta >= 0 ? "+" : ""}${item.scoreDelta.toFixed(3)}</span>`
+                }
+                row.innerHTML = `
+                    <span ${driverClass} ${active}>
+                        ${item.currentRank}
+                        ${rankBigger}
+                    </span>
+                    <span ${driverClass} ${active}>${item.RookieYear}</span>
+                    <span ${driverClass} ${active}>${item.raceCount}</span>
+                    <span ${driverClass} ${active}>${item.driverName}</span>
+                    <span ${driverClass} ${active}>${item.wdcCount}</span>
+                    <span style="color:white;text-align:left;">
+                        ${item[scoreKey].toFixed(3)}
+                        ${scoreBigger}
+                    </span>
+                `;
+        
+                container.appendChild(row);
+            };
+        });
+    } else {
+        scoreList.slice(0, absLimit).forEach(item => {
+            count++;
+    
+            const row = document.createElement("div");
+            
+            row.className = 'score-rowALL'; 
+    
+            let divisor = scoreKey === "score" ? 100 : 6;
+    
+            const scoreHere = Math.max(
+                0.3,
+                Math.min(1, 1 - item[scoreKey] / divisor)
+            );
+    
+            let driverClass = `class="wdcOtherALL"`;
+            active=""
+    
+            if (currentGrid.includes(item.driverName)) {
+                active = `style="font-style:italic;"`;
+            };
+    
+            // Average / span of years
+    
+            secondPlace=false;
+    
+            for (const year of averageYears) {
+                if (wdcFirstList[year] === item.driverName) {
+                    driverClass = `class="wdcALL"`;
+                    break;
+                } else if (wdcSecondList[year] === item.driverName) {
+                    driverClass = `class="wdc2ALL"`;
+                    secondPlace=true;
+                } else if (wdcThirdList[year] === item.driverName && !secondPlace) {
+                    driverClass = `class="wdc3ALL"`;
+                }
             }
-        }
-        let rankBigger='';
-        if(item.rankDelta>0) {
-            rankBigger=`<span class="delta_positive">${item.rankDelta >= 0 ? "+" : ""}${item.rankDelta}</span>`
-        } else if (item.rankDelta<0) {
-            rankBigger=`<span class="delta_negative">${item.rankDelta >= 0 ? "+" : ""}${item.rankDelta}</span>`
-        }
-        let scoreBigger='';
-        if(item.scoreDelta>0) {
-            scoreBigger=`<span class="delta_positive">${item.scoreDelta >= 0 ? "+" : ""}${item.scoreDelta.toFixed(3)}</span>`
-        } else if (item.scoreDelta<0) {
-            scoreBigger=`<span class="delta_negative">${item.scoreDelta >= 0 ? "+" : ""}${item.scoreDelta.toFixed(3)}</span>`
-        }
-        console.log(item.driverName)
-        row.innerHTML = `
-            <span ${driverClass} ${active}>
-                ${item.currentRank}
-                ${rankBigger}
-            </span>
-            <span ${driverClass} ${active}>${item.RookieYear}</span>
-            <span ${driverClass} ${active}>${item.raceCount}</span>
-            <span ${driverClass} ${active}>${item.driverName}</span>
-            <span ${driverClass} ${active}>${item.wdcCount}</span>
-            <span style="color:white;text-align:left;">
-                ${item[scoreKey].toFixed(3)}
-                ${scoreBigger}
-            </span>
-        `;
+            let rankBigger='';
+            if(item.rankDelta>0) {
+                rankBigger=`<span class="delta_positive">${item.rankDelta >= 0 ? "+" : ""}${item.rankDelta}</span>`
+            } else if (item.rankDelta<0) {
+                rankBigger=`<span class="delta_negative">${item.rankDelta >= 0 ? "+" : ""}${item.rankDelta}</span>`
+            }
+            let scoreBigger='';
+            if(item.scoreDelta>0) {
+                scoreBigger=`<span class="delta_positive">${item.scoreDelta >= 0 ? "+" : ""}${item.scoreDelta.toFixed(3)}</span>`
+            } else if (item.scoreDelta<0) {
+                scoreBigger=`<span class="delta_negative">${item.scoreDelta >= 0 ? "+" : ""}${item.scoreDelta.toFixed(3)}</span>`
+            }
+            row.innerHTML = `
+                <span ${driverClass} ${active}>
+                    ${item.currentRank}
+                    ${rankBigger}
+                </span>
+                <span ${driverClass} ${active}>${item.RookieYear}</span>
+                <span ${driverClass} ${active}>${item.raceCount}</span>
+                <span ${driverClass} ${active}>${item.driverName}</span>
+                <span ${driverClass} ${active}>${item.wdcCount}</span>
+                <span style="color:white;text-align:left;">
+                    ${item[scoreKey].toFixed(3)}
+                    ${scoreBigger}
+                </span>
+            `;
+    
+            container.appendChild(row);
+    
+        });
+    }
 
-        container.appendChild(row);
-
-    });
 
 }
 
@@ -791,3 +861,8 @@ async function initialize() {
 }
 
 initialize();
+
+document.getElementById("currentGrid").addEventListener("change", () => {
+    updateBest();
+    updateAllTimeScores(1000);
+});
