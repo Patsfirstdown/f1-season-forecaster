@@ -5,8 +5,8 @@
         <title>F1 Forecast Dashboard</title>
         <link rel="stylesheet" href="styles.css">
         <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
-        <script src="commonHome.js"></script>
-        <script src="dashboard.js" defer></script>
+        <script src="common.js"></script>
+        <script src="dashboardPred.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
@@ -17,11 +17,8 @@
                 <h1>F1 Forecaster Dashboard</h1>
             </header>
         </div>
-        <div>
-            <h3 style="text-align: center;" class="oneOff">Most Likely Championship Finish Positions</h3>
-            <h4 style="text-align: center;" class="oneOff">Odds >90%</h4>
+        <div id="raceUpdates" class="updates">
         </div>
-        <div id="firmPlaces" class="firmPlaces"></div>
         <div>
             <h3 style="text-align: center;" class="oneOff">Season Trends Charts</h3>
         </div>

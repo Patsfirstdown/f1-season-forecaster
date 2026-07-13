@@ -369,7 +369,7 @@ canvas.graph{
 
 .score-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 20px;
     max-width: 1000px;
     margin: 0 auto;
@@ -427,6 +427,16 @@ canvas.graph{
     width: 100%;
     border-collapse: collapse;
     color: black;
+    border-radius: 16px;
+}
+
+.comparison-table th {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--f1_red);
+}
+
+.comparison-table td {
+    font-size: 1.5rem;
 }
 
 .comparison-table th,
@@ -733,6 +743,44 @@ h4.oneOff {
     padding: 8px;
 }
 
+.driverActive {
+    color:white;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 3.5rem;
+    background-image: linear-gradient(to right, black 0%, black 20%, var(--f1_red) 40%,var(--f1_red) 60%, black 80%, black 100%);
+    padding: 8px;
+}
+
 .score-header span {
     cursor: pointer;
+}
+
+.active {
+    font-style: italic;
+    color: white;
+}
+
+.driverAhead {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.infoTable {
+    color: black;
+    margin: 64px 8px 64px 0px;
+    border-radius: 16px;
+}
+
+.infoTable th {
+    font-size: 2.5rem;
+    border-bottom: 2px dashed var(--f1_red);
+}
+.infoTable tr {
+    font-size: 1.25rem
+}
+
+.tab {
+    text-align: center;
+    min-width: 256px;
 }

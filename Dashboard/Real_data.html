@@ -4,7 +4,7 @@
         <!--Professional Website-->
         <title>Result Scores</title>
         <link rel="stylesheet" href="styles.css">
-        <script src="common.js"></script>
+        <script src="commonReal.js"></script>
         <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
         <script src="real_script.js" defer></script>
     </head>
@@ -43,6 +43,10 @@
                 <td>
                     <button type="button" class="randomButton" id="randomButton">Random Driver</button>
                 </td>
+                <td>
+                    <input type="checkbox" id="dnfIncluded" name="dnfIncluded" value="includeDNF">
+                    <label for="dnfIncluded">Include DNFs</label>
+                </td>
             </tr>
             <tr id="driverDropdown2" class="driverDropdownReal">
                 <td align="Right" id="driverDropdownText"></td>
@@ -65,13 +69,14 @@
         <div id="driverInfo">
         </div>
         <table  class="realLegend">
-            <th colspan="4" style="color:white;font-size:2rem;" text-align="center">
+            <th colspan="5" style="color:white;font-size:2rem;" text-align="center">
                 Legend
             </th>
             <tr>
                 <td class="wdc" align="center">World Champion</td>
                 <td class="wdc2" align="center">Runner Up</td>
                 <td class="wdc3" align="center">Third</td>
+                <td class="active" align="center">Current</td>
                 <td class="wdcOther" align="center">Raced</td>
             </tr>
         </table>
@@ -85,12 +90,13 @@
                         <th>100 to 80: Dominant</th>
                         <th>80 to 50: Consistently Winning</th>
                         <th>50 to 20: Fighting for Wins</th>
-                        <th>20 to 5: Battling in the Points</th>
-                        <th>5 to 0: Battling for the Points</th>
-                        <th>0 to -100: Consistent DNFs and Maybe Points Battles</th>
+                        <th>20 to 0: Battling in the Points</th>
+                        <th>0 to -10: Consistent DNFs</th>
+                        <th>-15: 100% DNF Rate</th>
                     </tr>
                 </table>
                 <div class="score-row score-header">
+                    <span class="wdcOther">Rank</span>
                     <span id="scoreHeader" class="wdcOther"></span>
                     <span id="racesHeader" class="wdcOther">Races</span>
                     <span id="driverHeader" class="wdcOther">Driver</span>
@@ -113,6 +119,7 @@
                         </tr>
                 </table>
                 <div class="score-row">
+                    <span class="wdcOther">Rank</span>
                     <span id="betterScoreHeader" class="wdcOther"></span>
                     <span id="betterRaceHeader" class="wdcOther">Races</span>
                     <span id="betterDriverHeader" class="wdcOther">Driver</span>
@@ -135,6 +142,7 @@
                         </tr>
                 </table>
                 <div class="score-row">
+                    <span class="wdcOther">Rank</span>
                     <span id="combinedScoreHeader" class="wdcOther"></span>
                     <span id="combinedRaceHeader" class="wdcOther">Races</span>
                     <span id="combinedDriverHeader" class="wdcOther">Driver</span>

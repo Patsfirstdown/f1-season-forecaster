@@ -4,28 +4,16 @@ async function createHeader() {
     ).innerHTML = `
         <ul class="nav">
             <li>
-                <a class="header" href="upcoming_forecast.html" align="right">Next Race</a>
+                <a class="header" href="predictions_dashboard.html" align="right">Predictions</a>
             </li>
             <li>
-                <a class="header" href="Championship_outlook.html" align="right">WC Outlook</a>
+                <a class="header" href="results_dashboard.html" align="right">Results</a>
             </li>
             <li>
-                <a class="header" href="driver_race.html" align="right">Driver</a>
-            </li>
-            <li>
-                <a class="header" href="wdc.html" align="left">WDC</a>
-            </li>
-            <li>
-                <a class="header" href="wcc.html" align="left">WCC</a>
-            </li>
-            <li>
-                <a class="header" href="analysis.html" align="left">Analysis</a>
+                <a class="header" href="faq.html" align="center">FAQs</a>
             </li>
             <li class="right_link">
                 <a class="right_link" href="dashboard.html" align="right">Home</a>
-            </li>
-            <li class="right_link">
-                <a class="right_link" href="predictions_dashboard.html" align="right">Predictions Home</a>
             </li>
         </ul>
     `;

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Professional Website-->
+        <title>Results Home</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" type="image/x-icon" href="/images/favicon.svg">
+        <script src="commonReal.js"></script>
+        <script src="dashboardReal.js" defer></script>
+    </head>
+    <body>
+        <div id="mainHeader" class="mainHeader">
+        </div>
+        <div>
+            <header class="welcome" style="border-bottom: 32px solid var(--f1_silver)">
+                <h1>F1 Results Dashboard</h1>
+            </header>
+        </div>
+        <div>
+            <table class="infoTable">
+                <thead>
+                    <tr>
+                        <th>Tab</th>
+                        <th>Info</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="tab">Real Scores</td>
+                    <td>
+                        Driver Scores for a given time span. Either a single year, regulation period, 5 or 10 year span, or all time.
+                        <br>
+                        3 Different Scores: 
+                        <br>
+                        Driver+Car Score that evaluates actual performance over the time period. Purely based upon on track finish position.
+                        <br>
+                        <br>
+                        Driver Score that evaluates driver performance against forecasted performance, teammate head to head, consistency and improvement over the time period
+                        <br>
+                        The forecasted performance is based upon their historical performance at a track, their performance in the season, and their teams performance that season
+                        <br>
+                        2026 Driver Scores are based upon the stronger prediction model used for the current predictions resulting in lower scores
+                        <br>
+                        <br>
+                        Comined Score that is Driver+Car Score*Driver Score/100
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="footerForm">
+        </div>
+    </body>
+</html>

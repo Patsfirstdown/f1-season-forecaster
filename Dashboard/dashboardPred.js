@@ -947,106 +947,183 @@ function updateUpdates() {
 
     };
 
-    Object.keys(currentWCC).forEach(team => {
-        Object.keys(predictionData.wcc_data[upcomingRace][team]).forEach(pos => {
-            if(!pos.includes("_")) {
-                if(predictionData.wcc_data[upcomingRace][team][pos]>=.9) {
-                    firmTeams.push({
-                        "Team":team,
-                        "Pos":pos,
-                        "Odds":predictionData.wcc_data[upcomingRace][team][pos]
-                    })
-                }
-            }
-        })
-    });
-    console.log(firmTeams)
-    Object.keys(currentWDC).forEach(driver => {
-        Object.keys(predictionData.wdc_data[upcomingRace][driver]).forEach(pos => {
-            if(!pos.includes("_")) {
-                if(predictionData.wdc_data[upcomingRace][driver][pos]>=.9) {
-                    console.log(predictionData.wdc_data[upcomingRace][driver])
-                    firmDrivers.push({
-                        "Driver":predictionData.wdc_data[upcomingRace][driver]["driver_name"],
-                        "Pos":pos,
-                        "Odds":predictionData.wdc_data[upcomingRace][driver][pos]
-                    })
-                }
-            }
-        })
-    });
-    console.log(firmDrivers)
+    if (teamCount>=5) {
+        const fiveCAgo = races[races.length - 5];
 
-    firmPlaces=document.getElementById("firmPlaces");
+        fiveC1 = normalizeWCC(predictionData.wcc_data[fiveCAgo]);
 
-    const positions = {};
+        fiveCAllS = createSorted(currentWCC,fiveC1,"exp");
+        fiveC1S = createSorted(currentWCC,fiveC1,"winProb");
 
-    firmDrivers.forEach(entry => {
-        if (!positions[entry.Pos]) {
-            positions[entry.Pos] = {
-                driver: "",
-                team: ""
-            };
-        }
-        positions[entry.Pos].driver = entry.Driver;
-        positions[entry.Pos].driverOdds = entry.Odds;
-    });
+        cateC=`<th>WCC</th>`
+        row1C=`<td>${fiveC1S[0][1].name}: +${(fiveC1S[0][1].value*100).toFixed(3)}% Champion Odds</td>`
+        row2C=`<td>${fiveC1S.at(-1)[1].name}: ${(fiveC1S.at(-1)[1].value*100).toFixed(3)}% Champion Odds</td>`
+        row3C=`<td>${fiveCAllS[0][1].name}: +${fiveCAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4C=`<td>${fiveCAllS.at(-1)[1].name}: ${fiveCAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
+    } else {
+        fiveC1 = normalizeWCC(predictionData.wcc_data[firstCRace]);
 
-    firmTeams.forEach(entry => {
-        if (!positions[entry.Pos]) {
-            positions[entry.Pos] = {
-                driver: "",
-                team: ""
-            };
-        }
-        positions[entry.Pos].team = entry.Team;
-        positions[entry.Pos].teamOdds = entry.Odds;
-    });
+        fiveCAllS = createSorted(currentWCC,fiveC1,"exp");
+        fiveC1S = createSorted(currentWCC,fiveC1,"winProb");
 
-    const sortedPositions = Object.keys(positions)
-        .map(Number)
-        .sort((a, b) => a - b);
+        cateC=`<th>WCC</th>`
+        row1C=`<td>${fiveC1S[0][1].name}: +${(fiveC1S[0][1].value*100).toFixed(3)}% Champion Odds</td>`
+        row2C=`<td>${fiveC1S.at(-1)[1].name}: ${(fiveC1S.at(-1)[1].value*100).toFixed(3)}% Champion Odds</td>`
+        row3C=`<td>${fiveCAllS[0][1].name}: +${fiveCAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4C=`<td>${fiveCAllS.at(-1)[1].name}: ${fiveCAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
 
-    const table = document.createElement("table");
-    table.className = "firm-table";
+    }
+    if (driverCount>=5) {
+        const fiveDAgo = races[races.length - 5];
+        fiveD1 = normalizeWDC(predictionData.wdc_data[fiveDAgo]);
 
-    const header = table.insertRow();
-    ["Pos", "Driver", "Team"].forEach(text => {
-        const th = document.createElement("th");
-        th.textContent = text;
-        header.appendChild(th);
-    });
+        fiveDAllS = createSorted(currentWDC,fiveD1,"exp");
+        fiveD1S = createSorted(currentWDC,fiveD1,"winProb");
 
-    sortedPositions.forEach(pos => {
-        const row = table.insertRow();
-        const posCell = row.insertCell();
-        posCell.textContent = pos ?? "";
-        if (positions[pos].driverOdds === 1) {
-            if (positions[pos].teamOdds === 1) {
-                rowCell.classList.add("locked");
-            }
-        }
-        const driverCell = row.insertCell();
-        driverCell.textContent = positions[pos].driver ?? "";
-        if (positions[pos].driverOdds === 1) {
-            driverCell.classList.add("locked");
-        }
-        const teamCell = row.insertCell();
-        teamCell.textContent = positions[pos].team ?? "";
+        cateD=`<th>WDC</th>`
+        row1D=`<td>${fiveD1S[0][1].name}: +${(fiveD1S[0][1].value*100).toFixed(3)}% Champion Odds</td>`
+        row2D=`<td>${fiveD1S.at(-1)[1].name}: ${(fiveD1S.at(-1)[1].value*100).toFixed(3)}% Champion Odds</td>`
+        row3D=`<td>${fiveDAllS[0][1].name}: +${fiveDAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4D=`<td>${fiveDAllS.at(-1)[1].name}: ${fiveDAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
+    } else {
+        fiveD1 = normalizeWCC(predictionData.wdc_data[firstDRace]);
 
-        if (positions[pos].teamOdds === 1) {
-            teamCell.classList.add("locked");
-        }
-    });
+        fiveDAllS = createSorted(currentWDC,fiveD1,"exp");
+        fiveD1S = createSorted(currentWDC,fiveD1,"winProb");
 
-    firmPlaces.replaceChildren(table);
+        cateD=`<th>WDC</th>`
+        row1D=`<td>${fiveD1S[0][1].name}: +${(fiveD1S[0][1].value*100).toFixed(3)}% Champion Odds</td>`
+        row2D=`<td>${fiveD1S.at(-1)[1].name}: ${(fiveD1S.at(-1)[1].value*100).toFixed(3)}% Champion Odds</td>`
+        row3D=`<td>${fiveDAllS[0][1].name}: +${fiveDAllS[0][1].value.toFixed(3)} Expected Positions</td>`
+        row4D=`<td>${fiveDAllS.at(-1)[1].name}: ${fiveDAllS.at(-1)[1].value.toFixed(3)} Expected Positions</td>`
+    };
+    
+    document.getElementById("raceUpdates").innerHTML = `
+
+        <div>
+            <h3 style="text-align: center;">Post ${previousRace} Race Updates</h3>
+        </div>
+
+        <table class="update-table">
+
+            <tr>
+                <th>Category</th>
+                <th>WDC</th>
+                <th>WCC</th>
+            </tr>
+            
+            <tr class="higher">
+                <td>Biggest World Champion Gain</td>
+                
+                <td>${sortedWDC1[0][1].name}: +${(sortedWDC1[0][1].value*100).toFixed(3)}% Champion Odds</td>
+                <td>${sortedWCC1[0][1].name}: +${(sortedWCC1[0][1].value*100).toFixed(3)}% Champion Odds</td>
+            </tr>
+            <tr class="lower">
+                <td>Biggest World Champion Loser</td>
+                <td>${sortedWDC1.at(-1)[1].name}: ${(sortedWDC1.at(-1)[1].value*100).toFixed(3)}% Champion Odds</td>
+                <td>${sortedWCC1.at(-1)[1].name}: ${(sortedWCC1.at(-1)[1].value*100).toFixed(3)}% Champion Odds</td>
+            </tr>
+            <tr class="higher">
+                <td>Biggest Overall Gain</td>
+                <td>${sortedWDCAll[0][1].name}: +${sortedWDCAll[0][1].value.toFixed(3)} Expected Positions</td>
+                <td>${sortedWCCAll[0][1].name}: +${sortedWCCAll[0][1].value.toFixed(3)} Expected Positions</td>
+            </tr>
+            <tr class="lower">
+                <td>Biggest Overall Loser</td>
+                <td>${sortedWDCAll.at(-1)[1].name}: ${sortedWDCAll.at(-1)[1].value.toFixed(3)} Expected Positions</td>
+                <td>${sortedWCCAll.at(-1)[1].name}: ${sortedWCCAll.at(-1)[1].value.toFixed(3)} Expected Positions</td>
+            </tr>
+
+        </table>
+
+        <br>
+        <br>
+        <br>
+
+        <div>
+            <h3 style="text-align: center;">Biggest Movements Past 5 Races World Championship</h3>
+        </div>
+        <table class="update-table">
+
+            <tr>
+                <th>Category</th>
+                ${cateD}
+                ${cateC}
+            </tr>
+
+            <tr class="higher">
+                <td>Biggest World Champion Gain</td>
+                
+                ${row1D}
+                ${row1C}
+            </tr>
+            <tr class="lower">
+                <td>Biggest World Champion Loser</td>
+                ${row2D}
+                ${row2C}
+            </tr>
+            <tr class="higher">
+                <td>Biggest Overall Gain</td>
+                ${row3D}
+                ${row3C}
+            </tr>
+            <tr class="lower">
+                <td>Biggest Overall Loser</td>
+                ${row4D}
+                ${row4C}
+            </tr>
+
+        </table>
+
+        <br>
+
+        <div>
+            <h3 style="text-align: center;">Biggest Race to Race Standings Movements</h3>
+        </div>
+        <table class="update-table">
+
+            <tr>
+                <th>Category</th>
+                <th>WDC</th>
+                <th>WCC</th>
+            </tr>
+
+            <tr class="higher">
+                <td>Biggest World Champion Gain</td>
+                
+                <td>Pre-${seasonWDC1big[0]} ${seasonWDC1big[1]}: +${(seasonWDC1big[2]*100).toFixed(3)}% Champion Odds</td>
+                <td>Pre-${seasonWCC1big[0]} ${seasonWCC1big[1]}: +${(seasonWCC1big[2]*100).toFixed(3)}% Champion Odds</td>
+            </tr>
+            <tr class="lower">
+                <td>Biggest World Champion Loser</td>
+                <td>Pre-${seasonWDC1small[0]} ${seasonWDC1small[1]}: ${(seasonWDC1small[2]*100).toFixed(3)}% Champion Odds</td>
+                <td>Pre-${seasonWCC1small[0]} ${seasonWCC1small[1]}: ${(seasonWCC1small[2]*100).toFixed(3)}% Champion Odds</td>
+            </tr>
+            <tr class="higher">
+                <td>Biggest Overall Gain</td>
+                <td>Pre-${seasonWDCAllbig[0]} ${seasonWDCAllbig[1]}: +${seasonWDCAllbig[2].toFixed(3)} Expected Positions</td>
+                <td>Pre-${seasonWCCAllbig[0]} ${seasonWCCAllbig[1]}: +${seasonWCCAllbig[2].toFixed(3)} Expected Positions</td>
+            </tr>
+            <tr class="lower">
+                <td>Biggest Overall Loser</td>
+                <td>Pre-${seasonWDCAllsmall[0]} ${seasonWDCAllsmall[1]}: ${seasonWDCAllsmall[2].toFixed(3)} Expected Positions</td>
+                <td>Pre-${seasonWCCAllsmall[0]} ${seasonWCCAllsmall[1]}: ${seasonWCCAllsmall[2].toFixed(3)} Expected Positions</td>
+            </tr>
+
+        </table>
+
+        <br>
+
+    `;
+
+
 }
 
 async function initialize() {
 
     await loadData();
 
-    updateUpdates();
+    updateUpdates()
     updateDriverChart();
     updateWDCChart();
     updateWCCChart();

@@ -12,8 +12,10 @@
             },
             "raceCount": 8,
             "score": 35.625,
+            "dnfFreeScore": 37.5,
             "betterScore": 0.6899525069852963,
-            "combinedScore": 0.2457955806135118
+            "combinedScore": 0.2457955806135118,
+            "dnfFreeCombinedScore": 0.2587321901194861
         },
         "ANT": {
             "name": "Andrea Kimi Antonelli",
@@ -26,8 +28,10 @@
             },
             "raceCount": 8,
             "score": 68.12499999999999,
+            "dnfFreeScore": 70.0,
             "betterScore": 0.8848599113662178,
-            "combinedScore": 0.6028108146182357
+            "combinedScore": 0.6028108146182357,
+            "dnfFreeCombinedScore": 0.6194019379563525
         },
         "LEC": {
             "name": "Charles Leclerc",
@@ -40,8 +44,10 @@
             },
             "raceCount": 8,
             "score": 13.749999999999998,
+            "dnfFreeScore": 17.5,
             "betterScore": 0.691992725407642,
-            "combinedScore": 0.09514899974355076
+            "combinedScore": 0.09514899974355076,
+            "dnfFreeCombinedScore": 0.12109872694633735
         },
         "HAM": {
             "name": "Lewis Hamilton",
@@ -57,8 +63,10 @@
             },
             "raceCount": 8,
             "score": 33.75,
+            "dnfFreeScore": 33.75,
             "betterScore": 2.346398115328374,
-            "combinedScore": 0.7919093639233263
+            "combinedScore": 0.7919093639233263,
+            "dnfFreeCombinedScore": 0.7919093639233263
         },
         "NOR": {
             "name": "Lando Norris",
@@ -72,8 +80,10 @@
             },
             "raceCount": 8,
             "score": 9.375000000000004,
+            "dnfFreeScore": 15.000000000000002,
             "betterScore": 0.7904312058663471,
-            "combinedScore": 0.07410292554997007
+            "combinedScore": 0.07410292554997007,
+            "dnfFreeCombinedScore": 0.11856468087995208
         },
         "VER": {
             "name": "Max Verstappen",
@@ -89,8 +99,10 @@
             },
             "raceCount": 8,
             "score": 13.749999999999998,
+            "dnfFreeScore": 17.5,
             "betterScore": 1.9710082999521519,
-            "combinedScore": 0.2710136412434208
+            "combinedScore": 0.2710136412434208,
+            "dnfFreeCombinedScore": 0.34492645249162657
         },
         "BEA": {
             "name": "Oliver Bearman",
@@ -105,8 +117,10 @@
             },
             "raceCount": 8,
             "score": 1.8750000000000018,
+            "dnfFreeScore": 7.500000000000001,
             "betterScore": -0.3447118008786654,
-            "combinedScore": -0.006463346266474982
+            "combinedScore": -0.006463346266474982,
+            "dnfFreeCombinedScore": -0.025853385065899907
         },
         "LIN": {
             "name": "Arvid Lindblad",
@@ -122,8 +136,10 @@
             },
             "raceCount": 8,
             "score": 8.125,
+            "dnfFreeScore": 10.0,
             "betterScore": -0.040588446726026794,
-            "combinedScore": -0.0032978112964896773
+            "combinedScore": -0.0032978112964896773,
+            "dnfFreeCombinedScore": -0.004058844672602679
         },
         "BOR": {
             "name": "Gabriel Bortoleto",
@@ -137,8 +153,10 @@
             },
             "raceCount": 8,
             "score": 0.6250000000000002,
+            "dnfFreeScore": 2.5,
             "betterScore": 1.0804323511721021,
-            "combinedScore": 0.00675270219482564
+            "combinedScore": 0.00675270219482564,
+            "dnfFreeCombinedScore": 0.027010808779302554
         },
         "GAS": {
             "name": "Pierre Gasly",
@@ -154,8 +172,10 @@
             },
             "raceCount": 8,
             "score": 14.375000000000002,
+            "dnfFreeScore": 16.25,
             "betterScore": 0.3134084777633361,
-            "combinedScore": 0.04505246867847957
+            "combinedScore": 0.04505246867847957,
+            "dnfFreeCombinedScore": 0.05092887763654211
         },
         "OCO": {
             "name": "Esteban Ocon",
@@ -171,8 +191,10 @@
             },
             "raceCount": 8,
             "score": 5.0,
+            "dnfFreeScore": 5.0,
             "betterScore": 0.5572246110259953,
-            "combinedScore": 0.027861230551299764
+            "combinedScore": 0.027861230551299764,
+            "dnfFreeCombinedScore": 0.027861230551299764
         },
         "ALB": {
             "name": "Alexander Albon",
@@ -188,8 +210,10 @@
             },
             "raceCount": 8,
             "score": 1.2500000000000004,
+            "dnfFreeScore": 5.0,
             "betterScore": -0.9978242492412761,
-            "combinedScore": -0.012472803115515955
+            "combinedScore": -0.012472803115515955,
+            "dnfFreeCombinedScore": -0.04989121246206381
         },
         "LAW": {
             "name": "Liam Lawson",
@@ -204,8 +228,10 @@
             },
             "raceCount": 8,
             "score": 13.125000000000004,
+            "dnfFreeScore": 15.000000000000002,
             "betterScore": 0.8998361527002223,
-            "combinedScore": 0.11810349504190422
+            "combinedScore": 0.11810349504190422,
+            "dnfFreeCombinedScore": 0.13497542290503337
         },
         "COL": {
             "name": "Franco Colapinto",
@@ -221,8 +247,10 @@
             },
             "raceCount": 8,
             "score": 10.0,
+            "dnfFreeScore": 10.0,
             "betterScore": -1.683897635752576,
-            "combinedScore": -0.1683897635752576
+            "combinedScore": -0.1683897635752576,
+            "dnfFreeCombinedScore": -0.1683897635752576
         },
         "SAI": {
             "name": "Carlos Sainz",
@@ -235,8 +263,10 @@
             },
             "raceCount": 8,
             "score": 3.7500000000000013,
+            "dnfFreeScore": 7.500000000000001,
             "betterScore": 1.0360519976289229,
-            "combinedScore": 0.03885194991108462
+            "combinedScore": 0.03885194991108462,
+            "dnfFreeCombinedScore": 0.07770389982216923
         },
         "PER": {
             "name": "Sergio P\u00e9rez",
@@ -250,8 +280,10 @@
             },
             "raceCount": 8,
             "score": -3.75,
+            "dnfFreeScore": 0.0,
             "betterScore": 2.990820157026448,
-            "combinedScore": -0.1121557558884918
+            "combinedScore": -0.1121557558884918,
+            "dnfFreeCombinedScore": 0.0
         },
         "STR": {
             "name": "Lance Stroll",
@@ -263,8 +295,10 @@
             },
             "raceCount": 8,
             "score": -9.375,
+            "dnfFreeScore": 0.0,
             "betterScore": 0.7272241984849408,
-            "combinedScore": -0.06817726860796319
+            "combinedScore": -0.06817726860796319,
+            "dnfFreeCombinedScore": 0.0
         },
         "ALO": {
             "name": "Fernando Alonso",
@@ -277,8 +311,10 @@
             },
             "raceCount": 8,
             "score": -5.0,
+            "dnfFreeScore": 2.5,
             "betterScore": 0.686015705720239,
-            "combinedScore": -0.03430078528601195
+            "combinedScore": -0.03430078528601195,
+            "dnfFreeCombinedScore": 0.017150392643005975
         },
         "BOT": {
             "name": "Valtteri Bottas",
@@ -292,8 +328,10 @@
             },
             "raceCount": 8,
             "score": -7.5,
+            "dnfFreeScore": 0.0,
             "betterScore": -0.34499315936584174,
-            "combinedScore": 0.02587448695243813
+            "combinedScore": 0.02587448695243813,
+            "dnfFreeCombinedScore": -0.0
         },
         "HAD": {
             "name": "Isack Hadjar",
@@ -308,8 +346,10 @@
             },
             "raceCount": 8,
             "score": 8.75,
+            "dnfFreeScore": 12.5,
             "betterScore": -1.0237646559262998,
-            "combinedScore": -0.08957940739355123
+            "combinedScore": -0.08957940739355123,
+            "dnfFreeCombinedScore": -0.12797058199078748
         },
         "PIA": {
             "name": "Oscar Piastri",
@@ -324,8 +364,10 @@
             },
             "raceCount": 8,
             "score": 11.250000000000002,
+            "dnfFreeScore": 15.000000000000002,
             "betterScore": -1.0164000459638733,
-            "combinedScore": -0.11434500517093577
+            "combinedScore": -0.11434500517093577,
+            "dnfFreeCombinedScore": -0.15246000689458103
         },
         "HUL": {
             "name": "Nico H\u00fclkenberg",
@@ -338,8 +380,10 @@
             },
             "raceCount": 8,
             "score": -5.624999999999999,
+            "dnfFreeScore": 0.0,
             "betterScore": 0.5262481994361166,
-            "combinedScore": -0.02960146121828155
+            "combinedScore": -0.02960146121828155,
+            "dnfFreeCombinedScore": 0.0
         }
     },
     "results": {

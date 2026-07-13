@@ -7,6 +7,8 @@ let driverDropdownText = document.getElementById("driverDropdownText");
 let cscoreHeader = document.getElementById("combinedScoreHeader");
 let bscoreHeader = document.getElementById("betterScoreHeader");
 let scoreHeader = document.getElementById("scoreHeader");
+let dnfBox = document.getElementById("dnfIncluded");
+let currentGrid;
 const scoreState = {
     currentSort: "score",
     ascending: false,
@@ -280,7 +282,13 @@ async function loadData() {
     const response3 = await fetch("data/oldData.json");
     realData = await response.json();
     predictionData = await response2.json();
-    oldData = await response3.json()
+    oldData = await response3.json();
+
+    currentGrid = []
+
+    Object.keys(realData["stats"]).forEach(driver => {
+        currentGrid.push(realData["stats"][driver]["name"])
+    });
 }
 
 function interpolateColor(score) {
@@ -347,6 +355,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
             row.className = "score-row";
             
             row.innerHTML = `
+                <span ${driverClass};>${count}</span>
                 <span ${driverClass};>${yearHappen}</span>
                 <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
@@ -382,6 +391,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
             row.className = "score-row";
             
             row.innerHTML = `
+                <span ${driverClass};>${count}</span>
                 <span ${driverClass};>${yearHappen}</span>
                 <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
@@ -416,6 +426,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
             row.className = "score-row";
             
             row.innerHTML = `
+                <span ${driverClass};>${count}</span>
                 <span ${driverClass};>${yearHappen}</span>
                 <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
@@ -548,7 +559,9 @@ function updateAllTimeScores(avgOrSeason,limit) {
                     raceCount: resultsData[driver]["races"],
                     score: resultsData[driver]["score"]/seasonTotal,
                     betterScore: resultsData[driver]["betterScore"]/seasonTotal,
-                    combinedScore: resultsData[driver]["combinedScore"]/seasonTotal
+                    combinedScore: resultsData[driver]["combinedScore"]/seasonTotal,
+                dnfFreeCombinedScore: resultsData[driver]["dnfFreeCombinedScore"]/seasonTotal,
+                dnfFreeScore: resultsData[driver]["dnfFreeScore"]/seasonTotal
                 });
             }
         });
@@ -566,7 +579,9 @@ function updateAllTimeScores(avgOrSeason,limit) {
                     raceCount: resultsData[driver][year]["races"],
                     score: resultsData[driver][year]["score"],
                     betterScore: resultsData[driver][year]["betterScore"],
-                    combinedScore: resultsData[driver][year]["combinedScore"]
+                    combinedScore: resultsData[driver][year]["combinedScore"],
+                dnfFreeCombinedScore: resultsData[driver][year]["dnfFreeCombinedScore"],
+                dnfFreeScore: resultsData[driver][year]["dnfFreeScore"]
                 })
             });
         });
@@ -604,7 +619,9 @@ function updateYearScores(year,limit) {
                 raceCount: resultsData[driver]["raceCount"],
                 score: resultsData[driver]["score"],
                 betterScore: resultsData[driver]["betterScore"],
-                combinedScore: resultsData[driver]["combinedScore"]
+                combinedScore: resultsData[driver]["combinedScore"],
+                dnfFreeCombinedScore: resultsData[driver]["dnfFreeCombinedScore"],
+                dnfFreeScore: resultsData[driver]["dnfFreeScore"]
             });
         } else {
             scoreList.push({
@@ -613,7 +630,9 @@ function updateYearScores(year,limit) {
                 raceCount: resultsData[driver]["races"],
                 score: resultsData[driver]["score"],
                 betterScore: resultsData[driver]["betterScore"],
-                combinedScore: resultsData[driver]["combinedScore"]
+                combinedScore: resultsData[driver]["combinedScore"],
+                dnfFreeCombinedScore: resultsData[driver]["dnfFreeCombinedScore"],
+                dnfFreeScore: resultsData[driver]["dnfFreeScore"]
             });
         }
     });
@@ -656,7 +675,9 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
                 raceCount: resultsData[driver]["races"],
                 score: resultsData[driver]["score"]/seasonTotal,
                 betterScore: resultsData[driver]["betterScore"]/seasonTotal,
-                combinedScore: resultsData[driver]["combinedScore"]/seasonTotal
+                combinedScore: resultsData[driver]["combinedScore"]/seasonTotal,
+                dnfFreeCombinedScore: resultsData[driver]["dnfFreeCombinedScore"]/seasonTotal,
+                dnfFreeScore: resultsData[driver]["dnfFreeScore"]/seasonTotal
             });
         });
         renderScoreList(scoreList, "score", containerScoreList, limit, "seasons", yearRange,scoreState);
@@ -671,7 +692,9 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
                 raceCount: resultsData[driver]["races"],
                 score: resultsData[driver]["score"],
                 betterScore: resultsData[driver]["betterScore"],
-                combinedScore: resultsData[driver]["combinedScore"]
+                combinedScore: resultsData[driver]["combinedScore"],
+                dnfFreeCombinedScore: resultsData[driver]["dnfFreeCombinedScore"],
+                dnfFreeScore: resultsData[driver]["dnfFreeScore"]
             });
         });
     
@@ -706,9 +729,40 @@ function updateSingleDriverScores(driverInput, limit) {
             raceCount: resultsData[year]["races"],
             score: resultsData[year]["score"],
             betterScore: resultsData[year]["betterScore"],
-            combinedScore: resultsData[year]["combinedScore"]
+            combinedScore: resultsData[year]["combinedScore"],
+            dnfFreeCombinedScore: resultsData[year]["dnfFreeCombinedScore"],
+            dnfFreeScore: resultsData[year]["dnfFreeScore"]
         })
     });
+
+    const driverHeader = document.createElement("h2")
+
+    driverHeader.textContent = driverInput;
+    driverHeader.className = "driverOther";
+
+    let secondPlace = false;
+
+    let minYear=Object.keys(oldData["Years"]).map(Number)[0]
+    let yearLength=Object.keys(oldData["Years"]).length
+    let yearRange = range(yearLength,minYear)
+
+    if (currentGrid.includes(driverInput)) {
+        driverHeader.className = `driverActive`;
+    };
+
+    for (const year of yearRange) {
+        if(wdcFirstList[year]===driverInput) {
+            driverHeader.className = "driverWDC1";
+            break
+        } else if(wdcSecondList[year]===driverInput) {
+            driverHeader.className = "driverWDC2";
+            secondPlace=true;
+        } else if(wdcThirdList[year]===driverInput && !secondPlace) {
+            driverHeader.className = "driverWDC3";
+        }
+    }
+
+    driverInfo.append(driverHeader)
 
     renderScoreList(scoreList, "score", containerScoreList, limit, "yearHappen",null,scoreState);
     renderScoreList(scoreList, "betterScore", containerBetterScoreList, limit, "yearHappen",null,betterScoreState);
@@ -792,28 +846,6 @@ function randomDriver() {
     let driverInput = driverInputs[Math.floor(Math.random()*driverInputs.length)];
 
     updateSingleDriverScores(driverInput, limit)
-
-    const driverHeader = document.createElement("h2")
-
-    driverHeader.textContent = driverInput;
-    driverHeader.className = "driverOther";
-
-    let secondPlace = false;
-
-    for (const year of yearRange) {
-        if(wdcFirstList[year]===driverInput) {
-            driverHeader.className = "driverWDC1";
-            break
-        } else if(wdcSecondList[year]===driverInput) {
-            driverHeader.className = "driverWDC2";
-            secondPlace=true;
-        } else if(wdcThirdList[year]===driverInput && !secondPlace) {
-            driverHeader.className = "driverWDC3";
-        }
-    }
-
-    driverInfo.append(driverHeader)
-
 }
 
 function renderScoreList(
@@ -825,6 +857,7 @@ function renderScoreList(
     averageYears = null,
     state
 ) {
+    let checked=dnfBox.checked;
     state.scoreList = scoreList;
     state.scoreKey = scoreKey;
     state.container = container;
@@ -833,6 +866,14 @@ function renderScoreList(
     state.limit = limit;
 
     const absLimit = Math.abs(limit);
+
+    if(!checked) {
+        if(state.currentSort==="score") {
+            state.currentSort="dnfFreeScore"
+        } else if (state.currentSort==="combinedScore") {
+            state.currentSort="dnfFreeCombinedScore"
+        }
+    }
 
     scoreList.sort((a, b) => {
         let result;
@@ -844,23 +885,45 @@ function renderScoreList(
         return state.ascending ? result : -result;
     });
 
+    console.log(scoreList)
+
     container.replaceChildren();
+    let count=0;
 
     scoreList.slice(0, absLimit).forEach(item => {
+        console.log(item)
+        count++;
 
         const row = document.createElement("div");
         
         row.className = 'score-row'; 
 
+        if(!checked) {
+            if(scoreKey==="score") {
+                scoreKey="dnfFreeScore"
+            } else if (scoreKey==="combinedScore") {
+                scoreKey="dnfFreeCombinedScore"
+            }
+        }
         const divisor = scoreKey === "score" ? 100 : 1;
         const scoreHere = Math.max(
             0.3,
             Math.min(1, 1 - item[scoreKey] / divisor)
         );
 
+
         const color = interpolateColor(scoreHere);
 
         let driverClass = `class="wdcOther"`;
+
+        console.log(currentGrid)
+        console.log(item.driverName)
+        console.log(currentGrid.includes(item.driverName))
+        active=""
+
+        if (currentGrid.includes(item.driverName)) {
+            active = `style="font-style:italic;"`;
+        };
 
         if (averageYears !== null) {
 
@@ -880,9 +943,10 @@ function renderScoreList(
                 }
             }
             row.innerHTML = `
-                <span ${driverClass}>${item[displayKey]}</span>
-                <span ${driverClass}>${item.raceCount}</span>
-                <span ${driverClass}>${item.driverName}</span>
+                <span ${driverClass} ${active}>${count}</span>
+                <span ${driverClass} ${active}>${item[displayKey]}</span>
+                <span ${driverClass} ${active}>${item.raceCount}</span>
+                <span ${driverClass} ${active}>${item.driverName}</span>
                 <span style="color:${color};">
                     ${item[scoreKey].toFixed(3)}
                 </span>
@@ -903,9 +967,10 @@ function renderScoreList(
             row.className = "score-row";
     
             row.innerHTML = `
-                <span ${driverClass}>${item[displayKey]}</span>
-                <span ${driverClass}>${item.raceCount}</span>
-                <span ${driverClass}>${item.driverName}</span>
+                <span ${driverClass} ${active}>${count}</span>
+                <span ${driverClass} ${active}>${item[displayKey]}</span>
+                <span ${driverClass} ${active}>${item.raceCount}</span>
+                <span ${driverClass} ${active}>${item.driverName}</span>
                 <span style="color:${color};">
                     ${item[scoreKey].toFixed(3)}
                 </span>
@@ -920,6 +985,13 @@ function renderScoreList(
 }
 
 function sortAndRender(sortKey, state) {
+    if(!dnfBox.checked) {
+        if(sortKey==="score") {
+            sortKey="dnfFreeScore"
+        } else if (sortKey==="combinedScore") {
+            sortKey="dnfFreeCombinedScore"
+        }
+    }
 
     if (state.currentSort === sortKey) {
         state.ascending = !state.ascending;
@@ -1093,17 +1165,57 @@ document
     randomDriver()
 });
 
+document.getElementById("dnfIncluded").addEventListener("change", () => {
+    const year = document.getElementById("yearSelect").value;
+    let secondYear = document.getElementById("driverSelect").value;
+    const limit = Number(document.getElementById("limitSelect").value);
+    let extra = document.getElementById("extraSelect").value;
+
+    driverInfo.innerHTML="";
+    
+    if(year==="Years") {
+        console.log("YEARS")
+        visibleSecondDropdown.style.visibility = "visible";
+        secondYear = secondDropdown.value;
+        updateYearScores(secondYear,limit)
+        visibleThirdDropdown.style.visibility = "collapse";
+    } else if(year==="All Time") {
+        visibleSecondDropdown.style.visibility = "visible";
+        visibleThirdDropdown.style.visibility = "collapse";
+        secondYear = secondDropdown.value;
+        updateAllTimeScores(secondYear,limit)
+    } else if(year==="WDCs") {
+        visibleSecondDropdown.style.visibility = "collapse";
+        visibleThirdDropdown.style.visibility = "collapse";
+        updateScoresWDC(limit)
+    } else if(year==="Single Driver") {
+        visibleSecondDropdown.style.visibility = "visible";
+        visibleThirdDropdown.style.visibility = "visible";
+        secondYear = secondDropdown.value;
+        extra = document.getElementById("extraSelect").value;
+        updateSingleDriverScores(extra,limit)
+    } else {
+        visibleSecondDropdown.style.visibility = "visible";
+        visibleThirdDropdown.style.visibility = "visible";
+        secondYear = secondDropdown.value;
+        extra = document.getElementById("extraSelect").value;
+        updatePartTimeScores(year,secondYear,extra,limit)
+    }
+    extra = document.getElementById("extraSelect").value;
+    updateHeaders(year,secondYear,extra)
+});
+
 scoreHeader.onclick = () => sortAndRender("yearHappen", scoreState);
-racesHeader.onclick = () => sortAndRender("races", scoreState);
+racesHeader.onclick = () => sortAndRender("raceCount", scoreState);
 driverHeader.onclick = () => sortAndRender("driverName", scoreState);
 valueHeader.onclick = () => sortAndRender("score", scoreState);
 
 betterScoreHeader.onclick = () => sortAndRender("yearHappen", betterScoreState);
-betterRaceHeader.onclick = () => sortAndRender("races", betterScoreState);
+betterRaceHeader.onclick = () => sortAndRender("raceCount", betterScoreState);
 betterDriverHeader.onclick = () => sortAndRender("driverName", betterScoreState);
 betterValueHeader.onclick = () => sortAndRender("betterScore", betterScoreState);
 
 combinedScoreHeader.onclick = () => sortAndRender("yearHappen", combinedScoreState);
-combinedRaceHeader.onclick = () => sortAndRender("races", combinedScoreState);
+combinedRaceHeader.onclick = () => sortAndRender("raceCount", combinedScoreState);
 combinedDriverHeader.onclick = () => sortAndRender("driverName", combinedScoreState);
 combinedValueHeader.onclick = () => sortAndRender("combinedScore", combinedScoreState);

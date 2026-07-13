@@ -309,18 +309,19 @@ function compareDrivers() {
 
         <br>
 
-        <h4>Head-to-Head</h4>
+        <h3 style="text-align: center;" class="oneOff">Head-to-Head</h3>
 
-        <p>
+        <p class="driverAhead">
             ${driverAName} forecasted ahead:
             ${(aAhead * 100).toFixed(2)}%
         </p>
 
-        <p>
+        <p class="driverAhead">
             ${driverBName} forecasted ahead:
             ${(bAhead * 100).toFixed(2)}%
         </p>
         <br>
+        <h3 style="text-align: center;" class="oneOff">Head-to-Head Bar Chart</h3>
         <div>
             <canvas class="graph" id="driverCompareChart"></canvas>
         </div>
