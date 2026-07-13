@@ -388,10 +388,6 @@ canvas.graph{
     border-top: 4px solid var(--f1_red);
 }
 
-.scoreList{
-    padding-bottom: 32px;
-}
-
 .heatmap-table {
     border-collapse: collapse;
     margin: auto;
@@ -523,6 +519,7 @@ div.description{
 .updates h3 {
     font-size: 2.5rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .lower {
@@ -783,4 +780,65 @@ h4.oneOff {
 .tab {
     text-align: center;
     min-width: 256px;
+}
+.rankedDrivers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 8px 0;
+    font-size: 150%;
+    text-align: center;
+}
+
+
+.wdcALL {
+    color:rgb(255, 215, 0);
+    font-weight: bold;
+    text-shadow: 1px 1px 1px white;
+    text-align: center;
+}
+
+.wdc2ALL {
+    color:rgb(192, 192, 192);
+    font-weight:bold;
+    text-shadow: 1px 1px 1px royalblue;
+    text-align: center;
+}
+
+.wdc3ALL {
+    color:rgb(205,127,50);
+    font-weight:bold;
+    text-shadow: 1px 1px 1px white;
+    text-align: center;
+}
+
+.wdcOtherALL {
+    color: white;
+    text-align: center;
+}
+.scoreListALL{
+    padding-bottom: 32px;
+    max-height: 500px;
+    overflow-y: auto;
+
+    border: 1px solid #444;
+    border-radius: 10px;
+}
+
+.score-rowALL {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 8px 0;
+    font-size: 150%;
+}
+.delta_positive {
+    color: green;
+}
+.delta_negative {
+    color: red;
 }

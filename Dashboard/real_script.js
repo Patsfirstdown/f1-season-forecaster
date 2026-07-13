@@ -310,6 +310,17 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
     resultsData = oldData["Years"];
     const scoreList=[];
     const absLimit=Math.abs(limit)
+    let checked=dnfBox.checked;
+    let scorekey;
+    let betterscorekey="betterScore";
+    let combinedscorekey;
+    if(!checked) {
+        scorekey="dnfFreeScore"
+        combinedscorekey="dnfFreeCombinedScore"
+    } else {
+        scorekey="score"
+        combinedscorekey="combinedScore"
+    }
 
     Object.keys(wdcFirstList).forEach(year => {
         driver=wdcFirstList[year]
@@ -321,8 +332,10 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
                         yearHappen: year,
                         raceCount: resultsData[year][driver]["races"],
                         score: resultsData[year][driver]["score"],
+                        dnfFreeScore: resultsData[year][driver]["dnfFreeScore"],
                         betterScore: resultsData[year][driver]["betterScore"],
-                        combinedScore: resultsData[year][driver]["combinedScore"]
+                        combinedScore: resultsData[year][driver]["combinedScore"],
+                        dnfFreeCombinedScore: resultsData[year][driver]["dnfFreeCombinedScore"],
                     });
                 }
             }
@@ -359,7 +372,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
                 <span ${driverClass};>${yearHappen}</span>
                 <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.score).toFixed(3)}</span>
+                <span style="color:${color};">${(item[scorekey]).toFixed(3)}</span>
             `;
             container.appendChild(row);
         }
@@ -395,7 +408,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
                 <span ${driverClass};>${yearHappen}</span>
                 <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.betterScore).toFixed(3)}</span>
+                <span style="color:${color};">${(item[betterscorekey]).toFixed(3)}</span>
             `;
             betterScorecontainer.appendChild(row);
         }
@@ -430,7 +443,7 @@ function updateScoresWDC(limit,yearStart = 1, yearEnd = 3000) {
                 <span ${driverClass};>${yearHappen}</span>
                 <span ${driverClass}>${item.raceCount}</span>
                 <span ${driverClass};>${item.driverName}</span>
-                <span style="color:${color};">${(item.combinedScore).toFixed(3)}</span>
+                <span style="color:${color};">${(item[combinedscorekey]).toFixed(3)}</span>
             `;
             combinedScorecontainer.appendChild(row);
         }
@@ -538,7 +551,8 @@ function populateExtraDropdown(span,yearSpan) {
 function updateAllTimeScores(avgOrSeason,limit) {
     const scoreList=[];
     let count = 0;
-    resultsData = oldData["All Time"][avgOrSeason];
+
+    
     const containerScoreList =
     document.getElementById("scoreList");
     const absLimit = Math.abs(limit)
@@ -549,9 +563,9 @@ function updateAllTimeScores(avgOrSeason,limit) {
     const containerCombinedScoreList =
         document.getElementById("combinedScoreList");
     if(avgOrSeason==="Driver Averages") {
+        resultsData = oldData["All Time"][avgOrSeason];
         Object.keys(resultsData).forEach(driver => {
             const seasonTotal = resultsData[driver]["seasons"]
-            console.log(resultsData[driver])
             if (seasonTotal>=2) {
                 scoreList.push({
                     driverName: driver,
@@ -560,8 +574,8 @@ function updateAllTimeScores(avgOrSeason,limit) {
                     score: resultsData[driver]["score"]/seasonTotal,
                     betterScore: resultsData[driver]["betterScore"]/seasonTotal,
                     combinedScore: resultsData[driver]["combinedScore"]/seasonTotal,
-                dnfFreeCombinedScore: resultsData[driver]["dnfFreeCombinedScore"]/seasonTotal,
-                dnfFreeScore: resultsData[driver]["dnfFreeScore"]/seasonTotal
+                    dnfFreeCombinedScore: resultsData[driver]["dnfFreeCombinedScore"]/seasonTotal,
+                    dnfFreeScore: resultsData[driver]["dnfFreeScore"]/seasonTotal
                 });
             }
         });
@@ -570,9 +584,9 @@ function updateAllTimeScores(avgOrSeason,limit) {
         renderScoreList(scoreList, "betterScore", containerBetterScoreList, limit, "yearHappen", Object.keys(wdcFirstList),betterScoreState);
         renderScoreList(scoreList, "combinedScore", containerCombinedScoreList, limit, "yearHappen", Object.keys(wdcFirstList),combinedScoreState);
     } else {
+        resultsData = oldData["Single Driver"];
         Object.keys(resultsData).forEach(driver => {
             Object.keys(resultsData[driver]).forEach(year => {
-                console.log(resultsData[driver])
                 scoreList.push({
                     driverName: driver,
                     yearHappen: year,
@@ -580,8 +594,8 @@ function updateAllTimeScores(avgOrSeason,limit) {
                     score: resultsData[driver][year]["score"],
                     betterScore: resultsData[driver][year]["betterScore"],
                     combinedScore: resultsData[driver][year]["combinedScore"],
-                dnfFreeCombinedScore: resultsData[driver][year]["dnfFreeCombinedScore"],
-                dnfFreeScore: resultsData[driver][year]["dnfFreeScore"]
+                    dnfFreeCombinedScore: resultsData[driver][year]["dnfFreeCombinedScore"],
+                    dnfFreeScore: resultsData[driver][year]["dnfFreeScore"]
                 })
             });
         });
@@ -598,7 +612,6 @@ function updateYearScores(year,limit) {
         resultsData = oldData["Years"][year];    
     }
     const absLimit = Math.abs(limit)
-    console.log("UPDATING SINGLE DRIVER")
     const scoreList=[];
     let count = 0;
     const containerScoreList =
@@ -659,15 +672,12 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
     if(avgOrSeason==="Driver Averages") {
 
         let minYear=parseInt(secondSpan.substring(0,5))
-        console.log(minYear)
         let maxYear=parseInt(secondSpan.substring(5))
-        console.log(maxYear)
         let yearLength=maxYear-minYear
         let yearRange = range(yearLength,minYear)
 
         resultsData = oldData[timeSpan][secondSpan][avgOrSeason];    
         Object.keys(resultsData).forEach(driver => {
-            console.log(resultsData[driver])
             const seasonTotal = resultsData[driver]["seasons"]
             scoreList.push({
                 driverName: driver,
@@ -685,7 +695,6 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
         renderScoreList(scoreList, "combinedScore", containerCombinedScoreList, limit, "seasons", yearRange,combinedScoreState);
     } else {
         Object.keys(resultsData).forEach(driver => {
-            console.log(resultsData[driver])
             scoreList.push({
                 driverName: driver,
                 yearHappen: resultsData[driver]["year"],
@@ -706,7 +715,6 @@ function updatePartTimeScores(timeSpan,secondSpan,avgOrSeason,limit) {
 
 function updateSingleDriverScores(driverInput, limit) {
     const absLimit = Math.abs(limit)
-    console.log("UPDATING SINGLE DRIVER")
     const scoreList=[];
     let count = 0;
     const containerScoreList =
@@ -717,8 +725,6 @@ function updateSingleDriverScores(driverInput, limit) {
     
     const containerCombinedScoreList =
     document.getElementById("combinedScoreList");
-
-    console.log(oldData["Single Driver"])
 
     resultsData = oldData["Single Driver"][driverInput]
 
@@ -770,13 +776,7 @@ function updateSingleDriverScores(driverInput, limit) {
 }
 
 function updateHeaders(dropdown1,infoClass,extra) {
-
-    console.log(dropdown1)
-    console.log(infoClass)
-    console.log(extra)
-
     if (dropdown1==="Years") {
-        console.log("YEARS")
         if(infoClass==="Driver Averages") {
             scoreHeader.innerHTML="First Season"
             bscoreHeader.innerHTML="First Season"
@@ -828,7 +828,6 @@ function updateHeaders(dropdown1,infoClass,extra) {
 }
 
 function randomDriver() {
-    console.log("CLICK")
 
     driverInfo.innerHTML=""
 
@@ -885,13 +884,10 @@ function renderScoreList(
         return state.ascending ? result : -result;
     });
 
-    console.log(scoreList)
-
     container.replaceChildren();
     let count=0;
 
     scoreList.slice(0, absLimit).forEach(item => {
-        console.log(item)
         count++;
 
         const row = document.createElement("div");
@@ -905,7 +901,12 @@ function renderScoreList(
                 scoreKey="dnfFreeCombinedScore"
             }
         }
-        const divisor = scoreKey === "score" ? 100 : 1;
+        let divisor = scoreKey === "score" ? 100 : 6;
+        if(!checked) {
+            if(scoreKey==="score") {
+                divisor = scoreKey === "dnfFreeScore" ? 100 : 6;
+            }
+        }
         const scoreHere = Math.max(
             0.3,
             Math.min(1, 1 - item[scoreKey] / divisor)
@@ -915,10 +916,6 @@ function renderScoreList(
         const color = interpolateColor(scoreHere);
 
         let driverClass = `class="wdcOther"`;
-
-        console.log(currentGrid)
-        console.log(item.driverName)
-        console.log(currentGrid.includes(item.driverName))
         active=""
 
         if (currentGrid.includes(item.driverName)) {
@@ -953,6 +950,7 @@ function renderScoreList(
             `;
 
         } else {
+            console.log(item)
 
             // Single season
             const year = item.yearHappen;
@@ -1047,7 +1045,6 @@ firstDropdown
     driverInfo.innerHTML="";
     
     if(year==="Years") {
-        console.log("YEARS")
         visibleSecondDropdown.style.visibility = "visible";
         populateDriverDropdown(year);
         secondYear = secondDropdown.value;
@@ -1174,7 +1171,6 @@ document.getElementById("dnfIncluded").addEventListener("change", () => {
     driverInfo.innerHTML="";
     
     if(year==="Years") {
-        console.log("YEARS")
         visibleSecondDropdown.style.visibility = "visible";
         secondYear = secondDropdown.value;
         updateYearScores(secondYear,limit)

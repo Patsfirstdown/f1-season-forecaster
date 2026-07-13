@@ -16,6 +16,35 @@
                 <h1>F1 Results Dashboard</h1>
             </header>
         </div>
+        <div class="dashboard_card">
+            <h3 class="score-title">Driver+Car Scores</h3>
+            <h4 class="info">Score Scaled to 100 for Highest</h4>
+            <div class="rankedDrivers">
+                <span class="wdcOther">Rank</span>
+                <span id="scoreHeader" class="wdcOther">Rookie Season</span>
+                <span id="racesHeader" class="wdcOther">Races</span>
+                <span id="driverHeader" class="wdcOther">Driver</span>
+                <span id="driverHeader" class="wdcOther">WDCs</span>
+                <span id="driverHeader" class="wdcOther" style="text-align: left;">Score</span>
+            </div>
+            <div id="scoreList" class="scoreListALL"></div>
+        </div>
+        <div>
+            <h4 class="info">Tie Goes to Driver Who Got Score First</h4>
+            <h4 class="info">Driver+Car Score Range: 100 to -15</h4>
+        </div>
+        <div class="updates">
+            <h3>Best/Worst Driver Scores</h3>
+            <table id="seasonTable" class="update-table"></table>
+        </div>
+        <div class="updates">
+            <h3>Best/Worst WDC Gap to Second Scores</h3>
+            <table id="wdcComparisonTable" class="update-table"></table>
+        </div>
+        <div class="updates">
+            <h3>Best/Worst Current Grid Scores</h3>
+            <table id="currentDriversTable" class="update-table"></table>
+        </div>
         <div>
             <table class="infoTable">
                 <thead>

@@ -156,10 +156,10 @@ let wdcSecondList = {
     1956: "Stirling Moss",
     1955: "Stirling Moss",
     1954: "José Froilán González",
-    1953: "Juan Manuel Fangio",
-    1952: "Giuseppe Farina",
+    1953: "Juan Fangio",
+    1952: "Nino Farina",
     1951: "Alberto Ascari",
-    1950: "Juan Manuel Fangio"
+    1950: "Juan Fangio"
 };
 let wdcThirdList = {
     2025: "Oscar Piastri",
@@ -240,6 +240,17 @@ let wdcThirdList = {
     1950: "Luigi Fagioli"
 };
 
+const scoreState = {
+    currentSort: "superScore",
+    ascending: false,
+    scoreList: [],
+    scoreKey: "",
+    container: null,
+    displayKey: "",
+    averageYears: null,
+    limit: 10
+};
+
 async function loadData() {
     const response = await fetch("data/results.json");
     const response2 = await fetch("data/predictions.json");
@@ -255,9 +266,528 @@ async function loadData() {
     });
 }
 
+function renderComparisonTable(tableElement, rows) {
+
+    tableElement.innerHTML = "";
+
+    const thead = document.createElement("thead")
+    const thr = document.createElement("tr")
+    const thd0 = document.createElement("th")
+    thd0.textContent = 'Category'
+    const thd1 = document.createElement("th")
+    thd1.textContent = 'Driver+Car Score'
+    const thd2 = document.createElement("th")
+    thd2.textContent = 'Driver Score'
+    const thd3 = document.createElement("th")
+    thd3.textContent = 'Combined Score'
+
+    thr.appendChild(thd0)
+    thr.appendChild(thd1)
+    thr.appendChild(thd2)
+    thr.appendChild(thd3)
+    thead.appendChild(thr)
+    tableElement.appendChild(thead)
+
+    rows.forEach((row, index) => {
+
+        const tr = document.createElement("tr");
+        tr.className = index % 2 === 0 ? "higher" : "lower";
+
+        const columns = ["score", "better", "combined"];
+        let tdh = document.createElement("td");
+
+        tdh.textContent = row.label;
+        tr.appendChild(tdh);
+
+        columns.forEach(col => {
+            const td = document.createElement("td");
+            if (Object.hasOwn(row[col], "year")) {
+                td.textContent =
+                    `${row[col].year} ${row[col].name}: ${(row[col].value).toFixed(3)}`;
+            } else {
+                td.textContent =
+                    `${row[col].name}: ${(row[col].value).toFixed(3)}`;
+            }
+            tr.appendChild(td);
+        });
+
+        tableElement.appendChild(tr);
+
+    });
+
+}
+
+function updateBest() {
+    let bestSeasonScoreWDC=[0,0,0];
+    let bestSeasonBetterScoreWDC=[0,0,0];
+    let bestSeasonCombinedScoreWDC=[0,0,0];
+
+    let worstSeasonScoreWDC=[0,100,0];
+    let worstSeasonBetterScoreWDC=[0,100,0];
+    let worstSeasonCombinedScoreWDC=[0,100,0];
+
+    Object.keys(wdcFirstList).forEach(year => {
+        resultsData = oldData["Single Driver"];
+        let wdcDriver=wdcFirstList[year]
+        let wdc2Driver=wdcSecondList[year]
+        wdcDiffScore=(resultsData[wdcDriver][year]["score"])-(resultsData[wdc2Driver][year]["score"])
+        wdcDiffBetterScore=(resultsData[wdcDriver][year]["betterScore"])-(resultsData[wdc2Driver][year]["betterScore"])
+        wdcDiffCombinedScore=(resultsData[wdcDriver][year]["combinedScore"])-(resultsData[wdc2Driver][year]["combinedScore"])
+
+        if(wdcDiffScore>bestSeasonScoreWDC[1]) {
+            bestSeasonScoreWDC=[wdcDriver,wdcDiffScore,year,wdc2Driver]
+        } else if(wdcDiffScore<worstSeasonScoreWDC[1]) {
+            worstSeasonScoreWDC=[wdcDriver,wdcDiffScore,year,wdc2Driver]
+        }
+        if(wdcDiffBetterScore>bestSeasonBetterScoreWDC[1]) {
+            bestSeasonBetterScoreWDC=[wdcDriver,wdcDiffBetterScore,year,wdc2Driver]
+        } else if(wdcDiffBetterScore<worstSeasonBetterScoreWDC[1]) {
+            worstSeasonBetterScoreWDC=[wdcDriver,wdcDiffBetterScore,year,wdc2Driver]
+        }
+        if(wdcDiffCombinedScore>bestSeasonCombinedScoreWDC[1]) {
+            bestSeasonCombinedScoreWDC=[wdcDriver,wdcDiffCombinedScore,year,wdc2Driver]
+        } else if(wdcDiffCombinedScore<worstSeasonCombinedScoreWDC[1]) {
+            worstSeasonCombinedScoreWDC=[wdcDriver,wdcDiffCombinedScore,year,wdc2Driver]
+        }
+    });
+    let scoreListAvg=[];
+    let scoreListSeason=[];
+
+    let bestAvgScore=[0,0];
+    let bestAvgBetterScore=[0,0];
+    let bestAvgCombinedScore=[0,0];
+
+    let worstAvgScore=[0,100];
+    let worstAvgBetterScore=[0,100];
+    let worstAvgCombinedScore=[0,100];
+
+    let bestSeasonScore=[0,0,0];
+    let bestSeasonBetterScore=[0,0,0];
+    let bestSeasonCombinedScore=[0,0,0];
+
+    let worstSeasonScore=[0,100,0];
+    let worstSeasonBetterScore=[0,100,0];
+    let worstSeasonCombinedScore=[0,100,0];
+
+    let currentbestAvgScore=[0,0];
+    let currentbestAvgBetterScore=[0,0];
+    let currentbestAvgCombinedScore=[0,0];
+
+    let currentworstAvgScore=[0,100];
+    let currentworstAvgBetterScore=[0,100];
+    let currentworstAvgCombinedScore=[0,100];
+
+    let currentbestSeasonScore=[0,0,0];
+    let currentbestSeasonBetterScore=[0,0,0];
+    let currentbestSeasonCombinedScore=[0,0,0];
+
+    let currentworstSeasonScore=[0,100,0];
+    let currentworstSeasonBetterScore=[0,100,0];
+    let currentworstSeasonCombinedScore=[0,100,0];
+
+    Object.keys(resultsData).forEach(driver => {
+        Object.keys(resultsData[driver]).forEach(year => {
+            if (currentGrid.includes(driver)) {
+                if(resultsData[driver][year]["score"]>currentbestSeasonScore[1]) {
+                    currentbestSeasonScore=[driver,resultsData[driver][year]["score"],year]
+                } else if(resultsData[driver][year]["score"]<currentworstSeasonScore[1]) {
+                    currentworstSeasonScore=[driver,resultsData[driver][year]["score"],year]
+                }
+                if(resultsData[driver][year]["betterScore"]>currentbestSeasonBetterScore[1]) {
+                    currentbestSeasonBetterScore=[driver,resultsData[driver][year]["betterScore"],year]
+                } else if(resultsData[driver][year]["betterScore"]<currentworstSeasonBetterScore[1]) {
+                    currentworstSeasonBetterScore=[driver,resultsData[driver][year]["betterScore"],year]
+                }
+                if(resultsData[driver][year]["combinedScore"]>currentbestSeasonCombinedScore[1]) {
+                    currentbestSeasonCombinedScore=[driver,resultsData[driver][year]["combinedScore"],year]
+                } else if(resultsData[driver][year]["combinedScore"]<currentworstSeasonCombinedScore[1]) {
+                    currentworstSeasonCombinedScore=[driver,resultsData[driver][year]["combinedScore"],year]
+                }
+            };
+            if(resultsData[driver][year]["score"]>bestSeasonScore[1]) {
+                bestSeasonScore=[driver,resultsData[driver][year]["score"],year]
+            } else if(resultsData[driver][year]["score"]<worstSeasonScore[1]) {
+                worstSeasonScore=[driver,resultsData[driver][year]["score"],year]
+            }
+            if(resultsData[driver][year]["betterScore"]>bestSeasonBetterScore[1]) {
+                bestSeasonBetterScore=[driver,resultsData[driver][year]["betterScore"],year]
+            } else if(resultsData[driver][year]["betterScore"]<worstSeasonBetterScore[1]) {
+                worstSeasonBetterScore=[driver,resultsData[driver][year]["betterScore"],year]
+            }
+            if(resultsData[driver][year]["combinedScore"]>bestSeasonCombinedScore[1]) {
+                bestSeasonCombinedScore=[driver,resultsData[driver][year]["combinedScore"],year]
+            } else if(resultsData[driver][year]["combinedScore"]<worstSeasonCombinedScore[1]) {
+                worstSeasonCombinedScore=[driver,resultsData[driver][year]["combinedScore"],year]
+            }
+        });
+    });
+
+    resultsData = oldData["All Time"]["Driver Averages"];
+    Object.keys(resultsData).forEach(driver => {
+        const seasonTotal = resultsData[driver]["seasons"]
+        if (currentGrid.includes(driver)) {
+            if(resultsData[driver]["score"]/seasonTotal>currentbestAvgScore[1]) {
+                currentbestAvgScore=[driver,resultsData[driver]["score"]/seasonTotal]
+            } else if(resultsData[driver]["score"]/seasonTotal<currentworstAvgScore[1]) {
+                currentworstAvgScore=[driver,resultsData[driver]["score"]/seasonTotal]
+            }
+            if(resultsData[driver]["betterScore"]/seasonTotal>currentbestAvgBetterScore[1]) {
+                currentbestAvgBetterScore=[driver,resultsData[driver]["betterScore"]/seasonTotal]
+            } else if(resultsData[driver]["betterScore"]/seasonTotal<currentworstAvgBetterScore[1]) {
+                currentworstAvgBetterScore=[driver,resultsData[driver]["betterScore"]/seasonTotal]
+            }
+            if(resultsData[driver]["combinedScore"]/seasonTotal>currentbestAvgCombinedScore[1]) {
+                currentbestAvgCombinedScore=[driver,resultsData[driver]["combinedScore"]/seasonTotal]
+            } else if(resultsData[driver]["combinedScore"]/seasonTotal<currentworstAvgCombinedScore[1]) {
+                currentworstAvgCombinedScore=[driver,resultsData[driver]["combinedScore"]/seasonTotal]
+            }
+        }
+        if (seasonTotal>=2) {
+            if(resultsData[driver]["score"]/seasonTotal>bestAvgScore[1]) {
+                bestAvgScore=[driver,resultsData[driver]["score"]/seasonTotal]
+            } else if(resultsData[driver]["score"]/seasonTotal<worstAvgScore[1]) {
+                worstAvgScore=[driver,resultsData[driver]["score"]/seasonTotal]
+            }
+            if(resultsData[driver]["betterScore"]/seasonTotal>bestAvgBetterScore[1]) {
+                bestAvgBetterScore=[driver,resultsData[driver]["betterScore"]/seasonTotal]
+            } else if(resultsData[driver]["betterScore"]/seasonTotal<worstAvgBetterScore[1]) {
+                worstAvgBetterScore=[driver,resultsData[driver]["betterScore"]/seasonTotal]
+            }
+            if(resultsData[driver]["combinedScore"]/seasonTotal>bestAvgCombinedScore[1]) {
+                bestAvgCombinedScore=[driver,resultsData[driver]["combinedScore"]/seasonTotal]
+            } else if(resultsData[driver]["combinedScore"]/seasonTotal<worstAvgCombinedScore[1]) {
+                worstAvgCombinedScore=[driver,resultsData[driver]["combinedScore"]/seasonTotal]
+            }
+        }
+    });
+
+
+    const singleSeasonTable = [
+        {
+            label: "Best Single Season",
+            score: { name: bestSeasonScore[0], value: bestSeasonScore[1], year: bestSeasonScore[2]},
+            better: { name: bestSeasonBetterScore[0], value: bestSeasonBetterScore[1], year: bestSeasonBetterScore[2]},
+            combined: { name: bestSeasonCombinedScore[0], value: bestSeasonCombinedScore[1], year: bestSeasonCombinedScore[2]}
+        },
+        {
+            label: "Worst Single Season",
+            score: { name: worstSeasonScore[0], value: worstSeasonScore[1], year: worstSeasonScore[2]},
+            better: { name: worstSeasonBetterScore[0], value: worstSeasonBetterScore[1], year: worstSeasonBetterScore[2]},
+            combined: { name: worstSeasonCombinedScore[0], value: worstSeasonCombinedScore[1], year: worstSeasonCombinedScore[2]}
+        },
+        {
+            label: "Best Career Average",
+            score: { name: bestAvgScore[0], value: bestAvgScore[1]},
+            better: { name: bestAvgBetterScore[0], value: bestAvgBetterScore[1]},
+            combined: { name: bestAvgCombinedScore[0], value: bestAvgCombinedScore[1]}
+        },
+        {
+            label: "Worst Career Average",
+            score: { name: worstAvgScore[0], value: worstAvgScore[1]},
+            better: { name: worstAvgBetterScore[0], value: worstAvgBetterScore[1]},
+            combined: { name: worstAvgCombinedScore[0], value: worstAvgCombinedScore[1]}
+        }
+    ];
+    
+    const wdcComparisonRows = [
+        {
+            label: "Best Winning Margin",
+            score: { name: bestSeasonScoreWDC[0], value: bestSeasonScoreWDC[1], year: bestSeasonScoreWDC[2]},
+            better: { name: bestSeasonBetterScoreWDC[0], value: bestSeasonBetterScoreWDC[1], year: bestSeasonBetterScoreWDC[2]},
+            combined: { name: bestSeasonCombinedScoreWDC[0], value: bestSeasonCombinedScoreWDC[1], year: bestSeasonCombinedScoreWDC[2]},
+        },
+        {
+            label: "Worst Winning Margin",
+            score: { name: worstSeasonScoreWDC[0], value: worstSeasonScoreWDC[1], year: worstSeasonScoreWDC[2]},
+            better: { name: worstSeasonBetterScoreWDC[0], value: worstSeasonBetterScoreWDC[1], year: worstSeasonBetterScoreWDC[2]},
+            combined: { name: worstSeasonCombinedScoreWDC[0], value: worstSeasonCombinedScoreWDC[1], year: worstSeasonCombinedScoreWDC[2]},
+        },
+    ];
+    const currentDriverRows = [
+        {
+            label: "Best Single Season",
+            score: { name: currentbestSeasonScore[0], value: currentbestSeasonScore[1], year: currentbestSeasonScore[2]},
+            better: { name: currentbestSeasonBetterScore[0], value: currentbestSeasonBetterScore[1], year: currentbestSeasonBetterScore[2]},
+            combined: { name: currentbestSeasonCombinedScore[0], value: currentbestSeasonCombinedScore[1], year: currentbestSeasonCombinedScore[2]}
+        },
+        {
+            label: "Worst Single Season",
+            score: { name: currentworstSeasonScore[0], value: currentworstSeasonScore[1], year: currentworstSeasonScore[2]},
+            better: { name: currentworstSeasonBetterScore[0], value: currentworstSeasonBetterScore[1], year: currentworstSeasonBetterScore[2]},
+            combined: { name: currentworstSeasonCombinedScore[0], value: currentworstSeasonCombinedScore[1], year: currentworstSeasonCombinedScore[2]}
+        },
+        {
+            label: "Best Career Average",
+            score: { name: currentbestAvgScore[0], value: currentbestAvgScore[1]},
+            better: { name: currentbestAvgBetterScore[0], value: currentbestAvgBetterScore[1]},
+            combined: { name: currentbestAvgCombinedScore[0], value: currentbestAvgCombinedScore[1]}
+        },
+        {
+            label: "Worst Career Average",
+            score: { name: currentworstAvgScore[0], value: currentworstAvgScore[1]},
+            better: { name: currentworstAvgBetterScore[0], value: currentworstAvgBetterScore[1]},
+            combined: { name: currentworstAvgCombinedScore[0], value: currentworstAvgCombinedScore[1]}
+        }
+    ];
+
+
+    renderComparisonTable(
+        document.getElementById("seasonTable"),
+        singleSeasonTable
+    );
+
+    renderComparisonTable(
+        document.getElementById("wdcComparisonTable"),
+        wdcComparisonRows
+    );
+
+    renderComparisonTable(
+        document.getElementById("currentDriversTable"),
+        currentDriverRows
+    );
+}
+
+function updateAllTimeScores(limit) {
+    const scoreList=[];
+    let count = 0;
+    let driverMaxScores={}
+    
+    const containerScoreList =
+    document.getElementById("scoreList");
+    const absLimit = Math.abs(limit)
+
+    const containerBetterScoreList =
+    document.getElementById("betterScoreList");
+    
+    const containerCombinedScoreList =
+        document.getElementById("combinedScoreList");
+    let previousMaxScore = {}
+    let wdc1remove;
+    let wdc2remove;
+    let wdc3remove;
+
+    let previousYear="2025";
+    let lastSeason;
+    let previousSuperScoreAVG;
+    let previousSuperScoreSeason;
+    
+    resultsData = oldData["All Time"]["Driver Averages"];
+    resultsSeasonData = oldData["Single Driver"];
+    Object.keys(resultsData).forEach(driver => {
+        wdc1remove=0
+        previousSuperScoreAVG=0
+        previousSuperScoreSeason=0
+        wdc2remove=0
+        wdc3remove=0
+        const seasonTotal = resultsData[driver]["seasons"]
+        driverMaxScores[driver]=[0,0]
+        previousMaxScore[driver]=[0,0]
+        Object.keys(resultsSeasonData[driver]).forEach(year => {
+            lastSeason=year;
+            if(driverMaxScores[driver][0]<resultsSeasonData[driver][year]["combinedScore"]) {
+                driverMaxScores[driver][0]=resultsSeasonData[driver][year]["combinedScore"];
+            }
+            if(driverMaxScores[driver][1]<resultsSeasonData[driver][year]["dnfFreeCombinedScore"]) {
+                driverMaxScores[driver][1]=resultsSeasonData[driver][year]["dnfFreeCombinedScore"];
+            }
+            if (parseInt(year)+1 in resultsSeasonData[driver]) {
+                if(previousMaxScore[driver][0]<resultsSeasonData[driver][year]["combinedScore"]) {
+                    previousMaxScore[driver][0]=resultsSeasonData[driver][year]["combinedScore"];
+                }
+                if(previousMaxScore[driver][1]<resultsSeasonData[driver][year]["dnfFreeCombinedScore"]) {
+                    previousMaxScore[driver][1]=resultsSeasonData[driver][year]["dnfFreeCombinedScore"];
+                }
+            } else if(year===previousYear) {
+                if(driver===wdcFirstList[year]) {
+                    wdc1remove=1
+                } else if(driver===wdcSecondList[year]) {
+                    wdc2remove=1
+                } else if(driver===wdcThirdList[year]) {
+                    wdc3remove=1
+                }
+                combinedRemove=resultsSeasonData[driver][year]["combinedScore"]
+                dnfFreeRemove=resultsSeasonData[driver][year]["dnfFreeCombinedScore"]
+            }
+        });
+        if (seasonTotal>=2) {
+            let wdc1Count=Object.values(wdcFirstList).filter(val => val === driver).length;
+            let wdc2Count=Object.values(wdcSecondList).filter(val => val === driver).length;
+            let wdc3Count=Object.values(wdcThirdList).filter(val => val === driver).length;
+            let superScoreAVG=((5*wdc1Count+resultsData[driver]["combinedScore"]+resultsData[driver]["dnfFreeCombinedScore"])/2)/seasonTotal
+            let superScoreSeason=(driverMaxScores[driver][0]+driverMaxScores[driver][1])/2+wdc1Count+wdc2Count/2+wdc3Count/3
+            console.log(lastSeason)
+            console.log(previousYear)
+            if(lastSeason===previousYear) {
+                previousSuperScoreAVG=((5*(wdc1Count-wdc1remove)+resultsData[driver]["combinedScore"]+resultsData[driver]["dnfFreeCombinedScore"]-combinedRemove-dnfFreeRemove)/2)/(seasonTotal-1)
+                previousSuperScoreSeason=(previousMaxScore[driver][0]+previousMaxScore[driver][1])/2+(wdc1Count-wdc1remove)+(wdc2Count-wdc2remove)/2+(wdc3Count-wdc3remove)/3
+            } else {
+                previousSuperScoreAVG=superScoreAVG
+                previousSuperScoreSeason=superScoreSeason
+            }
+
+            scoreList.push({
+                driverName: driver,
+                RookieYear: resultsData[driver]["RookieYear"],
+                raceCount: resultsData[driver]["races"],
+                superScore: superScoreAVG+superScoreSeason,
+                wdcCount: wdc1Count,
+                previousSuperScore: previousSuperScoreAVG+previousSuperScoreSeason
+            });
+        }
+    });
+
+    const maxCurrent = Math.max(...scoreList.map(d => d.superScore));
+    const maxPrevious = Math.max(...scoreList.map(d => d.previousSuperScore));
+
+    scoreList.forEach(driver => {
+        driver.superScore = driver.superScore / maxCurrent * 100;
+        driver.previousSuperScore = driver.previousSuperScore / maxPrevious * 100;
+    });
+
+    scoreList
+    .sort((a, b) => b.superScore - a.superScore)
+    .forEach((driver, index) => {
+        driver.currentRank = index + 1;
+    });
+
+    scoreList
+    .sort((a, b) => b.previousSuperScore - a.previousSuperScore)
+    .forEach((driver, index) => {
+        driver.previousRank = index + 1;
+    });
+
+    scoreList.forEach(driver => {
+        driver.rankDelta = driver.previousRank - driver.currentRank;
+        driver.scoreDelta = driver.superScore - driver.previousSuperScore;
+    });
+
+    renderScoreList(scoreList, "superScore", containerScoreList, limit, Object.keys(wdcFirstList),scoreState);
+}
+
+function renderScoreList(
+    scoreList,
+    scoreKey,
+    container,
+    limit,
+    averageYears = null,
+    state
+) {
+    state.scoreList = scoreList;
+    state.scoreKey = scoreKey;
+    state.container = container;
+    state.averageYears = averageYears;
+    state.limit = limit;
+
+    const absLimit = Math.abs(limit);
+
+    scoreList.sort((a, b) => {
+        let result;
+        if (typeof a[state.currentSort] === "string") {
+            result = a[state.currentSort].localeCompare(b[state.currentSort]);
+        } else {
+            result = a[state.currentSort] - b[state.currentSort];
+        }
+        return state.ascending ? result : -result;
+    });
+
+    container.replaceChildren();
+    let count=0;
+    console.log(scoreList)
+
+    scoreList.slice(0, absLimit).forEach(item => {
+        count++;
+
+        const row = document.createElement("div");
+        
+        row.className = 'score-rowALL'; 
+
+        let divisor = scoreKey === "score" ? 100 : 6;
+
+        const scoreHere = Math.max(
+            0.3,
+            Math.min(1, 1 - item[scoreKey] / divisor)
+        );
+
+        let driverClass = `class="wdcOtherALL"`;
+        active=""
+
+        if (currentGrid.includes(item.driverName)) {
+            active = `style="font-style:italic;"`;
+        };
+
+        // Average / span of years
+
+        secondPlace=false;
+
+        for (const year of averageYears) {
+            if (wdcFirstList[year] === item.driverName) {
+                driverClass = `class="wdcALL"`;
+                break;
+            } else if (wdcSecondList[year] === item.driverName) {
+                driverClass = `class="wdc2ALL"`;
+                secondPlace=true;
+            } else if (wdcThirdList[year] === item.driverName && !secondPlace) {
+                driverClass = `class="wdc3ALL"`;
+            }
+        }
+        let rankBigger='';
+        if(item.rankDelta>0) {
+            rankBigger=`<span class="delta_positive">${item.rankDelta >= 0 ? "+" : ""}${item.rankDelta}</span>`
+        } else if (item.rankDelta<0) {
+            rankBigger=`<span class="delta_negative">${item.rankDelta >= 0 ? "+" : ""}${item.rankDelta}</span>`
+        }
+        let scoreBigger='';
+        if(item.scoreDelta>0) {
+            scoreBigger=`<span class="delta_positive">${item.scoreDelta >= 0 ? "+" : ""}${item.scoreDelta.toFixed(3)}</span>`
+        } else if (item.scoreDelta<0) {
+            scoreBigger=`<span class="delta_negative">${item.scoreDelta >= 0 ? "+" : ""}${item.scoreDelta.toFixed(3)}</span>`
+        }
+        console.log(item.driverName)
+        row.innerHTML = `
+            <span ${driverClass} ${active}>
+                ${item.currentRank}
+                ${rankBigger}
+            </span>
+            <span ${driverClass} ${active}>${item.RookieYear}</span>
+            <span ${driverClass} ${active}>${item.raceCount}</span>
+            <span ${driverClass} ${active}>${item.driverName}</span>
+            <span ${driverClass} ${active}>${item.wdcCount}</span>
+            <span style="color:white;text-align:left;">
+                ${item[scoreKey].toFixed(3)}
+                ${scoreBigger}
+            </span>
+        `;
+
+        container.appendChild(row);
+
+    });
+
+}
+
+function sortAndRender(sortKey, state) {
+    if (state.currentSort === sortKey) {
+        state.ascending = !state.ascending;
+    } else {
+        state.currentSort = sortKey;
+        state.ascending = true;
+    }
+
+    renderScoreList(
+        state.scoreList,
+        state.scoreKey,
+        state.container,
+        state.limit,
+        state.displayKey,
+        state.averageYears,
+        state
+    );
+}
+
 async function initialize() {
     await loadData();
     console.log("LOADED")
+    updateBest()
+    updateAllTimeScores(1000)
 }
 
 initialize();
