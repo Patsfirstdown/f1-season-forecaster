@@ -109433,64 +109433,6 @@
                 "dnfFreeCombinedScore": 0.2206651161143473,
                 "races": 24
             }
-        },
-        "Juan Manuel Fangio": {
-            "1950": {
-                "score": 42.5,
-                "dnfFreeScore": 50.0,
-                "betterScore": 4.025,
-                "combinedScore": 1.7106250000000003,
-                "dnfFreeCombinedScore": 2.0125,
-                "races": 6
-            },
-            "1951": {
-                "score": 60.00000000000001,
-                "dnfFreeScore": 60.00000000000001,
-                "betterScore": 4.806666666666667,
-                "combinedScore": 2.8840000000000003,
-                "dnfFreeCombinedScore": 2.8840000000000003,
-                "races": 9
-            },
-            "1953": {
-                "score": 30.555555555555554,
-                "dnfFreeScore": 35.55555555555555,
-                "betterScore": 4.002859005600925,
-                "combinedScore": 1.223095807266949,
-                "dnfFreeCombinedScore": 1.4232387575469954,
-                "races": 9
-            },
-            "1954": {
-                "score": 85.55555555555556,
-                "dnfFreeScore": 85.55555555555556,
-                "betterScore": 6.462273473862822,
-                "combinedScore": 5.528833972082636,
-                "dnfFreeCombinedScore": 5.528833972082636,
-                "races": 9
-            },
-            "1955": {
-                "score": 72.5,
-                "dnfFreeScore": 75.0,
-                "betterScore": 4.9467962984129406,
-                "combinedScore": 3.586427316349382,
-                "dnfFreeCombinedScore": 3.710097223809705,
-                "races": 6
-            },
-            "1956": {
-                "score": 67.5,
-                "dnfFreeScore": 67.5,
-                "betterScore": 4.013288051707191,
-                "combinedScore": 2.708969434902354,
-                "dnfFreeCombinedScore": 2.708969434902354,
-                "races": 8
-            },
-            "1957": {
-                "score": 73.125,
-                "dnfFreeScore": 75.0,
-                "betterScore": 5.891362259919442,
-                "combinedScore": 4.308058652566093,
-                "dnfFreeCombinedScore": 4.418521694939582,
-                "races": 8
-            }
         }
     }
 }

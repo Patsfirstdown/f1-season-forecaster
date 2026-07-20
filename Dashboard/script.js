@@ -57,8 +57,8 @@ function populateDriverDropdown(raceName) {
 
         driverSelect.appendChild(option);
     });
-    if (drivers.includes("VER")) {
-        driverSelect.value = "VER";
+    if (drivers.includes("max_verstappen")) {
+        driverSelect.value = "max_verstappen";
     }
 }
 

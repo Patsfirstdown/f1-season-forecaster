@@ -5,6 +5,7 @@ let oldData;
 let driverClass;
 let currentGrid;
 let currentBox = document.getElementById("currentGrid");
+let currentSearch = "";
 
 let wdcFirstList = {
     2025: "Lando Norris",
@@ -689,13 +690,21 @@ function renderScoreList(
         return state.ascending ? result : -result;
     });
 
+    let filteredList = scoreList;
+
+    if (currentSearch.length >= 2) {
+        filteredList = scoreList.filter(item =>
+            item.driverName.toLowerCase().includes(currentSearch)
+        );
+    }
+
     container.replaceChildren();
     let count=0;
     console.log(currentBox);
     console.log(currentBox.checked)
 
     if(currentBox.checked) {
-        scoreList.slice(0, absLimit).forEach(item => {
+        filteredList.slice(0, absLimit).forEach(item => {
             if (currentGrid.includes(item.driverName)) {
                 count++;
         
@@ -763,7 +772,7 @@ function renderScoreList(
             };
         });
     } else {
-        scoreList.slice(0, absLimit).forEach(item => {
+        filteredList.slice(0, absLimit).forEach(item => {
             count++;
     
             const row = document.createElement("div");
@@ -865,4 +874,19 @@ initialize();
 document.getElementById("currentGrid").addEventListener("change", () => {
     updateBest();
     updateAllTimeScores(1000);
+});
+
+const driverSearch = document.getElementById("driverSearch");
+
+driverSearch.addEventListener("input", () => {
+    currentSearch = driverSearch.value.trim().toLowerCase();
+
+    renderScoreList(
+        scoreState.scoreList,
+        scoreState.scoreKey,
+        scoreState.container,
+        scoreState.limit,
+        scoreState.averageYears,
+        scoreState
+    );
 });

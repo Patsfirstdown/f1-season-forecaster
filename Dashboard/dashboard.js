@@ -55,9 +55,9 @@ function updateWDCChart() {
                 : null;
 
         });
-
+        console.log(predictionData.wdc_data[firstRace][driver])
         datasets.push({
-            label: driver.replaceAll("_", " "),
+            label: predictionData.wdc_data[firstRace][driver]["driver_name"],
             data: expectedPositions,
             borderColor: driverColors[driver],        // line color
             backgroundColor: driverColors[driver],
@@ -435,7 +435,7 @@ function updateDriverChart() {
         });
 
         datasets.push({
-            label: driver.replaceAll("_", " "),
+            label: predictionData.wdc_data[firstRace][driver]["driver_name"],
             data: expectedPositions,
             borderColor: driverColors[driver],        // line color
             backgroundColor: driverColors[driver],
@@ -631,13 +631,13 @@ function updateVolatilityChart() {
             return {
                 x: driverData.expected_finish,
                 y: driverData.position_std,
-                driver: driver,
+                driver: driverData.driver_name,
                 race: race,
             };
         }).filter(point => point !== null);
     
         datasets.push({
-            label: driver,
+            label: predictionData.race_data[firstRace][driver]["driver_name"],
             data: points,
             backgroundColor: driverColors[driver],
             borderColor: borderColor,
@@ -929,6 +929,8 @@ function updateUpdates() {
             else {
                 sortedWDCAll = createSorted(currentWDC,oldtempWDC,"exp")
                 sortedWDC1 = createSorted(currentWDC,oldtempWDC,"winProb")
+                console.log(currentWDC)
+                console.log(oldtempWDC)
     
                 if(sortedWDC1[0][1].value>seasonWDC1big[2]) {
                     seasonWDC1big=[racename,sortedWDC1[0][1].name,sortedWDC1[0][1].value]
@@ -950,7 +952,7 @@ function updateUpdates() {
     Object.keys(currentWCC).forEach(team => {
         Object.keys(predictionData.wcc_data[upcomingRace][team]).forEach(pos => {
             if(!pos.includes("_")) {
-                if(predictionData.wcc_data[upcomingRace][team][pos]>=.9) {
+                if(predictionData.wcc_data[upcomingRace][team][pos]>=.8) {
                     firmTeams.push({
                         "Team":team,
                         "Pos":pos,
@@ -960,11 +962,12 @@ function updateUpdates() {
             }
         })
     });
+    
     console.log(firmTeams)
     Object.keys(currentWDC).forEach(driver => {
         Object.keys(predictionData.wdc_data[upcomingRace][driver]).forEach(pos => {
             if(!pos.includes("_")) {
-                if(predictionData.wdc_data[upcomingRace][driver][pos]>=.9) {
+                if(predictionData.wdc_data[upcomingRace][driver][pos]>=.8) {
                     console.log(predictionData.wdc_data[upcomingRace][driver])
                     firmDrivers.push({
                         "Driver":predictionData.wdc_data[upcomingRace][driver]["driver_name"],
@@ -1021,8 +1024,13 @@ function updateUpdates() {
         const row = table.insertRow();
         const posCell = row.insertCell();
         posCell.textContent = pos ?? "";
+
         if (positions[pos].driverOdds === 1) {
-            if (positions[pos].teamOdds === 1) {
+            if (pos<=11) {
+                if (positions[pos].teamOdds === 1) {
+                    rowCell.classList.add("locked");
+                }
+            } else {
                 rowCell.classList.add("locked");
             }
         }
@@ -1030,12 +1038,28 @@ function updateUpdates() {
         driverCell.textContent = positions[pos].driver ?? "";
         if (positions[pos].driverOdds === 1) {
             driverCell.classList.add("locked");
+        } else if (positions[pos].driverOdds >= .99) {
+            driverCell.classList.add("locked99");
+        } else if (positions[pos].driverOdds >= .9) {
+            driverCell.classList.add("locked9");
+        } else if (positions[pos].driverOdds >= .8) {
+            driverCell.classList.add("locked8");
+        } else if (positions[pos].driverOdds >= .7) {
+            driverCell.classList.add("locked7");
         }
         const teamCell = row.insertCell();
         teamCell.textContent = positions[pos].team ?? "";
 
         if (positions[pos].teamOdds === 1) {
             teamCell.classList.add("locked");
+        } else if (positions[pos].teamOdds >= .99) {
+            teamCell.classList.add("locked99");
+        } else if (positions[pos].teamOdds >= .9) {
+            teamCell.classList.add("locked9");
+        } else if (positions[pos].teamOdds >= .8) {
+            teamCell.classList.add("locked8");
+        } else if (positions[pos].teamOdds >= .7) {
+            teamCell.classList.add("locked7");
         }
     });
 

@@ -57,7 +57,7 @@ function updateWDCChart() {
         });
 
         datasets.push({
-            label: driver.replaceAll("_", " "),
+            label: predictionData.wdc_data[firstRace][driver]["driver_name"],
             data: expectedPositions,
             borderColor: driverColors[driver],        // line color
             backgroundColor: driverColors[driver],
@@ -435,7 +435,7 @@ function updateDriverChart() {
         });
 
         datasets.push({
-            label: driver.replaceAll("_", " "),
+            label: predictionData.wdc_data[firstRace][driver]["driver_name"],
             data: expectedPositions,
             borderColor: driverColors[driver],        // line color
             backgroundColor: driverColors[driver],
@@ -631,13 +631,13 @@ function updateVolatilityChart() {
             return {
                 x: driverData.expected_finish,
                 y: driverData.position_std,
-                driver: driver,
+                driver: predictionData.wdc_data[firstRace][driver]["driver_name"],
                 race: race,
             };
         }).filter(point => point !== null);
     
         datasets.push({
-            label: driver,
+            label: predictionData.wdc_data[firstRace][driver]["driver_name"],
             data: points,
             backgroundColor: driverColors[driver],
             borderColor: borderColor,

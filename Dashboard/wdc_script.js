@@ -57,8 +57,8 @@ function populateDriverDropdown(raceName) {
 
         driverSelect.appendChild(option);
     });
-    if (drivers.includes("VER")) {
-        driverSelect.value = "VER";
+    if (drivers.includes("max_verstappen")) {
+        driverSelect.value = "max_verstappen";
     }
 }
 
@@ -196,7 +196,7 @@ function updateWDCHeatmap(selectedRace) {
     Object.keys(wdcData).forEach(driver => {
 
         html += `<tr>`;
-        html += `<td class="heatmap-driver">${driver}</td>`;
+        html += `<td class="heatmap-driver">${raceData[driver]["driver_name"]}</td>`;
 
         for (let pos = 1; pos <= 22; pos++) {
 

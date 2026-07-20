@@ -159,7 +159,7 @@ function updateRaceHeatmap(selectedRace) {
     Object.keys(raceData).forEach(driver => {
 
         html += `<tr>`;
-        html += `<td class="heatmap-driver">${driver}</td>`;
+        html += `<td class="heatmap-driver">${raceData[driver]["driver_name"]}</td>`;
 
         for (let pos = 1; pos <= 22; pos++) {
 

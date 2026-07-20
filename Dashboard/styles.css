@@ -625,9 +625,32 @@ h4.oneOff {
 }
 
 .locked {
+    background-color: green;
+    font-weight: bold;
+    color: black;
+    font-size: 1.5rem;
+}
+.locked99 {
     background-color: darkseagreen;
     font-weight: bold;
+    color: black;
+    font-size: 1.5rem;
 }
+.locked9 {
+    background-color: rgb(160,190,160);
+    font-weight: normal;
+    color: black;
+    font-size: 1.5rem;
+}
+.locked8 {
+    background-color: rgb(176,191,176);
+    font-style: italic;
+    font-weight: normal;
+    color: black;
+    font-size: 1.5rem;
+}
+
+
 
 .predStats {
     color:black;
@@ -841,4 +864,34 @@ h4.oneOff {
 }
 .delta_negative {
     color: red;
+}
+
+.checkbox2 {
+    align-items: right;
+}
+
+.list-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 20px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.25rem;
+}
+
+#driverSearch {
+    width: 70%;
+    padding: 6px 10px;
+    height: 2.5rem;
+    font-size: 1.25rem;
+}
+
+.gapSpace {
+    margin:64px;
+    border: 2px solid white;
 }

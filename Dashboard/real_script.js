@@ -522,6 +522,11 @@ function populateDriverDropdown(year) {
         option.textContent = "2026";
         driverSelect.appendChild(option);
         driverSelect.selectedIndex = driverSelect.options.length - 1;
+    } else if (year==="All Time") {
+        const option = document.createElement("option");
+        option.value = "Single Seasons";
+        option.textContent = "Single Seasons";
+        driverSelect.appendChild(option);
     }
 }
 

@@ -60,8 +60,8 @@ function populateDriver1Dropdown(raceName) {
 
         driverSelect.appendChild(option);
     });
-    if (drivers.includes("VER")) {
-        driverSelect.value = "VER";
+    if (drivers.includes("max_verstappen")) {
+        driverSelect.value = "max_verstappen";
     }
 }
 
@@ -95,9 +95,9 @@ function populateDriver2Dropdown(raceName) {
 
         driverSelect.appendChild(option);
     });
-    if (drivers.includes("LEC") &&
-        driver1Select !== "LEC") {
-        driverSelect.value = "LEC";
+    if (drivers.includes("leclerc") &&
+        driver1Select !== "leclerc") {
+        driverSelect.value = "leclerc";
     }
 }
 
@@ -327,10 +327,10 @@ function compareDrivers() {
         </div>
     `;
 
-    driverCompareChart(a,b,driverA,driverB);
+    driverCompareChart(a,b,driverA,driverB,race);
 }
 
-function driverCompareChart(driverA,driverB,nameA,nameB) {
+function driverCompareChart(driverA,driverB,nameA,nameB,raceName) {
     const labels = [];
     const valuesA = [];
     const valuesB = [];
@@ -405,13 +405,13 @@ function driverCompareChart(driverA,driverB,nameA,nameB) {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: `${nameA} Probability (%)`,
+                    label: `${predictionData.race_data[raceName][nameA].driver_name} Probability (%)`,
                     data: valuesA,
                     borderColor: colorA,
                     backgroundColor: colorA,
                 },
                 {
-                    label: `${nameB} Probability (%)`,
+                    label: `${predictionData.race_data[raceName][nameB].driver_name} Probability (%)`,
                     data: valuesB,
                     borderColor: colorB,
                     backgroundColor: colorB,
