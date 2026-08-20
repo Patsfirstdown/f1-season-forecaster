@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Professional Website-->
+        <title>Constructors Championship Forecast</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="common.js"></script>
+        <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+        <script src="wcc_script.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div id="mainHeader" class="mainHeader">
+        </div>
+        <div>
+            <header class="banner">
+                <h1>Constructors Championship Forecast</h1>
+            </header>
+        </div>
+        <div>
+            <table class="dropdown_table">
+                <theader>
+                    <tr>
+                        
+                    </tr>
+                </theader>
+                    <tr>
+                        <td>
+                            <td align="Right">Year</td>
+                        <td>
+                            <!--
+                            Year list
+                            -->
+                            <label for="year_picked"></label>
+                            <select class="select-box" id="yearSelect" name="year_picked" required>
+                                <option value="2026">2026</option>
+                        </td>
+                        <td>
+                            <span type="year_picked" id="year_pickedError"></span>
+                        </td>
+                        <td align="Right">Upcoming Race</td>
+                        <td>
+                            <!--
+                            Race list
+                            -->
+                            <label for="race"></label>
+                            <select class="select-box" id="raceSelect" name="race" required>
+                        </td>
+                        <td>
+                            <span type="error" id="raceError"></span>
+                        </td>
+                        <td align="Right">Team</td>
+                        <td>
+                            <!--
+                            Team list
+                            -->
+                            <label for="team"></label>
+                            <select class="select-box" id="teamSelect" name="team" required>
+                        </td>
+                        <td>
+                            <span type="error" id="teamError"></span>
+                        </td>
+                        <td class="button">
+                            <button class="submit-btn" id="generateButton" type="submit" align="right">Load Data</button>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+        <div id="graph-container" class="graph-container">
+            <p id="graph-text" class="graph-text">Select filters to generate graphs</p>
+            <div class="stats-card">
+                <h3>Prediction Summary</h3>
+                <p>Expected Finish: <span id="expectedFinish"></span></p>
+                <p>Win %: <span id="winProb"></span></p>
+            </div>
+            <div class="graph_div">
+                <canvas class="graph" id="positionChart"></canvas>
+            </div>
+        </div>
+        <div>
+            <div class="dashboard_card">
+                <h3 class="score-title">Team Score</h3>
+                <div id="scoreList" class="dnfProbList"></div>
+            </div>
+        </div>
+        <div id="wccHeatmap" class="heatmap"></div>
+        <div id="footerForm">
+        </div>
+    </body>
+</html>

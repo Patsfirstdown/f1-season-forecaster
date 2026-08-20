@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Professional Website-->
+        <title>Result Scores</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="common.js"></script>
+        <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+        <script src="pred_analysis.js" defer></script>
+    </head>
+    <body>
+        <div id="mainHeader" class="mainHeader">
+        </div>
+        <div>
+            <header class="banner">
+                <h1>Model Success<br>Scores</h1>
+            </header>
+        </div>
+        <div>
+            <div>
+                <h3 class="score-title" id="titleHere">AME</h3>
+            </div>
+            <div class="radioInputWithSearch">
+                <strong>Filter By:</strong>
+                <input type="radio" id="driver" name="Filter" value="Driver">
+                <label for="driver">Driver</label><br>
+                <input type="radio" id="race" name="Filter" value="Race">
+                <label for="race">Race</label><br>
+                <input type="radio" id="team" name="Filter" value="Team">
+                <label for="team">Team</label><br>
+                <input type="radio" id="all" name="Filter" value="All" checked>
+                <label for="all">None</label>
+                <label for="driver"></label>
+                <select class="select-box" id="driverSelect" name="driver" required></select>
+            </div>
+            <br>
+            <div class="radioInput">
+                <strong>Performance Metric:</strong>
+                <input type="radio" id="posOdds" name="metric" value="posOdds" checked>
+                <label for="posOdds">AME</label><br>
+                <input type="radio" id="points" name="metric" value="points">
+                <label for="points">Result Odds</label><br>
+                <input type="radio" id="DNF_Prob" name="metric" value="DNF_Prob">
+                <label for="DNF_Prob">DNF%</label><br>
+                <input type="radio" id="-WILLDO----" name="metric" value="-WILLDO----">
+                <label for="-WILLDO----">-WILLDO----</label>
+            </div>
+            <div class="subInfo">
+                <div id="subInfo" class="subInfoText">INFO NOT LOADED</div>
+            </div>
+            <div class="outputTitle" id="outputTitle">
+                
+            </div>
+            <div class="output" id="output">
+                Output
+            </div>
+        </div>
+        <div id="footerForm">
+        </div>
+    </body>
+</html>

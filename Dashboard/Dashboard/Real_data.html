@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Professional Website-->
+        <title>Result Scores</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="commonReal.js"></script>
+        <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+        <script src="real_script.js" defer></script>
+    </head>
+    <body>
+        <div id="mainHeader" class="mainHeader">
+        </div>
+        <div>
+            <header class="banner">
+                <h1>Driver Result<br>Scores</h1>
+            </header>
+        </div>
+        <table class="year_dropdown_table">
+            <theader>
+                <th>
+                </th>
+            </theader>
+            <tr>
+                <td align="Right">Time Span</td>
+                <td>
+                    <label for="year_picked"></label>
+                    <select class="select-box" id="yearSelect" name="year_picked" required></select>
+                </td>
+                <td align="Right">How Many</td>
+                <td>
+                    <label for="limit_picked"></label>
+                    <select class="select-box" id="limitSelect" name="limit_picked" required>
+                        <option value="10">Top 10</option>
+                        <option value="20">Top 20</option>
+                        <option value="30">Top 30</option>
+                        <option value="-10">Bottom 10</option>
+                        <option value="-20">Bottom 20</option>
+                        <option value="-30">Bottom 30</option>
+                        <option value="10000" selected>All</option>
+                    </select>
+                </td>
+                <td>
+                    <button type="button" class="randomButton" id="randomButton">Random Driver</button>
+                </td>
+                <td>
+                    <input type="checkbox" id="dnfIncluded" name="dnfIncluded" value="includeDNF">
+                    <label for="dnfIncluded">Include DNFs</label>
+                </td>
+            </tr>
+            <tr id="driverDropdown2" class="driverDropdownReal">
+                <td align="Right" id="driverDropdownText"></td>
+                <td>
+                    <label for="year_picked"></label>
+                    <select class="select-box" id="driverSelect" name="driver_picked" required></select>
+                </td>
+                <td></td>
+            </tr>
+            <tr id="extraDropdown">
+                <td align="Right">Data</td>
+                <td>
+                    <label for="year_picked"></label>
+                    <select class="select-box" id="extraSelect" name="driver_picked" required>
+                    </select>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <div id="driverInfo">
+        </div>
+        <table  class="realLegend">
+            <th colspan="5" style="color:white;font-size:2rem;" text-align="center">
+                Legend
+            </th>
+            <tr>
+                <td class="wdc" align="center">World Champion</td>
+                <td class="wdc2" align="center">Runner Up</td>
+                <td class="wdc3" align="center">Third</td>
+                <td class="active" align="center">Current</td>
+                <td class="wdcOther" align="center">Raced</td>
+            </tr>
+        </table>
+        <div id="yearWarning"></div>
+        <div>
+            <div class="dashboard_card">
+                <h3 class="score-title">Driver+Car Scores</h3>
+                <h4 class="info">Score based on Wins, Podiums, Points Finishes and DNF Rate</h4>
+                <table class="info">
+                    <tr>
+                        <th>100 to 80: Dominant</th>
+                        <th>80 to 50: Consistently Winning</th>
+                        <th>50 to 20: Fighting for Wins</th>
+                        <th>20 to 0: Battling in the Points</th>
+                        <th>0 to -10: Consistent DNFs</th>
+                        <th>-15: 100% DNF Rate</th>
+                    </tr>
+                </table>
+                <div class="score-row score-header">
+                    <span class="wdcOther">Rank</span>
+                    <span id="scoreHeader" class="wdcOther"></span>
+                    <span id="racesHeader" class="wdcOther">Races</span>
+                    <span id="driverHeader" class="wdcOther">Driver</span>
+                    <span id="valueHeader" class="wdcOther">Score</span>
+                </div>
+                <div id="scoreList" class="scoreList"></div>
+            </div>
+        </div>
+        <div>
+            <div class="dashboard_card">
+                <h3 class="score-title">Driver Scores</h3>
+                <div id="otherWarning"></div>
+                <h4 class="info">Score based on Expected Position, Teammate Head to Head, Consistency and Improvement</h4>
+                <table class="info" id="betterInfo">
+                    <tr><th>6+: Beyond Expectations</th>
+                        <th>6 to 3: Above Expecations</th>
+                        <th>3 to 1: Within Expectations</th>
+                        <th>1 to 0: Performing Below Expectations</th>
+                        <th>0 to -inf: Beyond Below Expectations</th>
+                        </tr>
+                </table>
+                <div class="score-row">
+                    <span class="wdcOther">Rank</span>
+                    <span id="betterScoreHeader" class="wdcOther"></span>
+                    <span id="betterRaceHeader" class="wdcOther">Races</span>
+                    <span id="betterDriverHeader" class="wdcOther">Driver</span>
+                    <span id="betterValueHeader" class="wdcOther">Score</span>
+                </div>
+                <div id="betterScoreList" class="scoreList"></div>
+            </div>
+        </div>
+        <div>
+            <div class="dashboard_card">
+                <h3 class="score-title">Combined Scores</h3>
+                <div id="otherWarning"></div>
+                <h4 class="info">Score based on Driver Car Score * Driver Score</h4>
+                <table class="info" id="combinedInfo">
+                    <tr><th>6+: How?</th>
+                        <th>6 to 3: Above Expecations</th>
+                        <th>3 to 1: Within Expectations</th>
+                        <th>1 to 0: Performing Below Expectations</th>
+                        <th>0 to -inf: Beyond Below Expectations</th>
+                        </tr>
+                </table>
+                <div class="score-row">
+                    <span class="wdcOther">Rank</span>
+                    <span id="combinedScoreHeader" class="wdcOther"></span>
+                    <span id="combinedRaceHeader" class="wdcOther">Races</span>
+                    <span id="combinedDriverHeader" class="wdcOther">Driver</span>
+                    <span id="combinedValueHeader" class="wdcOther">Score</span>
+                </div>
+                <div id="combinedScoreList" class="scoreList"></div>
+            </div>
+        </div>
+        <div id="footerForm">
+        </div>
+    </body>
+</html>

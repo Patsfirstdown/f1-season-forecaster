@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Professional Website-->
+        <title>World Championship Forecast</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="common.js"></script>
+        <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+        <script src="wc_script.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div id="mainHeader" class="mainHeader">
+        </div>
+        <div>
+            <header class="banner">
+                <h1>Championships Outlooks</h1>
+            </header>
+            <header class="banner">
+                <h2>Drivers Championship Outlook</h2>
+            </header>
+        </div>
+        <div>
+            <div>
+                <div class="dashboard_card">
+                    <h3 class="dnf-title">Driver Prediction Stats</h3>
+                    <div id="wdcExpectedPositions" class="predStats"></div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div>
+            <h3 class="dnf-title">Finish Probability Heatmap</h3>
+        </div>
+        <div id="driverHeatmap" class="heatmap"></div>
+        <div>
+            <header class="banner">
+                <h2>Constructors Championship Outlook</h2>
+            </header>
+        </div>
+        <div>
+            <div>
+                <div class="dashboard_card">
+                    <h3 class="dnf-title">Team Prediction Stats</h3>
+                    <div id="wccExpectedPositions" class="predStats"></div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div>
+            <h3 class="dnf-title">Finish Probability Heatmap</h3>
+        </div>
+        <div id="teamHeatmap" class="heatmap"></div>
+        <div id="footerForm">
+        </div>
+    </body>
+</html>
